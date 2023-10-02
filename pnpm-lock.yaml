@@ -8,6 +8,9 @@ dependencies:
   '@ant-design/cssinjs':
     specifier: ^1.17.0
     version: 1.17.0(react-dom@18.2.0)(react@18.2.0)
+  '@ant-design/happy-work-theme':
+    specifier: ^1.0.0
+    version: 1.0.0(antd@5.9.4)(react-dom@18.2.0)(react@18.2.0)
   '@hookform/resolvers':
     specifier: ^3.3.1
     version: 3.3.1(react-hook-form@7.47.0)
@@ -190,6 +193,25 @@ packages:
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       stylis: 4.3.0
+    dev: false
+
+  /@ant-design/happy-work-theme@1.0.0(antd@5.9.4)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-BKuz5PZkGZwXqzDwTE9fiHYlpKdDyoGnApEih2MG1GF79/a/YekxBc4tdqocykDtWzt3z1wwmHv8AiB7EUTWsQ==}
+    engines: {node: '>=8.x'}
+    peerDependencies:
+      antd: '>= 5.8.2'
+      react: '>=16.9.0'
+      react-dom: '>=16.9.0'
+    dependencies:
+      '@ant-design/cssinjs': 1.17.0(react-dom@18.2.0)(react@18.2.0)
+      '@babel/runtime': 7.22.11
+      '@ctrl/tinycolor': 3.6.1
+      antd: 5.9.4(react-dom@18.2.0)(react@18.2.0)
+      classnames: 2.3.2
+      rc-motion: 2.9.0(react-dom@18.2.0)(react@18.2.0)
+      rc-util: 5.37.0(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
     dev: false
 
   /@ant-design/icons-svg@4.3.1:

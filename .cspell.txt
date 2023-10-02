@@ -5,6 +5,7 @@ clsx
 commitlint
 cssinjs
 echarts
+gesturestart
 hookform
 iconify
 lintstaged

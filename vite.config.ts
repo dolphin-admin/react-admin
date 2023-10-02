@@ -44,7 +44,7 @@ export default defineConfig(({ mode }) => {
           },
           {
             from: '@/constants',
-            imports: ['GlobalEnvConfig', 'BasePageModel']
+            imports: ['GlobalEnvConfig', 'BasePageModel', 'AppConfig']
           }
         ],
         dirs: [
@@ -55,6 +55,7 @@ export default defineConfig(({ mode }) => {
           'src/layouts',
           'src/providers',
           'src/store',
+          'src/tools',
           'src/utils'
         ]
       }),
