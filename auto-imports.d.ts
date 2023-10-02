@@ -6,6 +6,8 @@
 export {}
 declare global {
   const AppConfig: typeof import('@/constants')['AppConfig']
+  const AssetUtils: typeof import('./src/utils/asset/index')['AssetUtils']
+  const AuthLayout: typeof import('./src/layouts/index')['AuthLayout']
   const AuthUtils: typeof import('./src/utils/auth/index')['AuthUtils']
   const BaseHeader: typeof import('./src/components/index')['BaseHeader']
   const BaseLayout: typeof import('./src/layouts/index')['BaseLayout']

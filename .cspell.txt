@@ -12,6 +12,7 @@ lintstaged
 nocheck
 nprogress
 preinstall
+signup
 svgr
 tailwindcss
 tanstack
