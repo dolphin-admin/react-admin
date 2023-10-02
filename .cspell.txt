@@ -13,6 +13,7 @@ preinstall
 svgr
 tailwindcss
 tanstack
+tauri
 unplugin
 vite
 zustand

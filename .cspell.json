@@ -25,6 +25,7 @@
     "**/**/CHANGELOG.md",
     "**/**/CONTRIBUTORS.md",
     "pnpm-lock.yaml",
-    "README.md"
+    "README.md",
+    "src-tauri"
   ]
 }
