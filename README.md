@@ -1,8 +1,9 @@
-# React TypeScript Starter Template
+# Dolphin Admin React
 
 English / [简体中文](./README.zh-CN.md)
 
-⚛️ An opinionated React/TypeScript starter template.
+Dolphin Admin React is an open source, lightweight, out-of-the-box, elegant and exquisite, internationalized
+backend management template based on React + TypeScript + Vite + antd + TailwindCSS.
 
 ## Tech Stack
 

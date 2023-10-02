@@ -1,8 +1,8 @@
-# React TypeScript Starter Template
+# Dolphin Admin React
 
 [English](./README.md) / 简体中文
 
-⚛️ 一个固执己见、基于 React 和 TypeScript 的启动模板。
+Dolphin Admin React 是一个基于 React + TypeScript + Vite + antd + TailwindCSS 的开源、轻量级、开箱即用、优雅精致、支持国际化的后台管理模板。
 
 ## 技术栈
 
