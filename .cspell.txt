@@ -4,6 +4,7 @@ brucesong
 clsx
 commitlint
 cssinjs
+echarts
 hookform
 iconify
 lintstaged
