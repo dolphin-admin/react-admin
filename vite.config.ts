@@ -37,6 +37,7 @@ export default defineConfig(({ mode }) => {
         imports: [
           'react',
           'react-router-dom',
+          'react-i18next',
           'ahooks',
           {
             from: '@tanstack/react-query',
@@ -45,6 +46,10 @@ export default defineConfig(({ mode }) => {
           {
             from: '@/constants',
             imports: ['GlobalEnvConfig', 'BasePageModel', 'AppConfig']
+          },
+          {
+            from: 'antd',
+            imports: ['Form', 'Input', 'Button', 'Checkbox']
           }
         ],
         dirs: [
