@@ -10,7 +10,8 @@ module.exports = {
         'layout-light': '#F5F6F7',
         'layout-dark': '#0F0F0F',
         'default-light': '#FEFEFE',
-        'default-dark': '#36393F'
+        'default-dark': '#141414'
+        // 'default-dark': '#36393F'
       }
     }
   },

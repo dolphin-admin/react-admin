@@ -1,5 +1,19 @@
 export default function AuthLayout(): React.JSX.Element {
   const { VERSION, APP_NAME } = AppConfig
+  const navigate = useNavigate()
+  const userStore = useUserStore()
+
+  const checkLogin = () => {
+    // 如果已经登录，直接跳转到首页，否则清除用户信息
+    if (AuthUtils.isAuthenticated()) {
+      navigate('/', { replace: true })
+    } else {
+      userStore.clearUser()
+    }
+  }
+
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  useEffect(() => checkLogin(), [])
 
   return (
     <main className="flex h-screen w-screen">

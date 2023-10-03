@@ -49,7 +49,18 @@ export default defineConfig(({ mode }) => {
           },
           {
             from: 'antd',
-            imports: ['Form', 'Input', 'Button', 'Checkbox']
+            imports: [
+              'Form',
+              'Input',
+              'Button',
+              'Checkbox',
+              'Divider',
+              'ConfigProvider'
+            ]
+          },
+          {
+            from: '@ant-design/icons',
+            imports: [['default', 'Icon']]
           }
         ],
         dirs: [

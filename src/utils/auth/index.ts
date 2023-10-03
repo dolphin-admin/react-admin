@@ -5,6 +5,21 @@ export class AuthUtils {
   private static LOCAL_STORAGE_TOKEN = 'access_token'
 
   /**
+   * 记住密码 LocalStorage 键名
+   */
+  static LOCAL_STORAGE_REMEMBERED_ACCOUNT = 'login_account_data'
+
+  /**
+   * 默认管理员用户名
+   */
+  static DEFAULT_ADMIN_USERNAME = 'SuperAdmin'
+
+  /**
+   * 默认管理员密码
+   */
+  static DEFAULT_PASSWORD = '123456'
+
+  /**
    * 获取 token
    */
   static getToken() {
@@ -38,5 +53,27 @@ export class AuthUtils {
    */
   static isAuthenticated(): boolean {
     return !!localStorage.getItem(this.LOCAL_STORAGE_TOKEN)
+  }
+
+  /**
+   * 获取记住密码的账号密码
+   * @description 用于登录页记住密码功能
+   */
+  static getRememberedAccount() {
+    return localStorage.getItem(this.LOCAL_STORAGE_REMEMBERED_ACCOUNT)
+  }
+
+  /**
+   * 设置记住密码的账号密码
+   */
+  static setRememberedAccount(data: string) {
+    localStorage.setItem(this.LOCAL_STORAGE_REMEMBERED_ACCOUNT, data)
+  }
+
+  /**
+   * 清除记住密码的账号密码
+   */
+  static clearRememberedAccount() {
+    localStorage.removeItem(this.LOCAL_STORAGE_REMEMBERED_ACCOUNT)
   }
 }

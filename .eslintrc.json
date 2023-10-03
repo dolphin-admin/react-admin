@@ -4,6 +4,7 @@
     "plugin:@tanstack/eslint-plugin-query/recommended"
   ],
   "rules": {
-    "react/jsx-no-undef": "off" // 如果启用了 unplugin-auto-import，就需要关闭这个规则
+    "react/jsx-no-undef": "off", // 如果启用了 unplugin-auto-import，就需要关闭这个规则
+    "@typescript-eslint/no-floating-promises": "off"
   }
 }
