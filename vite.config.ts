@@ -55,7 +55,9 @@ export default defineConfig(({ mode }) => {
               'Button',
               'Checkbox',
               'Divider',
-              'ConfigProvider'
+              'ConfigProvider',
+              'Spin',
+              'Typography'
             ]
           },
           {

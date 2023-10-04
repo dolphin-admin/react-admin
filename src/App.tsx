@@ -17,32 +17,36 @@ export default function App() {
   }, [])
 
   return (
-    <QueryClientProvider client={queryClient}>
-      <StyleProvider hashPriority="high">
-        <ConfigProvider
-          locale={zhCN}
-          theme={{
-            algorithm:
-              theme === 'light' ? Theme.defaultAlgorithm : Theme.darkAlgorithm,
-            token: {
-              fontFamily:
-                'Nunito, Noto Sans, system-ui, -apple-system, Roboto, Helvetica Neue, Arial, sans-serif'
-            }
-          }}
-        >
-          <AntdApp
-            message={{
-              maxCount: 3,
-              duration: 1
+    <div className="bg-layout-light text-base dark:bg-layout-dark">
+      <QueryClientProvider client={queryClient}>
+        <StyleProvider hashPriority="high">
+          <ConfigProvider
+            locale={zhCN}
+            theme={{
+              algorithm:
+                theme === 'light'
+                  ? Theme.defaultAlgorithm
+                  : Theme.darkAlgorithm,
+              token: {
+                fontFamily:
+                  'Nunito, Noto Sans, system-ui, -apple-system, Roboto, Helvetica Neue, Arial, sans-serif'
+              }
             }}
           >
-            <HappyProvider>
-              <RouterProvider router={createBrowserRouter(router)} />
-            </HappyProvider>
-          </AntdApp>
-        </ConfigProvider>
-      </StyleProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
-    </QueryClientProvider>
+            <AntdApp
+              message={{
+                maxCount: 3,
+                duration: 1
+              }}
+            >
+              <HappyProvider>
+                <RouterProvider router={createBrowserRouter(router)} />
+              </HappyProvider>
+            </AntdApp>
+          </ConfigProvider>
+        </StyleProvider>
+        <ReactQueryDevtools initialIsOpen={false} />
+      </QueryClientProvider>
+    </div>
   )
 }

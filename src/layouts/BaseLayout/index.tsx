@@ -2,7 +2,7 @@ export default function BaseLayout(): React.JSX.Element {
   const userStore = useUserStore()
   const navigate = useNavigate()
 
-  // const [loading, setLoading] = useState(true)
+  const [loading, setLoading] = useState(true)
 
   useEffect(() => {
     // 检查登录状态
@@ -13,8 +13,9 @@ export default function BaseLayout(): React.JSX.Element {
           // const { data } = (await UserAPI.getUserInfo()) || {}
           userStore.setUser({})
         }
-        // setLoading(false)
+        setLoading(false)
       } else {
+        return
         // 否则清除用户信息并跳转到登录页
         userStore.clearUser()
         navigate(`/login?redirect=${window.location.pathname}`, {
@@ -25,6 +26,10 @@ export default function BaseLayout(): React.JSX.Element {
     checkLogin()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
+  if (loading) {
+    return <BaseGlobalLoading />
+  }
 
   return (
     <div className="relative h-screen w-screen">

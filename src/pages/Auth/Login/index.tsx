@@ -84,6 +84,7 @@ export function Component(): React.JSX.Element {
         <Form.Item
           name="username"
           rules={[{ required: true, message: '请输入用户名' }]}
+          rootClassName="!mb-4"
         >
           <Input
             placeholder="用户名"
@@ -93,6 +94,7 @@ export function Component(): React.JSX.Element {
         <Form.Item
           name="password"
           rules={[{ required: true, message: '请输入密码' }]}
+          rootClassName="!mb-2"
         >
           <Input.Password
             placeholder="密码"
@@ -100,10 +102,11 @@ export function Component(): React.JSX.Element {
           />
         </Form.Item>
 
-        <div className="text-grey-300 flex items-center justify-between text-xs font-light">
+        <div className="text-grey-300 mb-1 flex items-center justify-between">
           <Form.Item
             name="rememberPassword"
             valuePropName="checked"
+            rootClassName="!mb-0"
           >
             <Checkbox>记住密码</Checkbox>
           </Form.Item>
@@ -130,7 +133,7 @@ export function Component(): React.JSX.Element {
           </Form.Item> */}
         </div>
 
-        <Form.Item>
+        <Form.Item rootClassName="!mb-2">
           <div className="flex w-full flex-1 items-center space-x-2">
             <Button
               rootClassName="!w-[calc(50%-4px)]"
@@ -154,7 +157,7 @@ export function Component(): React.JSX.Element {
           </div>
         </Form.Item>
 
-        <div className="flex items-center space-x-1 text-xs">
+        <div className="flex items-center text-xs">
           <span>需要账号？</span>
           <ConfigProvider
             theme={{
