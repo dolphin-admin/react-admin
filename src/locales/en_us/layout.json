@@ -1,0 +1,13 @@
+{
+  "Header": {
+    "ChangePassword": "Change password",
+    "ExitFullScreen": "Exit full screen",
+    "FullScreen": "Full screen",
+    "Language": "Language",
+    "LockScreen": "Lock screen",
+    "Logout": "Logout",
+    "Notification": "Notification",
+    "Settings": "Settings",
+    "SwitchTheme": "Switch theme"
+  }
+}

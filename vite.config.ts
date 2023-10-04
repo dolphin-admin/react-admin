@@ -29,7 +29,7 @@ export default defineConfig(({ mode }) => {
     plugins: [
       react(),
       AutoImport({
-        dts: true,
+        dts: '@types/auto-imports.d.ts',
         include: [
           /\.[tj]sx?$/, // .ts, .tsx, .js, .jsx
           /\.md$/ // .md

@@ -35,8 +35,7 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.json",
-    "auto-imports.d.ts",
-    "env.d.ts"
+    "@types/**/*.d.ts"
   ],
   "references": [
     {

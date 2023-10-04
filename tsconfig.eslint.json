@@ -9,7 +9,6 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "vite.config.ts",
-    "auto-imports.d.ts",
-    "env.d.ts"
+    "@types/**/*.d.ts"
   ]
 }

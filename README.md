@@ -17,6 +17,7 @@ backend management template based on React + TypeScript + Vite + antd + Tailwind
 - [x] [Zustand](https://zustand-demo.pmnd.rs/) for global state management
 - [x] [Axios](https://axios-http.com/) for request, and highly encapsulated
 - [x] [Tanstack Query](https://tanstack.com/) for request state management
+- [x] [react-i18next](https://react.i18next.com/) for internationalization
 - [ ] [React Hook Form](https://www.react-hook-form.com/), [yup](https://github.com/jquense/yup) for form validation
 - [x] [iconify/json](https://iconify.design/) and [unplugin-icons](https://github.com/antfu/unplugin-icons)
       for icon management, you can use [icones](https://icones.js.org/) to use it quickly

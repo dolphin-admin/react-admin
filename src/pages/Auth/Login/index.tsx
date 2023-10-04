@@ -8,6 +8,8 @@ interface FormValues {
 }
 
 export function Component(): React.JSX.Element {
+  const { t } = useTranslation(['Global', 'Auth', 'User', 'Validation'])
+
   const navigate = useNavigate()
 
   const [form] = Form.useForm<FormValues>()
@@ -68,7 +70,9 @@ export function Component(): React.JSX.Element {
 
   return (
     <div className="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-default-light px-4 py-8 shadow-md transition-colors dark:bg-default-dark sm:w-[260px] md:w-[340px]">
-      <div className="select-none text-center text-lg font-semibold">登录</div>
+      <div className="select-none text-center text-lg font-semibold">
+        {t('Global:Menu.Login')}
+      </div>
       <Form
         form={form}
         name="login"
@@ -83,21 +87,21 @@ export function Component(): React.JSX.Element {
       >
         <Form.Item
           name="username"
-          rules={[{ required: true, message: '请输入用户名' }]}
+          rules={[{ required: true, message: t('Validation:Username') }]}
           rootClassName="!mb-4"
         >
           <Input
-            placeholder="用户名"
+            placeholder={t('User:Username')}
             autoComplete="username"
           />
         </Form.Item>
         <Form.Item
           name="password"
-          rules={[{ required: true, message: '请输入密码' }]}
+          rules={[{ required: true, message: t('Validation:Password') }]}
           rootClassName="!mb-2"
         >
           <Input.Password
-            placeholder="密码"
+            placeholder={t('User:Password')}
             autoComplete="current-password"
           />
         </Form.Item>
@@ -108,7 +112,7 @@ export function Component(): React.JSX.Element {
             valuePropName="checked"
             rootClassName="!mb-0"
           >
-            <Checkbox>记住密码</Checkbox>
+            <Checkbox>{t('Global:ConfirmPassword')}</Checkbox>
           </Form.Item>
 
           {/* <Form.Item>
@@ -127,7 +131,7 @@ export function Component(): React.JSX.Element {
                 htmlType="button"
                 onClick={handleForgetPassword}
               >
-                忘记密码
+                {t('Global:ForgetPassword')}
               </Button>
             </ConfigProvider>
           </Form.Item> */}
@@ -143,7 +147,7 @@ export function Component(): React.JSX.Element {
               loading={submitType === 'BASIC' && submitLoading}
               onClick={loginAsBasic}
             >
-              登录
+              {t('Global:Menu.Login')}
             </Button>
             <Button
               rootClassName="!w-[calc(50%-4px)]"
@@ -152,13 +156,13 @@ export function Component(): React.JSX.Element {
               loading={submitType === 'ADMIN' && submitLoading}
               onClick={loginAsAdmin}
             >
-              以管理员登录
+              {t('Auth:Login.AsAdmin')}
             </Button>
           </div>
         </Form.Item>
 
         <div className="flex items-center text-xs">
-          <span>需要账号？</span>
+          <span>{t('Auth:Login.NeedAccount')}</span>
           <ConfigProvider
             theme={{
               components: {
@@ -175,14 +179,14 @@ export function Component(): React.JSX.Element {
               onClick={handleSignup}
             >
               <span className="text-xs font-semibold underline-offset-4 hover:underline">
-                注册
+                {t('Global:Menu.Signup')}
               </span>
             </Button>
           </ConfigProvider>
         </div>
 
         <Divider>
-          <span className="text-xs">第三方登录</span>
+          <span className="text-xs">{t('Auth:Login.ThirdPartyLogin')}</span>
         </Divider>
 
         <div className="flex flex-col space-y-2">
@@ -196,7 +200,7 @@ export function Component(): React.JSX.Element {
               />
             }
           >
-            GitHub 登录
+            {t('Auth:Login.LoginWithGitHub')}
           </Button>
           <Button
             htmlType="button"
@@ -206,7 +210,7 @@ export function Component(): React.JSX.Element {
               />
             }
           >
-            Google 登录
+            {t('Auth:Login.LoginWithGoogle')}
           </Button>
         </div>
       </Form>
