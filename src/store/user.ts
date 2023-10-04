@@ -7,7 +7,7 @@ interface State {
 
 interface Actions {
   hasData: () => boolean
-  setUser: (user: User) => void
+  setUser: (user: User | null) => void
   clearUser: () => void
 }
 
@@ -24,8 +24,8 @@ export const useUserStore = create<State & Actions>()((set, get) => ({
    * 设置当前用户数据，更新方式为”非覆盖式更新“
    * @param data 用户数据
    */
-  setUser: (data: User) =>
-    set((state) => ({ user: { ...state.user, ...data } })),
+  setUser: (data: User | null) =>
+    set((state) => ({ user: data ? { ...state.user, ...data } : null })),
   /**
    * 清空当前用户数据
    */

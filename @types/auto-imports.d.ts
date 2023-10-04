@@ -7,6 +7,7 @@ export {}
 declare global {
   const AppConfig: typeof import('@/constants')['AppConfig']
   const AssetUtils: typeof import('../src/utils/asset/index')['AssetUtils']
+  const AuthAPI: typeof import('../src/api/auth/index')['AuthAPI']
   const AuthLayout: typeof import('../src/layouts/index')['AuthLayout']
   const AuthUtils: typeof import('../src/utils/auth/index')['AuthUtils']
   const BaseGlobalLoading: typeof import('../src/components/index')['BaseGlobalLoading']
@@ -100,6 +101,7 @@ declare global {
   const useMutation: typeof import('@tanstack/react-query')['useMutation']
   const useMutationObserver: typeof import('ahooks')['useMutationObserver']
   const useNavigate: typeof import('react-router-dom')['useNavigate']
+  const useNavigation: typeof import('react-router-dom')['useNavigation']
   const useNavigationType: typeof import('react-router-dom')['useNavigationType']
   const useNetwork: typeof import('ahooks')['useNetwork']
   const useOutlet: typeof import('react-router-dom')['useOutlet']

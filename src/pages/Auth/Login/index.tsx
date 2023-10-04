@@ -1,31 +1,56 @@
 import GitHubIcon from '~icons/ant-design/github-outlined'
 import GoogleIcon from '~icons/logos/google-icon'
 
-interface FormValues {
+interface LoginData {
   username: string
   password: string
-  rememberPassword: boolean
 }
 
+interface FormValues extends LoginData {
+  rememberPassword: boolean
+}
 export function Component(): React.JSX.Element {
   const { t } = useTranslation(['Global', 'Auth', 'User', 'Validation'])
 
+  const userStore = useUserStore()
+
+  const [searchParams] = useSearchParams()
   const navigate = useNavigate()
 
   const [form] = Form.useForm<FormValues>()
 
   const [submitType, setSubmitType] = useState<'BASIC' | 'ADMIN'>('BASIC')
-  const [submitLoading, setSubmitLoading] = useState(false)
+
+  const loginMutation = useMutation({
+    mutationFn: (data: LoginData) => AuthAPI.login(data),
+    onSuccess: (res) => {
+      const { accessToken, user } = res.data || {}
+      AuthUtils.setToken(accessToken)
+      userStore.setUser(user)
+
+      const formData = form.getFieldsValue()
+      if (formData.rememberPassword) {
+        AuthUtils.setRememberedAccount(JSON.stringify(formData))
+      } else {
+        AuthUtils.clearRememberedAccount()
+      }
+
+      if (searchParams.get('redirect')) {
+        navigate(searchParams.get('redirect')!, { replace: true })
+      } else {
+        navigate('/', { replace: true })
+      }
+    },
+    onError: () => form.setFieldValue('password', '')
+  })
 
   useEffect(() => {
     // 从 localStorage 中获取记住的账号密码
     const localStorageData = AuthUtils.getRememberedAccount()
     if (localStorageData) {
       try {
-        const { username, password, rememberPassword } = JSON.parse(
-          localStorageData
-        ) as FormValues
-        form.setFieldsValue({ username, password, rememberPassword })
+        const data = JSON.parse(localStorageData) as FormValues
+        form.setFieldsValue(data)
       } catch {
         //
       }
@@ -36,13 +61,9 @@ export function Component(): React.JSX.Element {
    * 登录
    */
   const handleLogin = (values: FormValues) => {
-    setSubmitLoading(true)
-    const { rememberPassword } = values
-    if (rememberPassword) {
-      AuthUtils.setRememberedAccount(JSON.stringify(values))
-    } else {
-      AuthUtils.clearRememberedAccount()
-    }
+    // eslint-disable-next-line unused-imports/no-unused-vars
+    const { rememberPassword, ...loginData } = values
+    loginMutation.mutate(loginData)
   }
 
   /**
@@ -83,7 +104,7 @@ export function Component(): React.JSX.Element {
         }}
         onFinish={handleLogin}
         autoComplete="off"
-        disabled={submitLoading}
+        disabled={loginMutation.isLoading}
       >
         <Form.Item
           name="username"
@@ -143,8 +164,8 @@ export function Component(): React.JSX.Element {
               rootClassName="!w-[calc(50%-4px)]"
               type="primary"
               htmlType="submit"
-              disabled={submitLoading}
-              loading={submitType === 'BASIC' && submitLoading}
+              disabled={loginMutation.isLoading}
+              loading={submitType === 'BASIC' && loginMutation.isLoading}
               onClick={loginAsBasic}
             >
               {t('Global:Menu.Login')}
@@ -152,8 +173,8 @@ export function Component(): React.JSX.Element {
             <Button
               rootClassName="!w-[calc(50%-4px)]"
               htmlType="submit"
-              disabled={submitLoading}
-              loading={submitType === 'ADMIN' && submitLoading}
+              disabled={loginMutation.isLoading}
+              loading={submitType === 'ADMIN' && loginMutation.isLoading}
               onClick={loginAsAdmin}
             >
               {t('Auth:Login.AsAdmin')}
@@ -161,7 +182,7 @@ export function Component(): React.JSX.Element {
           </div>
         </Form.Item>
 
-        <div className="flex items-center text-xs">
+        <div className="flex items-center space-x-1 text-xs">
           <span>{t('Auth:Login.NeedAccount')}</span>
           <ConfigProvider
             theme={{

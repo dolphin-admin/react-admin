@@ -4,18 +4,24 @@ export default function BaseLayout(): React.JSX.Element {
 
   const [loading, setLoading] = useState(true)
 
+  const userInfoQuery = useQuery({
+    queryKey: ['CurrentUser'],
+    queryFn: () => UserAPI.getUserInfo(),
+    select: (res) => res.data,
+    enabled: false
+  })
+
   useEffect(() => {
     // 检查登录状态
-    const checkLogin = () => {
+    const checkLogin = async () => {
       // 如果有 token，获取用户信息
       if (AuthUtils.isAuthenticated()) {
         if (!userStore.hasData()) {
-          // const { data } = (await UserAPI.getUserInfo()) || {}
-          userStore.setUser({})
+          const user = (await userInfoQuery.refetch()).data
+          userStore.setUser(user ?? null)
         }
         setLoading(false)
       } else {
-        return
         // 否则清除用户信息并跳转到登录页
         userStore.clearUser()
         navigate(`/login?redirect=${window.location.pathname}`, {
