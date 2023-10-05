@@ -10,11 +10,14 @@ gesturestart
 hookform
 iconify
 lintstaged
+lucide
 nocheck
 nprogress
 preinstall
+Sider
 signup
 svgr
+tabler
 tailwindcss
 tanstack
 tauri

@@ -45,7 +45,10 @@ export default function App() {
             </AntdApp>
           </ConfigProvider>
         </StyleProvider>
-        <ReactQueryDevtools initialIsOpen={false} />
+        <ReactQueryDevtools
+          initialIsOpen={false}
+          position="bottom-right"
+        />
       </QueryClientProvider>
     </div>
   )

@@ -1,8 +1,14 @@
+import { menu } from '@/constants'
+
 export default function BaseLayout(): React.JSX.Element {
+  const { Header, Content, Footer, Sider } = Layout
+  const { APP_NAME } = AppConfig
+
   const userStore = useUserStore()
   const navigate = useNavigate()
 
   const [loading, setLoading] = useState(true)
+  const [collapsed, setCollapsed] = useState(false)
 
   const userInfoQuery = useQuery({
     queryKey: ['CurrentUser'],
@@ -38,11 +44,80 @@ export default function BaseLayout(): React.JSX.Element {
   }
 
   return (
-    <div className="relative h-screen w-screen">
-      <div className="absolute inset-x-20 top-6 m-auto h-fit">
-        <BaseHeader />
-      </div>
-      <Outlet />
-    </div>
+    <Layout style={{ minHeight: '100vh' }}>
+      <Sider
+        collapsible
+        collapsed={collapsed}
+        onCollapse={(value) => setCollapsed(value)}
+        style={{
+          overflow: 'auto',
+          height: '100vh',
+          position: 'fixed',
+          left: 0,
+          top: 0,
+          bottom: 0,
+          zIndex: 2
+        }}
+        theme="light"
+      >
+        <div
+          className="flex h-14 w-full select-none items-center justify-center"
+          onClick={() => navigate('/')}
+        >
+          <img
+            className="animate-pulse cursor-pointer select-none"
+            width="36"
+            height="36"
+            src={AssetUtils.getImageFromAssets('favicon.png')}
+            alt=""
+            loading="eager"
+          />
+          <span
+            className={clsx([
+              'cursor-pointer whitespace-nowrap text-sm tracking-wide transition-all',
+              collapsed ? 'hidden' : 'w-auto'
+            ])}
+          >
+            {APP_NAME}
+          </span>
+        </div>
+
+        <Menu
+          defaultSelectedKeys={['1']}
+          mode="inline"
+          items={menu}
+          style={{ height: '100vh' }}
+        />
+      </Sider>
+      <Layout>
+        <Header
+          style={{
+            padding: 0,
+            background: '#ffffff',
+            position: 'sticky',
+            top: 0,
+            zIndex: 1
+          }}
+        />
+        <Content style={{ margin: '0 16px' }}>
+          <Breadcrumb style={{ margin: '16px 0' }}>
+            <Breadcrumb.Item>User</Breadcrumb.Item>
+            <Breadcrumb.Item>Bill</Breadcrumb.Item>
+          </Breadcrumb>
+          <div
+            style={{
+              padding: 24,
+              minHeight: 800,
+              background: '#ffffff'
+            }}
+          >
+            Bill is a cat.
+          </div>
+        </Content>
+        <Footer style={{ textAlign: 'center' }}>
+          Ant Design ©2023 Created by Ant UED
+        </Footer>
+      </Layout>
+    </Layout>
   )
 }

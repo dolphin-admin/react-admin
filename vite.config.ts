@@ -61,8 +61,16 @@ export default defineConfig(({ mode }) => {
               'Divider',
               'ConfigProvider',
               'Spin',
-              'Typography'
+              'Typography',
+              'Layout',
+              'Breadcrumb',
+              'Menu',
+              ['theme', 'AntdTheme']
             ]
+          },
+          {
+            from: 'clsx',
+            imports: [['default', 'clsx']]
           },
           {
             from: '@ant-design/icons',
