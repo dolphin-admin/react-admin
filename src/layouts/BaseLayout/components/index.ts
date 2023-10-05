@@ -1,0 +1,5 @@
+export { default as BaseBreadcrumb } from './BaseBreadcrumb'
+export { default as BaseContent } from './BaseContent'
+export { default as BaseFooter } from './BaseFooter'
+export { default as BaseHeader } from './BaseHeader'
+export { default as BaseSidebar } from './BaseSidebar'

@@ -1,4 +1,6 @@
 import type { MenuProps } from 'antd'
+
+import { t } from '@/i18n'
 import UniversalComponentsIcon from '~icons/ic/baseline-auto-awesome-mosaic'
 import ChartsIcon from '~icons/ic/baseline-bar-chart'
 import UnauthorizedIcon from '~icons/ic/baseline-do-not-disturb'
@@ -12,7 +14,6 @@ import SystemFunctionsIcon from '~icons/mdi/function-variant'
 import DictionaryManagementIcon from '~icons/ri/booklet-line'
 import CodeTemplatesIcon from '~icons/solar/code-bold'
 import NotFoundIcon from '~icons/tabler/error-404'
-import { t } from '@/i18n'
 
 type MenuItem = Required<MenuProps>['items'][number]
 

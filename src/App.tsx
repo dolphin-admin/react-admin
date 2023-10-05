@@ -1,11 +1,12 @@
-import { RouterProvider, createBrowserRouter } from 'react-router-dom'
-import zhCN from 'antd/locale/zh_CN'
-import { ConfigProvider, theme as Theme, App as AntdApp } from 'antd'
-import router from '@/router'
 import { StyleProvider } from '@ant-design/cssinjs'
-import { QueryClientProvider, QueryClient } from '@tanstack/react-query'
-import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
 import { HappyProvider } from '@ant-design/happy-work-theme'
+import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
+import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
+import { App as AntdApp, ConfigProvider, theme as Theme } from 'antd'
+import zhCN from 'antd/locale/zh_CN'
+import { createBrowserRouter, RouterProvider } from 'react-router-dom'
+
+import router from '@/router'
 
 export default function App() {
   const [queryClient] = useState(() => new QueryClient())
