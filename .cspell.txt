@@ -21,6 +21,7 @@ tabler
 tailwindcss
 tanstack
 tauri
+unimport
 unplugin
 vite
 zustand

@@ -6,6 +6,8 @@ import Icons from 'unplugin-icons/vite'
 import type { ProxyOptions } from 'vite'
 import { defineConfig, loadEnv } from 'vite'
 
+import { antdIconsResolver, antdResolver } from './plugins'
+
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
   const { VITE_PORT, VITE_BASE_API_PROXY, VITE_MOCK_API_PROXY } =
@@ -53,31 +55,11 @@ export default defineConfig(({ mode }) => {
             imports: ['useNavigation']
           },
           {
-            from: 'antd',
-            imports: [
-              'Form',
-              'Input',
-              'Button',
-              'Checkbox',
-              'Divider',
-              'ConfigProvider',
-              'Spin',
-              'Typography',
-              'Layout',
-              'Breadcrumb',
-              'Menu',
-              ['theme', 'AntdTheme'],
-              ['App', 'AntdApp']
-            ]
-          },
-          {
             from: 'clsx',
             imports: [['default', 'clsx']]
           },
-          {
-            from: '@ant-design/icons',
-            imports: [['default', 'Icon']]
-          }
+          antdResolver(),
+          antdIconsResolver()
         ],
         dirs: [
           'src/api',
