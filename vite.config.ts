@@ -66,7 +66,8 @@ export default defineConfig(({ mode }) => {
               'Layout',
               'Breadcrumb',
               'Menu',
-              ['theme', 'AntdTheme']
+              ['theme', 'AntdTheme'],
+              ['App', 'AntdApp']
             ]
           },
           {

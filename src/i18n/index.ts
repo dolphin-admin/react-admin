@@ -1,4 +1,3 @@
-import type { TFunction } from 'i18next'
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
@@ -31,5 +30,3 @@ export const changeLanguage = async (lang: Lang) => {
 }
 
 export default i18n
-
-export const t = i18n.t.bind(i18n) as TFunction<typeof ns>

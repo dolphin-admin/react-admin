@@ -1,5 +1,3 @@
-import { App } from 'antd'
-
 interface SignupData {
   username: string
   password: string
@@ -9,7 +7,7 @@ interface SignupData {
 export function Component(): React.JSX.Element {
   const { t } = useTranslation(['Global', 'Auth', 'User', 'Validation'])
 
-  const { message } = App.useApp()
+  const { message } = AntdApp.useApp()
 
   const userStore = useUserStore()
 
@@ -19,31 +17,39 @@ export function Component(): React.JSX.Element {
 
   const signupMutation = useMutation({
     mutationFn: (data: SignupData) => AuthAPI.signup(data),
-    onSuccess: (res) => {
-      const { accessToken, user } = res.data || {}
+    onSuccess: async (res) => {
+      const { data, message: mes } = res ?? {}
+      const { accessToken, user } = data ?? {}
       AuthUtils.setToken(accessToken)
       userStore.setUser(user)
+
+      if (mes) {
+        await message.success(mes)
+      }
+
       navigate('/', { replace: true })
     },
-    onError: async ({ message: errorMessage }) => {
+    onError: async (error: Error) => {
       form.setFieldsValue({ password: '', confirmPassword: '' })
-      await message.error(errorMessage as string)
+      if (error.message) {
+        await message.error(error.message)
+      }
     }
   })
 
   /**
    * 注册
    */
-  const handleSignup = (values: SignupData) => {
-    signupMutation.mutate(values)
-  }
+  const handleSignup = (values: SignupData) => signupMutation.mutate(values)
 
   const handleLogin = () => navigate('/login')
+
   return (
     <div className="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-default-light px-4 py-8 shadow-md transition-colors dark:bg-default-dark sm:w-[260px] md:w-[340px]">
       <div className="select-none text-center text-lg font-semibold">
         {t('Global:Menu.Signup')}
       </div>
+
       <Form
         form={form}
         name="signup"
@@ -63,6 +69,7 @@ export function Component(): React.JSX.Element {
         >
           <Input placeholder={t('User:Username')} />
         </Form.Item>
+
         <Form.Item
           name="password"
           rules={[
@@ -73,10 +80,10 @@ export function Component(): React.JSX.Element {
         >
           <Input.Password placeholder={t('User:Password')} />
         </Form.Item>
+
         <Form.Item
           name="confirmPassword"
           dependencies={['password']}
-          hasFeedback
           rules={[
             { required: true, message: t('Validation:ConfirmPassword') },
             ({ getFieldValue }) => ({
