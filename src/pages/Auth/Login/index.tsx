@@ -12,6 +12,8 @@ interface FormValues extends LoginData {
 export function Component(): React.JSX.Element {
   const { t } = useTranslation(['Global', 'Auth', 'User', 'Validation'])
 
+  const { message } = AntdApp.useApp()
+
   const userStore = useUserStore()
 
   const [searchParams] = useSearchParams()
@@ -23,10 +25,15 @@ export function Component(): React.JSX.Element {
 
   const loginMutation = useMutation({
     mutationFn: (data: LoginData) => AuthAPI.login(data),
-    onSuccess: (res) => {
-      const { accessToken, user } = res.data || {}
+    onSuccess: async (res) => {
+      const { data, message: mes } = res ?? {}
+      const { accessToken, user } = data ?? {}
       AuthUtils.setToken(accessToken)
       userStore.setUser(user)
+
+      if (mes) {
+        await message.success(mes)
+      }
 
       const formData = form.getFieldsValue()
       if (formData.rememberPassword) {
@@ -41,7 +48,12 @@ export function Component(): React.JSX.Element {
         navigate('/', { replace: true })
       }
     },
-    onError: () => form.setFieldValue('password', '')
+    onError: async (error: Error) => {
+      form.setFieldValue('password', '')
+      if (error.message) {
+        await message.error(error.message)
+      }
+    }
   })
 
   useEffect(() => {
@@ -69,9 +81,7 @@ export function Component(): React.JSX.Element {
   /**
    * 基础登录
    */
-  const loginAsBasic = () => {
-    setSubmitType('BASIC')
-  }
+  const loginAsBasic = () => setSubmitType('BASIC')
 
   /**
    * 以管理员身份登录
@@ -220,6 +230,7 @@ export function Component(): React.JSX.Element {
                 component={GitHubIcon as React.ForwardRefExoticComponent<any>}
               />
             }
+            disabled
           >
             {t('Auth:Login.LoginWithGitHub')}
           </Button>
@@ -230,6 +241,7 @@ export function Component(): React.JSX.Element {
                 component={GoogleIcon as React.ForwardRefExoticComponent<any>}
               />
             }
+            disabled
           >
             {t('Auth:Login.LoginWithGoogle')}
           </Button>

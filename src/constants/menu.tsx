@@ -1,6 +1,6 @@
 import type { MenuProps } from 'antd'
 
-import { t } from '@/i18n'
+import i18n from '@/i18n'
 import UniversalComponentsIcon from '~icons/ic/baseline-auto-awesome-mosaic'
 import ChartsIcon from '~icons/ic/baseline-bar-chart'
 import UnauthorizedIcon from '~icons/ic/baseline-do-not-disturb'
@@ -16,6 +16,8 @@ import CodeTemplatesIcon from '~icons/solar/code-bold'
 import NotFoundIcon from '~icons/tabler/error-404'
 
 type MenuItem = Required<MenuProps>['items'][number]
+
+const { t } = i18n
 
 const getItem = (
   label: React.ReactNode,

@@ -1,8 +1,10 @@
+import './App.scss'
+
 import { StyleProvider } from '@ant-design/cssinjs'
 import { HappyProvider } from '@ant-design/happy-work-theme'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { App as AntdApp, ConfigProvider, theme as Theme } from 'antd'
+import { ConfigProvider, theme as Theme } from 'antd'
 import zhCN from 'antd/locale/zh_CN'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
