@@ -8,7 +8,7 @@ export default function BaseMenu(): React.JSX.Element {
   const navigate = useNavigate()
 
   return (
-    <Layout.Sider
+    <ALayout.Sider
       collapsible
       collapsed={sidebarStore.isCollapse}
       onCollapse={(value) => sidebarStore.setIsCollapse(value)}
@@ -50,11 +50,11 @@ export default function BaseMenu(): React.JSX.Element {
           {APP_NAME}
         </span>
       </div>
-      <Menu
+      <AMenu
         defaultSelectedKeys={['1']}
         mode="inline"
         items={menu}
       />
-    </Layout.Sider>
+    </ALayout.Sider>
   )
 }

@@ -2,7 +2,7 @@ export default function BaseFooter(): React.JSX.Element {
   const { APP_NAME, VERSION, TEAM_NAME, TEAM_GITHUB_URL } = AppConfig
 
   return (
-    <Layout.Footer style={{ textAlign: 'center', padding: 0 }}>
+    <ALayout.Footer style={{ textAlign: 'center', padding: 0 }}>
       <div className="flex h-10 w-full items-center justify-center space-x-2 text-xs">
         <span>
           {APP_NAME} - v{VERSION}
@@ -18,6 +18,6 @@ export default function BaseFooter(): React.JSX.Element {
         />
         <span>{TEAM_NAME}</span>
       </div>
-    </Layout.Footer>
+    </ALayout.Footer>
   )
 }

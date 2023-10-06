@@ -42,16 +42,16 @@ export default function BaseLayout(): React.JSX.Element {
   }
 
   return (
-    <Layout style={{ minHeight: '100vh' }}>
+    <ALayout style={{ minHeight: '100vh' }}>
       <BaseSidebar />
-      <Layout
+      <ALayout
         style={{ marginLeft: sidebarStore.isCollapse ? 64 : 220 }}
         rootClassName="transition-all"
       >
         <BaseHeader />
         <BaseContent />
         <BaseFooter />
-      </Layout>
-    </Layout>
+      </ALayout>
+    </ALayout>
   )
 }

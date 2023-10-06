@@ -13,7 +13,7 @@ export function Component(): React.JSX.Element {
 
   const navigate = useNavigate()
 
-  const [form] = Form.useForm<SignupData>()
+  const [form] = AForm.useForm<SignupData>()
 
   const signupMutation = useMutation({
     mutationFn: (data: SignupData) => AuthAPI.signup(data),
@@ -50,7 +50,7 @@ export function Component(): React.JSX.Element {
         {t('Global:Menu.Signup')}
       </div>
 
-      <Form
+      <AForm
         form={form}
         name="signup"
         initialValues={{
@@ -62,15 +62,15 @@ export function Component(): React.JSX.Element {
         autoComplete="off"
         disabled={signupMutation.isLoading}
       >
-        <Form.Item
+        <AForm.Item
           name="username"
           rules={[{ required: true, message: t('Validation:Username') }]}
           rootClassName="!mb-4"
         >
-          <Input placeholder={t('User:Username')} />
-        </Form.Item>
+          <AInput placeholder={t('User:Username')} />
+        </AForm.Item>
 
-        <Form.Item
+        <AForm.Item
           name="password"
           rules={[
             { required: true, message: t('Validation:Password') },
@@ -78,10 +78,10 @@ export function Component(): React.JSX.Element {
           ]}
           rootClassName="!mb-4"
         >
-          <Input.Password placeholder={t('User:Password')} />
-        </Form.Item>
+          <AInput.Password placeholder={t('User:Password')} />
+        </AForm.Item>
 
-        <Form.Item
+        <AForm.Item
           name="confirmPassword"
           dependencies={['password']}
           rules={[
@@ -99,11 +99,11 @@ export function Component(): React.JSX.Element {
           ]}
           rootClassName="!mb-4"
         >
-          <Input.Password placeholder={t('Global:ConfirmPassword')} />
-        </Form.Item>
+          <AInput.Password placeholder={t('Global:ConfirmPassword')} />
+        </AForm.Item>
 
-        <Form.Item rootClassName="!mb-2">
-          <Button
+        <AForm.Item rootClassName="!mb-2">
+          <AButton
             rootClassName="!w-full"
             type="primary"
             htmlType="submit"
@@ -111,12 +111,12 @@ export function Component(): React.JSX.Element {
             loading={signupMutation.isLoading}
           >
             {t('Global:Menu.Signup')}
-          </Button>
-        </Form.Item>
+          </AButton>
+        </AForm.Item>
 
         <div className="flex items-center space-x-1 text-xs">
           <span>{t('Auth:Signup.AlreadyHaveAccount')}</span>
-          <ConfigProvider
+          <AConfigProvider
             theme={{
               components: {
                 Button: {
@@ -125,7 +125,7 @@ export function Component(): React.JSX.Element {
               }
             }}
           >
-            <Button
+            <AButton
               size="small"
               type="link"
               htmlType="button"
@@ -134,10 +134,10 @@ export function Component(): React.JSX.Element {
               <span className="text-xs font-semibold underline-offset-4 hover:underline">
                 {t('Global:Menu.Login')}
               </span>
-            </Button>
-          </ConfigProvider>
+            </AButton>
+          </AConfigProvider>
         </div>
-      </Form>
+      </AForm>
     </div>
   )
 }

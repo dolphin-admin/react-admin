@@ -4,7 +4,6 @@ import { StyleProvider } from '@ant-design/cssinjs'
 import { HappyProvider } from '@ant-design/happy-work-theme'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { ReactQueryDevtools } from '@tanstack/react-query-devtools'
-import { ConfigProvider, theme as Theme } from 'antd'
 import zhCN from 'antd/locale/zh_CN'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 
@@ -23,13 +22,13 @@ export default function App() {
     <div className="bg-layout-light text-base dark:bg-layout-dark">
       <QueryClientProvider client={queryClient}>
         <StyleProvider hashPriority="high">
-          <ConfigProvider
+          <AConfigProvider
             locale={zhCN}
             theme={{
               algorithm:
                 theme === 'light'
-                  ? Theme.defaultAlgorithm
-                  : Theme.darkAlgorithm,
+                  ? AntdTheme.defaultAlgorithm
+                  : AntdTheme.darkAlgorithm,
               token: {
                 fontFamily:
                   'Nunito, Noto Sans, system-ui, -apple-system, Roboto, Helvetica Neue, Arial, sans-serif'
@@ -46,7 +45,7 @@ export default function App() {
                 <RouterProvider router={createBrowserRouter(router)} />
               </HappyProvider>
             </AntdApp>
-          </ConfigProvider>
+          </AConfigProvider>
         </StyleProvider>
         <ReactQueryDevtools
           initialIsOpen={false}

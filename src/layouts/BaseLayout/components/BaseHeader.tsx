@@ -2,7 +2,7 @@ import BaseBreadcrumb from './BaseBreadcrumb'
 
 export default function BaseHeader(): React.JSX.Element {
   return (
-    <Layout.Header
+    <ALayout.Header
       style={{
         padding: 0,
         background: '#ffffff',
@@ -10,6 +10,6 @@ export default function BaseHeader(): React.JSX.Element {
       }}
     >
       <BaseBreadcrumb />
-    </Layout.Header>
+    </ALayout.Header>
   )
 }

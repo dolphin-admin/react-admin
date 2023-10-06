@@ -19,7 +19,7 @@ export function Component(): React.JSX.Element {
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
 
-  const [form] = Form.useForm<FormValues>()
+  const [form] = AForm.useForm<FormValues>()
 
   const [submitType, setSubmitType] = useState<'BASIC' | 'ADMIN'>('BASIC')
 
@@ -104,7 +104,7 @@ export function Component(): React.JSX.Element {
       <div className="select-none text-center text-lg font-semibold">
         {t('Global:Menu.Login')}
       </div>
-      <Form
+      <AForm
         form={form}
         name="login"
         initialValues={{
@@ -116,35 +116,35 @@ export function Component(): React.JSX.Element {
         autoComplete="off"
         disabled={loginMutation.isLoading}
       >
-        <Form.Item
+        <AForm.Item
           name="username"
           rules={[{ required: true, message: t('Validation:Username') }]}
           rootClassName="!mb-4"
         >
-          <Input
+          <AInput
             placeholder={t('User:Username')}
             autoComplete="username"
           />
-        </Form.Item>
-        <Form.Item
+        </AForm.Item>
+        <AForm.Item
           name="password"
           rules={[{ required: true, message: t('Validation:Password') }]}
           rootClassName="!mb-2"
         >
-          <Input.Password
+          <AInput.Password
             placeholder={t('User:Password')}
             autoComplete="current-password"
           />
-        </Form.Item>
+        </AForm.Item>
 
         <div className="text-grey-300 mb-1 flex items-center justify-between">
-          <Form.Item
+          <AForm.Item
             name="rememberPassword"
             valuePropName="checked"
             rootClassName="!mb-0"
           >
-            <Checkbox>{t('Global:ConfirmPassword')}</Checkbox>
-          </Form.Item>
+            <ACheckbox>{t('Global:ConfirmPassword')}</ACheckbox>
+          </AForm.Item>
 
           {/* <Form.Item>
             <ConfigProvider
@@ -168,9 +168,9 @@ export function Component(): React.JSX.Element {
           </Form.Item> */}
         </div>
 
-        <Form.Item rootClassName="!mb-2">
+        <AForm.Item rootClassName="!mb-2">
           <div className="flex w-full flex-1 items-center space-x-2">
-            <Button
+            <AButton
               rootClassName="!w-[calc(50%-4px)]"
               type="primary"
               htmlType="submit"
@@ -179,8 +179,8 @@ export function Component(): React.JSX.Element {
               onClick={loginAsBasic}
             >
               {t('Global:Menu.Login')}
-            </Button>
-            <Button
+            </AButton>
+            <AButton
               rootClassName="!w-[calc(50%-4px)]"
               htmlType="submit"
               disabled={loginMutation.isLoading}
@@ -188,13 +188,13 @@ export function Component(): React.JSX.Element {
               onClick={loginAsAdmin}
             >
               {t('Auth:Login.AsAdmin')}
-            </Button>
+            </AButton>
           </div>
-        </Form.Item>
+        </AForm.Item>
 
         <div className="flex items-center space-x-1 text-xs">
           <span>{t('Auth:Login.NeedAccount')}</span>
-          <ConfigProvider
+          <AConfigProvider
             theme={{
               components: {
                 Button: {
@@ -203,7 +203,7 @@ export function Component(): React.JSX.Element {
               }
             }}
           >
-            <Button
+            <AButton
               size="small"
               type="link"
               htmlType="button"
@@ -212,41 +212,41 @@ export function Component(): React.JSX.Element {
               <span className="text-xs font-semibold underline-offset-4 hover:underline">
                 {t('Global:Menu.Signup')}
               </span>
-            </Button>
-          </ConfigProvider>
+            </AButton>
+          </AConfigProvider>
         </div>
 
-        <Divider>
+        <ADivider>
           <span className="text-xs">{t('Auth:Login.ThirdPartyLogin')}</span>
-        </Divider>
+        </ADivider>
 
         <div className="flex flex-col space-y-2">
-          <Button
+          <AButton
             className="!bg-[#595D5F]"
             type="primary"
             htmlType="button"
             icon={
-              <Icon
+              <AIcon
                 component={GitHubIcon as React.ForwardRefExoticComponent<any>}
               />
             }
             disabled
           >
             {t('Auth:Login.LoginWithGitHub')}
-          </Button>
-          <Button
+          </AButton>
+          <AButton
             htmlType="button"
             icon={
-              <Icon
+              <AIcon
                 component={GoogleIcon as React.ForwardRefExoticComponent<any>}
               />
             }
             disabled
           >
             {t('Auth:Login.LoginWithGoogle')}
-          </Button>
+          </AButton>
         </div>
-      </Form>
+      </AForm>
     </div>
   )
 }
