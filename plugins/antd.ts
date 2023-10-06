@@ -40,5 +40,5 @@ export const antdResolver = (options?: Options): ImportsMap | InlinePreset => {
 
 export const antdIconsResolver = (): ImportsMap | InlinePreset => ({
   from: '@ant-design/icons',
-  imports: [['default', 'Icon']]
+  imports: [['default', 'AIcon']]
 })

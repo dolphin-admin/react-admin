@@ -25,7 +25,7 @@ export default function BaseBreadcrumb(): React.JSX.Element {
   ].concat(extraBreadcrumbItems)
 
   return (
-    <Breadcrumb
+    <ABreadcrumb
       style={{ margin: '16px 0' }}
       items={breadcrumbItems}
     />

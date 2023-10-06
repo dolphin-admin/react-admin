@@ -58,7 +58,7 @@ export default defineConfig(({ mode }) => {
             from: 'clsx',
             imports: [['default', 'clsx']]
           },
-          antdResolver(),
+          antdResolver({ prefix: 'A' }),
           antdIconsResolver()
         ],
         dirs: [

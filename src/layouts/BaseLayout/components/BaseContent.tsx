@@ -1,6 +1,6 @@
 export default function BaseContent(): React.JSX.Element {
   return (
-    <Layout.Content style={{ margin: '16px' }}>
+    <ALayout.Content style={{ margin: '16px' }}>
       <div
         style={{
           padding: 24,
@@ -10,6 +10,6 @@ export default function BaseContent(): React.JSX.Element {
       >
         Bill is a cat.
       </div>
-    </Layout.Content>
+    </ALayout.Content>
   )
 }
