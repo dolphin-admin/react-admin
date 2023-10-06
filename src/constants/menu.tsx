@@ -35,26 +35,26 @@ export const menu: MenuItem[] = [
   getItem(
     t('Global:Menu.Navigation'),
     'Navigation',
-    <Icon component={NavigationIcon as React.ForwardRefExoticComponent<any>} />
+    <AIcon component={NavigationIcon as React.ForwardRefExoticComponent<any>} />
   ),
   getItem(
     t('Global:Menu.SystemFunctions'),
     'SystemFunctions',
-    <Icon
+    <AIcon
       component={SystemFunctionsIcon as React.ForwardRefExoticComponent<any>}
     />,
     [
       getItem(
         t('Global:Menu.UserManagement'),
         'UserManagement',
-        <Icon
+        <AIcon
           component={UserManagementIcon as React.ForwardRefExoticComponent<any>}
         />
       ),
       getItem(
         t('Global:Menu.DictionaryManagement'),
         'DictionaryManagement',
-        <Icon
+        <AIcon
           component={
             DictionaryManagementIcon as React.ForwardRefExoticComponent<any>
           }
@@ -65,14 +65,14 @@ export const menu: MenuItem[] = [
   getItem(
     t('Global:Menu.CodeTemplates'),
     'CodeTemplates',
-    <Icon
+    <AIcon
       component={CodeTemplatesIcon as React.ForwardRefExoticComponent<any>}
     />,
     [
       getItem(
         t('Global:Menu.ListTemplates'),
         'ListTemplates',
-        <Icon
+        <AIcon
           component={ListTemplatesIcon as React.ForwardRefExoticComponent<any>}
         />
       )
@@ -81,7 +81,7 @@ export const menu: MenuItem[] = [
   getItem(
     t('Global:Menu.UniversalComponents'),
     'UniversalComponents',
-    <Icon
+    <AIcon
       component={
         UniversalComponentsIcon as React.ForwardRefExoticComponent<any>
       }
@@ -90,40 +90,42 @@ export const menu: MenuItem[] = [
       getItem(
         t('Global:Menu.Charts'),
         'Charts',
-        <Icon component={ChartsIcon as React.ForwardRefExoticComponent<any>} />
+        <AIcon component={ChartsIcon as React.ForwardRefExoticComponent<any>} />
       )
     ]
   ),
   getItem(
     t('Global:Menu.ErrorPages'),
     'ErrorPages',
-    <Icon component={ErrorPagesIcon as React.ForwardRefExoticComponent<any>} />,
+    <AIcon
+      component={ErrorPagesIcon as React.ForwardRefExoticComponent<any>}
+    />,
     [
       getItem(
         t('Global:Menu.403'),
         'Unauthorized',
-        <Icon
+        <AIcon
           component={UnauthorizedIcon as React.ForwardRefExoticComponent<any>}
         />
       ),
       getItem(
         t('Global:Menu.404'),
         'NotFound',
-        <Icon
+        <AIcon
           component={NotFoundIcon as React.ForwardRefExoticComponent<any>}
         />
       ),
       getItem(
         t('Global:Menu.418'),
         'IAmATeapot',
-        <Icon
+        <AIcon
           component={IAmATeapotIcon as React.ForwardRefExoticComponent<any>}
         />
       ),
       getItem(
         t('Global:Menu.500'),
         'InternalServerError',
-        <Icon
+        <AIcon
           component={
             InternalServerErrorIcon as React.ForwardRefExoticComponent<any>
           }

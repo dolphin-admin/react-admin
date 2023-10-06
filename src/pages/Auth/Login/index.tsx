@@ -226,7 +226,7 @@ export function Component(): React.JSX.Element {
             type="primary"
             htmlType="button"
             icon={
-              <Icon
+              <AIcon
                 component={GitHubIcon as React.ForwardRefExoticComponent<any>}
               />
             }
@@ -237,7 +237,7 @@ export function Component(): React.JSX.Element {
           <AButton
             htmlType="button"
             icon={
-              <Icon
+              <AIcon
                 component={GoogleIcon as React.ForwardRefExoticComponent<any>}
               />
             }
