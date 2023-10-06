@@ -45,6 +45,7 @@ declare global {
   const forwardRef: typeof import('react')['forwardRef']
   const lazy: typeof import('react')['lazy']
   const memo: typeof import('react')['memo']
+  const message: typeof import('antd')['message']
   const mobileAdaptor: typeof import('../src/tools/mobile-adaptor')['mobileAdaptor']
   const startTransition: typeof import('react')['startTransition']
   const useAntdTable: typeof import('ahooks')['useAntdTable']
