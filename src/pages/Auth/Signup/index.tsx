@@ -1,3 +1,5 @@
+import { App } from 'antd'
+
 interface SignupData {
   username: string
   password: string
@@ -6,7 +8,8 @@ interface SignupData {
 
 export function Component(): React.JSX.Element {
   const { t } = useTranslation(['Global', 'Auth', 'User', 'Validation'])
-  const [messageApi, contextHolder] = message.useMessage()
+
+  const { message } = App.useApp()
 
   const userStore = useUserStore()
 
@@ -22,12 +25,9 @@ export function Component(): React.JSX.Element {
       userStore.setUser(user)
       navigate('/', { replace: true })
     },
-    onError: async ({ message }) => {
+    onError: async ({ message: errorMessage }) => {
       form.setFieldsValue({ password: '', confirmPassword: '' })
-      await messageApi.open({
-        type: 'error',
-        content: message as string
-      })
+      await message.error(errorMessage as string)
     }
   })
 
@@ -41,7 +41,6 @@ export function Component(): React.JSX.Element {
   const handleLogin = () => navigate('/login')
   return (
     <div className="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-default-light px-4 py-8 shadow-md transition-colors dark:bg-default-dark sm:w-[260px] md:w-[340px]">
-      {contextHolder}
       <div className="select-none text-center text-lg font-semibold">
         {t('Global:Menu.Signup')}
       </div>
