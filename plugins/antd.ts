@@ -16,7 +16,11 @@ const AntdComponents = [
   'Typography',
   'Layout',
   'Breadcrumb',
-  'Menu'
+  'Menu',
+  'Popover',
+  'Dropdown',
+  'Space',
+  'Avatar'
 ]
 
 const InnerAntdComponents: (PresetImport | InlinePreset)[] = [

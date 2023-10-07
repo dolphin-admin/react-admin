@@ -9,5 +9,9 @@
     "Notification": "Notification",
     "Settings": "Settings",
     "SwitchTheme": "Switch theme"
+  },
+  "Sidebar": {
+    "Hide": "Hide sidebar",
+    "Show": "Show sidebar"
   }
 }
