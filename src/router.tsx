@@ -11,6 +11,10 @@ const router = createRoutesFromElements(
       }
     >
       <Route
+        path="/"
+        lazy={() => import('@/pages/Navigation')}
+      />
+      <Route
         path="*"
         element={<>404</>}
       />

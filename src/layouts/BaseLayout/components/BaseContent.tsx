@@ -8,7 +8,7 @@ export default function BaseContent(): React.JSX.Element {
           background: '#ffffff'
         }}
       >
-        Bill is a cat.
+        <Outlet />
       </div>
     </ALayout.Content>
   )
