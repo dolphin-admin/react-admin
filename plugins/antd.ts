@@ -20,7 +20,8 @@ const AntdComponents = [
   'Popover',
   'Dropdown',
   'Space',
-  'Avatar'
+  'Avatar',
+  'Select'
 ]
 
 const InnerAntdComponents: (PresetImport | InlinePreset)[] = [

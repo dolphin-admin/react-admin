@@ -1,3 +1,4 @@
+
 import type { MenuProps } from 'antd'
 
 import { BrowserUtils } from '@/utils'
@@ -15,10 +16,13 @@ import HideMenuIcon from '~icons/line-md/menu-fold-left'
 import SunIcon from '~icons/line-md/moon-alt-to-sunny-outline-loop-transition'
 import MoonIcon from '~icons/line-md/sunny-filled-loop-to-moon-alt-filled-loop-transition'
 
+
 import BaseBreadcrumb from './BaseBreadcrumb'
 
 export default function BaseHeader(): React.JSX.Element {
+
   const { t } = useTranslation(['Global', 'Auth', 'User', 'Layout'])
+          
 
   const { message } = AntdApp.useApp()
 
@@ -70,6 +74,7 @@ export default function BaseHeader(): React.JSX.Element {
       default:
         break
     }
+
   }
 
   return (
@@ -185,6 +190,7 @@ export default function BaseHeader(): React.JSX.Element {
           </ADropdown>
         )}
       </div>
+
     </ALayout.Header>
   )
 }
