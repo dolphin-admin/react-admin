@@ -58,6 +58,10 @@ export default defineConfig(({ mode }) => {
             from: 'clsx',
             imports: [['default', 'clsx']]
           },
+          {
+            from: '@dolphin-admin/utils',
+            imports: ['BrowserUtils', 'TimeUtils']
+          },
           antdResolver({ prefix: 'A' }),
           antdIconsResolver()
         ],

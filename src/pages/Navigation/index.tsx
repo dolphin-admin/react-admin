@@ -1,3 +1,5 @@
+import { TimeUtils } from '@dolphin-admin/utils'
+
 export function Component(): React.JSX.Element {
   const { APP_NAME, TEAM_NAME } = AppConfig
 
@@ -16,6 +18,9 @@ export function Component(): React.JSX.Element {
               height="14"
             />
             <span className="text-sm text-gray-600">{TEAM_NAME}</span>
+            <span>
+              {TimeUtils.formatTime(Date.now(), 'YYYY/MM/DD HH:mm:ss')}
+            </span>
           </div>
         </div>
       </div>
