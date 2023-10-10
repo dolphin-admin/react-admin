@@ -9,7 +9,6 @@
     "src/**/*.ts",
     "src/**/*.tsx",
     "vite.config.ts",
-    "@types/**/*.d.ts",
-    "plugins/**/*.ts"
+    "@types/**/*.d.ts"
   ]
 }

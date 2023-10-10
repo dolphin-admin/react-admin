@@ -1,12 +1,15 @@
 import { fileURLToPath, URL } from 'node:url'
 
+import {
+  antdIconsPreset,
+  antdPreset,
+  dolphinAdminPresets
+} from '@dolphin-admin/auto-import'
 import react from '@vitejs/plugin-react-swc'
 import AutoImport from 'unplugin-auto-import/vite'
 import Icons from 'unplugin-icons/vite'
 import type { ProxyOptions } from 'vite'
 import { defineConfig, loadEnv } from 'vite'
-
-import { antdIconsResolver, antdResolver } from './plugins'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
@@ -47,19 +50,16 @@ export default defineConfig(({ mode }) => {
             imports: ['useQueryClient', 'useQuery', 'useMutation']
           },
           {
-            from: '@/constants',
-            imports: ['GlobalEnvConfig', 'BasePageModel', 'AppConfig']
-          },
-          {
-            from: 'react-router-dom',
-            imports: ['useNavigation']
-          },
-          {
             from: 'clsx',
             imports: [['default', 'clsx']]
           },
-          antdResolver({ prefix: 'A' }),
-          antdIconsResolver()
+          {
+            from: '@/constants',
+            imports: ['GlobalEnvConfig', 'BasePageModel', 'AppConfig']
+          },
+          antdPreset({ prefix: 'A' }),
+          antdIconsPreset(),
+          ...dolphinAdminPresets
         ],
         dirs: [
           'src/api',
