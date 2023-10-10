@@ -81,33 +81,31 @@ export default function BaseHeader(): React.JSX.Element {
       }}
     >
       <div className="flex items-center justify-start !space-x-4">
-        <APopover
+        <ATooltip
+          title={t('Layout:Sidebar.Hide')}
           placement="bottom"
-          content={t('Layout:Sidebar.Hide')}
-          arrow
         >
           <AIcon
             className="cursor-pointer text-[20px]"
             component={HideMenuIcon as React.ForwardRefExoticComponent<any>}
           />
-        </APopover>
+        </ATooltip>
         <BaseBreadcrumb />
       </div>
       <div className="flex items-center justify-start !space-x-4">
-        <APopover
+        <ATooltip
+          title="Discord"
           placement="bottom"
-          content="Discord"
-          arrow
         >
           <AIcon
             onClick={() => BrowserUtils.openNewWindow(DISCORD_URL)}
             className="cursor-pointer text-[20px] text-[#5865F2]"
             component={DiscordIcon as React.ForwardRefExoticComponent<any>}
           />
-        </APopover>
-        <APopover
+        </ATooltip>
+        <ATooltip
+          title="Github"
           placement="bottom"
-          content="Github"
           arrow
         >
           <AIcon
@@ -115,42 +113,38 @@ export default function BaseHeader(): React.JSX.Element {
             className="cursor-pointer text-[20px]"
             component={GithubIcon as React.ForwardRefExoticComponent<any>}
           />
-        </APopover>
-        <APopover
+        </ATooltip>
+        <ATooltip
+          title={t('Global:Docs')}
           placement="bottom"
-          content={t('Global:Docs')}
-          arrow
         >
           <AIcon
             onClick={() => BrowserUtils.openNewWindow(DOCS_URL)}
             className="cursor-pointer text-[20px]"
             component={DocsIcon as React.ForwardRefExoticComponent<any>}
           />
-        </APopover>
-        <APopover
+        </ATooltip>
+        <ATooltip
+          title={t('Layout:Header.FullScreen')}
           placement="bottom"
-          content={t('Layout:Header.FullScreen')}
-          arrow
         >
           <AIcon
             className="cursor-pointer text-[20px]"
             component={FullScreenIcon as React.ForwardRefExoticComponent<any>}
           />
-        </APopover>
-        <APopover
+        </ATooltip>
+        <ATooltip
+          title={t('Layout:Header.Language')}
           placement="bottom"
-          content={t('Layout:Header.Language')}
-          arrow
         >
           <AIcon
             className="cursor-pointer text-[20px]"
             component={LanguageIcon as React.ForwardRefExoticComponent<any>}
           />
-        </APopover>
-        <APopover
+        </ATooltip>
+        <ATooltip
+          title={t('Layout:Header.SwitchTheme')}
           placement="bottom"
-          content={t('Layout:Header.SwitchTheme')}
-          arrow
         >
           <AIcon
             className="cursor-pointer text-[20px]"
@@ -164,7 +158,7 @@ export default function BaseHeader(): React.JSX.Element {
                 : (MoonIcon as React.ForwardRefExoticComponent<any>)
             }
           />
-        </APopover>
+        </ATooltip>
         {userStore.hasData() && (
           <ADropdown menu={{ items, onClick }}>
             {userStore.user?.avatarUrl ? (
