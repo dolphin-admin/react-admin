@@ -9,5 +9,9 @@
     "Notification": "Notification",
     "Settings": "Settings",
     "SwitchTheme": "Switch theme"
+  },
+  "Sidebar": {
+    "Hide": "隐藏侧边栏",
+    "Show": "显示侧边栏"
   }
 }

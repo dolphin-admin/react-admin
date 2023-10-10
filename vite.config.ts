@@ -59,7 +59,15 @@ export default defineConfig(({ mode }) => {
           },
           antdPreset({ prefix: 'A' }),
           antdIconsPreset(),
-          ...dolphinAdminPresets
+          ...dolphinAdminPresets,
+          {
+            from: 'antd',
+            imports: [
+              ['Popover', 'APopover'],
+              ['Dropdown', 'ADropdown'],
+              ['Avatar', 'AAvatar']
+            ]
+          }
         ],
         dirs: [
           'src/api',
