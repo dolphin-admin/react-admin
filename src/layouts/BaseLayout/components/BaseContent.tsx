@@ -5,7 +5,8 @@ export default function BaseContent(): React.JSX.Element {
         style={{
           padding: 24,
           minHeight: 800,
-          background: '#ffffff'
+          background: '#ffffff',
+          position: 'relative'
         }}
       >
         <Outlet />

@@ -1,6 +1,10 @@
-import { createRoutesFromElements, Route } from 'react-router-dom'
+import {
+  createBrowserRouter,
+  createRoutesFromElements,
+  Route
+} from 'react-router-dom'
 
-const router = createRoutesFromElements(
+const routes = createRoutesFromElements(
   <>
     <Route
       path="/"
@@ -38,5 +42,11 @@ const router = createRoutesFromElements(
     </Route>
   </>
 )
+
+/**
+ * @see https://github.com/remix-run/react-router/discussions/9915
+ */
+const router: ReturnType<typeof createBrowserRouter> =
+  createBrowserRouter(routes)
 
 export default router

@@ -6,11 +6,18 @@ import type {
   InternalAxiosRequestConfig
 } from 'axios'
 import axios from 'axios'
+import { createSearchParams } from 'react-router-dom'
 
+import router from '@/router'
 import type { PageModel } from '@/types'
 
 import { axiosConfig } from './config'
 import { errorMessageMap, ResponseStatusCode } from './statusCode'
+
+AMessage.config({
+  maxCount: 3,
+  duration: 1
+})
 
 class Request {
   instance: AxiosInstance
@@ -24,13 +31,15 @@ class Request {
       (req: InternalAxiosRequestConfig) => {
         // 设置 token
         const { url } = req
+        // 如果是基础接口请求，添加 token
         if (
           AuthUtils.isAuthenticated() &&
           url?.startsWith(GlobalEnvConfig.BASE_API_PREFIX)
         ) {
           req.headers.Authorization = AuthUtils.getAuthorization()
         }
-
+        // 设置语言
+        req.headers['Accept-Language'] = LangUtils.getDefaultLang()
         return req
       },
       (err: AxiosError) => Promise.reject(err)
@@ -41,12 +50,14 @@ class Request {
       (err: AxiosError) => {
         const { response } = err
         const { data, status } = response ?? {}
-        if (response) {
-          Request.handleCode(status!)
+        if (response && status) {
+          Request.handleCode(status)
         }
         // 网络错误，跳转到 404 页面
         if (!window.navigator.onLine) {
-          // TODO: 重定向到 404 页面
+          router.navigate('/404', { replace: true }).catch(() => {})
+          // eslint-disable-next-line @typescript-eslint/no-floating-promises
+          AMessage.error('网络错误，请检查网络连接')
         }
         return Promise.reject(data)
       }
@@ -63,38 +74,44 @@ class Request {
    * - 500 服务器错误，TODO: 跳转到 500 页面
    * - 其他状态码，提示错误信息
    */
-  static handleCode(code: number): void {
+  static handleCode(code: number) {
     const errorMessage = errorMessageMap.get(code) ?? 'Unknown Error!'
     switch (code) {
       case ResponseStatusCode.UNAUTHORIZED:
         AuthUtils.clearToken()
-        // TODO: 提示错误信息
-        console.error(errorMessage)
-
-        // TODO: 如果非登录页面，需要重定向到登录页，且需要带上 redirect 参数
-        // if (router.currentRoute.value.path !== '/login') {
-        //   if (router.currentRoute.value.path !== '/') {
-        //     router.replace({
-        //       path: '/login',
-        //       query: {
-        //         redirect: router.currentRoute.value.fullPath
-        //       }
-        //     })
-        //   } else {
-        //     router.replace('/login')
-        //   }
-        // }
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        AMessage.error(errorMessage)
+        // 如果非登录页面，需要重定向到登录页，且需要带上 redirect 参数
+        if (router.state.location.pathname !== '/login') {
+          if (router.state.location.pathname !== '/') {
+            router
+              .navigate(
+                {
+                  pathname: '/login',
+                  search: `?${createSearchParams({
+                    redirect: router.state.location.pathname
+                  }).toString()}`
+                },
+                { replace: true }
+              )
+              .catch(() => {})
+          } else {
+            router.navigate('/login', { replace: true }).catch(() => {})
+          }
+        }
         break
       case ResponseStatusCode.FORBIDDEN:
-        // TODO: 提示错误信息
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        AMessage.error(errorMessage)
         console.error(errorMessage)
         break
       case ResponseStatusCode.INTERNAL_SERVER_ERROR:
       case ResponseStatusCode.BAD_GATEWAY:
       case ResponseStatusCode.GATEWAY_TIMEOUT:
-        // TODO: 提示错误信息
+        // TODO: 提示错误信息 且跳转到 500 页面
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        AMessage.error(errorMessage)
         console.error(errorMessage)
-        // TODO: 如果非登录页面，需要重定向到登录页
         break
       case ResponseStatusCode.BAD_REQUEST:
       case ResponseStatusCode.NOT_FOUND:

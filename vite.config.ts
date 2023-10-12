@@ -66,7 +66,8 @@ export default defineConfig(({ mode }) => {
               ['Popover', 'APopover'],
               ['Dropdown', 'ADropdown'],
               ['Avatar', 'AAvatar'],
-              ['Tooltip', 'ATooltip']
+              ['Tooltip', 'ATooltip'],
+              ['message', 'AMessage']
             ]
           }
         ],
