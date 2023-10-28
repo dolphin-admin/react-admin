@@ -54,6 +54,10 @@ export default defineConfig(({ mode }) => {
             imports: [['default', 'clsx']]
           },
           {
+            from: 'react',
+            imports: ['Suspense']
+          },
+          {
             from: '@/constants',
             imports: ['GlobalEnvConfig', 'BasePageModel', 'AppConfig']
           },

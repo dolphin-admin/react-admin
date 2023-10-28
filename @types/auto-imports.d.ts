@@ -45,6 +45,7 @@ declare global {
   const Request: typeof import('../src/api/index')['Request']
   const Route: typeof import('react-router-dom')['Route']
   const Routes: typeof import('react-router-dom')['Routes']
+  const Suspense: typeof import('react')['Suspense']
   const ThemeUtils: typeof import('../src/utils/theme/index')['ThemeUtils']
   const TimeUtils: typeof import('@dolphin-admin/utils')['TimeUtils']
   const UserAPI: typeof import('../src/api/user/index')['UserAPI']

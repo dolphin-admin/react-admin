@@ -10,9 +10,9 @@ import { RouterProvider } from 'react-router-dom'
 import router from '@/router'
 
 export default function App() {
-  const [queryClient] = useState(() => new QueryClient())
-
   const { theme } = useThemeStore()
+
+  const [queryClient] = useState(() => new QueryClient())
 
   useEffect(() => {
     ThemeUtils.changeThemeMode(theme)
@@ -49,7 +49,7 @@ export default function App() {
         </StyleProvider>
         <ReactQueryDevtools
           initialIsOpen={false}
-          position="bottom-right"
+          buttonPosition="bottom-right"
         />
       </QueryClientProvider>
     </div>
