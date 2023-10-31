@@ -1,5 +1,5 @@
 [build.environment]
-  NODE_VERSION = "18"
+  NODE_VERSION = "20"
 
 [build]
   publish = "dist"
@@ -7,7 +7,7 @@
 
 [[redirects]]
   from = "/base-api/*"
-  to = "https://dolphin-admin-api.bit-ocean.studio/:splat"
+  to = "https://dolphin-admin-nest-api.bit-ocean.studio/:splat"
   status = 200
   force = true
 

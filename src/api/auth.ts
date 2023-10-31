@@ -1,7 +1,11 @@
-import type { BaseResponse } from '@/types'
+import type {
+  BaseResponse,
+  LoginModel,
+  SignupModel,
+  UserTokenResponse
+} from '@/types'
 
-import Request from '../axios'
-import type { LoginModel, SignupModel, UserTokenResponse } from './types'
+import Request from './axios'
 
 export class AuthAPI {
   private static AUTH_API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/auth`

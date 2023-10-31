@@ -1,5 +1,5 @@
-export default function BaseGlobalLoading(): React.JSX.Element {
-  const { APP_NAME } = AppConfig
+export default function BaseGlobalLoading() {
+  const { APP_NAME } = AppMetadata
 
   return (
     <main className="flex h-screen flex-col items-center justify-center">

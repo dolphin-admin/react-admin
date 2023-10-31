@@ -13,3 +13,9 @@ export interface UserTokenResponse {
   user: User
   accessToken: string
 }
+
+export interface ChangePasswordModel {
+  oldPassword: string
+  newPassword: string
+  confirmPassword: string
+}

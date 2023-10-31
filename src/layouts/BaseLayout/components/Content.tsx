@@ -1,4 +1,4 @@
-export default function BaseContent(): React.JSX.Element {
+export default function Content() {
   return (
     <ALayout.Content style={{ margin: '16px' }}>
       <div

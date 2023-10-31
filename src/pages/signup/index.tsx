@@ -4,7 +4,7 @@ interface SignupData {
   confirmPassword: string
 }
 
-export function Component(): React.JSX.Element {
+export function Component() {
   const { t } = useTranslation(['Global', 'Auth', 'User', 'Validation'])
 
   const { message } = AntdApp.useApp()
@@ -60,7 +60,7 @@ export function Component(): React.JSX.Element {
         }}
         onFinish={handleSignup}
         autoComplete="off"
-        disabled={signupMutation.isLoading}
+        disabled={signupMutation.isPending}
       >
         <AForm.Item
           name="username"
@@ -107,8 +107,8 @@ export function Component(): React.JSX.Element {
             rootClassName="!w-full"
             type="primary"
             htmlType="submit"
-            disabled={signupMutation.isLoading}
-            loading={signupMutation.isLoading}
+            disabled={signupMutation.isPending}
+            loading={signupMutation.isPending}
           >
             {t('Global:Menu.Signup')}
           </AButton>

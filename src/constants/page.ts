@@ -1,4 +1,4 @@
-import type { PageModel } from '@/types'
+import type { Sorter } from '@/types'
 
 /**
  * 分页模型
@@ -42,9 +42,11 @@ export class BasePageModel {
    */
   order?: string
 
-  constructor(pageModel?: PageModel) {
+  sorters?: Sorter[]
+
+  constructor(basePageModel?: BasePageModel) {
     const { page, pageSize, searchText, startDate, endDate, sorters } =
-      pageModel ?? {}
+      basePageModel ?? {}
     this.page = page ?? 1
     this.pageSize = pageSize ?? 10
     if (searchText) {

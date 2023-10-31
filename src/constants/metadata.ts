@@ -10,10 +10,10 @@
  * - `DOCS_URL`: 文档地址
  * - `DISCORD_URL`: Discord 地址
  */
-export const AppConfig = Object.freeze({
+export const AppMetadata = Object.freeze({
   APP_NAME: 'Dolphin Admin React',
   VERSION: '0.0.1',
-  FAVICON: '/favicon.ico',
+  FAVICON_URL: '/favicon.ico',
   TEAM_NAME: 'Bit Ocean',
   TEAM_GITHUB_URL: 'https://github.com/bit-ocean-studio',
   REPO_GITHUB_URL: 'https://github.com/bit-ocean-studio/dolphin-admin-react',

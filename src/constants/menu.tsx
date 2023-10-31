@@ -1,6 +1,5 @@
 import type { MenuProps } from 'antd'
 
-import i18n from '@/i18n'
 import UniversalComponentsIcon from '~icons/ic/baseline-auto-awesome-mosaic'
 import ChartsIcon from '~icons/ic/baseline-bar-chart'
 import UnauthorizedIcon from '~icons/ic/baseline-do-not-disturb'

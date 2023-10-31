@@ -1,5 +1,5 @@
-export default function BaseFooter(): React.JSX.Element {
-  const { APP_NAME, VERSION, TEAM_NAME, TEAM_GITHUB_URL } = AppConfig
+export default function Footer() {
+  const { APP_NAME, VERSION, TEAM_NAME, TEAM_GITHUB_URL } = AppMetadata
 
   return (
     <ALayout.Footer style={{ textAlign: 'center', padding: 0 }}>

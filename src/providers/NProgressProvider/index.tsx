@@ -8,7 +8,7 @@ export default function NProgressProvider({
   children
 }: {
   children?: React.ReactNode
-}): React.JSX.Element {
+}) {
   const location = useLocation()
   useEffect(() => {
     nprogress.start()

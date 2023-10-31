@@ -21,7 +21,7 @@ export const useSidebarStore = create<State & Actions>((set) => ({
   /**
    * 是否显示侧边栏，默认显示
    */
-  isDisplay: !BrowserUtils.isMobileDevice(),
+  isDisplay: !BrowserUtils.isMobile(),
 
   /**
    * 修改折叠状态

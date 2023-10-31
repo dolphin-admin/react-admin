@@ -13,20 +13,32 @@ import { defineConfig, loadEnv } from 'vite'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
-  const { VITE_PORT, VITE_BASE_API_PROXY, VITE_MOCK_API_PROXY } =
-    env as ImportMetaEnv
+  const {
+    VITE_PORT,
+    VITE_BASE_API_PREFIX,
+    VITE_BASE_API_URL,
+    VITE_MOCK_API_PREFIX,
+    VITE_MOCK_API_URL
+  } = env as ImportMetaEnv
 
   const port = parseInt(VITE_PORT, 10) || 5173
   const proxy: Record<string, string | ProxyOptions> = {
-    '/base-api': {
-      target: VITE_BASE_API_PROXY,
+    VITE_BASE_API_PREFIX: {
+      target: VITE_BASE_API_URL,
       changeOrigin: true,
-      rewrite: (path: string) => path.replace(/^\/base-api/, '')
+      rewrite: (path: string) =>
+        path.replace(new RegExp(`^\\/${VITE_BASE_API_PREFIX}`), '')
     },
-    '/mock-api': {
-      target: VITE_MOCK_API_PROXY,
+    VITE_MOCK_API_PREFIX: {
+      target: VITE_MOCK_API_URL,
       changeOrigin: true,
-      rewrite: (path: string) => path.replace(/^\/mock-api/, '')
+      rewrite: (path: string) =>
+        path.replace(new RegExp(`^\\/${VITE_MOCK_API_PREFIX}`), '')
+    },
+    '/socket.io': {
+      target: VITE_BASE_API_URL,
+      ws: true,
+      changeOrigin: true
     }
   }
 
@@ -44,7 +56,6 @@ export default defineConfig(({ mode }) => {
           'react',
           'react-router-dom',
           'react-i18next',
-          'ahooks',
           {
             from: '@tanstack/react-query',
             imports: ['useQueryClient', 'useQuery', 'useMutation']
@@ -59,7 +70,11 @@ export default defineConfig(({ mode }) => {
           },
           {
             from: '@/constants',
-            imports: ['GlobalEnvConfig', 'BasePageModel', 'AppConfig']
+            imports: ['AppMetadata', 'GlobalEnvConfig', 'BasePageModel']
+          },
+          {
+            from: '@/i18n',
+            imports: [['default', 'i18n']]
           },
           antdPreset({ prefix: 'A' }),
           antdIconsPreset(),
@@ -78,12 +93,10 @@ export default defineConfig(({ mode }) => {
         dirs: [
           'src/api',
           'src/components',
-          'src/config',
-          'src/hooks',
+          'src/hooks/**',
           'src/layouts',
           'src/providers',
-          'src/store',
-          'src/tools',
+          'src/store/**',
           'src/utils'
         ]
       }),

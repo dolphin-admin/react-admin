@@ -16,7 +16,7 @@ const routes = createRoutesFromElements(
     >
       <Route
         path="/"
-        lazy={() => import('@/pages/Navigation')}
+        lazy={() => import('@/pages')}
       />
       <Route
         path="*"
@@ -33,11 +33,11 @@ const routes = createRoutesFromElements(
     >
       <Route
         path="/login"
-        lazy={() => import('@/pages/Auth/Login')}
+        lazy={() => import('@/pages/login')}
       />
       <Route
         path="/signup"
-        lazy={() => import('@/pages/Auth/Signup')}
+        lazy={() => import('@/pages/signup')}
       />
     </Route>
   </>

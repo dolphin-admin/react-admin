@@ -11,9 +11,12 @@ hookform
 iconify
 lintstaged
 lucide
+Neue
 nocheck
+Noto
 nprogress
 preinstall
+Roboto
 Sider
 signup
 svgr

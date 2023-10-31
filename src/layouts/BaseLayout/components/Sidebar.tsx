@@ -1,7 +1,7 @@
 import { menu } from '@/constants'
 
-export default function BaseMenu(): React.JSX.Element {
-  const { APP_NAME } = AppConfig
+export default function Sidebar() {
+  const { APP_NAME } = AppMetadata
 
   const sidebarStore = useSidebarStore()
 

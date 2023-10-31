@@ -1,6 +1,6 @@
-import { BaseContent, BaseFooter, BaseHeader, BaseSidebar } from './components'
+import { Content, Footer, Header, Sidebar } from './components'
 
-export default function BaseLayout(): React.JSX.Element {
+export default function BaseLayout() {
   const userStore = useUserStore()
   const sidebarStore = useSidebarStore()
 
@@ -43,14 +43,14 @@ export default function BaseLayout(): React.JSX.Element {
 
   return (
     <ALayout style={{ minHeight: '100vh' }}>
-      <BaseSidebar />
+      <Sidebar />
       <ALayout
         style={{ marginLeft: sidebarStore.isCollapse ? 64 : 220 }}
         rootClassName="transition-all"
       >
-        <BaseHeader />
-        <BaseContent />
-        <BaseFooter />
+        <Header />
+        <Content />
+        <Footer />
       </ALayout>
     </ALayout>
   )

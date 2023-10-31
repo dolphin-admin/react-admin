@@ -1,12 +1,13 @@
+import type { BasePageModel } from '@/constants'
 import type {
   BaseResponse,
-  PageRequestModel,
+  ChangePasswordModel,
+  CreateUserModel,
   PageResponse,
   User
 } from '@/types'
 
-import Request from '../axios'
-import type { ChangePasswordModel, CreateModel } from './types'
+import Request from './axios'
 
 export class UserAPI {
   private static USER_API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/users`
@@ -14,7 +15,7 @@ export class UserAPI {
   /**
    * 用户列表
    */
-  static getUsers(params: PageRequestModel) {
+  static getUsers(params: BasePageModel) {
     return Request.get<PageResponse<User[]>>(this.USER_API_PREFIX, {
       ...params
     })
@@ -38,8 +39,10 @@ export class UserAPI {
   /**
    * 创建用户
    */
-  static createUser(data: CreateModel) {
-    return Request.post<BaseResponse<User>>(this.USER_API_PREFIX, { ...data })
+  static createUser(data: CreateUserModel) {
+    return Request.post<BaseResponse<User>>(this.USER_API_PREFIX, {
+      ...data
+    })
   }
 
   /**

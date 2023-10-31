@@ -1,4 +1,4 @@
-export default function BaseBreadcrumb(): React.JSX.Element {
+export default function Breadcrumb() {
   const location = useLocation()
   const pathSnippets = location.pathname.split('/').filter((i) => i)
 

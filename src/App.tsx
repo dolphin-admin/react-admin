@@ -19,39 +19,37 @@ export default function App() {
   }, [])
 
   return (
-    <div className="bg-layout-light text-base dark:bg-layout-dark">
-      <QueryClientProvider client={queryClient}>
-        <StyleProvider hashPriority="high">
-          <AConfigProvider
-            locale={zhCN}
-            theme={{
-              algorithm:
-                theme === 'light'
-                  ? AntdTheme.defaultAlgorithm
-                  : AntdTheme.darkAlgorithm,
-              token: {
-                fontFamily:
-                  'Nunito, Noto Sans, system-ui, -apple-system, Roboto, Helvetica Neue, Arial, sans-serif'
-              }
+    <QueryClientProvider client={queryClient}>
+      <StyleProvider hashPriority="high">
+        <AConfigProvider
+          locale={zhCN}
+          theme={{
+            algorithm:
+              theme === 'light'
+                ? AntdTheme.defaultAlgorithm
+                : AntdTheme.darkAlgorithm,
+            token: {
+              fontFamily:
+                'Nunito, Noto Sans SC, system-ui, -apple-system, Roboto, Helvetica Neue, Arial, sans-serif'
+            }
+          }}
+        >
+          <AntdApp
+            message={{
+              maxCount: 3,
+              duration: 0
             }}
           >
-            <AntdApp
-              message={{
-                maxCount: 3,
-                duration: 1
-              }}
-            >
-              <HappyProvider>
-                <RouterProvider router={router} />
-              </HappyProvider>
-            </AntdApp>
-          </AConfigProvider>
-        </StyleProvider>
-        <ReactQueryDevtools
-          initialIsOpen={false}
-          buttonPosition="bottom-right"
-        />
-      </QueryClientProvider>
-    </div>
+            <HappyProvider>
+              <RouterProvider router={router} />
+            </HappyProvider>
+          </AntdApp>
+        </AConfigProvider>
+      </StyleProvider>
+      <ReactQueryDevtools
+        initialIsOpen={false}
+        buttonPosition="bottom-right"
+      />
+    </QueryClientProvider>
   )
 }

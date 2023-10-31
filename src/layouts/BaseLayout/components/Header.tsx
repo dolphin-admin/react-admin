@@ -14,9 +14,9 @@ import HideMenuIcon from '~icons/line-md/menu-fold-left'
 import SunIcon from '~icons/line-md/moon-alt-to-sunny-outline-loop-transition'
 import MoonIcon from '~icons/line-md/sunny-filled-loop-to-moon-alt-filled-loop-transition'
 
-import BaseBreadcrumb from './BaseBreadcrumb'
+import BaseBreadcrumb from './Breadcrumb'
 
-export default function BaseHeader(): React.JSX.Element {
+export default function Header() {
   const { t } = useTranslation(['Global', 'Auth', 'User', 'Layout'])
 
   const { message } = AntdApp.useApp()
@@ -24,13 +24,11 @@ export default function BaseHeader(): React.JSX.Element {
   const userStore = useUserStore()
   const themeStore = useThemeStore()
 
-  const { REPO_GITHUB_URL, DISCORD_URL, DOCS_URL } = AppConfig
+  const { REPO_GITHUB_URL, DISCORD_URL, DOCS_URL } = AppMetadata
 
   const navigate = useNavigate()
 
-  /**
-   * 退出登录
-   */
+  // 退出登录
   const logout = async () => {
     userStore.clearUser()
     AuthUtils.clearToken()

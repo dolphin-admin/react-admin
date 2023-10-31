@@ -8,11 +8,9 @@ import type {
 import axios from 'axios'
 import { createSearchParams } from 'react-router-dom'
 
+import type { BasePageModel } from '@/constants'
+import { errorMessageMap, StatusCode } from '@/constants'
 import router from '@/router'
-import type { PageModel } from '@/types'
-
-import { axiosConfig } from './config'
-import { errorMessageMap, ResponseStatusCode } from './statusCode'
 
 AMessage.config({
   maxCount: 3,
@@ -22,10 +20,18 @@ AMessage.config({
 class Request {
   instance: AxiosInstance
 
-  public constructor(config: AxiosRequestConfig) {
-    axios.defaults.headers['Content-Type'] = 'application/json;charset=utf-8'
+  // Axios 配置
+  private readonly config: AxiosRequestConfig = {
+    baseURL: '/',
+    timeout: 30000,
+    withCredentials: true,
+    headers: {
+      'Content-Type': 'application/json;charset=utf-8'
+    }
+  }
 
-    this.instance = axios.create(config)
+  public constructor() {
+    this.instance = axios.create(this.config)
 
     this.instance.interceptors.request.use(
       (req: InternalAxiosRequestConfig) => {
@@ -77,7 +83,7 @@ class Request {
   static handleCode(code: number) {
     const errorMessage = errorMessageMap.get(code) ?? 'Unknown Error!'
     switch (code) {
-      case ResponseStatusCode.UNAUTHORIZED:
+      case StatusCode.UNAUTHORIZED:
         AuthUtils.clearToken()
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
         AMessage.error(errorMessage)
@@ -100,24 +106,24 @@ class Request {
           }
         }
         break
-      case ResponseStatusCode.FORBIDDEN:
+      case StatusCode.FORBIDDEN:
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
         AMessage.error(errorMessage)
         console.error(errorMessage)
         break
-      case ResponseStatusCode.INTERNAL_SERVER_ERROR:
-      case ResponseStatusCode.BAD_GATEWAY:
-      case ResponseStatusCode.GATEWAY_TIMEOUT:
+      case StatusCode.INTERNAL_SERVER_ERROR:
+      case StatusCode.BAD_GATEWAY:
+      case StatusCode.GATEWAY_TIMEOUT:
         // TODO: 提示错误信息 且跳转到 500 页面
         // eslint-disable-next-line @typescript-eslint/no-floating-promises
         AMessage.error(errorMessage)
         console.error(errorMessage)
         break
-      case ResponseStatusCode.BAD_REQUEST:
-      case ResponseStatusCode.NOT_FOUND:
-      case ResponseStatusCode.METHOD_NOT_ALLOWED:
-      case ResponseStatusCode.CONFLICT:
-      case ResponseStatusCode.TOO_MANY_REQUESTS:
+      case StatusCode.BAD_REQUEST:
+      case StatusCode.NOT_FOUND:
+      case StatusCode.METHOD_NOT_ALLOWED:
+      case StatusCode.CONFLICT:
+      case StatusCode.TOO_MANY_REQUESTS:
       default:
     }
   }
@@ -138,7 +144,7 @@ class Request {
    */
   get<T>(
     url: string,
-    params?: Record<string, unknown> | PageModel,
+    params?: Record<string, unknown> | BasePageModel,
     config?: AxiosRequestConfig
   ): Promise<T> {
     return this.instance.get(url, { params, ...config })
@@ -201,4 +207,4 @@ class Request {
   }
 }
 
-export default new Request(axiosConfig)
+export default new Request()

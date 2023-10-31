@@ -9,7 +9,8 @@ interface LoginData {
 interface FormValues extends LoginData {
   rememberPassword: boolean
 }
-export function Component(): React.JSX.Element {
+
+export function Component() {
   const { t } = useTranslation(['Global', 'Auth', 'User', 'Validation'])
 
   const { message } = AntdApp.useApp()
@@ -114,7 +115,7 @@ export function Component(): React.JSX.Element {
         }}
         onFinish={handleLogin}
         autoComplete="off"
-        disabled={loginMutation.isLoading}
+        disabled={loginMutation.isPending}
       >
         <AForm.Item
           name="username"
@@ -174,8 +175,8 @@ export function Component(): React.JSX.Element {
               rootClassName="!w-[calc(50%-4px)]"
               type="primary"
               htmlType="submit"
-              disabled={loginMutation.isLoading}
-              loading={submitType === 'BASIC' && loginMutation.isLoading}
+              disabled={loginMutation.isPending}
+              loading={submitType === 'BASIC' && loginMutation.isPending}
               onClick={loginAsBasic}
             >
               {t('Global:Menu.Login')}
@@ -183,8 +184,8 @@ export function Component(): React.JSX.Element {
             <AButton
               rootClassName="!w-[calc(50%-4px)]"
               htmlType="submit"
-              disabled={loginMutation.isLoading}
-              loading={submitType === 'ADMIN' && loginMutation.isLoading}
+              disabled={loginMutation.isPending}
+              loading={submitType === 'ADMIN' && loginMutation.isPending}
               onClick={loginAsAdmin}
             >
               {t('Auth:Login.AsAdmin')}

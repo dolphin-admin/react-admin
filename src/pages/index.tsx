@@ -1,5 +1,5 @@
-export function Component(): React.JSX.Element {
-  const { APP_NAME, TEAM_NAME } = AppConfig
+export function Component() {
+  const { APP_NAME, TEAM_NAME } = AppMetadata
 
   return (
     <main className="absolute inset-0 m-auto h-fit w-fit">
