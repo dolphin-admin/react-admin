@@ -15,6 +15,11 @@ export default function App() {
   const [queryClient] = useState(() => new QueryClient())
 
   useEffect(() => {
+    const sse = new EventSource('http://localhost:3000/sse/notification?a=1')
+
+    sse.onmessage = (event) => {
+      console.log(event.data)
+    }
     ThemeUtils.changeThemeMode(theme)
   }, [])
 

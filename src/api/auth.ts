@@ -16,7 +16,12 @@ export class AuthAPI {
   static login(data: LoginModel) {
     return Request.post<BaseResponse<UserTokenResponse>>(
       `${this.AUTH_API_PREFIX}/login`,
-      { ...data }
+      { ...data },
+      {
+        params: {
+          type: 'username'
+        }
+      }
     )
   }
 

@@ -82,6 +82,7 @@ declare global {
   const useRef: typeof import('react')['useRef']
   const useResolvedPath: typeof import('react-router-dom')['useResolvedPath']
   const useRoutes: typeof import('react-router-dom')['useRoutes']
+  const useSSE: typeof import('../src/hooks/useSSE')['useSSE']
   const useSearchParams: typeof import('react-router-dom')['useSearchParams']
   const useSidebarStore: typeof import('../src/store/sidebar')['useSidebarStore']
   const useState: typeof import('react')['useState']

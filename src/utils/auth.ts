@@ -12,7 +12,7 @@ export class AuthUtils {
   /**
    * 默认管理员用户名
    */
-  static DEFAULT_ADMIN_USERNAME = 'SuperAdmin'
+  static DEFAULT_ADMIN_USERNAME = 'admin'
 
   /**
    * 默认管理员密码
@@ -23,7 +23,7 @@ export class AuthUtils {
    * 获取 token
    */
   static getToken() {
-    return localStorage.getItem(this.LOCAL_STORAGE_TOKEN)
+    return localStorage.getItem(this.LOCAL_STORAGE_TOKEN) ?? ''
   }
 
   /**

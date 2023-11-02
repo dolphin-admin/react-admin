@@ -26,14 +26,15 @@ export function Component() {
 
   const loginMutation = useMutation({
     mutationFn: (data: LoginData) => AuthAPI.login(data),
-    onSuccess: async (res) => {
+    onSuccess: (res) => {
       const { data, message: mes } = res ?? {}
       const { accessToken, user } = data ?? {}
       AuthUtils.setToken(accessToken)
       userStore.setUser(user)
 
       if (mes) {
-        await message.success(mes)
+        // eslint-disable-next-line @typescript-eslint/no-floating-promises
+        message.success(mes)
       }
 
       const formData = form.getFieldsValue()
@@ -49,7 +50,7 @@ export function Component() {
         navigate('/', { replace: true })
       }
     },
-    onError: async (error: Error) => {
+    onError: async (error) => {
       form.setFieldValue('password', '')
       if (error.message) {
         await message.error(error.message)

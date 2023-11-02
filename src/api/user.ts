@@ -33,7 +33,7 @@ export class UserAPI {
    * @description 通过当前登录用户的 token 获取用户信息
    */
   static getUserInfo() {
-    return Request.get<BaseResponse<User>>(`${this.USER_API_PREFIX}/info`)
+    return Request.get<BaseResponse<User>>(`${this.USER_API_PREFIX}/me`)
   }
 
   /**
