@@ -1,11 +1,12 @@
-import type {
-  BaseResponse,
-  LoginModel,
-  SignupModel,
-  UserTokenResponse
-} from '@/types'
+import type { BaseResponse, LoginModel, SignupModel, UserTokenResponse } from '@/types'
 
 import Request from './axios'
+
+// 登录类型
+enum LoginType {
+  USERNAME = 1, // 用户名登录
+  EMAIL = 2 // 邮箱登录
+}
 
 export class AuthAPI {
   private static AUTH_API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/auth`
@@ -17,11 +18,7 @@ export class AuthAPI {
     return Request.post<BaseResponse<UserTokenResponse>>(
       `${this.AUTH_API_PREFIX}/login`,
       { ...data },
-      {
-        params: {
-          type: 'username'
-        }
-      }
+      { params: { type: LoginType.USERNAME } }
     )
   }
 
@@ -29,29 +26,26 @@ export class AuthAPI {
    * 注册
    */
   static signup(data: SignupModel) {
-    return Request.post<BaseResponse<UserTokenResponse>>(
-      `${this.AUTH_API_PREFIX}/signup`,
-      { ...data }
-    )
+    return Request.post<BaseResponse<UserTokenResponse>>(`${this.AUTH_API_PREFIX}/signup`, {
+      ...data
+    })
   }
 
   /**
    * GitHub 登录
    */
   static loginWithGitHub(code: string) {
-    return Request.post<BaseResponse<UserTokenResponse>>(
-      `${this.AUTH_API_PREFIX}/login/github`,
-      { code }
-    )
+    return Request.post<BaseResponse<UserTokenResponse>>(`${this.AUTH_API_PREFIX}/login/github`, {
+      code
+    })
   }
 
   /**
    * Google 登录
    */
   static loginWithGoogle(code: string) {
-    return Request.post<BaseResponse<UserTokenResponse>>(
-      `${this.AUTH_API_PREFIX}/login/google`,
-      { code }
-    )
+    return Request.post<BaseResponse<UserTokenResponse>>(`${this.AUTH_API_PREFIX}/login/google`, {
+      code
+    })
   }
 }
