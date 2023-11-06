@@ -21,11 +21,11 @@ dependencies:
     specifier: ^3.3.2
     version: 3.3.2(react-hook-form@7.48.2)
   '@tanstack/react-query':
-    specifier: ^5.7.1
-    version: 5.7.1(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^5.7.2
+    version: 5.7.2(react-dom@18.2.0)(react@18.2.0)
   '@tanstack/react-query-devtools':
-    specifier: ^5.7.1
-    version: 5.7.1(@tanstack/react-query@5.7.1)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^5.7.2
+    version: 5.7.2(@tanstack/react-query@5.7.2)(react-dom@18.2.0)(react@18.2.0)
   '@tauri-apps/api':
     specifier: ^1.5.1
     version: 1.5.1
@@ -92,8 +92,8 @@ devDependencies:
     specifier: ^18.1.0
     version: 18.1.0
   '@dolphin-admin/auto-import':
-    specifier: ^0.0.8
-    version: 0.0.8
+    specifier: ^0.0.10
+    version: 0.0.10
   '@dolphin-admin/bootstrap-animation':
     specifier: ^0.0.2
     version: 0.0.2(vite@4.5.0)
@@ -1031,8 +1031,8 @@ packages:
     engines: {node: '>=10'}
     dev: false
 
-  /@dolphin-admin/auto-import@0.0.8:
-    resolution: {integrity: sha512-w7Ul+Ca757ZZEnSyVmmCijoetRDt8nnZHqNEMAlqvLs86wmiq0/J2OWxH4kkPZIGe2ArrFtwLm8XTpf7XnskZA==}
+  /@dolphin-admin/auto-import@0.0.10:
+    resolution: {integrity: sha512-IeqVrx1P56velMCJRd3JpuBhFqUUs+qFe1uX6L2RhuSFXWGxXaT4LIvG5KxNdd5XeVPMMTjJ7a8LpDofFGn9+w==}
     dependencies:
       dayjs: 1.11.10
       unimport: 3.4.0
@@ -1919,29 +1919,29 @@ packages:
       - typescript
     dev: true
 
-  /@tanstack/query-core@5.4.3:
-    resolution: {integrity: sha512-fnI9ORjcuLGm1sNrKatKIosRQUpuqcD4SV7RqRSVmj8JSicX2aoMyKryHEBpVQvf6N4PaBVgBxQomjsbsGPssQ==}
+  /@tanstack/query-core@5.7.2:
+    resolution: {integrity: sha512-vPYoNCOI8W+jFLnyEAYQL7/qURE7XzVE/TvkmNSko8LU55jFshee342p4GNFOTsYFgJty7Da5bw4m2P3vaKWMw==}
     dev: false
 
   /@tanstack/query-devtools@5.4.2:
     resolution: {integrity: sha512-EXdaMXi8CxZuMp97J5mq6wy1RduOfoWFv5vtA1U+hyqb8Wst6M8kkkjDSdFvGZIRpYY4K8mKLlEFHNUZDG5dtw==}
     dev: false
 
-  /@tanstack/react-query-devtools@5.7.1(@tanstack/react-query@5.7.1)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-my9rj3MpCc5+AbZyX/gLAKIJnPaPhwV/IFgvUT5W7uTMCE8x5DdswQnLNX0PLkcf5t8zrqoLAk9mJny+p/XfgA==}
+  /@tanstack/react-query-devtools@5.7.2(@tanstack/react-query@5.7.2)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-yYkzdmlntdJsy+GZzCabQGxxMjhRYayQzxe7OqYYFPnLEFf/eWkbH3cjyTBlGSKqpUN/8T5QS3P1Xur+l9hEng==}
     peerDependencies:
-      '@tanstack/react-query': ^5.7.1
+      '@tanstack/react-query': ^5.7.2
       react: ^18.0.0
       react-dom: ^18.0.0
     dependencies:
       '@tanstack/query-devtools': 5.4.2
-      '@tanstack/react-query': 5.7.1(react-dom@18.2.0)(react@18.2.0)
+      '@tanstack/react-query': 5.7.2(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@tanstack/react-query@5.7.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-7onwx519jOKh7/nspf70dOSejJSYfhFRnVsSicuPrmO8L6Iw05G1wwDpp1PjqFLsm7suixlHDXhcNfK0sy0kWg==}
+  /@tanstack/react-query@5.7.2(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-NMsfz0Wd3VPDvSpX9sw2x07r0kf9HwuAlNNHQvwMUHM7EcuVN/LYmlmTe40dWER1c/92Jhc5LODdtW0PyvHsFg==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
@@ -1952,7 +1952,7 @@ packages:
       react-native:
         optional: true
     dependencies:
-      '@tanstack/query-core': 5.4.3
+      '@tanstack/query-core': 5.7.2
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -5265,13 +5265,6 @@ packages:
       yallist: 4.0.0
     dev: true
 
-  /magic-string@0.30.3:
-    resolution: {integrity: sha512-B7xGbll2fG/VjP+SWg4sX3JynwIU0mjoTc6MPpKNuIvftk6u6vqhDnk1R80b8C2GBR6ywqy+1DcKBrevBg+bmw==}
-    engines: {node: '>=12'}
-    dependencies:
-      '@jridgewell/sourcemap-codec': 1.4.15
-    dev: true
-
   /magic-string@0.30.5:
     resolution: {integrity: sha512-7xlpfBaQaP/T6Vh8MO/EqXSW5En6INHEvEXQiuff7Gku0PWjU3uf6w/j9o7O+SpB5fOAkrI5HeoNgwjEO0pFsA==}
     engines: {node: '>=12'}
@@ -7365,7 +7358,7 @@ packages:
       escape-string-regexp: 5.0.0
       fast-glob: 3.3.1
       local-pkg: 0.4.3
-      magic-string: 0.30.3
+      magic-string: 0.30.5
       mlly: 1.4.2
       pathe: 1.1.1
       pkg-types: 1.0.3
