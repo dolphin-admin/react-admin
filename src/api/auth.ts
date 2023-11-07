@@ -1,7 +1,5 @@
 import type { BaseResponse, LoginModel, SignupModel, UserTokenResponse } from '@/types'
 
-import Request from './axios'
-
 // 登录类型
 enum LoginType {
   USERNAME = 1, // 用户名登录
@@ -15,7 +13,7 @@ export class AuthAPI {
    * 登录
    */
   static login(data: LoginModel) {
-    return Request.post<BaseResponse<UserTokenResponse>>(
+    return httpRequest.post<BaseResponse<UserTokenResponse>>(
       `${this.AUTH_API_PREFIX}/login`,
       { ...data },
       { params: { type: LoginType.USERNAME } }
@@ -26,7 +24,7 @@ export class AuthAPI {
    * 注册
    */
   static signup(data: SignupModel) {
-    return Request.post<BaseResponse<UserTokenResponse>>(`${this.AUTH_API_PREFIX}/signup`, {
+    return httpRequest.post<BaseResponse<UserTokenResponse>>(`${this.AUTH_API_PREFIX}/signup`, {
       ...data
     })
   }
@@ -35,17 +33,23 @@ export class AuthAPI {
    * GitHub 登录
    */
   static loginWithGitHub(code: string) {
-    return Request.post<BaseResponse<UserTokenResponse>>(`${this.AUTH_API_PREFIX}/login/github`, {
-      code
-    })
+    return httpRequest.post<BaseResponse<UserTokenResponse>>(
+      `${this.AUTH_API_PREFIX}/login/github`,
+      {
+        code
+      }
+    )
   }
 
   /**
    * Google 登录
    */
   static loginWithGoogle(code: string) {
-    return Request.post<BaseResponse<UserTokenResponse>>(`${this.AUTH_API_PREFIX}/login/google`, {
-      code
-    })
+    return httpRequest.post<BaseResponse<UserTokenResponse>>(
+      `${this.AUTH_API_PREFIX}/login/google`,
+      {
+        code
+      }
+    )
   }
 }

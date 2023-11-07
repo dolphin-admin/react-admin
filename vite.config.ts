@@ -76,23 +76,17 @@ export default defineConfig(({ mode }) => {
           ...dolphinAdminPresets,
           {
             from: 'antd',
-            imports: [
-              ['Popover', 'APopover'],
-              ['Dropdown', 'ADropdown'],
-              ['Avatar', 'AAvatar'],
-              ['Tooltip', 'ATooltip'],
-              ['message', 'AMessage']
-            ]
+            imports: []
           }
         ],
         dirs: [
-          'src/api',
-          'src/components',
+          'src/api/**',
+          'src/components/**',
           'src/hooks/**',
-          'src/layouts',
-          'src/providers',
+          'src/layouts/**',
+          'src/providers/**',
           'src/store/**',
-          'src/utils'
+          'src/utils/**'
         ]
       }),
       Icons({

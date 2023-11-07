@@ -15,7 +15,9 @@ Neue
 nocheck
 Noto
 nprogress
+Nunito
 preinstall
+qrcode
 Roboto
 Sider
 signup

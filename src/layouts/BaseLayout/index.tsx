@@ -1,5 +1,3 @@
-import { Content, Footer, Header, Sidebar } from './components'
-
 export default function BaseLayout() {
   const userStore = useUserStore()
   const sidebarStore = useSidebarStore()
@@ -43,14 +41,14 @@ export default function BaseLayout() {
 
   return (
     <ALayout style={{ minHeight: '100vh' }}>
-      <Sidebar />
+      <BaseSidebar />
       <ALayout
         style={{ marginLeft: sidebarStore.isCollapse ? 64 : 220 }}
         rootClassName="transition-all"
       >
-        <Header />
-        <Content />
-        <Footer />
+        <BaseHeader />
+        <BaseContent />
+        <BaseFooter />
       </ALayout>
     </ALayout>
   )

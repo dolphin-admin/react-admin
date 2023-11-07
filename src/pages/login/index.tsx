@@ -22,19 +22,25 @@ export function Component() {
 
   const [form] = AForm.useForm<FormValues>()
 
-  const [submitType, setSubmitType] = useState<'BASIC' | 'ADMIN'>('BASIC')
+  /**
+   *  提交类型：
+   *  @description
+   *  - BASIC - 正常登录
+   *  - ADMIN - 以管理员身份登录
+   *  - VISITOR - 以访客身份登录
+   */
+  const [submitType, setSubmitType] = useState<'BASIC' | 'ADMIN' | 'VISITOR'>('BASIC')
 
   const loginMutation = useMutation({
     mutationFn: (data: LoginData) => AuthAPI.login(data),
     onSuccess: (res) => {
-      const { data, message: mes } = res ?? {}
+      const { data, message: msg } = res ?? {}
       const { accessToken, user } = data ?? {}
       AuthUtils.setToken(accessToken)
       userStore.setUser(user)
 
-      if (mes) {
-        // eslint-disable-next-line @typescript-eslint/no-floating-promises
-        message.success(mes)
+      if (msg) {
+        message.success(msg)
       }
 
       const formData = form.getFieldsValue()
@@ -71,41 +77,45 @@ export function Component() {
     }
   }, [form])
 
-  /**
-   * 登录
-   */
+  // 登录
   const handleLogin = (values: FormValues) => {
-    // eslint-disable-next-line unused-imports/no-unused-vars
     const { rememberPassword, ...loginData } = values
     loginMutation.mutate(loginData)
   }
 
-  /**
-   * 基础登录
-   */
+  // 以访客身份登录
   const loginAsBasic = () => setSubmitType('BASIC')
 
-  /**
-   * 以管理员身份登录
-   */
+  // 以管理员身份登录
   const loginAsAdmin = () => {
     setSubmitType('ADMIN')
-    form.setFieldValue('username', AuthUtils.DEFAULT_ADMIN_USERNAME)
-    form.setFieldValue('password', AuthUtils.DEFAULT_PASSWORD)
+    form.setFieldsValue({
+      ...form.getFieldsValue(),
+      username: AuthUtils.DEFAULT_ADMIN_USERNAME,
+      password: AuthUtils.DEFAULT_ADMIN_PASSWORD
+    })
   }
 
-  /**
-   * 忘记密码
-   */
-  // const handleForgetPassword = () => navigate('/forget-password')
+  // 以访客身份登录
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const loginAsVisitor = () => {
+    setSubmitType('VISITOR')
+    form.setFieldsValue({
+      ...form.getFieldsValue(),
+      username: AuthUtils.DEFAULT_VISITOR_USERNAME,
+      password: AuthUtils.DEFAULT_VISITOR_PASSWORD
+    })
+  }
+
+  // 忘记密码
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const handleForgetPassword = () => navigate('/forget-password')
 
   const handleSignup = () => navigate('/signup')
 
   return (
     <div className="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-default-light px-4 py-8 shadow-md transition-colors dark:bg-default-dark sm:w-[260px] md:w-[340px]">
-      <div className="select-none text-center text-lg font-semibold">
-        {t('Global:Menu.Login')}
-      </div>
+      <div className="select-none text-center text-lg font-semibold">{t('Global:Menu.Login')}</div>
       <AForm
         form={form}
         name="login"
@@ -161,7 +171,6 @@ export function Component() {
               <Button
                 size="small"
                 type="link"
-                htmlType="button"
                 onClick={handleForgetPassword}
               >
                 {t('Global:ForgetPassword')}
@@ -175,7 +184,6 @@ export function Component() {
             <AButton
               rootClassName="!w-[calc(50%-4px)]"
               type="primary"
-              htmlType="submit"
               disabled={loginMutation.isPending}
               loading={submitType === 'BASIC' && loginMutation.isPending}
               onClick={loginAsBasic}
@@ -184,7 +192,6 @@ export function Component() {
             </AButton>
             <AButton
               rootClassName="!w-[calc(50%-4px)]"
-              htmlType="submit"
               disabled={loginMutation.isPending}
               loading={submitType === 'ADMIN' && loginMutation.isPending}
               onClick={loginAsAdmin}
@@ -208,7 +215,6 @@ export function Component() {
             <AButton
               size="small"
               type="link"
-              htmlType="button"
               onClick={handleSignup}
             >
               <span className="text-xs font-semibold underline-offset-4 hover:underline">
@@ -226,23 +232,13 @@ export function Component() {
           <AButton
             className="!bg-[#595D5F]"
             type="primary"
-            htmlType="button"
-            icon={
-              <AIcon
-                component={GitHubIcon as React.ForwardRefExoticComponent<any>}
-              />
-            }
+            icon={<AIcon component={GitHubIcon as React.ForwardRefExoticComponent<any>} />}
             disabled
           >
             {t('Auth:Login.LoginWithGitHub')}
           </AButton>
           <AButton
-            htmlType="button"
-            icon={
-              <AIcon
-                component={GoogleIcon as React.ForwardRefExoticComponent<any>}
-              />
-            }
+            icon={<AIcon component={GoogleIcon as React.ForwardRefExoticComponent<any>} />}
             disabled
           >
             {t('Auth:Login.LoginWithGoogle')}

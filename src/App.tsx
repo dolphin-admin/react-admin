@@ -9,50 +9,36 @@ import { RouterProvider } from 'react-router-dom'
 
 import router from '@/router'
 
+import { themeToken } from './constants'
+
 export default function App() {
-  const { theme } = useThemeStore()
+  const { theme, enableHappyWorkTheme } = useThemeStore()
 
   const [queryClient] = useState(() => new QueryClient())
 
-  useEffect(() => {
-    const sse = new EventSource('http://localhost:3000/sse/notification?a=1')
-
-    sse.onmessage = (event) => {
-      console.log(event.data)
-    }
-    ThemeUtils.changeThemeMode(theme)
-  }, [])
-
   return (
     <QueryClientProvider client={queryClient}>
+      {/**
+       * antd 样式兼容
+       * @see https://ant-design.antgroup.com/docs/react/compatible-style-cn
+       */}
       <StyleProvider hashPriority="high">
         <AConfigProvider
           locale={zhCN}
           theme={{
-            algorithm:
-              theme === 'light'
-                ? AntdTheme.defaultAlgorithm
-                : AntdTheme.darkAlgorithm,
-            token: {
-              fontFamily:
-                'Nunito, Noto Sans SC, system-ui, -apple-system, Roboto, Helvetica Neue, Arial, sans-serif'
-            }
+            algorithm: theme === 'light' ? AntdTheme.defaultAlgorithm : AntdTheme.darkAlgorithm,
+            token: themeToken
           }}
         >
-          <AntdApp
-            message={{
-              maxCount: 3,
-              duration: 0
-            }}
-          >
-            <HappyProvider>
+          <AntdApp message={{ maxCount: 3, duration: 3 }}>
+            <HappyProvider disabled={false}>
               <RouterProvider router={router} />
             </HappyProvider>
           </AntdApp>
         </AConfigProvider>
       </StyleProvider>
       <ReactQueryDevtools
-        initialIsOpen={false}
+        initialIsOpen={enableHappyWorkTheme}
         buttonPosition="bottom-right"
       />
     </QueryClientProvider>

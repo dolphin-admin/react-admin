@@ -9,6 +9,7 @@ import zh_cn_layout from './zh_cn/layout.json'
 import zh_cn_user from './zh_cn/user.json'
 import zh_cn_validation from './zh_cn/validation.json'
 
+// TODO: 使用 import.meta.glob 做动态加载
 export const EN_US = {
   Global: en_global,
   Auth: en_auth,

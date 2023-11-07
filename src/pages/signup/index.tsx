@@ -46,9 +46,7 @@ export function Component() {
 
   return (
     <div className="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-default-light px-4 py-8 shadow-md transition-colors dark:bg-default-dark sm:w-[260px] md:w-[340px]">
-      <div className="select-none text-center text-lg font-semibold">
-        {t('Global:Menu.Signup')}
-      </div>
+      <div className="select-none text-center text-lg font-semibold">{t('Global:Menu.Signup')}</div>
 
       <AForm
         form={form}
@@ -91,9 +89,7 @@ export function Component() {
                 if (!value || getFieldValue('password') === value) {
                   return Promise.resolve()
                 }
-                return Promise.reject(
-                  new Error(t('Validation:ConfirmPasswordNotMatch'))
-                )
+                return Promise.reject(new Error(t('Validation:ConfirmPasswordNotMatch')))
               }
             })
           ]}

@@ -14,8 +14,6 @@ import HideMenuIcon from '~icons/line-md/menu-fold-left'
 import SunIcon from '~icons/line-md/moon-alt-to-sunny-outline-loop-transition'
 import MoonIcon from '~icons/line-md/sunny-filled-loop-to-moon-alt-filled-loop-transition'
 
-import BaseBreadcrumb from './Breadcrumb'
-
 export default function Header() {
   const { t } = useTranslation(['Global', 'Auth', 'User', 'Layout'])
 
@@ -168,9 +166,7 @@ export default function Header() {
             ) : (
               <AIcon
                 className="cursor-pointer text-[28px]"
-                component={
-                  UserAvatarIcon as React.ForwardRefExoticComponent<any>
-                }
+                component={UserAvatarIcon as React.ForwardRefExoticComponent<any>}
               />
             )}
           </ADropdown>
