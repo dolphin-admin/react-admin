@@ -15,17 +15,17 @@ dependencies:
     specifier: ^5.2.6
     version: 5.2.6(react-dom@18.2.0)(react@18.2.0)
   '@dolphin-admin/utils':
-    specifier: ^0.0.10
-    version: 0.0.10
+    specifier: ^0.0.14
+    version: 0.0.14
   '@hookform/resolvers':
     specifier: ^3.3.2
     version: 3.3.2(react-hook-form@7.48.2)
   '@tanstack/react-query':
-    specifier: ^5.7.1
-    version: 5.7.1(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^5.7.2
+    version: 5.7.2(react-dom@18.2.0)(react@18.2.0)
   '@tanstack/react-query-devtools':
-    specifier: ^5.7.1
-    version: 5.7.1(@tanstack/react-query@5.7.1)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^5.7.2
+    version: 5.7.4(@tanstack/react-query@5.7.2)(react-dom@18.2.0)(react@18.2.0)
   '@tauri-apps/api':
     specifier: ^1.5.1
     version: 1.5.1
@@ -1053,8 +1053,8 @@ packages:
       vite: 4.5.0(@types/node@18.18.7)(sass@1.69.5)
     dev: true
 
-  /@dolphin-admin/utils@0.0.10:
-    resolution: {integrity: sha512-Dc+JHD3dxKhLr7/+akIRmMAqkxOjtJq/wqRiqKROPB4enA1dPo/KdR8DjCIB0N80iAWvbTwoB+n072uCzpcslw==}
+  /@dolphin-admin/utils@0.0.14:
+    resolution: {integrity: sha512-gL4T4NutP07Mkcbnha0uJ1Y0NqBDEjd3s7iut7Mzx+Rup/FdS+gyT4WeKHkel62jN9zfRwImEeYL49LoP8psUA==}
     dependencies:
       dayjs: 1.11.10
     dev: false
@@ -1919,29 +1919,29 @@ packages:
       - typescript
     dev: true
 
-  /@tanstack/query-core@5.4.3:
-    resolution: {integrity: sha512-fnI9ORjcuLGm1sNrKatKIosRQUpuqcD4SV7RqRSVmj8JSicX2aoMyKryHEBpVQvf6N4PaBVgBxQomjsbsGPssQ==}
+  /@tanstack/query-core@5.7.2:
+    resolution: {integrity: sha512-vPYoNCOI8W+jFLnyEAYQL7/qURE7XzVE/TvkmNSko8LU55jFshee342p4GNFOTsYFgJty7Da5bw4m2P3vaKWMw==}
     dev: false
 
-  /@tanstack/query-devtools@5.4.2:
-    resolution: {integrity: sha512-EXdaMXi8CxZuMp97J5mq6wy1RduOfoWFv5vtA1U+hyqb8Wst6M8kkkjDSdFvGZIRpYY4K8mKLlEFHNUZDG5dtw==}
+  /@tanstack/query-devtools@5.7.4:
+    resolution: {integrity: sha512-wx+gwRZUZq7ISXKFJgaAYvVPt+DwTaLKlzaVLB9SLBFIzcL8Jz8jDQGR9ZQp7/O7SVj0TohS8aFuiiGzQUvWyg==}
     dev: false
 
-  /@tanstack/react-query-devtools@5.7.1(@tanstack/react-query@5.7.1)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-my9rj3MpCc5+AbZyX/gLAKIJnPaPhwV/IFgvUT5W7uTMCE8x5DdswQnLNX0PLkcf5t8zrqoLAk9mJny+p/XfgA==}
+  /@tanstack/react-query-devtools@5.7.4(@tanstack/react-query@5.7.2)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-yzpXyiPyZHJP1zaX2qpEbjqQ64vrgPVdkW3PGqtfyYwvhepLmyEEI2DZF+lydMaLrEfXqPycOrAiHKeWcuROVQ==}
     peerDependencies:
-      '@tanstack/react-query': ^5.7.1
+      '@tanstack/react-query': ^5.7.2
       react: ^18.0.0
       react-dom: ^18.0.0
     dependencies:
-      '@tanstack/query-devtools': 5.4.2
-      '@tanstack/react-query': 5.7.1(react-dom@18.2.0)(react@18.2.0)
+      '@tanstack/query-devtools': 5.7.4
+      '@tanstack/react-query': 5.7.2(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@tanstack/react-query@5.7.1(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-7onwx519jOKh7/nspf70dOSejJSYfhFRnVsSicuPrmO8L6Iw05G1wwDpp1PjqFLsm7suixlHDXhcNfK0sy0kWg==}
+  /@tanstack/react-query@5.7.2(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-NMsfz0Wd3VPDvSpX9sw2x07r0kf9HwuAlNNHQvwMUHM7EcuVN/LYmlmTe40dWER1c/92Jhc5LODdtW0PyvHsFg==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
@@ -1952,7 +1952,7 @@ packages:
       react-native:
         optional: true
     dependencies:
-      '@tanstack/query-core': 5.4.3
+      '@tanstack/query-core': 5.7.2
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
