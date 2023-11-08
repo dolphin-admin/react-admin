@@ -17,30 +17,32 @@ export default function App() {
   const [queryClient] = useState(() => new QueryClient())
 
   return (
-    <QueryClientProvider client={queryClient}>
-      {/**
-       * antd 样式兼容
-       * @see https://ant-design.antgroup.com/docs/react/compatible-style-cn
-       */}
-      <StyleProvider hashPriority="high">
-        <AConfigProvider
-          locale={zhCN}
-          theme={{
-            algorithm: theme === 'light' ? AntdTheme.defaultAlgorithm : AntdTheme.darkAlgorithm,
-            token: themeToken
-          }}
-        >
-          <AntdApp message={{ maxCount: 3, duration: 3 }}>
-            <HappyProvider disabled={false}>
-              <RouterProvider router={router} />
-            </HappyProvider>
-          </AntdApp>
-        </AConfigProvider>
-      </StyleProvider>
-      <ReactQueryDevtools
-        initialIsOpen={enableHappyWorkTheme}
-        buttonPosition="bottom-right"
-      />
-    </QueryClientProvider>
+    <div className="select-none">
+      <QueryClientProvider client={queryClient}>
+        {/**
+         * antd 样式兼容
+         * @see https://ant-design.antgroup.com/docs/react/compatible-style-cn
+         */}
+        <StyleProvider hashPriority="high">
+          <AConfigProvider
+            locale={zhCN}
+            theme={{
+              algorithm: theme === 'light' ? AntdTheme.defaultAlgorithm : AntdTheme.darkAlgorithm,
+              token: themeToken
+            }}
+          >
+            <AntdApp message={{ maxCount: 3, duration: 3 }}>
+              <HappyProvider disabled={false}>
+                <RouterProvider router={router} />
+              </HappyProvider>
+            </AntdApp>
+          </AConfigProvider>
+        </StyleProvider>
+        <ReactQueryDevtools
+          initialIsOpen={enableHappyWorkTheme}
+          buttonPosition="bottom-right"
+        />
+      </QueryClientProvider>
+    </div>
   )
 }
