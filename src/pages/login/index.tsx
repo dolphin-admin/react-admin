@@ -1,6 +1,3 @@
-import GitHubIcon from '~icons/ant-design/github-outlined'
-import GoogleIcon from '~icons/logos/google-icon'
-
 interface LoginData {
   username: string
   password: string
@@ -21,15 +18,6 @@ export function Component() {
   const navigate = useNavigate()
 
   const [form] = AForm.useForm<FormValues>()
-
-  /**
-   *  提交类型：
-   *  @description
-   *  - BASIC - 正常登录
-   *  - ADMIN - 以管理员身份登录
-   *  - VISITOR - 以访客身份登录
-   */
-  const [submitType, setSubmitType] = useState<'BASIC' | 'ADMIN' | 'VISITOR'>('BASIC')
 
   const loginMutation = useMutation({
     mutationFn: (data: LoginData) => AuthAPI.login(data),
@@ -59,7 +47,7 @@ export function Component() {
     onError: async (error) => {
       form.setFieldValue('password', '')
       if (error.message) {
-        await message.error(error.message)
+        message.error(error.message)
       }
     }
   })
@@ -79,43 +67,47 @@ export function Component() {
 
   // 登录
   const handleLogin = (values: FormValues) => {
+    // eslint-disable-next-line unused-imports/no-unused-vars
     const { rememberPassword, ...loginData } = values
     loginMutation.mutate(loginData)
   }
 
-  // 以访客身份登录
-  const loginAsBasic = () => setSubmitType('BASIC')
+  // 以基本用户身份登录
+  const loginAsBasic = () => handleLogin(form.getFieldsValue())
 
   // 以管理员身份登录
   const loginAsAdmin = () => {
-    setSubmitType('ADMIN')
     form.setFieldsValue({
       ...form.getFieldsValue(),
       username: AuthUtils.DEFAULT_ADMIN_USERNAME,
       password: AuthUtils.DEFAULT_ADMIN_PASSWORD
     })
+    handleLogin(form.getFieldsValue())
   }
 
   // 以访客身份登录
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const loginAsVisitor = () => {
-    setSubmitType('VISITOR')
     form.setFieldsValue({
       ...form.getFieldsValue(),
       username: AuthUtils.DEFAULT_VISITOR_USERNAME,
       password: AuthUtils.DEFAULT_VISITOR_PASSWORD
     })
+    handleLogin(form.getFieldsValue())
   }
 
   // 忘记密码
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const handleForgetPassword = () => navigate('/forget-password')
 
+  // 注册
   const handleSignup = () => navigate('/signup')
 
   return (
-    <div className="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-default-light px-4 py-8 shadow-md transition-colors dark:bg-default-dark sm:w-[260px] md:w-[340px]">
-      <div className="select-none text-center text-lg font-semibold">{t('Global:Menu.Login')}</div>
+    <div className="absolute inset-0 m-auto flex h-fit w-[360px] max-w-[90%] flex-col rounded-lg bg-default-light px-4 py-8 shadow-md transition-colors dark:bg-default-dark">
+      <div className="flex flex-col items-center">
+        <span className="text-2xl font-medium">{t('Global:APP.NAME')}</span>
+        <span className="mb-4 mt-2">🎉 {t('Auth:LOGIN.WELCOME.BACK')}</span>
+      </div>
+
       <AForm
         form={form}
         name="login"
@@ -130,20 +122,35 @@ export function Component() {
       >
         <AForm.Item
           name="username"
-          rules={[{ required: true, message: t('Validation:Username') }]}
+          rules={[{ required: true, message: t('Validation:USERNAME') }]}
           rootClassName="!mb-4"
         >
           <AInput
+            prefix={
+              <Icon
+                icon="mdi:shield-account-outline"
+                width={20}
+                color="#999999"
+              />
+            }
             placeholder={t('User:Username')}
             autoComplete="username"
+            allowClear
           />
         </AForm.Item>
         <AForm.Item
           name="password"
-          rules={[{ required: true, message: t('Validation:Password') }]}
+          rules={[{ required: true, message: t('Validation:PASSWORD') }]}
           rootClassName="!mb-2"
         >
           <AInput.Password
+            prefix={
+              <Icon
+                icon="mdi:shield-lock-outline"
+                width={20}
+                color="#999999"
+              />
+            }
             placeholder={t('User:Password')}
             autoComplete="current-password"
           />
@@ -158,60 +165,58 @@ export function Component() {
             <ACheckbox>{t('Global:ConfirmPassword')}</ACheckbox>
           </AForm.Item>
 
-          {/* <Form.Item>
-            <ConfigProvider
-              theme={{
-                components: {
-                  Button: {
-                    paddingInlineSM: 0
-                  }
-                }
-              }}
-            >
-              <Button
+          <AForm.Item rootClassName="!mb-0">
+            <AConfigProvider theme={{ components: { Button: { paddingInlineSM: 0 } } }}>
+              <AButton
                 size="small"
                 type="link"
                 onClick={handleForgetPassword}
               >
-                {t('Global:ForgetPassword')}
-              </Button>
-            </ConfigProvider>
-          </Form.Item> */}
+                <span className="text-xs font-semibold underline-offset-4 hover:underline">
+                  {t('Global:ForgetPassword')}
+                </span>
+              </AButton>
+            </AConfigProvider>
+          </AForm.Item>
         </div>
 
         <AForm.Item rootClassName="!mb-2">
-          <div className="flex w-full flex-1 items-center space-x-2">
+          <div className="flex flex-col space-y-2">
             <AButton
-              rootClassName="!w-[calc(50%-4px)]"
               type="primary"
               disabled={loginMutation.isPending}
-              loading={submitType === 'BASIC' && loginMutation.isPending}
+              loading={loginMutation.isPending}
               onClick={loginAsBasic}
             >
               {t('Global:Menu.Login')}
             </AButton>
-            <AButton
-              rootClassName="!w-[calc(50%-4px)]"
-              disabled={loginMutation.isPending}
-              loading={submitType === 'ADMIN' && loginMutation.isPending}
-              onClick={loginAsAdmin}
-            >
-              {t('Auth:Login.AsAdmin')}
-            </AButton>
+
+            <ADivider />
+
+            <div className="flex flex-1 space-x-2">
+              <AButton
+                rootClassName="!w-[calc(50%-4px)]"
+                disabled={loginMutation.isPending}
+                loading={loginMutation.isPending}
+                onClick={loginAsAdmin}
+              >
+                {t('Auth:LOGIN.AS.ADMIN')}
+              </AButton>
+              <AButton
+                rootClassName="!w-[calc(50%-4px)]"
+                disabled={loginMutation.isPending}
+                loading={loginMutation.isPending}
+                onClick={loginAsVisitor}
+              >
+                {t('Auth:LOGIN.AS.VISITOR')}
+              </AButton>
+            </div>
           </div>
         </AForm.Item>
 
         <div className="flex items-center space-x-1 text-xs">
-          <span>{t('Auth:Login.NeedAccount')}</span>
-          <AConfigProvider
-            theme={{
-              components: {
-                Button: {
-                  paddingInlineSM: 0
-                }
-              }
-            }}
-          >
+          <span>{t('Auth:LOGIN.NEED.ACCOUNT')}</span>
+          <AConfigProvider theme={{ components: { Button: { paddingInlineSM: 0 } } }}>
             <AButton
               size="small"
               type="link"
@@ -224,24 +229,33 @@ export function Component() {
           </AConfigProvider>
         </div>
 
-        <ADivider>
-          <span className="text-xs">{t('Auth:Login.ThirdPartyLogin')}</span>
-        </ADivider>
+        <ADivider rootClassName="!my-2.5 !text-xs">{t('Auth:LOGIN.THIRD.PARTY')}</ADivider>
 
         <div className="flex flex-col space-y-2">
           <AButton
-            className="!bg-[#595D5F]"
+            rootClassName="!flex !items-center justify-center !bg-[#595D5F]"
             type="primary"
-            icon={<AIcon component={GitHubIcon as React.ForwardRefExoticComponent<any>} />}
+            icon={
+              <Icon
+                icon="mdi:github"
+                width={20}
+              />
+            }
             disabled
           >
-            {t('Auth:Login.LoginWithGitHub')}
+            {t('Auth:LOGIN.WITH.GITHUB')}
           </AButton>
           <AButton
-            icon={<AIcon component={GoogleIcon as React.ForwardRefExoticComponent<any>} />}
+            rootClassName="!flex !items-center !justify-center"
+            icon={
+              <Icon
+                icon="logos:google-icon"
+                width={16}
+              />
+            }
             disabled
           >
-            {t('Auth:Login.LoginWithGoogle')}
+            {t('Auth:LOGIN.WITH.GOOGLE')}
           </AButton>
         </div>
       </AForm>

@@ -1,6 +1,5 @@
+import { Theme } from '@dolphin-admin/utils'
 import { create } from 'zustand'
-
-import type { Theme } from '@/types'
 
 interface State {
   theme: Theme
@@ -42,7 +41,7 @@ export const useThemeStore = create<State & Actions>((set, get) => ({
    * 切换主题模式
    */
   toggleTheme: () => {
-    set((state) => ({ theme: state.theme === 'light' ? 'dark' : 'light' }))
+    set((state) => ({ theme: state.theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT }))
     ThemeUtils.changeTheme(get().theme)
   },
 

@@ -11,19 +11,16 @@ export const resources = {
 
 const ns = ['Global', 'Auth', 'Layout', 'User', 'Validation'] as const
 
-i18n
-  .use(initReactI18next)
-  .init({
-    lng: LangUtils.getDefaultLang(),
-    fallbackLng: 'en_US',
-    ns,
-    defaultNS: 'Global',
-    resources,
-    interpolation: {
-      escapeValue: false
-    }
-  })
-  .catch(() => {})
+i18n.use(initReactI18next).init({
+  lng: LangUtils.getDefaultLang(),
+  fallbackLng: 'zh_CN',
+  ns,
+  defaultNS: 'Global',
+  resources,
+  interpolation: {
+    escapeValue: false
+  }
+})
 
 export const changeLanguage = async (lang: Lang) => {
   await i18n.changeLanguage(lang)

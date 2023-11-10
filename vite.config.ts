@@ -64,6 +64,10 @@ export default defineConfig(({ mode }) => {
             imports: ['Suspense']
           },
           {
+            from: '@iconify/react',
+            imports: ['Icon']
+          },
+          {
             from: '@/constants',
             imports: ['AppMetadata', 'GlobalEnvConfig', 'BasePageModel']
           },
@@ -76,7 +80,7 @@ export default defineConfig(({ mode }) => {
           ...dolphinAdminPresets,
           {
             from: 'antd',
-            imports: []
+            imports: [['Image', 'AImage']]
           }
         ],
         dirs: [

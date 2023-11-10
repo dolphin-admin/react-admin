@@ -14,7 +14,7 @@ import router from '@/router'
 
 AMessage.config({
   maxCount: 3,
-  duration: 1
+  duration: 3
 })
 
 class Request {
@@ -37,7 +37,7 @@ class Request {
       (req: InternalAxiosRequestConfig) => {
         // 设置 token
         const { url } = req
-        // 如果是基础接口请求，添加 token
+        // 如果是 Base API 接口请求，添加 token
         if (AuthUtils.isAuthenticated() && url?.startsWith(GlobalEnvConfig.BASE_API_PREFIX)) {
           req.headers.Authorization = AuthUtils.getAuthorization()
         }
@@ -58,8 +58,7 @@ class Request {
         }
         // 网络错误，跳转到 404 页面
         if (!window.navigator.onLine) {
-          router.navigate('/404', { replace: true }).catch(() => {})
-
+          router.navigate('/404', { replace: true })
           AMessage.error('网络错误，请检查网络连接')
         }
         return Promise.reject(data)
@@ -72,9 +71,9 @@ class Request {
    * @param code 响应状态码
    * @description 根据响应状态码进行相应的处理
    * - 401 未授权，清除 token 并跳转到登录页
-   * - 403 禁止访问，TODO: 提示用户无权限访问
-   * - 404 未找到，TODO: 跳转到 404 页面
-   * - 500 服务器错误，TODO: 跳转到 500 页面
+   * - 403 禁止访问，提示用户无权限访问
+   * - 404 未找到，跳转到 404 页面
+   * - 500 服务器错误，跳转到 500 页面
    * - 其他状态码，提示错误信息
    */
   static handleCode(code: number) {
@@ -82,38 +81,33 @@ class Request {
     switch (code) {
       case StatusCode.UNAUTHORIZED:
         AuthUtils.clearToken()
-
         AMessage.error(errorMessage)
         // 如果非登录页面，需要重定向到登录页，且需要带上 redirect 参数
         if (router.state.location.pathname !== '/login') {
           if (router.state.location.pathname !== '/') {
-            router
-              .navigate(
-                {
-                  pathname: '/login',
-                  search: `?${createSearchParams({
-                    redirect: router.state.location.pathname
-                  }).toString()}`
-                },
-                { replace: true }
-              )
-              .catch(() => {})
+            router.navigate(
+              {
+                pathname: '/login',
+                search: `?${createSearchParams({
+                  redirect: router.state.location.pathname
+                }).toString()}`
+              },
+              { replace: true }
+            )
           } else {
-            router.navigate('/login', { replace: true }).catch(() => {})
+            router.navigate('/login', { replace: true })
           }
         }
         break
       case StatusCode.FORBIDDEN:
         AMessage.error(errorMessage)
-        console.error(errorMessage)
+        router.navigate('/403', { replace: true })
         break
       case StatusCode.INTERNAL_SERVER_ERROR:
       case StatusCode.BAD_GATEWAY:
       case StatusCode.GATEWAY_TIMEOUT:
-        // TODO: 提示错误信息 且跳转到 500 页面
-
         AMessage.error(errorMessage)
-        console.error(errorMessage)
+        router.navigate('/500', { replace: true })
         break
       case StatusCode.BAD_REQUEST:
       case StatusCode.NOT_FOUND:

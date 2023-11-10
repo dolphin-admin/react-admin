@@ -25,11 +25,11 @@ export default function Sidebar() {
       theme="light"
     >
       <div
-        className="flex h-14 w-full select-none items-center justify-center"
+        className="flex h-14 w-full items-center justify-center"
         onClick={() => navigate('/')}
       >
         <img
-          className="animate-pulse cursor-pointer select-none"
+          className="animate-pulse cursor-pointer"
           width="36"
           height="36"
           src={AssetUtils.getImageFromAssets('favicon.png')}

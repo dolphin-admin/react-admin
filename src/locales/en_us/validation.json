@@ -1,18 +1,18 @@
 {
+  "USERNAME": "Please enter username",
+  "OLD.PASSWORD": "Please enter old password",
+  "PASSWORD": "Please enter password",
+  "PASSWORD.LENGTH": "Password length must be greater than 6",
+  "CONFIRM.PASSWORD": "Please enter confirm password",
+  "CONFIRM.PASSWORD.NOT.MATCH": "Password not match",
   "Address": "Please enter your address",
   "Biography": "Please enter your biography",
-  "ConfirmPassword": "Please enter confirm password",
-  "ConfirmPasswordNotMatch": "Password not match",
   "Email": "Please enter your email",
   "EmailFormat": "Please enter the correct email format",
   "FileName": "Please enter file name",
   "FirstName": "Please enter your first name",
   "LastName": "Please enter your last name",
   "Name": "Please enter name",
-  "OldPassword": "Please enter old password",
-  "Password": "Please enter password",
-  "PasswordLength": "Password length must be greater than 6",
   "PhoneNumber": "Please enter a phone number",
-  "PhoneNumberFormat": "Please enter phone number in the correct format",
-  "Username": "Please enter username"
+  "PhoneNumberFormat": "Please enter phone number in the correct format"
 }

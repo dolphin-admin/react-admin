@@ -31,7 +31,7 @@ export default function App() {
               token: themeToken
             }}
           >
-            <AntdApp message={{ maxCount: 3, duration: 3 }}>
+            <AntdApp message={{ maxCount: 3, duration: 0 }}>
               <HappyProvider disabled={false}>
                 <RouterProvider router={router} />
               </HappyProvider>

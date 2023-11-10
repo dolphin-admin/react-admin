@@ -1,4 +1,6 @@
 // NOTE: This global style is to fix the style bug of antd message component.
 :global(.ant-message-custom-content) {
   display: flex;
+  align-items: center;
+  justify-content: center;
 }

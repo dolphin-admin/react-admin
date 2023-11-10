@@ -1,11 +1,14 @@
 {
+  "APP": {
+    "NAME": "Dolphin Admin"
+  },
   "401": "Unauthorized",
   "403": "Forbidden",
   "404": "Not Found",
   "418": "I'm A Teapot",
   "500": "Internal Server Error",
-  "All": "All",
-  "AlreadyRead": "Have read",
+  "ALL": "All",
+  "ALREADY.READ": "Have read",
   "Back": "Back",
   "Cancel": "Cancel",
   "ChangePassword": "Change password",
