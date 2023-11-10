@@ -8,7 +8,7 @@ interface FormValues extends LoginData {
 }
 
 export function Component() {
-  const { t } = useTranslation(['Global', 'Auth', 'User', 'Validation'])
+  const { t } = useTranslation(['GLOBAL', 'AUTH', 'USER', 'VALIDATION'])
 
   const { message } = AntdApp.useApp()
 
@@ -104,8 +104,8 @@ export function Component() {
   return (
     <div className="absolute inset-0 m-auto flex h-fit w-[360px] max-w-[90%] flex-col rounded-lg bg-default-light px-4 py-8 shadow-md transition-colors dark:bg-default-dark">
       <div className="flex flex-col items-center">
-        <span className="text-2xl font-medium">{t('Global:APP.NAME')}</span>
-        <span className="mb-4 mt-2">🎉 {t('Auth:LOGIN.WELCOME.BACK')}</span>
+        <span className="text-2xl font-medium">{t('GLOBAL:APP.NAME')}</span>
+        <span className="mb-4 mt-2">🎉 {t('AUTH:LOGIN.WELCOME.BACK')}</span>
       </div>
 
       <AForm
@@ -122,7 +122,7 @@ export function Component() {
       >
         <AForm.Item
           name="username"
-          rules={[{ required: true, message: t('Validation:USERNAME') }]}
+          rules={[{ required: true, message: t('VALIDATION:USERNAME') }]}
           rootClassName="!mb-4"
         >
           <AInput
@@ -133,14 +133,14 @@ export function Component() {
                 color="#999999"
               />
             }
-            placeholder={t('User:Username')}
+            placeholder={t('USER:Username')}
             autoComplete="username"
             allowClear
           />
         </AForm.Item>
         <AForm.Item
           name="password"
-          rules={[{ required: true, message: t('Validation:PASSWORD') }]}
+          rules={[{ required: true, message: t('VALIDATION:PASSWORD') }]}
           rootClassName="!mb-2"
         >
           <AInput.Password
@@ -151,7 +151,7 @@ export function Component() {
                 color="#999999"
               />
             }
-            placeholder={t('User:Password')}
+            placeholder={t('USER:Password')}
             autoComplete="current-password"
           />
         </AForm.Item>
@@ -162,7 +162,7 @@ export function Component() {
             valuePropName="checked"
             rootClassName="!mb-0"
           >
-            <ACheckbox>{t('Global:ConfirmPassword')}</ACheckbox>
+            <ACheckbox>{t('GLOBAL:ConfirmPassword')}</ACheckbox>
           </AForm.Item>
 
           <AForm.Item rootClassName="!mb-0">
@@ -173,7 +173,7 @@ export function Component() {
                 onClick={handleForgetPassword}
               >
                 <span className="text-xs font-semibold underline-offset-4 hover:underline">
-                  {t('Global:ForgetPassword')}
+                  {t('GLOBAL:ForgetPassword')}
                 </span>
               </AButton>
             </AConfigProvider>
@@ -188,7 +188,7 @@ export function Component() {
               loading={loginMutation.isPending}
               onClick={loginAsBasic}
             >
-              {t('Global:Menu.Login')}
+              {t('GLOBAL:Menu.Login')}
             </AButton>
 
             <ADivider />
@@ -200,7 +200,7 @@ export function Component() {
                 loading={loginMutation.isPending}
                 onClick={loginAsAdmin}
               >
-                {t('Auth:LOGIN.AS.ADMIN')}
+                {t('AUTH:LOGIN.AS.ADMIN')}
               </AButton>
               <AButton
                 rootClassName="!w-[calc(50%-4px)]"
@@ -208,14 +208,14 @@ export function Component() {
                 loading={loginMutation.isPending}
                 onClick={loginAsVisitor}
               >
-                {t('Auth:LOGIN.AS.VISITOR')}
+                {t('AUTH:LOGIN.AS.VISITOR')}
               </AButton>
             </div>
           </div>
         </AForm.Item>
 
         <div className="flex items-center space-x-1 text-xs">
-          <span>{t('Auth:LOGIN.NEED.ACCOUNT')}</span>
+          <span>{t('AUTH:LOGIN.NEED.ACCOUNT')}</span>
           <AConfigProvider theme={{ components: { Button: { paddingInlineSM: 0 } } }}>
             <AButton
               size="small"
@@ -223,13 +223,13 @@ export function Component() {
               onClick={handleSignup}
             >
               <span className="text-xs font-semibold underline-offset-4 hover:underline">
-                {t('Global:Menu.Signup')}
+                {t('GLOBAL:Menu.Signup')}
               </span>
             </AButton>
           </AConfigProvider>
         </div>
 
-        <ADivider rootClassName="!my-2.5 !text-xs">{t('Auth:LOGIN.THIRD.PARTY')}</ADivider>
+        <ADivider rootClassName="!my-2.5 !text-xs">{t('AUTH:LOGIN.THIRD.PARTY')}</ADivider>
 
         <div className="flex flex-col space-y-2">
           <AButton
@@ -243,7 +243,7 @@ export function Component() {
             }
             disabled
           >
-            {t('Auth:LOGIN.WITH.GITHUB')}
+            {t('AUTH:LOGIN.WITH.GITHUB')}
           </AButton>
           <AButton
             rootClassName="!flex !items-center !justify-center"
@@ -255,7 +255,7 @@ export function Component() {
             }
             disabled
           >
-            {t('Auth:LOGIN.WITH.GOOGLE')}
+            {t('AUTH:LOGIN.WITH.GOOGLE')}
           </AButton>
         </div>
       </AForm>

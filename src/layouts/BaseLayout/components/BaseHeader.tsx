@@ -15,7 +15,7 @@ import SunIcon from '~icons/line-md/moon-alt-to-sunny-outline-loop-transition'
 import MoonIcon from '~icons/line-md/sunny-filled-loop-to-moon-alt-filled-loop-transition'
 
 export default function Header() {
-  const { t } = useTranslation(['Global', 'Auth', 'User', 'Layout'])
+  const { t } = useTranslation(['GLOBAL', 'AUTH', 'USER', 'LAYOUT'])
 
   const { message } = AntdApp.useApp()
 
@@ -31,21 +31,21 @@ export default function Header() {
     userStore.clearUser()
     AuthUtils.clearToken()
     navigate('/login', { replace: true })
-    await message.success(t('Auth:Logout.Success'))
+    await message.success(t('AUTH:LOG.OUT.SUCCESS'))
   }
 
   const items: MenuProps['items'] = [
     {
       key: 'UserInfo',
-      label: t('Layout:Header.ChangePassword')
+      label: t('LAYOUT:Header.ChangePassword')
     },
     {
       key: 'ChangePassword',
-      label: t('Layout:Header.ChangePassword')
+      label: t('LAYOUT:Header.ChangePassword')
     },
     {
       key: 'Quit',
-      label: t('Layout:Header.Logout')
+      label: t('LAYOUT:Header.Logout')
     }
   ]
 
@@ -78,7 +78,7 @@ export default function Header() {
     >
       <div className="flex items-center justify-start !space-x-4">
         <ATooltip
-          title={t('Layout:Sidebar.Hide')}
+          title={t('LAYOUT:Sidebar.Hide')}
           placement="bottom"
         >
           <AIcon
@@ -111,7 +111,7 @@ export default function Header() {
           />
         </ATooltip>
         <ATooltip
-          title={t('Global:Docs')}
+          title={t('GLOBAL:Docs')}
           placement="bottom"
         >
           <AIcon
@@ -121,7 +121,7 @@ export default function Header() {
           />
         </ATooltip>
         <ATooltip
-          title={t('Layout:Header.FullScreen')}
+          title={t('LAYOUT:Header.FullScreen')}
           placement="bottom"
         >
           <AIcon
@@ -130,7 +130,7 @@ export default function Header() {
           />
         </ATooltip>
         <ATooltip
-          title={t('Layout:Header.Language')}
+          title={t('LAYOUT:Header.Language')}
           placement="bottom"
         >
           <AIcon
@@ -139,7 +139,7 @@ export default function Header() {
           />
         </ATooltip>
         <ATooltip
-          title={t('Layout:Header.SwitchTheme')}
+          title={t('LAYOUT:Header.SwitchTheme')}
           placement="bottom"
         >
           <AIcon

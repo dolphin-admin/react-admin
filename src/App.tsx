@@ -9,7 +9,7 @@ import { RouterProvider } from 'react-router-dom'
 
 import router from '@/router'
 
-import { themeToken } from './constants'
+import { messageConfig, themeToken } from './constants'
 
 export default function App() {
   const { theme, enableHappyWorkTheme } = useThemeStore()
@@ -31,7 +31,7 @@ export default function App() {
               token: themeToken
             }}
           >
-            <AntdApp message={{ maxCount: 3, duration: 0 }}>
+            <AntdApp message={{ ...messageConfig }}>
               <HappyProvider disabled={false}>
                 <RouterProvider router={router} />
               </HappyProvider>

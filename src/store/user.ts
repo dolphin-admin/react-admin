@@ -27,8 +27,8 @@ export const useUserStore = create<State & Actions>()((set, get) => ({
    * 设置当前用户数据，更新方式为”非覆盖式更新“
    * @param data 用户数据
    */
-  setUser: (data: User | null) =>
-    set((state) => ({ user: data ? { ...state.user, ...data } : null })),
+  setUser: (user: User | null) =>
+    set((state) => ({ user: user ? { ...state.user, ...user } : null })),
 
   /**
    * 清空当前用户数据

@@ -9,12 +9,11 @@ import axios from 'axios'
 import { createSearchParams } from 'react-router-dom'
 
 import type { BasePageModel } from '@/constants'
-import { errorMessageMap, StatusCode } from '@/constants'
+import { errorMessageMap, messageConfig, StatusCode } from '@/constants'
 import router from '@/router'
 
 AMessage.config({
-  maxCount: 3,
-  duration: 3
+  ...messageConfig
 })
 
 class Request {
