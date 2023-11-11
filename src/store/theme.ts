@@ -13,7 +13,7 @@ interface Actions {
   toggleHappyWorkTheme: () => void
 }
 
-export const useThemeStore = create<State & Actions>((set, get) => ({
+const initialState: State = {
   /**
    * 主题模式
    * @description
@@ -24,7 +24,11 @@ export const useThemeStore = create<State & Actions>((set, get) => ({
   /**
    * 是否开启 antd 快乐工作主题，默认开启
    */
-  enableHappyWorkTheme: true,
+  enableHappyWorkTheme: true
+}
+
+export const useThemeStore = create<State & Actions>()((set, get) => ({
+  ...initialState,
 
   /**
    * 修改主题模式

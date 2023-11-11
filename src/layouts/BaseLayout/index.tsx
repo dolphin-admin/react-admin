@@ -20,7 +20,7 @@ export default function BaseLayout() {
       if (AuthUtils.isAuthenticated()) {
         if (!userStore.hasData()) {
           const user = (await userInfoQuery.refetch()).data
-          userStore.setUser(user ?? null)
+          userStore.setUser(user ?? {})
         }
         setLoading(false)
       } else {

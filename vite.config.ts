@@ -51,6 +51,7 @@ export default defineConfig(({ mode }) => {
           'react',
           'react-router-dom',
           'react-i18next',
+          'ahooks',
           {
             from: '@tanstack/react-query',
             imports: ['useQueryClient', 'useQuery', 'useMutation']
@@ -62,6 +63,10 @@ export default defineConfig(({ mode }) => {
           {
             from: 'react',
             imports: ['Suspense']
+          },
+          {
+            from: 'use-immer',
+            imports: ['useImmer']
           },
           {
             from: '@iconify/react',

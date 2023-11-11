@@ -1,4 +1,4 @@
-import type { Lang } from '@dolphin-admin/utils'
+import { Lang } from '@dolphin-admin/utils'
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
@@ -29,7 +29,7 @@ const dynamicLoadTrans = async () => {
 
 export const resources = await dynamicLoadTrans()
 
-const ns = Object.keys(resources['en-US'])
+const ns = Object.keys(resources[Lang['en-US']])
 
 i18n.use(initReactI18next).init({
   lng: LangUtils.getDefaultLang(),
@@ -41,10 +41,5 @@ i18n.use(initReactI18next).init({
     escapeValue: false
   }
 })
-
-// 语言切换
-export const changeLanguage = async (lang: Lang) => {
-  await i18n.changeLanguage(lang)
-}
 
 export default i18n

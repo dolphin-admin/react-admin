@@ -1,17 +1,18 @@
 {
-  "Header": {
-    "ChangePassword": "Change password",
-    "ExitFullScreen": "Exit full screen",
-    "FullScreen": "Full screen",
-    "Language": "Language",
-    "LockScreen": "Lock screen",
-    "Logout": "Logout",
-    "Notification": "Notification",
-    "Settings": "Settings",
-    "SwitchTheme": "Switch theme"
+  "HEADER": {
+    "CHANGE.PASSWORD": "Change password",
+    "EXIT.FULL.SCREEN": "Exit full screen",
+    "FULL.SCREEN": "Full screen",
+    "LANGUAGE": "Language",
+    "LOCK.SCREEN": "Lock screen",
+    "LOG.OUT": "Logout",
+    "NOTIFICATION": "Notification",
+    "SETTINGS": "Settings",
+    "SWITCH.THEME": "Switch theme",
+    "USER.INFO": "User info"
   },
-  "Sidebar": {
-    "Hide": "隐藏侧边栏",
-    "Show": "显示侧边栏"
+  "SIDEBAR": {
+    "HIDE": "隐藏侧边栏",
+    "SHOW": "显示侧边栏"
   }
 }

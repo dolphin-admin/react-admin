@@ -8,13 +8,15 @@ export default function Footer() {
           {APP_NAME} - v{VERSION}
         </span>
         <span>©</span>
-        <img
+        <AImage
           className="-mb-2 cursor-pointer pb-2 transition-all hover:-translate-y-1 hover:scale-110 active:-translate-y-0 active:scale-105 active:opacity-75"
           src={AssetUtils.getImageFromAssets('bit_ocean.png')}
           alt=""
           loading="eager"
-          width="18"
+          width={18}
           onClick={() => BrowserUtils.openNewWindow(TEAM_GITHUB_URL)}
+          preview={false}
+          draggable={false}
         />
         <span>{TEAM_NAME}</span>
       </div>
