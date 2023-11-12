@@ -24,7 +24,7 @@ export function Component() {
       userStore.setUser(user)
 
       if (mes) {
-        await message.success(mes)
+        message.success(mes)
       }
 
       navigate('/', { replace: true })
@@ -32,7 +32,7 @@ export function Component() {
     onError: async (error: Error) => {
       form.setFieldsValue({ password: '', confirmPassword: '' })
       if (error.message) {
-        await message.error(error.message)
+        message.error(error.message)
       }
     }
   })

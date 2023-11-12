@@ -45,11 +45,11 @@ export default function Header() {
   ])
 
   // 退出登录
-  const logout = async () => {
+  const logout = () => {
     userStore.clearUser()
     AuthUtils.clearToken()
     navigate('/login', { replace: true })
-    await message.success(t('AUTH:LOG.OUT.SUCCESS'))
+    message.success(t('AUTH:LOG.OUT.SUCCESS'))
   }
 
   return (
