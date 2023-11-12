@@ -15,9 +15,10 @@
   },
   "scripts": {
     "dev": "vite",
-    "build": "tsc && vite build",
+    "build": "pnpm type:check && vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist",
+    "type:check": "tsc",
     "desktop:dev": "tauri dev",
     "desktop:build": "tauri build",
     "docker:build": "docker compose build",
@@ -27,7 +28,6 @@
     "eslint:fix": "pnpm eslint:check --fix",
     "prettier:check": "prettier --check --ignore-unknown .",
     "prettier:fix": "prettier --write --ignore-unknown .",
-    "type:check": "tsc",
     "cz": "git-cz",
     "preinstall": "npx only-allow pnpm",
     "prepare": "husky install"
