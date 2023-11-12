@@ -17,6 +17,7 @@
     "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview",
+    "clean": "rm -rf dist",
     "desktop:dev": "tauri dev",
     "desktop:build": "tauri build",
     "docker:build": "docker compose build",
