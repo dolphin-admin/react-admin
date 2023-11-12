@@ -5,7 +5,7 @@ interface SignupData {
 }
 
 export function Component() {
-  const { t } = useTranslation(['Global', 'Auth', 'User', 'Validation'])
+  const { t } = useTranslation(['GLOBAL', 'AUTH', 'USER', 'VALIDATION'])
 
   const { message } = AntdApp.useApp()
 
@@ -24,7 +24,7 @@ export function Component() {
       userStore.setUser(user)
 
       if (mes) {
-        await message.success(mes)
+        message.success(mes)
       }
 
       navigate('/', { replace: true })
@@ -32,7 +32,7 @@ export function Component() {
     onError: async (error: Error) => {
       form.setFieldsValue({ password: '', confirmPassword: '' })
       if (error.message) {
-        await message.error(error.message)
+        message.error(error.message)
       }
     }
   })
@@ -46,7 +46,7 @@ export function Component() {
 
   return (
     <div className="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-default-light px-4 py-8 shadow-md transition-colors dark:bg-default-dark sm:w-[260px] md:w-[340px]">
-      <div className="text-center text-lg font-semibold">{t('Global:Menu.Signup')}</div>
+      <div className="text-center text-lg font-semibold">{t('GLOBAL:Menu.Signup')}</div>
 
       <AForm
         form={form}
@@ -62,40 +62,40 @@ export function Component() {
       >
         <AForm.Item
           name="username"
-          rules={[{ required: true, message: t('Validation:Username') }]}
+          rules={[{ required: true, message: t('VALIDATION:USERNAME') }]}
           rootClassName="!mb-4"
         >
-          <AInput placeholder={t('User:Username')} />
+          <AInput placeholder={t('USER:Username')} />
         </AForm.Item>
 
         <AForm.Item
           name="password"
           rules={[
-            { required: true, message: t('Validation:Password') },
-            { type: 'string', min: 6, message: t('Validation:PasswordLength') }
+            { required: true, message: t('VALIDATION:PASSWORD') },
+            { type: 'string', min: 6, message: t('VALIDATION:PASSWORD.LENGTH') }
           ]}
           rootClassName="!mb-4"
         >
-          <AInput.Password placeholder={t('User:Password')} />
+          <AInput.Password placeholder={t('USER:Password')} />
         </AForm.Item>
 
         <AForm.Item
           name="confirmPassword"
           dependencies={['password']}
           rules={[
-            { required: true, message: t('Validation:ConfirmPassword') },
+            { required: true, message: t('VALIDATION:CONFIRM.PASSWORD') },
             ({ getFieldValue }) => ({
               validator(_, value) {
                 if (!value || getFieldValue('password') === value) {
                   return Promise.resolve()
                 }
-                return Promise.reject(new Error(t('Validation:ConfirmPasswordNotMatch')))
+                return Promise.reject(new Error(t('VALIDATION:CONFIRM.PASSWORD.NOT.MATCH')))
               }
             })
           ]}
           rootClassName="!mb-4"
         >
-          <AInput.Password placeholder={t('Global:ConfirmPassword')} />
+          <AInput.Password placeholder={t('GLOBAL:ConfirmPassword')} />
         </AForm.Item>
 
         <AForm.Item rootClassName="!mb-2">
@@ -106,12 +106,12 @@ export function Component() {
             disabled={signupMutation.isPending}
             loading={signupMutation.isPending}
           >
-            {t('Global:Menu.Signup')}
+            {t('GLOBAL:Menu.Signup')}
           </AButton>
         </AForm.Item>
 
         <div className="flex items-center space-x-1 text-xs">
-          <span>{t('Auth:Signup.AlreadyHaveAccount')}</span>
+          <span>{t('AUTH:SIGN.UP.ALREADY.HAVE.ACCOUNT')}</span>
           <AConfigProvider
             theme={{
               components: {
@@ -128,7 +128,7 @@ export function Component() {
               onClick={handleLogin}
             >
               <span className="text-xs font-semibold underline-offset-4 hover:underline">
-                {t('Global:Menu.Login')}
+                {t('GLOBAL:Menu.Login')}
               </span>
             </AButton>
           </AConfigProvider>

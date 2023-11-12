@@ -1,10 +1,10 @@
 import 'i18next'
 
-import type { resources } from '../src/i18n'
+import type { EN_US } from '../src/locales'
 
 declare module 'i18next' {
   interface CustomTypeOptions {
-    defaultNS: 'Global'
-    resources: (typeof resources)['en_US']
+    defaultNS: 'GLOBAL'
+    resources: typeof EN_US
   }
 }

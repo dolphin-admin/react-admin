@@ -1,18 +1,18 @@
 {
-  "USERNAME": "请输入用户名",
-  "OLD.PASSWORD": "请输入旧密码",
-  "PASSWORD": "请输入密码",
-  "PASSWORD.LENGTH": "密码长度至少为 6 位",
-  "CONFIRM.PASSWORD": "请输入确认密码",
-  "CONFIRM.PASSWORD.NOT.MATCH": "两次输入的密码不一致",
   "Address": "请输入地址",
   "Biography": "请输入简介",
+  "CONFIRM.PASSWORD": "请输入确认密码",
+  "CONFIRM.PASSWORD.NOT.MATCH": "两次输入的密码不一致",
   "Email": "请输入邮箱",
   "EmailFormat": "请输入正确格式的邮箱",
   "FileName": "请输入文件名",
   "FirstName": "请输入名",
   "LastName": "请输入姓",
   "Name": "请输入姓名",
+  "OLD.PASSWORD": "请输入旧密码",
+  "PASSWORD": "请输入密码",
+  "PASSWORD.LENGTH": "密码长度至少为 6 位",
   "PhoneNumber": "请输入电话号码",
-  "PhoneNumberFormat": "请输入正确格式的手机号"
+  "PhoneNumberFormat": "请输入正确格式的手机号",
+  "USERNAME": "请输入用户名"
 }

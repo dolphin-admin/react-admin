@@ -12,7 +12,7 @@ interface Actions {
   toggleDisplay: () => void
 }
 
-export const useSidebarStore = create<State & Actions>((set) => ({
+const initialState: State = {
   /**
    * 是否折叠侧边栏，默认不折叠
    */
@@ -21,8 +21,11 @@ export const useSidebarStore = create<State & Actions>((set) => ({
   /**
    * 是否显示侧边栏，默认显示
    */
-  isDisplay: !BrowserUtils.isMobile(),
+  isDisplay: !BrowserUtils.isMobile()
+}
 
+export const useSidebarStore = create<State & Actions>()((set) => ({
+  ...initialState,
   /**
    * 修改折叠状态
    */

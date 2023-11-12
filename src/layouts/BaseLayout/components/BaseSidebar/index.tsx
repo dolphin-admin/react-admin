@@ -28,13 +28,14 @@ export default function Sidebar() {
         className="flex h-14 w-full items-center justify-center"
         onClick={() => navigate('/')}
       >
-        <img
-          className="animate-pulse cursor-pointer"
-          width="36"
-          height="36"
+        <AImage
+          className="cursor-pointer"
+          width={36}
           src={AssetUtils.getImageFromAssets('favicon.png')}
           alt=""
           loading="eager"
+          preview={false}
+          draggable={false}
         />
         <span
           className={clsx([

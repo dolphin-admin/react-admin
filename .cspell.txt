@@ -9,6 +9,7 @@ Geolocation
 gesturestart
 hookform
 iconify
+immer
 lintstaged
 lucide
 Neue
