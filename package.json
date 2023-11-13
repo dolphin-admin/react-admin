@@ -18,7 +18,7 @@
     "build": "pnpm type:check && vite build",
     "preview": "vite preview",
     "clean": "rm -rf dist",
-    "type:check": "tsc",
+    "type:check": "tsc --noEmit --composite false",
     "desktop:dev": "tauri dev",
     "desktop:build": "tauri build",
     "docker:build": "docker compose build",
