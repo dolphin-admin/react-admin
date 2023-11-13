@@ -3,10 +3,12 @@ import { fileURLToPath, URL } from 'node:url'
 import { antdIconsPreset, antdPreset, dolphinAdminPresets } from '@dolphin-admin/auto-import'
 import { BootstrapAnimation } from '@dolphin-admin/bootstrap-animation'
 import react from '@vitejs/plugin-react-swc'
+import { visualizer } from 'rollup-plugin-visualizer'
 import AutoImport from 'unplugin-auto-import/vite'
 import Icons from 'unplugin-icons/vite'
 import type { ProxyOptions } from 'vite'
 import { defineConfig, loadEnv } from 'vite'
+import ViteCompression from 'vite-plugin-compression'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
@@ -103,6 +105,15 @@ export default defineConfig(({ mode }) => {
         compiler: 'jsx',
         jsx: 'react'
       }),
+      ViteCompression({
+        verbose: true, // 是否在控制台中输出压缩结果
+        disable: true,
+        threshold: 10240, // 体积过小时不压缩
+        algorithm: 'gzip', // 压缩算法
+        ext: '.gz',
+        deleteOriginFile: true // 源文件压缩后是否删除
+      }),
+      visualizer({ open: true, gzipSize: true }),
       BootstrapAnimation()
     ],
     resolve: {
@@ -143,6 +154,15 @@ export default defineConfig(({ mode }) => {
       'TAURI_DEBUG'
     ],
     build: {
+      rollupOptions: {
+        output: {
+          manualChunks: {
+            axios: ['axios'],
+            antd: ['antd'],
+            'lodash-es': ['lodash-es']
+          }
+        }
+      },
       // Tauri 在 Windows 上使用 Chromium，在 macOS 和 Linux 上使用 WebKit
       target: process.env.TAURI_PLATFORM === 'windows' ? 'chrome105' : 'esnext',
       // 调试构建时禁用压缩
