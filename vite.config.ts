@@ -87,7 +87,10 @@ export default defineConfig(({ mode }) => {
           ...dolphinAdminPresets,
           {
             from: 'antd',
-            imports: [['Image', 'AImage']]
+            imports: [
+              ['Image', 'AImage'],
+              ['Card', 'ACard']
+            ]
           }
         ],
         dirs: [

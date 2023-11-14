@@ -8,6 +8,7 @@ declare global {
   const AAvatar: typeof import('antd')['Avatar']
   const ABreadcrumb: typeof import('antd')['Breadcrumb']
   const AButton: typeof import('antd')['Button']
+  const ACard: typeof import('antd')['Card']
   const ACheckbox: typeof import('antd')['Checkbox']
   const AConfigProvider: typeof import('antd')['ConfigProvider']
   const ADivider: typeof import('antd')['Divider']

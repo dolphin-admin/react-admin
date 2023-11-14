@@ -31,7 +31,7 @@ export default function BaseLayout() {
         })
       }
     }
-    checkLogin().catch(() => {})
+    checkLogin()
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
@@ -40,16 +40,18 @@ export default function BaseLayout() {
   }
 
   return (
-    <ALayout style={{ minHeight: '100vh' }}>
-      <BaseSidebar />
-      <ALayout
-        style={{ marginLeft: sidebarStore.isCollapse ? 64 : 220 }}
-        rootClassName="transition-all"
-      >
-        <BaseHeader />
-        <BaseContent />
-        <BaseFooter />
+    <AConfigProvider>
+      <ALayout className="h-screen">
+        <BaseSidebar />
+        <ALayout
+          style={{ marginLeft: sidebarStore.isCollapse ? 64 : 230 }}
+          rootClassName="transition-all"
+        >
+          <BaseHeader />
+          <BaseContent />
+          <BaseFooter />
+        </ALayout>
       </ALayout>
-    </ALayout>
+    </AConfigProvider>
   )
 }

@@ -6,8 +6,8 @@ settings:
 
 dependencies:
   '@ant-design/cssinjs':
-    specifier: ^1.17.2
-    version: 1.17.2(react-dom@18.2.0)(react@18.2.0)
+    specifier: 1.18.0-alpha.0
+    version: 1.18.0-alpha.0(react-dom@18.2.0)(react@18.2.0)
   '@ant-design/happy-work-theme':
     specifier: ^1.0.0
     version: 1.0.0(antd@5.11.1)(react-dom@18.2.0)(react@18.2.0)
@@ -18,11 +18,11 @@ dependencies:
     specifier: ^0.0.16
     version: 0.0.16
   '@tanstack/react-query':
-    specifier: ^5.8.2
-    version: 5.8.2(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^5.8.3
+    version: 5.8.3(react-dom@18.2.0)(react@18.2.0)
   '@tanstack/react-query-devtools':
-    specifier: ^5.8.2
-    version: 5.8.2(@tanstack/react-query@5.8.2)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^5.8.3
+    version: 5.8.3(@tanstack/react-query@5.8.3)(react-dom@18.2.0)(react@18.2.0)
   '@tauri-apps/api':
     specifier: ^1.5.1
     version: 1.5.1
@@ -45,8 +45,8 @@ dependencies:
     specifier: ^5.4.3
     version: 5.4.3
   i18next:
-    specifier: ^23.7.3
-    version: 23.7.3
+    specifier: ^23.7.6
+    version: 23.7.6
   immer:
     specifier: ^10.0.3
     version: 10.0.3
@@ -66,8 +66,8 @@ dependencies:
     specifier: ^18.2.0
     version: 18.2.0(react@18.2.0)
   react-i18next:
-    specifier: ^13.4.0
-    version: 13.4.0(i18next@23.7.3)(react-dom@18.2.0)(react@18.2.0)
+    specifier: ^13.4.1
+    version: 13.4.1(i18next@23.7.6)(react-dom@18.2.0)(react@18.2.0)
   react-router-dom:
     specifier: ^6.18.0
     version: 6.18.0(react-dom@18.2.0)(react@18.2.0)
@@ -158,8 +158,8 @@ devDependencies:
     specifier: ^8.4.31
     version: 8.4.31
   prettier:
-    specifier: ^3.0.3
-    version: 3.0.3
+    specifier: ^3.1.0
+    version: 3.1.0
   rollup-plugin-visualizer:
     specifier: ^5.9.2
     version: 5.9.2
@@ -176,8 +176,8 @@ devDependencies:
     specifier: ^0.16.7
     version: 0.16.7
   unplugin-icons:
-    specifier: ^0.17.3
-    version: 0.17.3(@svgr/core@8.1.0)
+    specifier: ^0.17.4
+    version: 0.17.4(@svgr/core@8.1.0)
   vite:
     specifier: ^4.5.0
     version: 4.5.0(@types/node@18.18.7)(sass@1.69.5)
@@ -217,12 +217,29 @@ packages:
       react: '>=16.0.0'
       react-dom: '>=16.0.0'
     dependencies:
-      '@babel/runtime': 7.22.11
+      '@babel/runtime': 7.23.2
       '@emotion/hash': 0.8.0
       '@emotion/unitless': 0.7.5
       classnames: 2.3.2
       csstype: 3.1.2
       rc-util: 5.37.0(react-dom@18.2.0)(react@18.2.0)
+      react: 18.2.0
+      react-dom: 18.2.0(react@18.2.0)
+      stylis: 4.3.0
+    dev: false
+
+  /@ant-design/cssinjs@1.18.0-alpha.0(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-flbqOInPK0UhmDIQbhDMDZOM3Z5gHTtvZjMk/jcFxHdajTQzibm/qSjP3wPSwdHu1L9NC+x9Lx+o7kgCMbPGXg==}
+    peerDependencies:
+      react: '>=16.0.0'
+      react-dom: '>=16.0.0'
+    dependencies:
+      '@babel/runtime': 7.23.2
+      '@emotion/hash': 0.8.0
+      '@emotion/unitless': 0.7.5
+      classnames: 2.3.2
+      csstype: 3.1.2
+      rc-util: 5.38.1(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       stylis: 4.3.0
@@ -1804,29 +1821,29 @@ packages:
       - typescript
     dev: true
 
-  /@tanstack/query-core@5.8.2:
-    resolution: {integrity: sha512-tBTmTbBLxFQPCeKY5AcXdkTLtbQyYzak5yQohw4EKwEmFCFRqnViXjX8jkUd2pQN60Lf4RE2sD5UkzWqOw1ebw==}
+  /@tanstack/query-core@5.8.3:
+    resolution: {integrity: sha512-SWFMFtcHfttLYif6pevnnMYnBvxKf3C+MHMH7bevyYfpXpTMsLB9O6nNGBdWSoPwnZRXFNyNeVZOw25Wmdasow==}
     dev: false
 
-  /@tanstack/query-devtools@5.8.2:
-    resolution: {integrity: sha512-xzI5LpmCSed2/plSu1ujfYadkOay9AADTzQ7U3aGYXHgBkKJ5pZrcTVuK3SHHpuqsD+mNmpzq8jU8omfOsFLxg==}
+  /@tanstack/query-devtools@5.8.3:
+    resolution: {integrity: sha512-tgVzqWpIg611UXqoIkyOLjEdrV3uNXg86kPrst0/OUP59znma68mOAHw8OEy/xxjN3t94InOfWhmVtkSQ9E8Lg==}
     dev: false
 
-  /@tanstack/react-query-devtools@5.8.2(@tanstack/react-query@5.8.2)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-8vcntQbZ1uDhSxkCJmbmBOAWsJaj7KlMUt4JbI1CvmOwI6HQi5SVy5Z8gtDH4h17kZKlwCoDUiaKetPgdLqaeg==}
+  /@tanstack/react-query-devtools@5.8.3(@tanstack/react-query@5.8.3)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-C36SQVh3wEjj+wEage2nyPBXQJj+gMqmbyXvUAVwywUjHC8OdpyYFkTiVQVRlPcxh+Td2qhsrn1IHPxd39YkrQ==}
     peerDependencies:
-      '@tanstack/react-query': ^5.8.2
+      '@tanstack/react-query': ^5.8.3
       react: ^18.0.0
       react-dom: ^18.0.0
     dependencies:
-      '@tanstack/query-devtools': 5.8.2
-      '@tanstack/react-query': 5.8.2(react-dom@18.2.0)(react@18.2.0)
+      '@tanstack/query-devtools': 5.8.3
+      '@tanstack/react-query': 5.8.3(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
 
-  /@tanstack/react-query@5.8.2(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-1QGZWaB0Do5CCZ2OEGlacXWeylqN3pTlJPViPqktjViygNtuacbCZWdQEVdD62cYC3ra80YOlKihKmXKKhZwLA==}
+  /@tanstack/react-query@5.8.3(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-EDRrsMgUtKM+SjVmhDYBd4jwWWyHAw3kCaurKLIO90OfPQr/UhpwcqM2l/eQOaUYon9lfDB2ejQi1edHK7zEdA==}
     peerDependencies:
       react: ^18.0.0
       react-dom: ^18.0.0
@@ -1837,7 +1854,7 @@ packages:
       react-native:
         optional: true
     dependencies:
-      '@tanstack/query-core': 5.8.2
+      '@tanstack/query-core': 5.8.3
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -4482,8 +4499,8 @@ packages:
     hasBin: true
     dev: true
 
-  /i18next@23.7.3:
-    resolution: {integrity: sha512-XetHM9UCk5oeeIcE2hu6Os16mq/zPHi8v/janExQjbFtx4ndNg9ye5OyAz+f5aYums8A1WcnXa7QikaEjyELPg==}
+  /i18next@23.7.6:
+    resolution: {integrity: sha512-O66BhXBw0fH4bEJMA0/klQKPEbcwAp5wjXEL803pdAynNbg2f4qhLIYlNHJyE7icrL6XmSZKPYaaXwy11kJ6YQ==}
     dependencies:
       '@babel/runtime': 7.23.2
     dev: false
@@ -5721,8 +5738,8 @@ packages:
     engines: {node: '>= 0.8.0'}
     dev: true
 
-  /prettier@3.0.3:
-    resolution: {integrity: sha512-L/4pUDMxcNa8R/EthV08Zt42WBO4h1rarVtK0K+QJG0X187OLo7l699jWw0GKuwzkPQ//jMFA/8Xm6Fh3J/DAg==}
+  /prettier@3.1.0:
+    resolution: {integrity: sha512-TQLvXjq5IAibjh8EpBIkNKxO749UEWABoiIZehEPiY4GNpVdhaFKqSTu+QrlU6D2dPAfubRmtJTi4K4YkQ5eXw==}
     engines: {node: '>=14'}
     hasBin: true
     dev: true
@@ -5956,7 +5973,7 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
     dependencies:
-      '@babel/runtime': 7.22.11
+      '@babel/runtime': 7.23.2
       classnames: 2.3.2
       rc-util: 5.37.0(react-dom@18.2.0)(react@18.2.0)
       react: 18.2.0
@@ -6261,7 +6278,7 @@ packages:
       react: '>=16.9.0'
       react-dom: '>=16.9.0'
     dependencies:
-      '@babel/runtime': 7.22.11
+      '@babel/runtime': 7.23.2
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
       react-is: 16.13.1
@@ -6304,8 +6321,8 @@ packages:
       scheduler: 0.23.0
     dev: false
 
-  /react-i18next@13.4.0(i18next@23.7.3)(react-dom@18.2.0)(react@18.2.0):
-    resolution: {integrity: sha512-sZlTQEVK5dQuvq8AaIuj2OKviPqEskcBZdcHrsaoNGLv/uVCqUBfKYvJg9vcVeVqlxjJyYQ6A7LIHl4k7kkD3w==}
+  /react-i18next@13.4.1(i18next@23.7.6)(react-dom@18.2.0)(react@18.2.0):
+    resolution: {integrity: sha512-z02JvLbt6Gavbuhr4CBOI6vasLypo+JSLvMgUOGeOMPv1g6spngfAb9jWAPwvuavPlKYU4dro9yRduflwyBeyA==}
     peerDependencies:
       i18next: '>= 23.2.3'
       react: '>= 16.8.0'
@@ -6319,7 +6336,7 @@ packages:
     dependencies:
       '@babel/runtime': 7.23.2
       html-parse-stringify: 3.0.1
-      i18next: 23.7.3
+      i18next: 23.7.6
       react: 18.2.0
       react-dom: 18.2.0(react@18.2.0)
     dev: false
@@ -7255,8 +7272,8 @@ packages:
       - rollup
     dev: true
 
-  /unplugin-icons@0.17.3(@svgr/core@8.1.0):
-    resolution: {integrity: sha512-uvopA4I6QYWYpwAyRvG/4NNvR1Cd4GnF/mtOkybgP2YPkHjRX02l/ALm20VUla31Jt9eZHxHyODtNf/Upx5uaw==}
+  /unplugin-icons@0.17.4(@svgr/core@8.1.0):
+    resolution: {integrity: sha512-PHLxjBx3ZV8RUBvfMafFl8uWH88jHeZgOijcRpkwgne7y2Ovx7WI0Ltzzw3fjZQ7dGaDhB8udyKVdm9N2S6BIw==}
     peerDependencies:
       '@svgr/core': '>=7.0.0'
       '@svgx/core': ^1.0.1

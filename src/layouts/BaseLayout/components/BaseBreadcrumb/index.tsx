@@ -1,4 +1,4 @@
-export default function Breadcrumb() {
+export default function BaseBreadcrumb() {
   const location = useLocation()
   const pathSnippets = location.pathname.split('/').filter((i) => i)
 

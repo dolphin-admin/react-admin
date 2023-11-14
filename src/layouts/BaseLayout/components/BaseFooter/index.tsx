@@ -1,8 +1,8 @@
-export default function Footer() {
+export default function BaseFooter() {
   const { APP_NAME, VERSION, TEAM_NAME, TEAM_GITHUB_URL } = AppMetadata
 
   return (
-    <ALayout.Footer style={{ textAlign: 'center', padding: 0 }}>
+    <ALayout.Footer className="p-0 text-center">
       <div className="flex h-10 w-full items-center justify-center space-x-2 text-xs">
         <span>
           {APP_NAME} - v{VERSION}

@@ -1,26 +1,15 @@
-const DEFAULT_FONTS =
-  'system-ui, -apple-system, Roboto, Helvetica Neue, Arial, Noto Sans, sans-serif'
-
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {
-      fontFamily: {
-        default: [DEFAULT_FONTS]
-      },
-      textColor: {
-        muted: '#999999'
-      },
-      backgroundColor: {
-        'layout-light': '#F5F6F7',
-        'layout-dark': '#0F0F0F',
-        'default-light': '#FEFEFE',
-        'default-dark': '#141414'
-        // 'default-dark': '#36393F'
-      }
-    }
+    extend: {}
   },
-  plugins: [],
+  /**
+   * 禁用 preflight 样式解决与 antd 样式冲突问题
+   * @see https://github.com/ant-design/ant-design/issues/38794
+   */
+  corePlugins: {
+    preflight: false
+  },
   darkMode: ['class', '[data-theme="dark"]']
 }

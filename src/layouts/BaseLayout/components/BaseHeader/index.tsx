@@ -20,7 +20,7 @@ enum UserAction {
   'QUIT' = '2'
 }
 
-export default function Header() {
+export default function BaseHeader() {
   const { REPO_GITHUB_URL, DISCORD_URL, DOCS_URL } = AppMetadata
 
   const { t } = useTranslation(['GLOBAL', 'AUTH', 'USER', 'LAYOUT'])
@@ -54,10 +54,9 @@ export default function Header() {
 
   return (
     <ALayout.Header
-      className="flex items-center justify-between border-l"
+      className="flex items-center justify-between"
       style={{
         padding: '0 15px',
-        background: '#fff',
         height: '56px'
       }}
     >
@@ -149,9 +148,9 @@ export default function Header() {
             className="cursor-pointer text-xl"
             onClick={() => themeStore.toggleTheme()}
             style={{
-              color: themeStore.theme === 'light' ? '#FDC022' : '#FED736'
+              color: themeStore.isLightTheme() ? '#FDC022' : '#FED736'
             }}
-            component={themeStore.theme === 'light' ? SunIcon : MoonIcon}
+            component={themeStore.isLightTheme() ? SunIcon : MoonIcon}
           />
         </ATooltip>
 

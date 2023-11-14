@@ -2,7 +2,11 @@ export default function AuthLayout() {
   const navigate = useNavigate()
   const userStore = useUserStore()
 
-  const checkLogin = () => {
+  useEffect(() => {
+    checkLogin()
+  }, [])
+
+  function checkLogin() {
     // 如果已经登录，直接跳转到首页，否则清除用户信息
     if (AuthUtils.isAuthenticated()) {
       navigate('/', { replace: true })
@@ -11,15 +15,9 @@ export default function AuthLayout() {
     }
   }
 
-  useEffect(() => {
-    checkLogin()
-  }, [])
-
   return (
-    <main className="flex h-screen w-screen bg-blue-200 dark:bg-[#2f2f2f]">
-      <div className="absolute inset-x-0 bottom-1/2">
-        <Outlet />
-      </div>
+    <main className="flex h-screen w-screen bg-[#badfff] dark:bg-[#444444]">
+      <Outlet />
     </main>
   )
 }

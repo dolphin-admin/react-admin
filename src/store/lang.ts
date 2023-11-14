@@ -39,7 +39,6 @@ export const useLangStore = create<State & Actions>()(
 /**
  * 监听语言改变
  * @description 改变全局状态时，自动更新 i18n 实例 和 antd 组件语言
- * @param selectedLang 选择的语言
  */
 useLangStore.subscribe(
   (state) => state.lang,

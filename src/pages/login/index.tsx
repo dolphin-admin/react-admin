@@ -27,9 +27,7 @@ export function Component() {
       AuthUtils.setToken(accessToken)
       userStore.setUser(user)
 
-      if (msg) {
-        message.success(msg)
-      }
+      message.success(msg)
 
       const formData = form.getFieldsValue()
       if (formData.rememberPassword) {
@@ -46,9 +44,7 @@ export function Component() {
     },
     onError: async (error) => {
       form.setFieldValue('password', '')
-      if (error.message) {
-        message.error(error.message)
-      }
+      message.error(error.message)
     }
   })
 
@@ -96,13 +92,13 @@ export function Component() {
   }
 
   // 忘记密码
-  const handleForgetPassword = () => navigate('/forget-password')
+  const handleForgotPassword = () => navigate('/forgot-password')
 
   // 注册
   const handleSignup = () => navigate('/signup')
 
   return (
-    <div className="absolute inset-0 m-auto flex h-fit w-[360px] max-w-[90%] flex-col rounded-lg bg-default-light px-4 py-8 shadow-md transition-colors dark:bg-default-dark">
+    <div className="absolute inset-0 m-auto flex h-fit w-[360px] max-w-[90%] flex-col rounded-lg bg-[#ffffff] p-8 shadow-md transition-colors dark:bg-[#222222]">
       <div className="flex flex-col items-center">
         <span className="text-2xl font-medium">{AppMetadata.APP_NAME}</span>
         <span className="mb-4 mt-2">🎉 {t('AUTH:LOGIN.WELCOME.BACK')}</span>
@@ -170,10 +166,10 @@ export function Component() {
               <AButton
                 size="small"
                 type="link"
-                onClick={handleForgetPassword}
+                onClick={handleForgotPassword}
               >
                 <span className="text-xs font-semibold underline-offset-4 hover:underline">
-                  {t('GLOBAL:ForgetPassword')}
+                  {t('GLOBAL:ForgotPassword')}
                 </span>
               </AButton>
             </AConfigProvider>
@@ -195,7 +191,7 @@ export function Component() {
 
             <div className="flex flex-1 space-x-2">
               <AButton
-                rootClassName="!w-[calc(50%-4px)]"
+                className="w-[calc(50%-4px)]"
                 disabled={loginMutation.isPending}
                 loading={loginMutation.isPending}
                 onClick={loginAsAdmin}
@@ -203,7 +199,7 @@ export function Component() {
                 {t('AUTH:LOGIN.AS.ADMIN')}
               </AButton>
               <AButton
-                rootClassName="!w-[calc(50%-4px)]"
+                className="w-[calc(50%-4px)]"
                 disabled={loginMutation.isPending}
                 loading={loginMutation.isPending}
                 onClick={loginAsVisitor}
@@ -229,31 +225,29 @@ export function Component() {
           </AConfigProvider>
         </div>
 
-        <ADivider rootClassName="!my-2.5 !text-xs">{t('AUTH:LOGIN.THIRD.PARTY')}</ADivider>
+        <ADivider className="!my-2.5 !text-xs">{t('AUTH:LOGIN.THIRD.PARTY')}</ADivider>
 
         <div className="flex flex-col space-y-2">
           <AButton
-            rootClassName="!flex !items-center justify-center !bg-[#595D5F]"
-            type="primary"
+            className="flex items-center justify-center bg-[#595d5f] text-white dark:bg-[#333333]"
+            type="text"
             icon={
               <Icon
                 icon="mdi:github"
                 width={20}
               />
             }
-            disabled
           >
             {t('AUTH:LOGIN.WITH.GITHUB')}
           </AButton>
           <AButton
-            rootClassName="!flex !items-center !justify-center"
+            className="flex items-center justify-center"
             icon={
               <Icon
                 icon="logos:google-icon"
                 width={16}
               />
             }
-            disabled
           >
             {t('AUTH:LOGIN.WITH.GOOGLE')}
           </AButton>

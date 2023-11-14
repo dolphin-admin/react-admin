@@ -5,7 +5,7 @@ interface SignupData {
 }
 
 export function Component() {
-  const { t } = useTranslation(['GLOBAL', 'AUTH', 'USER', 'VALIDATION'])
+  const { t } = useTranslation(['AUTH', 'GLOBAL', 'USER', 'VALIDATION'])
 
   const { message } = AntdApp.useApp()
 
@@ -18,22 +18,16 @@ export function Component() {
   const signupMutation = useMutation({
     mutationFn: (data: SignupData) => AuthAPI.signup(data),
     onSuccess: async (res) => {
-      const { data, message: mes } = res ?? {}
+      const { data, message: msg } = res ?? {}
       const { accessToken, user } = data ?? {}
       AuthUtils.setToken(accessToken)
       userStore.setUser(user)
-
-      if (mes) {
-        message.success(mes)
-      }
-
+      message.success(msg)
       navigate('/', { replace: true })
     },
     onError: async (error: Error) => {
       form.setFieldsValue({ password: '', confirmPassword: '' })
-      if (error.message) {
-        message.error(error.message)
-      }
+      message.error(error.message)
     }
   })
 
@@ -45,7 +39,7 @@ export function Component() {
   const handleLogin = () => navigate('/login')
 
   return (
-    <div className="absolute inset-0 m-auto flex h-fit w-[340px] max-w-[85%] flex-col space-y-4 rounded-lg bg-default-light px-4 py-8 shadow-md transition-colors dark:bg-default-dark sm:w-[260px] md:w-[340px]">
+    <div className="absolute inset-0 m-auto flex h-fit w-[360px] max-w-[90%] flex-col space-y-4 rounded-lg bg-[#ffffff] p-8 shadow-md transition-colors dark:bg-[#222222]">
       <div className="text-center text-lg font-semibold">{t('GLOBAL:Menu.Signup')}</div>
 
       <AForm
@@ -65,7 +59,10 @@ export function Component() {
           rules={[{ required: true, message: t('VALIDATION:USERNAME') }]}
           rootClassName="!mb-4"
         >
-          <AInput placeholder={t('USER:Username')} />
+          <AInput
+            placeholder={t('USER:Username')}
+            autoComplete="username"
+          />
         </AForm.Item>
 
         <AForm.Item
@@ -76,7 +73,10 @@ export function Component() {
           ]}
           rootClassName="!mb-4"
         >
-          <AInput.Password placeholder={t('USER:Password')} />
+          <AInput.Password
+            placeholder={t('USER:Password')}
+            autoComplete="new-password"
+          />
         </AForm.Item>
 
         <AForm.Item
@@ -95,14 +95,16 @@ export function Component() {
           ]}
           rootClassName="!mb-4"
         >
-          <AInput.Password placeholder={t('GLOBAL:ConfirmPassword')} />
+          <AInput.Password
+            placeholder={t('GLOBAL:ConfirmPassword')}
+            autoComplete="new-password"
+          />
         </AForm.Item>
 
         <AForm.Item rootClassName="!mb-2">
           <AButton
             rootClassName="!w-full"
             type="primary"
-            htmlType="submit"
             disabled={signupMutation.isPending}
             loading={signupMutation.isPending}
           >
@@ -112,19 +114,10 @@ export function Component() {
 
         <div className="flex items-center space-x-1 text-xs">
           <span>{t('AUTH:SIGN.UP.ALREADY.HAVE.ACCOUNT')}</span>
-          <AConfigProvider
-            theme={{
-              components: {
-                Button: {
-                  paddingInlineSM: 0
-                }
-              }
-            }}
-          >
+          <AConfigProvider theme={{ components: { Button: { paddingInlineSM: 0 } } }}>
             <AButton
               size="small"
               type="link"
-              htmlType="button"
               onClick={handleLogin}
             >
               <span className="text-xs font-semibold underline-offset-4 hover:underline">

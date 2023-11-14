@@ -1,6 +1,6 @@
 import { menu } from '@/constants'
 
-export default function Sidebar() {
+export default function BaseSidebar() {
   const { APP_NAME } = AppMetadata
 
   const sidebarStore = useSidebarStore()
@@ -9,20 +9,12 @@ export default function Sidebar() {
 
   return (
     <ALayout.Sider
+      className="fixed inset-y-0 left-0 h-full overflow-auto"
       collapsible
       collapsed={sidebarStore.isCollapse}
       onCollapse={(value) => sidebarStore.setIsCollapse(value)}
-      style={{
-        overflow: 'auto',
-        height: '100vh',
-        position: 'fixed',
-        left: 0,
-        top: 0,
-        bottom: 0
-      }}
-      width="220"
+      width="230"
       collapsedWidth="64"
-      theme="light"
     >
       <div
         className="flex h-14 w-full items-center justify-center"
@@ -30,9 +22,9 @@ export default function Sidebar() {
       >
         <AImage
           className="cursor-pointer"
-          width={36}
           src={AssetUtils.getImageFromAssets('favicon.png')}
           alt=""
+          width={36}
           loading="eager"
           preview={false}
           draggable={false}

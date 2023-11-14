@@ -1,5 +1,6 @@
 import { Theme } from '@dolphin-admin/utils'
 import { create } from 'zustand'
+import { subscribeWithSelector } from 'zustand/middleware'
 
 interface State {
   theme: Theme
@@ -7,6 +8,8 @@ interface State {
 }
 
 interface Actions {
+  isLightTheme: () => boolean
+  isDarkTheme: () => boolean
   toggleTheme: () => void
   changeTheme: (theme: Theme) => void
   setHappyWorkTheme: (enable: boolean) => void
@@ -27,39 +30,67 @@ const initialState: State = {
   enableHappyWorkTheme: true
 }
 
-export const useThemeStore = create<State & Actions>()((set, get) => ({
-  ...initialState,
+export const useThemeStore = create<State & Actions>()(
+  subscribeWithSelector((set, get) => ({
+    ...initialState,
 
-  /**
-   * 修改主题模式
-   * @description
-   * - 切换主题模式时，会自动添加或移除 document 上 `dark` 类名
-   * - 将主题模式存储到 localStorage 中，以便下次打开页面时读取
-   */
-  changeTheme: (theme: Theme) => {
-    set({ theme })
+    /**
+     * 是否为亮色主题
+     */
+    isLightTheme: () => get().theme === Theme.LIGHT,
+
+    /**
+     * 是否为暗色主题
+     */
+    isDarkTheme: () => get().theme === Theme.DARK,
+
+    /**
+     * 修改主题模式
+     * @description
+     * - 切换主题模式时，会自动添加或移除 document 上 `dark` 类名
+     * - 将主题模式存储到 localStorage 中，以便下次打开页面时读取
+     */
+    changeTheme: (theme: Theme) => {
+      set({ theme })
+      ThemeUtils.changeTheme(theme)
+    },
+
+    /**
+     * 切换主题模式
+     */
+    toggleTheme: () => {
+      set(() => ({ theme: get().isLightTheme() ? Theme.DARK : Theme.LIGHT }))
+      ThemeUtils.changeTheme(get().theme)
+    },
+
+    /**
+     * 启用/禁用快乐工作主题
+     */
+    setHappyWorkTheme: (enable: boolean) => {
+      set({ enableHappyWorkTheme: enable })
+    },
+
+    /**
+     * 切换快乐工作主题
+     */
+    toggleHappyWorkTheme: () => {
+      set((state) => ({ enableHappyWorkTheme: !state.enableHappyWorkTheme }))
+    }
+  }))
+)
+
+/**
+ * 监听主题改变
+ * @description
+ * - 切换主题模式时，会自动添加或移除 document 上 `dark` 类名
+ * - 将主题模式存储到 localStorage 中，以便下次打开页面时读取
+ */
+useThemeStore.subscribe(
+  (state) => state.theme,
+  (theme) => {
     ThemeUtils.changeTheme(theme)
   },
-
-  /**
-   * 切换主题模式
-   */
-  toggleTheme: () => {
-    set((state) => ({ theme: state.theme === Theme.LIGHT ? Theme.DARK : Theme.LIGHT }))
-    ThemeUtils.changeTheme(get().theme)
-  },
-
-  /**
-   * 启用/禁用快乐工作主题
-   */
-  setHappyWorkTheme: (enable: boolean) => {
-    set({ enableHappyWorkTheme: enable })
-  },
-
-  /**
-   * 切换快乐工作主题
-   */
-  toggleHappyWorkTheme: () => {
-    set((state) => ({ enableHappyWorkTheme: !state.enableHappyWorkTheme }))
+  {
+    fireImmediately: true
   }
-}))
+)
