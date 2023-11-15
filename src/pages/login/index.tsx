@@ -10,7 +10,7 @@ interface FormValues extends LoginData {
 export function Component() {
   const { t } = useTranslation(['GLOBAL', 'AUTH', 'USER', 'VALIDATION'])
 
-  const { message } = AntdApp.useApp()
+  const { message } = AApp.useApp()
 
   const userStore = useUserStore()
 

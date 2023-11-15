@@ -1,6 +1,5 @@
 import './App.scss'
 import 'nprogress/nprogress.css'
-import 'antd/dist/reset.css'
 
 import { px2remTransformer, StyleProvider } from '@ant-design/cssinjs'
 import { HappyProvider } from '@ant-design/happy-work-theme'
@@ -32,9 +31,7 @@ export default function App() {
       <AConfigProvider
         locale={langStore.locale}
         theme={{
-          algorithm: themeStore.isLightTheme()
-            ? AntdTheme.defaultAlgorithm
-            : AntdTheme.darkAlgorithm,
+          algorithm: themeStore.isLightTheme() ? ATheme.defaultAlgorithm : ATheme.darkAlgorithm,
           token: themeStore.isLightTheme() ? themeLightToken : themeDarkToken
         }}
       >
@@ -46,11 +43,11 @@ export default function App() {
           hashPriority="high"
           transformers={[px2rem]}
         >
-          <AntdApp message={{ ...messageConfig }}>
+          <AApp message={{ ...messageConfig }}>
             <HappyProvider disabled={false}>
               <RouterProvider router={router} />
             </HappyProvider>
-          </AntdApp>
+          </AApp>
         </StyleProvider>
       </AConfigProvider>
       <ReactQueryDevtools

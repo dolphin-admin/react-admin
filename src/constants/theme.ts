@@ -3,7 +3,7 @@ import type { AliasToken } from 'antd/es/theme/interface'
 // 消息配置
 export const messageConfig = {
   maxCount: 3,
-  duration: 3
+  duration: 1.5
 }
 
 // 主题：基础配置

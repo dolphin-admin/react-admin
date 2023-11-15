@@ -7,7 +7,7 @@ interface SignupData {
 export function Component() {
   const { t } = useTranslation(['AUTH', 'GLOBAL', 'USER', 'VALIDATION'])
 
-  const { message } = AntdApp.useApp()
+  const { message } = AApp.useApp()
 
   const userStore = useUserStore()
 

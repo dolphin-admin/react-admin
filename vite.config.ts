@@ -1,10 +1,11 @@
 import { fileURLToPath, URL } from 'node:url'
 
-import { antdIconsPreset, antdPreset, dolphinAdminPresets } from '@dolphin-admin/auto-import'
+import { dolphinAdminPresets } from '@dolphin-admin/auto-import'
 import { BootstrapAnimation } from '@dolphin-admin/bootstrap-animation'
 import react from '@vitejs/plugin-react-swc'
 import { visualizer } from 'rollup-plugin-visualizer'
 import AutoImport from 'unplugin-auto-import/vite'
+import AntdResolver from 'unplugin-auto-import-antd'
 import Icons from 'unplugin-icons/vite'
 import type { ProxyOptions } from 'vite'
 import { defineConfig, loadEnv } from 'vite'
@@ -82,17 +83,9 @@ export default defineConfig(({ mode }) => {
             from: '@/i18n',
             imports: [['default', 'i18n']]
           },
-          antdPreset({ prefix: 'A' }),
-          antdIconsPreset(),
-          ...dolphinAdminPresets,
-          {
-            from: 'antd',
-            imports: [
-              ['Image', 'AImage'],
-              ['Card', 'ACard']
-            ]
-          }
+          ...dolphinAdminPresets
         ],
+        resolvers: [AntdResolver({ prefix: 'A' })],
         dirs: [
           'src/api/**',
           'src/components/**',

@@ -6,15 +6,12 @@ import type {
   InternalAxiosRequestConfig
 } from 'axios'
 import axios from 'axios'
+import { unstable_batchedUpdates } from 'react-dom'
 import { createSearchParams } from 'react-router-dom'
 
 import type { BasePageModel } from '@/constants'
-import { errorMessageMap, messageConfig, StatusCode } from '@/constants'
+import { errorMessageMap, StatusCode } from '@/constants'
 import router from '@/router'
-
-AMessage.config({
-  ...messageConfig
-})
 
 class Request {
   instance: AxiosInstance
@@ -58,7 +55,15 @@ class Request {
         // 网络错误，跳转到 404 页面
         if (!window.navigator.onLine) {
           router.navigate('/404', { replace: true })
-          AMessage.error('网络错误，请检查网络连接')
+          /**
+           * HACK:
+           * unstable_batchedUpdates 可以让你在一个函数调用中批量执行多个状态更新，从而绕过 React 组件的生命周期限制。
+           * unstable_batchedUpdates 函数被标记为 "unstable"，意味着它的行为可能会发生变化，或者在将来的 React 版本中被移除。
+           * @see https://docs.pmnd.rs/zustand/guides/event-handler-in-pre-react-18
+           */
+          unstable_batchedUpdates(() => {
+            AApp.useApp().message.error('网络错误，请检查网络连接')
+          })
         }
         return Promise.reject(data)
       }
@@ -80,7 +85,10 @@ class Request {
     switch (code) {
       case StatusCode.UNAUTHORIZED:
         AuthUtils.clearToken()
-        AMessage.error(errorMessage)
+        // HACK: unstable_batchedUpdates
+        unstable_batchedUpdates(() => {
+          AApp.useApp().message.error(errorMessage)
+        })
         // 如果非登录页面，需要重定向到登录页，且需要带上 redirect 参数
         if (router.state.location.pathname !== '/login') {
           if (router.state.location.pathname !== '/') {
@@ -99,13 +107,19 @@ class Request {
         }
         break
       case StatusCode.FORBIDDEN:
-        AMessage.error(errorMessage)
+        // HACK: unstable_batchedUpdates
+        unstable_batchedUpdates(() => {
+          AApp.useApp().message.error(errorMessage)
+        })
         router.navigate('/403', { replace: true })
         break
       case StatusCode.INTERNAL_SERVER_ERROR:
       case StatusCode.BAD_GATEWAY:
       case StatusCode.GATEWAY_TIMEOUT:
-        AMessage.error(errorMessage)
+        // HACK: unstable_batchedUpdates
+        unstable_batchedUpdates(() => {
+          AApp.useApp().message.error(errorMessage)
+        })
         router.navigate('/500', { replace: true })
         break
       case StatusCode.BAD_REQUEST:

@@ -1,3 +1,4 @@
+import AIcon from '@ant-design/icons'
 import type { MenuProps } from 'antd'
 
 import UniversalComponentsIcon from '~icons/ic/baseline-auto-awesome-mosaic'

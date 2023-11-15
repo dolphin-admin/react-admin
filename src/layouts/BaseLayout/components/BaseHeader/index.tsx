@@ -1,3 +1,4 @@
+import AIcon from '@ant-design/icons'
 import { Lang } from '@dolphin-admin/utils'
 
 import UserAvatarIcon from '~icons/carbon/user-avatar-filled-alt'
@@ -24,7 +25,7 @@ export default function BaseHeader() {
   const { REPO_GITHUB_URL, DISCORD_URL, DOCS_URL } = AppMetadata
 
   const { t } = useTranslation(['GLOBAL', 'AUTH', 'USER', 'LAYOUT'])
-  const { message } = AntdApp.useApp()
+  const { message } = AApp.useApp()
   const langStore = useLangStore()
   const userStore = useUserStore()
   const themeStore = useThemeStore()
