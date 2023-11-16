@@ -5,6 +5,7 @@ import { BootstrapAnimation } from '@dolphin-admin/bootstrap-animation'
 import react from '@vitejs/plugin-react-swc'
 import { visualizer } from 'rollup-plugin-visualizer'
 import AutoImport from 'unplugin-auto-import/vite'
+import AhooksResolver from 'unplugin-auto-import-ahooks'
 import AntdResolver from 'unplugin-auto-import-antd'
 import Icons from 'unplugin-icons/vite'
 import type { ProxyOptions } from 'vite'
@@ -54,7 +55,6 @@ export default defineConfig(({ mode }) => {
           'react',
           'react-router-dom',
           'react-i18next',
-          'ahooks',
           {
             from: '@tanstack/react-query',
             imports: ['useQueryClient', 'useQuery', 'useMutation']
@@ -76,6 +76,10 @@ export default defineConfig(({ mode }) => {
             imports: ['Icon']
           },
           {
+            from: '@ant-design/icons',
+            imports: [['default', 'AIcon']]
+          },
+          {
             from: '@/constants',
             imports: ['AppMetadata', 'GlobalEnvConfig', 'BasePageModel']
           },
@@ -85,7 +89,7 @@ export default defineConfig(({ mode }) => {
           },
           ...dolphinAdminPresets
         ],
-        resolvers: [AntdResolver({ prefix: 'A' })],
+        resolvers: [AntdResolver({ prefix: 'A' }), AhooksResolver()],
         dirs: [
           'src/api/**',
           'src/components/**',

@@ -1,4 +1,3 @@
-import AIcon from '@ant-design/icons'
 import type { MenuProps } from 'antd'
 
 import UniversalComponentsIcon from '~icons/ic/baseline-auto-awesome-mosaic'
@@ -32,77 +31,50 @@ const getItem = (
 })
 
 export const menu: MenuItem[] = [
-  getItem(
-    t('GLOBAL:Menu.Navigation'),
-    'Navigation',
-    <AIcon component={NavigationIcon as React.ForwardRefExoticComponent<any>} />
-  ),
+  getItem(t('GLOBAL:Menu.Navigation'), 'Navigation', <AIcon component={NavigationIcon} />),
   getItem(
     t('GLOBAL:Menu.SystemFunctions'),
     'SystemFunctions',
-    <AIcon component={SystemFunctionsIcon as React.ForwardRefExoticComponent<any>} />,
+    <AIcon component={SystemFunctionsIcon} />,
     [
       getItem(
         t('GLOBAL:Menu.UserManagement'),
         'UserManagement',
-        <AIcon component={UserManagementIcon as React.ForwardRefExoticComponent<any>} />
+        <AIcon component={UserManagementIcon} />
       ),
       getItem(
         t('GLOBAL:Menu.DictionaryManagement'),
         'DictionaryManagement',
-        <AIcon component={DictionaryManagementIcon as React.ForwardRefExoticComponent<any>} />
+        <AIcon component={DictionaryManagementIcon} />
       )
     ]
   ),
   getItem(
     t('GLOBAL:Menu.CodeTemplates'),
     'CodeTemplates',
-    <AIcon component={CodeTemplatesIcon as React.ForwardRefExoticComponent<any>} />,
+    <AIcon component={CodeTemplatesIcon} />,
     [
       getItem(
         t('GLOBAL:Menu.ListTemplates'),
         'ListTemplates',
-        <AIcon component={ListTemplatesIcon as React.ForwardRefExoticComponent<any>} />
+        <AIcon component={ListTemplatesIcon} />
       )
     ]
   ),
   getItem(
     t('GLOBAL:Menu.UniversalComponents'),
     'UniversalComponents',
-    <AIcon component={UniversalComponentsIcon as React.ForwardRefExoticComponent<any>} />,
-    [
-      getItem(
-        t('GLOBAL:Menu.Charts'),
-        'Charts',
-        <AIcon component={ChartsIcon as React.ForwardRefExoticComponent<any>} />
-      )
-    ]
+    <AIcon component={UniversalComponentsIcon} />,
+    [getItem(t('GLOBAL:Menu.Charts'), 'Charts', <AIcon component={ChartsIcon} />)]
   ),
-  getItem(
-    t('GLOBAL:Menu.ErrorPages'),
-    'ErrorPages',
-    <AIcon component={ErrorPagesIcon as React.ForwardRefExoticComponent<any>} />,
-    [
-      getItem(
-        t('GLOBAL:Menu.403'),
-        'Unauthorized',
-        <AIcon component={UnauthorizedIcon as React.ForwardRefExoticComponent<any>} />
-      ),
-      getItem(
-        t('GLOBAL:Menu.404'),
-        'NotFound',
-        <AIcon component={NotFoundIcon as React.ForwardRefExoticComponent<any>} />
-      ),
-      getItem(
-        t('GLOBAL:Menu.418'),
-        'IAmATeapot',
-        <AIcon component={IAmATeapotIcon as React.ForwardRefExoticComponent<any>} />
-      ),
-      getItem(
-        t('GLOBAL:Menu.500'),
-        'InternalServerError',
-        <AIcon component={InternalServerErrorIcon as React.ForwardRefExoticComponent<any>} />
-      )
-    ]
-  )
+  getItem(t('GLOBAL:Menu.ErrorPages'), 'ErrorPages', <AIcon component={ErrorPagesIcon} />, [
+    getItem(t('GLOBAL:Menu.403'), 'Unauthorized', <AIcon component={UnauthorizedIcon} />),
+    getItem(t('GLOBAL:Menu.404'), 'NotFound', <AIcon component={NotFoundIcon} />),
+    getItem(t('GLOBAL:Menu.418'), 'IAmATeapot', <AIcon component={IAmATeapotIcon} />),
+    getItem(
+      t('GLOBAL:Menu.500'),
+      'InternalServerError',
+      <AIcon component={InternalServerErrorIcon} />
+    )
+  ])
 ]

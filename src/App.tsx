@@ -9,7 +9,7 @@ import { RouterProvider } from 'react-router-dom'
 
 import router from '@/router'
 
-import { messageConfig, themeDarkToken, themeLightToken } from './constants'
+import { messageConfig, themeDarkConfig, themeLightConfig } from './constants'
 
 /**
  * rem 适配
@@ -25,14 +25,12 @@ export default function App() {
   const langStore = useLangStore()
 
   const [queryClient] = useState(() => new QueryClient())
-
   return (
     <QueryClientProvider client={queryClient}>
       <AConfigProvider
         locale={langStore.locale}
         theme={{
-          algorithm: themeStore.isLightTheme() ? ATheme.defaultAlgorithm : ATheme.darkAlgorithm,
-          token: themeStore.isLightTheme() ? themeLightToken : themeDarkToken
+          ...(themeStore.isLightTheme() ? themeLightConfig : themeDarkConfig)
         }}
       >
         {/**
@@ -46,6 +44,7 @@ export default function App() {
           <AApp message={{ ...messageConfig }}>
             <HappyProvider disabled={false}>
               <RouterProvider router={router} />
+              <DpDevMenuFab />
             </HappyProvider>
           </AApp>
         </StyleProvider>

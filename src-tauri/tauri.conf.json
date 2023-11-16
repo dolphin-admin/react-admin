@@ -3,7 +3,7 @@
   "build": {
     "beforeBuildCommand": "pnpm build",
     "beforeDevCommand": "pnpm dev",
-    "devPath": "http://localhost:4060",
+    "devPath": "http://localhost:4061",
     "distDir": "../dist"
   },
   "package": {
@@ -37,7 +37,7 @@
         "icons/icon.icns",
         "icons/icon.ico"
       ],
-      "identifier": "com.manjaro.starter",
+      "identifier": "dolphin.admin.react",
       "longDescription": "",
       "macOS": {
         "entitlements": null,

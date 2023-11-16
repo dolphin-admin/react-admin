@@ -27,6 +27,7 @@ export default function BaseBreadcrumb() {
   return (
     <ABreadcrumb
       style={{ margin: '16px 0' }}
+      className="hidden sm:block"
       items={breadcrumbItems}
     />
   )
