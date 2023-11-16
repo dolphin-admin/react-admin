@@ -1,4 +1,4 @@
-export default function BaseGlobalLoading() {
+export default function DpGlobalLoading() {
   const { APP_NAME } = AppMetadata
 
   return (

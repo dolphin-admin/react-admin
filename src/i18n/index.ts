@@ -27,12 +27,12 @@ dynamicLoadTrans().then((trans) => {
  */
 async function dynamicLoadTrans() {
   const translations = Object.entries(
-    import.meta.glob<{ default: unknown }>('../locales/**/*.json')
+    import.meta.glob<{ default: unknown }>('../locales/**/*.json', { eager: true })
   ).map(async ([path, translation]) => [
     path.split('/')[2].replace('_', '-'),
     path.match(/([^/]+)\.json$/)![1].toUpperCase(),
-    (await translation()).default
-  ]) as Promise<[string, string, () => Promise<{ default: Record<string, string> }>]>[]
+    translation.default
+  ]) as Promise<[string, string, Record<string, string>]>[]
 
   const transResult = await Promise.all(translations)
 

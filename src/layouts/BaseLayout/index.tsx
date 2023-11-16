@@ -1,57 +1,18 @@
 export default function BaseLayout() {
-  const userStore = useUserStore()
-  const sidebarStore = useSidebarStore()
+  const { isLoading } = useAuthGuard()
 
-  const navigate = useNavigate()
-
-  const [loading, setLoading] = useState(true)
-
-  const userInfoQuery = useQuery({
-    queryKey: ['CurrentUser'],
-    queryFn: () => UserAPI.getUserInfo(),
-    select: (res) => res.data,
-    enabled: false
-  })
-
-  useEffect(() => {
-    // 检查登录状态
-    const checkLogin = async () => {
-      // 如果有 token，获取用户信息
-      if (AuthUtils.isAuthenticated()) {
-        if (!userStore.hasData()) {
-          const user = (await userInfoQuery.refetch()).data
-          userStore.setUser(user ?? {})
-        }
-        setLoading(false)
-      } else {
-        // 否则清除用户信息并跳转到登录页
-        userStore.clearUser()
-        navigate(`/login?redirect=${window.location.pathname}`, {
-          replace: true
-        })
-      }
-    }
-    checkLogin()
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  if (loading) {
-    return <BaseGlobalLoading />
+  if (isLoading) {
+    return <DpGlobalLoading />
   }
 
   return (
-    <AConfigProvider>
-      <ALayout className="h-screen">
-        <BaseSidebar />
-        <ALayout
-          style={{ marginLeft: sidebarStore.isCollapse ? 64 : 230 }}
-          rootClassName="transition-all"
-        >
-          <BaseHeader />
-          <BaseContent />
-          <BaseFooter />
-        </ALayout>
+    <ALayout className="flex-row">
+      <BaseSidebar />
+      <ALayout className="border-r border-gray-300 dark:border-gray-950">
+        <BaseHeader />
+        <BaseContent />
+        <BaseFooter />
       </ALayout>
-    </AConfigProvider>
+    </ALayout>
   )
 }

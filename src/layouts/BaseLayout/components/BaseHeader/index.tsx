@@ -1,4 +1,3 @@
-import AIcon from '@ant-design/icons'
 import { Lang } from '@dolphin-admin/utils'
 
 import UserAvatarIcon from '~icons/carbon/user-avatar-filled-alt'
@@ -11,7 +10,7 @@ import DiscordIcon from '~icons/line-md/discord'
 import DocsIcon from '~icons/line-md/document-list'
 import GithubIcon from '~icons/line-md/github-loop'
 import HideMenuIcon from '~icons/line-md/menu-fold-left'
-// import ShowMenuIcon from '~icons/line-md/menu-fold-right'
+import ShowMenuIcon from '~icons/line-md/menu-fold-right'
 import SunIcon from '~icons/line-md/moon-alt-to-sunny-outline-loop-transition'
 import MoonIcon from '~icons/line-md/sunny-filled-loop-to-moon-alt-filled-loop-transition'
 
@@ -29,6 +28,7 @@ export default function BaseHeader() {
   const langStore = useLangStore()
   const userStore = useUserStore()
   const themeStore = useThemeStore()
+  const sidebarStore = useSidebarStore()
   const navigate = useNavigate()
   const [isFullscreen, { toggleFullscreen }] = useFullscreen(document.body)
 
@@ -55,7 +55,7 @@ export default function BaseHeader() {
 
   return (
     <ALayout.Header
-      className="flex items-center justify-between"
+      className="z-50 flex items-center justify-between border-y border-gray-300 !p-2 dark:border-gray-950 sm:!p-4"
       style={{
         padding: '0 15px',
         height: '56px'
@@ -68,7 +68,8 @@ export default function BaseHeader() {
         >
           <AIcon
             className="cursor-pointer text-xl"
-            component={HideMenuIcon}
+            component={sidebarStore.isDisplay ? HideMenuIcon : ShowMenuIcon}
+            onClick={sidebarStore.toggleDisplay}
           />
         </ATooltip>
         <BaseBreadcrumb />
@@ -116,7 +117,7 @@ export default function BaseHeader() {
           <AIcon
             className="cursor-pointer text-2xl"
             component={isFullscreen ? ExitFullscreenIcon : FullScreenIcon}
-            onClick={() => toggleFullscreen()}
+            onClick={toggleFullscreen}
           />
         </ATooltip>
 
@@ -147,7 +148,7 @@ export default function BaseHeader() {
         >
           <AIcon
             className="cursor-pointer text-xl"
-            onClick={() => themeStore.toggleTheme()}
+            onClick={themeStore.toggleTheme}
             style={{
               color: themeStore.isLightTheme() ? '#FDC022' : '#FED736'
             }}

@@ -1,11 +1,9 @@
 import { createBrowserRouter } from 'react-router-dom'
 
 import Root from '@/Root'
+import type { CustomRouteObject } from '@/types'
 
-/**
- * @see {@link https://github.com/remix-run/react-router/discussions/9915}
- */
-const router: ReturnType<typeof createBrowserRouter> = createBrowserRouter([
+const routes: CustomRouteObject[] = [
   {
     path: '/',
     Component: Root,
@@ -14,7 +12,13 @@ const router: ReturnType<typeof createBrowserRouter> = createBrowserRouter([
         path: '/',
         Component: BaseLayout,
         children: [
-          { path: '/', lazy: () => import('@/pages') },
+          {
+            index: true,
+            lazy: () => import('@/pages'),
+            meta: {
+              title: '首页'
+            }
+          },
           { path: '*', element: <>404</> }
         ]
       },
@@ -22,12 +26,29 @@ const router: ReturnType<typeof createBrowserRouter> = createBrowserRouter([
         path: '/',
         Component: AuthLayout,
         children: [
-          { path: '/login', lazy: () => import('@/pages/login') },
-          { path: '/signup', lazy: () => import('@/pages/signup') }
+          {
+            path: '/login',
+            lazy: () => import('@/pages/login'),
+            meta: {
+              title: '登录'
+            }
+          },
+          {
+            path: '/signup',
+            lazy: () => import('@/pages/signup'),
+            meta: {
+              title: '注册'
+            }
+          }
         ]
       }
     ]
   }
-])
+]
+
+/**
+ * @see {@link https://github.com/remix-run/react-router/discussions/9915}
+ */
+const router: ReturnType<typeof createBrowserRouter> = createBrowserRouter(routes)
 
 export default router
