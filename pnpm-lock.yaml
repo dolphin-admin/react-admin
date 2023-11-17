@@ -101,8 +101,8 @@ devDependencies:
     specifier: ^0.0.4
     version: 0.0.4(vite@4.5.0)
   '@iconify/json':
-    specifier: ^2.2.142
-    version: 2.2.142
+    specifier: ^2.2.143
+    version: 2.2.143
   '@iconify/react':
     specifier: ^4.1.1
     version: 4.1.1(react@18.2.0)
@@ -1549,8 +1549,8 @@ packages:
     resolution: {integrity: sha512-dvuCeX5fC9dXgJn9t+X5atfmgQAzUOWqS1254Gh0m6i8wKd10ebXkfNKiRK+1GWi/yTvvLDHpoxLr0xxxeslWw==}
     dev: true
 
-  /@iconify/json@2.2.142:
-    resolution: {integrity: sha512-EfQv1GMGxOySdwaGR3+Diqudkwk4W299cNtcQhg7QAlH9x6FW9851raiYvdOsMZp0ya+Ye+evTTqxyZ4vEh5cw==}
+  /@iconify/json@2.2.143:
+    resolution: {integrity: sha512-gwZmSttIFjhTVqbfV0lTqxCCPfZqI01YI9hSmSm3JGQVRIrzwEuOSe8YElyeWQikhGUoMj6R2mE7Vlw48yWstw==}
     dependencies:
       '@iconify/types': 2.0.0
       pathe: 1.1.1

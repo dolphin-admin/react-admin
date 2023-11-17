@@ -66,7 +66,7 @@
     "@commitlint/config-conventional": "^18.4.2",
     "@dolphin-admin/auto-import": "^0.0.10",
     "@dolphin-admin/bootstrap-animation": "^0.0.4",
-    "@iconify/json": "^2.2.142",
+    "@iconify/json": "^2.2.143",
     "@iconify/react": "^4.1.1",
     "@svgr/core": "^8.1.0",
     "@svgr/plugin-jsx": "^8.1.0",
