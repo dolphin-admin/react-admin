@@ -18,7 +18,7 @@ export default function BaseSidebar() {
         collapsible
         collapsed={sidebarStore.isCollapse}
         onCollapse={(value) => sidebarStore.setIsCollapse(value)}
-        width={sidebarStore.isDisplay ? 230 : 0}
+        width={sidebarStore.isDisplay ? 224 : 0}
         collapsedWidth={sidebarStore.isDisplay ? 64 : 0}
         trigger={null}
       >
