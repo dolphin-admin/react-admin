@@ -11,7 +11,10 @@ export default function BaseSidebar() {
   return (
     <>
       <ALayout.Sider
-        className="!absolute inset-y-0 left-0 z-[100] h-screen overflow-auto border border-gray-300 shadow-sm transition-[width] dark:border-gray-950 sm:!static"
+        className={clsx(
+          '!absolute inset-y-0 left-0 z-[100] h-screen overflow-auto border border-gray-300 shadow-sm transition-[width] dark:border-gray-950 sm:!static',
+          !sidebarStore.isDisplay && 'border-r-0'
+        )}
         collapsible
         collapsed={sidebarStore.isCollapse}
         onCollapse={(value) => sidebarStore.setIsCollapse(value)}
