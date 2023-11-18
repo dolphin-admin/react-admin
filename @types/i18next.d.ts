@@ -4,7 +4,7 @@ import type { EN_US } from '../src/locales'
 
 declare module 'i18next' {
   interface CustomTypeOptions {
-    defaultNS: 'GLOBAL'
+    defaultNS: 'COMMON'
     resources: typeof EN_US
   }
 }

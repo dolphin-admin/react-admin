@@ -4,19 +4,15 @@ import { initReactI18next } from 'react-i18next'
 i18n.use(initReactI18next).init({
   lng: LangUtils.getDefaultLang(), // 默认语言
   fallbackLng: 'en-US',
-  defaultNS: 'GLOBAL',
+  defaultNS: 'COMMON',
   ns: [], // 动态加载命名空间
   interpolation: {
     escapeValue: false
   }
 })
 
-// i18n 实例声明后，再动态读取 /locales 下的资源文件
-dynamicLoadTrans().then((trans) => {
-  trans.forEach(([lang, key, translationData]) => {
-    i18n.addResourceBundle(lang, key, translationData)
-  })
-})
+// i18n 实例声明后，读取 /locales 下的资源文件
+dynamicLoadTrans().forEach((transItem) => i18n.addResourceBundle(...transItem))
 
 /**
  * 动态加载 i18n 资源文件
@@ -25,18 +21,17 @@ dynamicLoadTrans().then((trans) => {
  * - 通过 import.meta.glob 实现
  * @see {@link https://vitejs.dev/guide/features.html#glob-import}
  */
-async function dynamicLoadTrans() {
-  const translations = Object.entries(
-    import.meta.glob<{ default: unknown }>('../locales/**/*.json', { eager: true })
-  ).map(async ([path, translation]) => [
-    path.split('/')[2].replace('_', '-'),
-    path.match(/([^/]+)\.json$/)![1].toUpperCase(),
-    translation.default
-  ]) as Promise<[string, string, Record<string, string>]>[]
-
-  const transResult = await Promise.all(translations)
-
-  return transResult
+function dynamicLoadTrans() {
+  return Object.entries(
+    import.meta.glob<Record<string, unknown>>('../locales/**/*.json', {
+      import: 'default',
+      eager: true
+    })
+  ).map<[string, string, Record<string, unknown>]>(([path, resource]) => [
+    path.match(/([^/]+)\.json$/)![1], // 语言 key
+    path.split('/')[2].replaceAll('-', '_').toUpperCase(), // 命名空间 key
+    resource // 资源文件内容
+  ])
 }
 
 export default i18n

@@ -8,7 +8,7 @@ interface FormValues extends LoginData {
 }
 
 export function Component() {
-  const { t } = useTranslation(['GLOBAL', 'AUTH', 'USER', 'VALIDATION'])
+  const { t } = useTranslation(['COMMON', 'AUTH', 'USER', 'VALIDATION'])
 
   const { message } = AApp.useApp()
 
@@ -158,7 +158,7 @@ export function Component() {
             valuePropName="checked"
             rootClassName="!mb-0"
           >
-            <ACheckbox>{t('GLOBAL:ConfirmPassword')}</ACheckbox>
+            <ACheckbox>{t('COMMON:ConfirmPassword')}</ACheckbox>
           </AForm.Item>
 
           <AForm.Item rootClassName="!mb-0">
@@ -169,7 +169,7 @@ export function Component() {
                 onClick={handleForgotPassword}
               >
                 <span className="text-xs font-semibold underline-offset-4 hover:underline">
-                  {t('GLOBAL:ForgotPassword')}
+                  {t('COMMON:ForgotPassword')}
                 </span>
               </AButton>
             </AConfigProvider>
@@ -184,7 +184,7 @@ export function Component() {
               loading={loginMutation.isPending}
               onClick={loginAsBasic}
             >
-              {t('GLOBAL:Menu.Login')}
+              {t('COMMON:Menu.Login')}
             </AButton>
 
             <ADivider />
@@ -219,7 +219,7 @@ export function Component() {
               onClick={handleSignup}
             >
               <span className="text-xs font-semibold underline-offset-4 hover:underline">
-                {t('GLOBAL:Menu.Signup')}
+                {t('COMMON:Menu.Signup')}
               </span>
             </AButton>
           </AConfigProvider>

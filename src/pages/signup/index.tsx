@@ -5,7 +5,7 @@ interface SignupData {
 }
 
 export function Component() {
-  const { t } = useTranslation(['AUTH', 'GLOBAL', 'USER', 'VALIDATION'])
+  const { t } = useTranslation(['AUTH', 'COMMON', 'USER', 'VALIDATION'])
 
   const { message } = AApp.useApp()
 
@@ -40,7 +40,7 @@ export function Component() {
 
   return (
     <div className="absolute inset-0 m-auto flex h-fit w-[360px] max-w-[90%] flex-col space-y-4 rounded-lg bg-[#ffffff] p-8 shadow-md transition-colors dark:bg-[#222222]">
-      <div className="text-center text-lg font-semibold">{t('GLOBAL:Menu.Signup')}</div>
+      <div className="text-center text-lg font-semibold">{t('COMMON:Menu.Signup')}</div>
 
       <AForm
         form={form}
@@ -96,7 +96,7 @@ export function Component() {
           rootClassName="!mb-4"
         >
           <AInput.Password
-            placeholder={t('GLOBAL:ConfirmPassword')}
+            placeholder={t('COMMON:ConfirmPassword')}
             autoComplete="new-password"
           />
         </AForm.Item>
@@ -108,7 +108,7 @@ export function Component() {
             disabled={signupMutation.isPending}
             loading={signupMutation.isPending}
           >
-            {t('GLOBAL:Menu.Signup')}
+            {t('COMMON:Menu.Signup')}
           </AButton>
         </AForm.Item>
 
@@ -121,7 +121,7 @@ export function Component() {
               onClick={handleLogin}
             >
               <span className="text-xs font-semibold underline-offset-4 hover:underline">
-                {t('GLOBAL:Menu.Login')}
+                {t('COMMON:Menu.Login')}
               </span>
             </AButton>
           </AConfigProvider>
