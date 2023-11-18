@@ -23,7 +23,7 @@ enum UserAction {
 export default function BaseHeader() {
   const { REPO_GITHUB_URL, DISCORD_URL, DOCS_URL } = AppMetadata
 
-  const { t } = useTranslation(['GLOBAL', 'AUTH', 'USER', 'LAYOUT'])
+  const { t } = useTranslation(['COMMON', 'AUTH', 'USER', 'LAYOUT'])
   const { message } = AApp.useApp()
   const langStore = useLangStore()
   const userStore = useUserStore()
@@ -100,7 +100,7 @@ export default function BaseHeader() {
         </ATooltip>
 
         <ATooltip
-          title={t('GLOBAL:Docs')}
+          title={t('COMMON:Docs')}
           placement="bottom"
         >
           <AIcon
