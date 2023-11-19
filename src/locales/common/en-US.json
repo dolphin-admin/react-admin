@@ -1,4 +1,14 @@
 {
+  "KEY": "Key",
+  "VALUE": "Value",
+  "LABEL": "Label",
+  "REMARK": "Remark",
+  "IS.ENABLED": "Enabled",
+  "IS.BUILTIN": "Built-in",
+  "SORT": "Sort",
+  "NAME": "Name",
+  "SHOW.TOTAL": "Total {{total}}",
+
   "401": "Unauthorized",
   "403": "Forbidden",
   "404": "Not Found",
@@ -79,7 +89,6 @@
   "Pause": "Pause",
   "Print": "Print",
   "Refresh": "Refresh",
-  "Remark": "Remark",
   "RememberPassword": "Remember password",
   "RequestGeolocation": "For your experience, we need your location information.",
   "Reset": "Reset",
@@ -88,7 +97,6 @@
   "Start": "Start",
   "Status": "Status",
   "Stop": "Stop",
-  "TotalPage": "Total { totalPage }",
   "Type": "Type",
   "Upload": "Upload",
   "Verify": "Verify"

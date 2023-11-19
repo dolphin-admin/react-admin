@@ -9,14 +9,10 @@ interface FormValues extends LoginData {
 
 export function Component() {
   const { t } = useTranslation(['COMMON', 'AUTH', 'USER', 'VALIDATION'])
-
   const { message } = AApp.useApp()
-
   const userStore = useUserStore()
-
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
-
   const [form] = AForm.useForm<FormValues>()
 
   const loginMutation = useMutation({
@@ -42,10 +38,7 @@ export function Component() {
         navigate('/', { replace: true })
       }
     },
-    onError: async (error) => {
-      form.setFieldValue('password', '')
-      message.error(error.message)
-    }
+    onError: () => form.setFieldValue('password', '')
   })
 
   useEffect(() => {
@@ -105,8 +98,8 @@ export function Component() {
       </div>
 
       <AForm
-        form={form}
         name="login"
+        form={form}
         initialValues={{
           username: '',
           password: '',

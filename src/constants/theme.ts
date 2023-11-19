@@ -28,10 +28,10 @@ export const themeLightConfig: ThemeConfig = {
       bodyBg: '#ffffff',
       footerBg: '#ffffff',
       headerBg: '#ffffff',
-      siderBg: '#ffffff',
-      triggerBg: '#ffffff',
-      triggerColor: '#000000',
-      triggerHeight: 40
+      siderBg: '#ffffff'
+    },
+    Card: {
+      paddingLG: 16
     }
   }
 }
@@ -52,6 +52,9 @@ export const themeDarkConfig: ThemeConfig = {
       footerBg: '#36393f',
       headerBg: '#36393f',
       siderBg: '#36393f'
+    },
+    Card: {
+      paddingLG: 16
     }
   }
 }

@@ -1,6 +1,7 @@
 import AUTH from './auth/en-US.json'
 import COMMON from './common/en-US.json'
 import LAYOUT from './layout/en-US.json'
+import MENU from './menu/en-US.json'
 import USER from './user/en-US.json'
 import VALIDATION from './validation/en-US.json'
 
@@ -13,5 +14,6 @@ export default {
   AUTH,
   VALIDATION,
   LAYOUT,
-  USER
+  USER,
+  MENU
 }

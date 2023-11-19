@@ -8,6 +8,7 @@ echarts
 Geolocation
 gesturestart
 hookform
+hoverable
 iconify
 immer
 lintstaged
@@ -17,6 +18,7 @@ nocheck
 Noto
 nprogress
 Nunito
+Popconfirm
 preinstall
 qrcode
 Roboto
