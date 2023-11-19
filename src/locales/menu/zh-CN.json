@@ -1,0 +1,10 @@
+{
+  "HOME": "首页",
+  "LOGIN": "登录",
+  "SIGN.UP": "注册",
+  "CODE.TEMPLATES": {
+    "DIR": "代码模版",
+    "TABLE": "表格模版",
+    "CARD": "卡片模版"
+  }
+}

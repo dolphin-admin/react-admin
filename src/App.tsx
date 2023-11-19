@@ -20,11 +20,25 @@ const px2rem = px2remTransformer({
   mediaQuery: true
 })
 
+// 静态方法的全局配置
+AMessage.config(messageConfig)
+
 export default function App() {
   const themeStore = useThemeStore()
   const langStore = useLangStore()
 
-  const [queryClient] = useState(() => new QueryClient())
+  const [queryClient] = useState(
+    () =>
+      new QueryClient({
+        defaultOptions: {
+          queries: {
+            gcTime: 1000 * 60 * 5, // 5min
+            retry: 1 // 失败重试次数
+          }
+        }
+      })
+  )
+
   return (
     <QueryClientProvider client={queryClient}>
       <AConfigProvider
@@ -41,7 +55,7 @@ export default function App() {
           hashPriority="high"
           transformers={[px2rem]}
         >
-          <AApp message={{ ...messageConfig }}>
+          <AApp message={messageConfig}>
             <HappyProvider disabled={false}>
               <RouterProvider router={router} />
               <DpDevMenuFab />

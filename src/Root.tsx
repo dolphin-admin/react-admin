@@ -1,7 +1,19 @@
 import nprogress from 'nprogress'
 import { useNavigation } from 'react-router-dom'
 
+import { getRouteMetadata, routes } from './router'
+
 nprogress.configure({ showSpinner: false })
+
+const { APP_NAME } = AppMetadata
+
+/**
+ * 生成页面标题
+ * @description
+ * - 如果传参，结果为 `当前页面标题 | 应用名称`
+ * - 默认为 `应用名称`
+ */
+const getDocumentTitle = (title?: string) => (title ? `${title} | ${APP_NAME}` : APP_NAME)
 
 /**
  * 路由根组件
@@ -13,7 +25,9 @@ nprogress.configure({ showSpinner: false })
  */
 export default function Root() {
   const navigation = useNavigation()
+  const location = useLocation()
 
+  // 监听路由变化，显示进度条
   useEffect(() => {
     if (navigation.state === 'loading') {
       nprogress.start()
@@ -21,6 +35,12 @@ export default function Root() {
       nprogress.done()
     }
   }, [navigation.state])
+
+  // 监听路由变化，动态修改页面标题
+  useEffect(() => {
+    const { title } = getRouteMetadata(location.pathname, routes) ?? {}
+    document.title = getDocumentTitle(typeof title === 'function' ? title() : title)
+  }, [location.pathname])
 
   return <Outlet />
 }

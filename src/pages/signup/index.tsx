@@ -25,10 +25,7 @@ export function Component() {
       message.success(msg)
       navigate('/', { replace: true })
     },
-    onError: async (error: Error) => {
-      form.setFieldsValue({ password: '', confirmPassword: '' })
-      message.error(error.message)
-    }
+    onError: () => form.setFieldsValue({ password: '', confirmPassword: '' })
   })
 
   /**

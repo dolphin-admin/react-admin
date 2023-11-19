@@ -1,6 +1,8 @@
 export function Component() {
   const { APP_NAME, TEAM_NAME } = AppMetadata
 
+  const navigate = useNavigate()
+
   return (
     <main className="absolute inset-0 m-auto h-fit w-fit">
       <div className="flex w-full flex-col items-center justify-center space-y-4">
@@ -16,6 +18,9 @@ export function Component() {
             draggable={false}
           />
           <span className="text-sm text-gray-600">{TEAM_NAME}</span>
+
+          <div onClick={() => navigate('/code-templates/table-templates')}>code-templates</div>
+          <div onClick={() => navigate('/code-templates/card-templates')}>card-templates</div>
         </div>
       </div>
     </main>

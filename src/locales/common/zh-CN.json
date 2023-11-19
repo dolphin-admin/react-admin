@@ -1,4 +1,14 @@
 {
+  "KEY": "键",
+  "VALUE": "值",
+  "LABEL": "标签",
+  "REMARK": "备注",
+  "IS.ENABLED": "是否启用",
+  "IS.BUILTIN": "是否内置",
+  "SORT": "排序",
+  "NAME": "名称",
+  "SHOW.TOTAL": "共计 {{total}}",
+
   "401": "用户身份状态已失效，请重新登录",
   "403": "无访问权限",
   "404": "页面未找到",
@@ -79,7 +89,6 @@
   "Pause": "暂停",
   "Print": "打印",
   "Refresh": "刷新",
-  "Remark": "备注",
   "RememberPassword": "记住密码",
   "RequestGeolocation": "为了您的使用体验，可能需要您提供位置信息。",
   "Reset": "重置",
@@ -88,7 +97,6 @@
   "Start": "开始",
   "Status": "状态",
   "Stop": "停止",
-  "TotalPage": "共计 { totalPage }",
   "Type": "类型",
   "Upload": "上传",
   "Verify": "验证"

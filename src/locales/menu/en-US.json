@@ -1,0 +1,10 @@
+{
+  "HOME": "Home",
+  "LOGIN": "Login",
+  "SIGN.UP": "Signup",
+  "CODE.TEMPLATES": {
+    "DIR": "Code Templates",
+    "TABLE": "Table Templates",
+    "CARD": "Card Templates"
+  }
+}
