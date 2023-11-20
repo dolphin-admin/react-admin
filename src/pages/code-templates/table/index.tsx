@@ -119,7 +119,7 @@ export function Component() {
       width: 250,
       render: (_, record) => (
         <ASpace>
-          <AButton>编辑</AButton>
+          <AButton size="small">编辑</AButton>
           {record.enabled ? (
             <APopconfirm
               title="禁用"
@@ -131,7 +131,12 @@ export function Component() {
               }}
               onConfirm={() => handleDisable(record.id)}
             >
-              <AButton danger>禁用</AButton>
+              <AButton
+                danger
+                size="small"
+              >
+                禁用
+              </AButton>
             </APopconfirm>
           ) : (
             <APopconfirm
@@ -144,7 +149,7 @@ export function Component() {
               }}
               onConfirm={() => handleEnable(record.id)}
             >
-              <AButton>启用</AButton>
+              <AButton size="small">启用</AButton>
             </APopconfirm>
           )}
           <APopconfirm
@@ -157,7 +162,12 @@ export function Component() {
             }}
             onConfirm={() => handleDelete(record.id)}
           >
-            <AButton danger>删除</AButton>
+            <AButton
+              danger
+              size="small"
+            >
+              删除
+            </AButton>
           </APopconfirm>
         </ASpace>
       )
