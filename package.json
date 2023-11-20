@@ -88,7 +88,7 @@
     "rollup-plugin-visualizer": "^5.9.2",
     "sass": "^1.69.5",
     "tailwindcss": "^3.3.5",
-    "typescript": "~5.2.2",
+    "typescript": "~5.3.0",
     "unplugin-auto-import": "^0.16.7",
     "unplugin-auto-import-ahooks": "^0.0.2",
     "unplugin-auto-import-antd": "^0.0.1",
