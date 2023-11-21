@@ -91,7 +91,7 @@ export function Component() {
   const handleSignup = () => navigate('/signup')
 
   return (
-    <div className="absolute inset-0 m-auto flex h-fit w-[360px] max-w-[90%] flex-col rounded-lg bg-[#ffffff] p-8 shadow-md transition-colors dark:bg-[#222222]">
+    <div className="absolute inset-0 m-auto flex h-fit w-[360px] max-w-[90%] flex-col rounded-lg bg-[#ffffff] p-8 shadow-md dark:bg-[#222222]">
       <div className="flex flex-col items-center">
         <span className="text-2xl font-medium">{AppMetadata.APP_NAME}</span>
         <span className="mb-4 mt-2">🎉 {t('AUTH:LOGIN.WELCOME.BACK')}</span>

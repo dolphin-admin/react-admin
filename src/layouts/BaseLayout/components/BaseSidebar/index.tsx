@@ -12,7 +12,7 @@ export default function BaseSidebar() {
     <>
       <ALayout.Sider
         className={clsx(
-          '!absolute inset-y-0 left-0 z-[100] h-screen overflow-auto border border-gray-300 shadow-sm transition-[width] dark:border-gray-950 sm:!static',
+          '!absolute inset-y-0 left-0 z-[100] h-screen overflow-auto border border-gray-300 shadow-sm dark:border-gray-950 sm:!static',
           !sidebarStore.isDisplay && 'border-r-0'
         )}
         collapsible
@@ -37,7 +37,7 @@ export default function BaseSidebar() {
           />
           <span
             className={clsx([
-              'cursor-pointer whitespace-nowrap text-sm tracking-wide transition-all',
+              'cursor-pointer whitespace-nowrap text-sm tracking-wide transition-[margin,width]',
               // eslint-disable-next-line no-nested-ternary
               sidebarStore.isDisplay
                 ? sidebarStore.isCollapse
@@ -62,7 +62,7 @@ export default function BaseSidebar() {
         {/* 底部折叠按钮 */}
         <div className="h-10 p-1">
           <div
-            className="group flex h-full w-full cursor-pointer items-center justify-center rounded-sm transition-all hover:bg-gray-200 active:opacity-75 dark:hover:bg-gray-600"
+            className="group flex h-full w-full cursor-pointer items-center justify-center rounded-sm transition-[opacity,background] hover:bg-gray-200 active:opacity-75 dark:hover:bg-gray-600"
             onClick={sidebarStore.toggleCollapse}
           >
             <AIcon
