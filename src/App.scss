@@ -1,7 +1,17 @@
 // NOTE: 此处用于定制化全局样式
-// 修复 Message 文字不对齐的问题
+// 修复 Message 文字字体、不对齐的问题
 .ant-message-custom-content {
   display: flex;
+  font-family:
+    Nunito,
+    Noto Sans SC,
+    Noto Color Emoji,
+    system-ui,
+    -apple-system,
+    Roboto,
+    Helvetica Neue,
+    Arial,
+    sans-serif;
 }
 
 // 修改 Card 的阴影，仅修改非暗黑主题

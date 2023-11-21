@@ -41,16 +41,17 @@ export default function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
+      {/**
+       * antd 样式兼容
+       * @see https://ant-design.antgroup.com/docs/react/compatible-style-cn
+       */}
+
       <AConfigProvider
         locale={langStore.locale}
         theme={{
           ...(themeStore.isLightTheme() ? themeLightConfig : themeDarkConfig)
         }}
       >
-        {/**
-         * antd 样式兼容
-         * @see https://ant-design.antgroup.com/docs/react/compatible-style-cn
-         */}
         <StyleProvider
           hashPriority="high"
           transformers={[px2rem]}

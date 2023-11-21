@@ -218,12 +218,11 @@ export function Component() {
           </AConfigProvider>
         </div>
 
-        <ADivider className="!my-2.5 !text-xs">{t('AUTH:LOGIN.THIRD.PARTY')}</ADivider>
+        <ADivider className="!text-xs">{t('AUTH:LOGIN.THIRD.PARTY')}</ADivider>
 
         <div className="flex flex-col space-y-2">
           <AButton
-            className="flex items-center justify-center bg-[#595d5f] text-white dark:bg-[#333333]"
-            type="text"
+            className="!flex items-center justify-center !bg-[#595d5f] !text-white dark:bg-[#333333] dark:hover:!border-transparent"
             icon={
               <Icon
                 icon="mdi:github"
@@ -234,7 +233,7 @@ export function Component() {
             {t('AUTH:LOGIN.WITH.GITHUB')}
           </AButton>
           <AButton
-            className="flex items-center justify-center"
+            className="!flex items-center justify-center"
             icon={
               <Icon
                 icon="logos:google-icon"
