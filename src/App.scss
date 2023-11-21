@@ -31,3 +31,12 @@
     margin-top: 12px;
   }
 }
+
+// 移除 Sidebar 颜色的过渡动画
+.ant-layout .ant-layout-sider {
+  transition:
+    all 0.2s,
+    border 0s,
+    color 0s,
+    background 0s !important;
+}

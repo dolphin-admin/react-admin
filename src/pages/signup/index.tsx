@@ -36,7 +36,7 @@ export function Component() {
   const handleLogin = () => navigate('/login')
 
   return (
-    <div className="absolute inset-0 m-auto flex h-fit w-[360px] max-w-[90%] flex-col space-y-4 rounded-lg bg-[#ffffff] p-8 shadow-md transition-colors dark:bg-[#222222]">
+    <div className="absolute inset-0 m-auto flex h-fit w-[360px] max-w-[90%] flex-col space-y-4 rounded-lg bg-[#ffffff] p-8 shadow-md dark:bg-[#222222]">
       <div className="text-center text-lg font-semibold">{t('COMMON:Menu.Signup')}</div>
 
       <AForm
