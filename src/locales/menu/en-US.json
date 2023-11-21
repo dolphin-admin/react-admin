@@ -4,7 +4,7 @@
   "SIGN.UP": "Signup",
   "CODE.TEMPLATES": {
     "DIR": "Code Templates",
-    "TABLE": "Table Templates",
-    "CARD": "Card Templates"
+    "TABLE": "Table",
+    "CARD": "Card"
   }
 }

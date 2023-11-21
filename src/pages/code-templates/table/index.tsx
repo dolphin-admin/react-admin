@@ -2,7 +2,7 @@ import type { ColumnsType } from 'antd/es/table'
 
 import type { Setting } from '@/types'
 import CheckIcon from '~icons/ic/baseline-check'
-import SearchIcon from '~icons/mdi/magnify'
+import LoadingIcon from '~icons/line-md/loading-twotone-loop'
 import RefreshIcon from '~icons/mdi/refresh'
 
 interface FormValues {
@@ -23,7 +23,8 @@ export function Component() {
 
   const {
     data: queryResult,
-    isFetching,
+    isRefetching,
+    isPending,
     refetch
   } = useQuery({
     queryKey: [SettingAPI.SETTING_LIST_QUERY_KEY, pagination.current, pagination.pageSize],
@@ -215,29 +216,26 @@ export function Component() {
           }}
           onFinish={handleSearch}
           autoComplete="off"
-          disabled={isFetching}
+          disabled={isRefetching}
         >
           <ASpace>
             <AForm.Item
               name="searchText"
               noStyle
             >
-              <AInput
+              <AInput.Search
                 name="searchText"
                 placeholder="请输入"
+                loading={isRefetching}
+                onSearch={handleSearch}
               />
             </AForm.Item>
-            <AButton
-              className="flex items-center justify-center"
-              icon={<AIcon component={SearchIcon} />}
-              onClick={handleSearch}
-            />
           </ASpace>
           <ASpace>
             <AButton
-              className="flex items-center justify-center"
+              className="!flex items-center justify-center"
               shape="circle"
-              icon={<AIcon component={RefreshIcon} />}
+              icon={<AIcon component={isRefetching ? LoadingIcon : RefreshIcon} />}
               onClick={handleSearch}
             />
             <AButton type="primary">新增</AButton>
@@ -252,7 +250,7 @@ export function Component() {
             scrollToFirstRowOnChange: true,
             x: 1500
           }}
-          loading={isFetching}
+          loading={isPending}
           pagination={{
             ...pagination,
             onChange: (page, pageSize) => {

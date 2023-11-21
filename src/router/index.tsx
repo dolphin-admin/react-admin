@@ -20,12 +20,12 @@ export const routes: CustomRouteObject[] = [
             meta: { title: () => t('MENU:HOME') }
           },
           {
-            path: '/code-templates/table-templates',
+            path: '/code-templates/table',
             lazy: () => import('@/pages/code-templates/table'),
             meta: { title: () => t('MENU:CODE.TEMPLATES.TABLE') }
           },
           {
-            path: '/code-templates/card-templates',
+            path: '/code-templates/card',
             lazy: () => import('@/pages/code-templates/card'),
             meta: { title: () => t('MENU:CODE.TEMPLATES.CARD') }
           },
