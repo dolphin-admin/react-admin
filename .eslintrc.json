@@ -1,3 +1,13 @@
 {
-  "extends": "@brucesong/eslint-config-react"
+  "extends": "@brucesong/eslint-config-react",
+  "rules": {
+    "no-param-reassign": [
+      "error",
+      {
+        "props": true,
+        "ignorePropertyModificationsFor": ["v"],
+        "ignorePropertyModificationsForRegex": ["^item", "Item$"]
+      } // useImmer 需要直接修改参数值，不受此限制，尽量通过 v = xxx 的方式修改
+    ]
+  }
 }

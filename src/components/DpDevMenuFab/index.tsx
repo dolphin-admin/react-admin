@@ -37,7 +37,7 @@ export default function DpDevMenuFab() {
         style={{ right: 16, bottom: 72 }}
         icon={<AIcon component={ToolIcon} />}
         open={isOpen}
-        onClick={() => setIsOpen(true)}
+        onClick={() => setIsOpen(!isOpen)}
       >
         <AFloatButton
           icon={<AIcon component={LanguageIcon} />}
