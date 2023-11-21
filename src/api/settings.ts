@@ -33,6 +33,13 @@ export class SettingAPI {
   }
 
   /**
+   * 排序设置
+   */
+  static sort(id: number, targetId: number) {
+    return httpRequest.patch<BaseResponse>(`${this.SETTING_API_PREFIX}/${id}/sort/${targetId}`)
+  }
+
+  /**
    * 删除设置
    */
   static delete(id: number) {

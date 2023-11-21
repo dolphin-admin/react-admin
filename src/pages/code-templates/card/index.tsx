@@ -8,6 +8,8 @@ import EnableIcon from '~icons/mdi/hand-back-left-outline'
 import EditIcon from '~icons/mdi/pencil'
 import RefreshIcon from '~icons/mdi/refresh'
 
+type DragItem<T> = T & { index: number }
+
 export function Component() {
   const { i18n } = useTranslation('COMMON')
   const queryClient = useQueryClient()
@@ -19,7 +21,7 @@ export function Component() {
   // 拖拽的列表
   const [list, setList] = useState<Setting[]>([])
   // 当前拖拽项的索引
-  const [currentDragIndex, setCurrentDragIndex] = useState<number>(-1)
+  const [currentDragItem, setCurrentDragItem] = useState<DragItem<Setting> | null>(null)
   const [pagination, setPagination] = useImmer({
     current: 1,
     pageSize: 50,
@@ -60,11 +62,20 @@ export function Component() {
 
   const deleteMutation = useMutation({
     mutationFn: (id: number) => SettingAPI.delete(id),
-    onSuccess: ({ message: msg }) => {
-      AMessage.success(msg)
+    onSuccess: ({ message }) => {
+      AMessage.success(message)
       queryClient.invalidateQueries({
         queryKey: [SettingAPI.SETTING_LIST_QUERY_KEY]
       })
+    }
+  })
+
+  const sortMutation = useMutation({
+    mutationFn: ({ id, targetId }: { id: number; targetId: number }) =>
+      SettingAPI.sort(id, targetId),
+    onSuccess: ({ message }) => {
+      AMessage.success(message)
+      refetch()
     }
   })
 
@@ -77,23 +88,23 @@ export function Component() {
     }
   }, [queryResult])
 
-  const callback = () => {
-    if (!isRefetching && list.length <= pagination.total) {
-      console.log(2)
-      setPagination((v) => {
-        v.current += 1
-      })
-      refetch()
-    }
-  }
+  // const callback = () => {
+  //   if (!isRefetching && list.length <= pagination.total) {
+  //     console.log(2)
+  //     setPagination((v) => {
+  //       v.current += 1
+  //     })
+  //     refetch()
+  //   }
+  // }
 
-  useEffect(() => {
-    const observer = new IntersectionObserver(callback)
-    if (loadingRef.current) {
-      observer.observe(loadingRef.current)
-    }
-    return () => observer.disconnect()
-  }, [loadingRef])
+  // useEffect(() => {
+  //   const observer = new IntersectionObserver(callback)
+  //   if (loadingRef.current) {
+  //     observer.observe(loadingRef.current)
+  //   }
+  //   return () => observer.disconnect()
+  // }, [loadingRef])
 
   // 处理字段的国际化
   function processI18n(data?: Setting[]) {
@@ -127,22 +138,22 @@ export function Component() {
   }
 
   // 拖拽开始
-  const handleDragStart = (e: DragEvent<HTMLDivElement>, index: number) => {
+  const handleDragStart = (e: DragEvent<HTMLDivElement>, item: DragItem<Setting>) => {
     e.stopPropagation()
-    setCurrentDragIndex(index)
+    setCurrentDragItem(item)
   }
 
   // 拖拽结束
   const handleDragOver = (e: DragEvent<HTMLDivElement>) => e.preventDefault()
 
   // 拖拽放置
-  const handleDrop = (_: DragEvent<HTMLDivElement>, targetCardId: number) => {
-    const updatedCards = [...list]
-    const moveItem = updatedCards[currentDragIndex!]
-    updatedCards.splice(currentDragIndex!, 1)
-    updatedCards.splice(targetCardId, 0, moveItem)
-    setList(updatedCards)
-    setCurrentDragIndex(-1)
+  const handleDrop = (_: DragEvent<HTMLDivElement>, targetItem: DragItem<Setting>) => {
+    const updatedList = [...list]
+    updatedList.splice(currentDragItem!.index, 1)
+    updatedList.splice(targetItem!.index, 0, currentDragItem!)
+    setList(updatedList)
+    setCurrentDragItem(null)
+    sortMutation.mutate({ id: currentDragItem!.id, targetId: targetItem.id })
   }
 
   return (
@@ -181,12 +192,12 @@ export function Component() {
                 key={item.id}
                 rootClassName="rounded"
                 draggable
-                onDragStart={(event) => handleDragStart(event, index)}
+                onDragStart={(event) => handleDragStart(event, { ...item, index })}
                 onDragOver={handleDragOver}
-                onDrop={(event) => handleDrop(event, index)}
+                onDrop={(event) => handleDrop(event, { ...item, index })}
                 className={clsx(
                   'hover:border-blue-400 hover:bg-slate-50 dark:hover:bg-gray-800',
-                  currentDragIndex === index && '!cursor-move'
+                  currentDragItem?.id === item.id && '!cursor-move'
                 )}
               >
                 <div className="flex h-24 justify-between">
