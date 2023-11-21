@@ -157,7 +157,7 @@ export function Component() {
   return (
     <div>
       <div className="flex">
-        <div onClick={() => navigate('/code-templates/table-templates')}>code-templatesd</div>
+        <div onClick={() => navigate('/code-templates/table-templates')}>code-templates</div>
         <div onClick={() => navigate('/code-templates/card-templates')}>card-templates</div>
       </div>
       <ACard
