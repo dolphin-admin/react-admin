@@ -128,7 +128,6 @@ export default function BaseHeader() {
               langStore.setLang(key)
               setLangOptions((state) => {
                 state.forEach((item) => {
-                  // eslint-disable-next-line no-param-reassign
                   item.disabled = item.key === key
                 })
               })

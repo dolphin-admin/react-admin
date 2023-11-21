@@ -29,6 +29,7 @@ tabler
 tailwindcss
 tanstack
 tauri
+twotone
 unimport
 unplugin
 vite

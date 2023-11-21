@@ -2,7 +2,7 @@ import type { ColumnsType } from 'antd/es/table'
 
 import type { Setting } from '@/types'
 import CheckIcon from '~icons/ic/baseline-check'
-import SearchIcon from '~icons/mdi/magnify'
+import LoadingIcon from '~icons/line-md/loading-twotone-loop'
 import RefreshIcon from '~icons/mdi/refresh'
 
 interface FormValues {
@@ -12,7 +12,7 @@ interface FormValues {
 export function Component() {
   const { t, i18n } = useTranslation('COMMON')
   const queryClient = useQueryClient()
-  const { message } = AApp.useApp()
+  const { message: AMessage } = AApp.useApp()
   const [form] = AForm.useForm<FormValues>()
 
   const [pagination, setPagination] = useImmer({
@@ -23,7 +23,8 @@ export function Component() {
 
   const {
     data: queryResult,
-    isFetching,
+    isRefetching,
+    isPending,
     refetch
   } = useQuery({
     queryKey: [SettingAPI.SETTING_LIST_QUERY_KEY, pagination.current, pagination.pageSize],
@@ -41,7 +42,7 @@ export function Component() {
   const enableMutation = useMutation({
     mutationFn: (id: number) => SettingAPI.enable(id),
     onSuccess: ({ message: msg }) => {
-      message.success(msg)
+      AMessage.success(msg)
       queryClient.invalidateQueries({
         queryKey: [SettingAPI.SETTING_LIST_QUERY_KEY]
       })
@@ -51,7 +52,7 @@ export function Component() {
   const disableMutation = useMutation({
     mutationFn: (id: number) => SettingAPI.disable(id),
     onSuccess: ({ message: msg }) => {
-      message.success(msg)
+      AMessage.success(msg)
       queryClient.invalidateQueries({
         queryKey: [SettingAPI.SETTING_LIST_QUERY_KEY]
       })
@@ -61,7 +62,7 @@ export function Component() {
   const deleteMutation = useMutation({
     mutationFn: (id: number) => SettingAPI.delete(id),
     onSuccess: ({ message: msg }) => {
-      message.success(msg)
+      AMessage.success(msg)
       queryClient.invalidateQueries({
         queryKey: [SettingAPI.SETTING_LIST_QUERY_KEY]
       })
@@ -207,7 +208,7 @@ export function Component() {
     <TableLayout
       operate={
         <AForm
-          className="flex items-center justify-between"
+          className="flex items-center justify-between space-x-2"
           name="search"
           form={form}
           initialValues={{
@@ -215,29 +216,27 @@ export function Component() {
           }}
           onFinish={handleSearch}
           autoComplete="off"
-          disabled={isFetching}
+          disabled={isRefetching}
         >
           <ASpace>
             <AForm.Item
               name="searchText"
               noStyle
             >
-              <AInput
+              <AInput.Search
                 name="searchText"
-                placeholder="请输入"
+                loading={isRefetching}
+                onSearch={handleSearch}
+                allowClear
+                placeholder="请输入关键字"
               />
             </AForm.Item>
-            <AButton
-              className="flex items-center justify-center"
-              icon={<AIcon component={SearchIcon} />}
-              onClick={handleSearch}
-            />
           </ASpace>
           <ASpace>
             <AButton
-              className="flex items-center justify-center"
+              className="!flex items-center justify-center"
               shape="circle"
-              icon={<AIcon component={RefreshIcon} />}
+              icon={<AIcon component={isRefetching ? LoadingIcon : RefreshIcon} />}
               onClick={handleSearch}
             />
             <AButton type="primary">新增</AButton>
@@ -252,7 +251,7 @@ export function Component() {
             scrollToFirstRowOnChange: true,
             x: 1500
           }}
-          loading={isFetching}
+          loading={isPending}
           pagination={{
             ...pagination,
             onChange: (page, pageSize) => {
