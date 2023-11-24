@@ -126,8 +126,8 @@ export default function BaseHeader() {
             items: langOptions,
             onClick: ({ key }) => {
               langStore.setLang(key)
-              setLangOptions((state) => {
-                state.forEach((item) => {
+              setLangOptions((draft) => {
+                draft.forEach((item) => {
                   item.disabled = item.key === key
                 })
               })

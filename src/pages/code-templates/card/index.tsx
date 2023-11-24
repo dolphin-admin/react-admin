@@ -82,8 +82,8 @@ export function Component() {
   useEffect(() => {
     if (queryResult) {
       setList([...list, ...processI18n(queryResult.data)])
-      setPagination((v) => {
-        v.total = queryResult.total
+      setPagination((draft) => {
+        draft.total = queryResult.total
       })
     }
   }, [queryResult])
@@ -119,9 +119,9 @@ export function Component() {
 
   // 搜索
   const handleSearch = () => {
-    setPagination((v) => {
-      v.current = 1
-      v.total = 0
+    setPagination((draft) => {
+      draft.current = 1
+      draft.total = 0
     })
     setList([])
     refetch()
@@ -164,8 +164,8 @@ export function Component() {
             <AInput.Search
               value={searchParams.searchText}
               onChange={(e) => {
-                setSearchParams((v) => {
-                  v.searchText = e.target.value
+                setSearchParams((draft) => {
+                  draft.searchText = e.target.value
                 })
               }}
               onSearch={handleSearch}

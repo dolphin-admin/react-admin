@@ -71,8 +71,8 @@ export function Component() {
 
   useEffect(() => {
     if (queryResult?.total) {
-      setPagination((v) => {
-        v.total = queryResult.total
+      setPagination((draft) => {
+        draft.total = queryResult.total
       })
     }
   }, [queryResult])
@@ -255,9 +255,9 @@ export function Component() {
           pagination={{
             ...pagination,
             onChange: (page, pageSize) => {
-              setPagination((v) => {
-                v.current = page
-                v.pageSize = pageSize
+              setPagination((draft) => {
+                draft.current = page
+                draft.pageSize = pageSize
               })
             },
             showSizeChanger: true,
