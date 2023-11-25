@@ -3,9 +3,10 @@ import { initReactI18next } from 'react-i18next'
 
 i18n.use(initReactI18next).init({
   lng: LangUtils.getDefaultLang(), // 默认语言
-  fallbackLng: 'en-US',
-  defaultNS: 'COMMON',
+  fallbackLng: 'en-US', // 未匹配到语言时的默认语言
+  defaultNS: 'COMMON', // 默认命名空间
   ns: [], // 动态加载命名空间
+  resources: {}, // 动态加载资源文件，初始化为空
   interpolation: {
     escapeValue: false
   }

@@ -8,7 +8,7 @@ interface FormValues extends LoginData {
 }
 
 export function Component() {
-  const { t } = useTranslation(['COMMON', 'AUTH', 'USER', 'VALIDATION'])
+  const { t } = useTranslation(['AUTH', 'VALIDATION', 'USER'])
   const { message } = AApp.useApp()
   const userStore = useUserStore()
   const [searchParams] = useSearchParams()
@@ -94,7 +94,7 @@ export function Component() {
     <div className="absolute inset-0 m-auto flex h-fit w-[360px] max-w-[90%] flex-col rounded-lg bg-[#ffffff] p-8 shadow-md dark:bg-[#222222]">
       <div className="flex flex-col items-center">
         <span className="text-2xl font-medium">{AppMetadata.APP_NAME}</span>
-        <span className="mb-4 mt-2">🎉 {t('AUTH:LOGIN.WELCOME.BACK')}</span>
+        <span className="mb-4 mt-2">🎉 {t('WELCOME.BACK')}</span>
       </div>
 
       <AForm
@@ -122,7 +122,7 @@ export function Component() {
                 color="#999999"
               />
             }
-            placeholder={t('USER:Username')}
+            placeholder={t('USER:USERNAME')}
             autoComplete="username"
             allowClear
           />
@@ -140,7 +140,7 @@ export function Component() {
                 color="#999999"
               />
             }
-            placeholder={t('USER:Password')}
+            placeholder={t('USER:PASSWORD')}
             autoComplete="current-password"
           />
         </AForm.Item>
@@ -151,7 +151,7 @@ export function Component() {
             valuePropName="checked"
             rootClassName="!mb-0"
           >
-            <ACheckbox>{t('COMMON:ConfirmPassword')}</ACheckbox>
+            <ACheckbox>{t('USER:CONFIRM.PASSWORD')}</ACheckbox>
           </AForm.Item>
 
           <AForm.Item rootClassName="!mb-0">
@@ -162,7 +162,7 @@ export function Component() {
                 onClick={handleForgotPassword}
               >
                 <span className="text-xs font-semibold underline-offset-4 hover:underline">
-                  {t('COMMON:ForgotPassword')}
+                  {t('FORGOT.PASSWORD')}
                 </span>
               </AButton>
             </AConfigProvider>
@@ -177,7 +177,7 @@ export function Component() {
               loading={loginMutation.isPending}
               onClick={loginAsBasic}
             >
-              {t('COMMON:Menu.Login')}
+              {t('LOGIN')}
             </AButton>
 
             <ADivider />
@@ -189,7 +189,7 @@ export function Component() {
                 loading={loginMutation.isPending}
                 onClick={loginAsAdmin}
               >
-                {t('AUTH:LOGIN.AS.ADMIN')}
+                {t('LOGIN.AS.ADMIN')}
               </AButton>
               <AButton
                 className="w-[calc(50%-4px)]"
@@ -197,14 +197,14 @@ export function Component() {
                 loading={loginMutation.isPending}
                 onClick={loginAsVisitor}
               >
-                {t('AUTH:LOGIN.AS.VISITOR')}
+                {t('LOGIN.AS.VISITOR')}
               </AButton>
             </div>
           </div>
         </AForm.Item>
 
         <div className="flex items-center space-x-1 text-xs">
-          <span>{t('AUTH:LOGIN.NEED.ACCOUNT')}</span>
+          <span>{t('NEED.ACCOUNT')}</span>
           <AConfigProvider theme={{ components: { Button: { paddingInlineSM: 0 } } }}>
             <AButton
               size="small"
@@ -212,13 +212,13 @@ export function Component() {
               onClick={handleSignup}
             >
               <span className="text-xs font-semibold underline-offset-4 hover:underline">
-                {t('COMMON:Menu.Signup')}
+                {t('SIGN.UP')}
               </span>
             </AButton>
           </AConfigProvider>
         </div>
 
-        <ADivider className="!text-xs">{t('AUTH:LOGIN.THIRD.PARTY')}</ADivider>
+        <ADivider className="!text-xs">{t('THIRD.PARTY.LOGIN')}</ADivider>
 
         <div className="flex flex-col space-y-2">
           <AButton
@@ -230,7 +230,7 @@ export function Component() {
               />
             }
           >
-            {t('AUTH:LOGIN.WITH.GITHUB')}
+            {t('LOGIN.WITH.GITHUB')}
           </AButton>
           <AButton
             className="!flex items-center justify-center"
@@ -241,7 +241,7 @@ export function Component() {
               />
             }
           >
-            {t('AUTH:LOGIN.WITH.GOOGLE')}
+            {t('LOGIN.WITH.GOOGLE')}
           </AButton>
         </div>
       </AForm>

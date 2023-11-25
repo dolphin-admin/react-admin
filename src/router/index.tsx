@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router-dom'
 import Root from '@/Root'
 import type { CustomRouteObject, RouteMetadata } from '@/types'
 
-const { t } = i18n
+const t = i18n.getFixedT(null, 'MENU')
 
 export const routes: CustomRouteObject[] = [
   {
@@ -17,17 +17,17 @@ export const routes: CustomRouteObject[] = [
           {
             index: true,
             lazy: () => import('@/pages'),
-            meta: { title: () => t('MENU:HOME') }
+            meta: { title: () => t('HOME') }
           },
           {
             path: '/code-templates/table',
             lazy: () => import('@/pages/code-templates/table'),
-            meta: { title: () => t('MENU:CODE.TEMPLATES.TABLE') }
+            meta: { title: () => t('CODE.TEMPLATES.TABLE') }
           },
           {
             path: '/code-templates/card',
             lazy: () => import('@/pages/code-templates/card'),
-            meta: { title: () => t('MENU:CODE.TEMPLATES.CARD') }
+            meta: { title: () => t('CODE.TEMPLATES.CARD') }
           },
           { path: '*', element: <>404</>, meta: { title: '404' } }
         ]
@@ -39,12 +39,12 @@ export const routes: CustomRouteObject[] = [
           {
             path: '/login',
             lazy: () => import('@/pages/login'),
-            meta: { title: () => t('MENU:LOGIN') }
+            meta: { title: () => t('LOGIN') }
           },
           {
             path: '/signup',
             lazy: () => import('@/pages/signup'),
-            meta: { title: () => t('MENU:SIGN.UP') }
+            meta: { title: () => t('SIGN.UP') }
           }
         ]
       }

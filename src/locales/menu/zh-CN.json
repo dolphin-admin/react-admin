@@ -1,10 +1,8 @@
 {
+  "CODE.TEMPLATES": "代码模版",
+  "CODE.TEMPLATES.CARD": "卡片",
+  "CODE.TEMPLATES.TABLE": "表格",
   "HOME": "首页",
   "LOGIN": "登录",
-  "SIGN.UP": "注册",
-  "CODE.TEMPLATES": {
-    "DIR": "代码模版",
-    "TABLE": "表格",
-    "CARD": "卡片"
-  }
+  "SIGN.UP": "注册"
 }

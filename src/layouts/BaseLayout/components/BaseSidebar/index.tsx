@@ -4,9 +4,9 @@ import CollapseIcon from '~icons/line-md/chevron-small-double-left'
 export default function BaseSidebar() {
   const { APP_NAME } = AppMetadata
 
+  const siderBg = ATheme.useToken().token.Layout?.siderBg
   const sidebarStore = useSidebarStore()
   const navigate = useNavigate()
-  const siderBg = ATheme.useToken().token.Layout?.siderBg
 
   return (
     <>

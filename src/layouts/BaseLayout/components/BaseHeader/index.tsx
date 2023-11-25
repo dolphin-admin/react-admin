@@ -23,7 +23,7 @@ enum UserAction {
 export default function BaseHeader() {
   const { REPO_GITHUB_URL, DISCORD_URL, DOCS_URL } = AppMetadata
 
-  const { t } = useTranslation(['COMMON', 'AUTH', 'USER', 'LAYOUT'])
+  const { t } = useTranslation(['LAYOUT', 'COMMON', 'AUTH'])
   const { message } = AApp.useApp()
   const langStore = useLangStore()
   const userStore = useUserStore()
@@ -63,7 +63,7 @@ export default function BaseHeader() {
     >
       <div className="flex items-center justify-start !space-x-4">
         <ATooltip
-          title={t('LAYOUT:SIDEBAR.HIDE')}
+          title={t('SIDEBAR.HIDE')}
           placement="bottom"
         >
           <AIcon
@@ -100,7 +100,7 @@ export default function BaseHeader() {
         </ATooltip>
 
         <ATooltip
-          title={t('COMMON:Docs')}
+          title={t('COMMON:DOCS')}
           placement="bottom"
         >
           <AIcon
@@ -111,7 +111,7 @@ export default function BaseHeader() {
         </ATooltip>
 
         <ATooltip
-          title={t('LAYOUT:HEADER.FULL.SCREEN')}
+          title={t('HEADER.FULL.SCREEN')}
           placement="bottom"
         >
           <AIcon
@@ -142,7 +142,7 @@ export default function BaseHeader() {
         </ADropdown>
 
         <ATooltip
-          title={t('LAYOUT:HEADER.SWITCH.THEME')}
+          title={t('HEADER.SWITCH.THEME')}
           placement="bottom"
         >
           <AIcon
@@ -161,15 +161,15 @@ export default function BaseHeader() {
               items: [
                 {
                   key: UserAction['USER.INFO'],
-                  label: t('LAYOUT:HEADER.USER.INFO')
+                  label: t('HEADER.USER.INFO')
                 },
                 {
                   key: UserAction['CHANGE.PASSWORD'],
-                  label: t('LAYOUT:HEADER.CHANGE.PASSWORD')
+                  label: t('HEADER.CHANGE.PASSWORD')
                 },
                 {
                   key: UserAction.QUIT,
-                  label: t('LAYOUT:HEADER.LOG.OUT')
+                  label: t('HEADER.LOG.OUT')
                 }
               ],
               onClick: ({ key }) => {

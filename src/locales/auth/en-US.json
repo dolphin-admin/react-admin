@@ -1,20 +1,15 @@
 {
-  "LOG.OUT": {
-    "SUCCESS": "Logout success"
-  },
-  "LOGIN": {
-    "AS.ADMIN": "Login as Admin",
-    "AS.VISITOR": "Login as Visitor",
-    "NEED.ACCOUNT": "Need an account?",
-    "THIRD.PARTY": "Third party login",
-    "WELCOME.BACK": "Welcome back!",
-    "WITH.GITHUB": "Sign in with GitHub",
-    "WITH.GOOGLE": "Sign in with Google"
-  },
-  "REDIRECT": {
-    "AUTHORIZING": "Authorizing..."
-  },
-  "SIGN.UP": {
-    "ALREADY.HAVE.ACCOUNT": "Already have an account?"
-  }
+  "ALREADY.HAVE.ACCOUNT": "Already have an account?",
+  "AUTHORIZING": "Authorizing...",
+  "FORGOT.PASSWORD": "Forgot password",
+  "LOG.OUT.SUCCESS": "Logout success",
+  "LOGIN": "Login",
+  "LOGIN.AS.ADMIN": "Login as Admin",
+  "LOGIN.AS.VISITOR": "Login as Visitor",
+  "LOGIN.WITH.GITHUB": "Sign in with GitHub",
+  "LOGIN.WITH.GOOGLE": "Sign in with Google",
+  "NEED.ACCOUNT": "Need an account?",
+  "SIGN.UP": "Sign up",
+  "THIRD.PARTY.LOGIN": "Third party login",
+  "WELCOME.BACK": "Welcome back!"
 }

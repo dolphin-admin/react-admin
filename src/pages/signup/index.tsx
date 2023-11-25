@@ -5,14 +5,10 @@ interface SignupData {
 }
 
 export function Component() {
-  const { t } = useTranslation(['AUTH', 'COMMON', 'USER', 'VALIDATION'])
-
+  const { t } = useTranslation(['AUTH', 'USER', 'VALIDATION'])
   const { message } = AApp.useApp()
-
   const userStore = useUserStore()
-
   const navigate = useNavigate()
-
   const [form] = AForm.useForm<SignupData>()
 
   const signupMutation = useMutation({
@@ -28,17 +24,15 @@ export function Component() {
     onError: () => form.setFieldsValue({ password: '', confirmPassword: '' })
   })
 
-  /**
-   * 注册
-   */
+  // 注册
   const handleSignup = (values: SignupData) => signupMutation.mutate(values)
 
+  // 跳转到登录页面
   const handleLogin = () => navigate('/login')
 
   return (
     <div className="absolute inset-0 m-auto flex h-fit w-[360px] max-w-[90%] flex-col space-y-4 rounded-lg bg-[#ffffff] p-8 shadow-md dark:bg-[#222222]">
-      <div className="text-center text-lg font-semibold">{t('COMMON:Menu.Signup')}</div>
-
+      <div className="text-center text-lg font-semibold">{t('SIGN.UP')}</div>
       <AForm
         form={form}
         name="signup"
@@ -57,7 +51,7 @@ export function Component() {
           rootClassName="!mb-4"
         >
           <AInput
-            placeholder={t('USER:Username')}
+            placeholder={t('USER:USERNAME')}
             autoComplete="username"
           />
         </AForm.Item>
@@ -71,7 +65,7 @@ export function Component() {
           rootClassName="!mb-4"
         >
           <AInput.Password
-            placeholder={t('USER:Password')}
+            placeholder={t('USER:PASSWORD')}
             autoComplete="new-password"
           />
         </AForm.Item>
@@ -93,7 +87,7 @@ export function Component() {
           rootClassName="!mb-4"
         >
           <AInput.Password
-            placeholder={t('COMMON:ConfirmPassword')}
+            placeholder={t('USER:CONFIRM.PASSWORD')}
             autoComplete="new-password"
           />
         </AForm.Item>
@@ -105,12 +99,12 @@ export function Component() {
             disabled={signupMutation.isPending}
             loading={signupMutation.isPending}
           >
-            {t('COMMON:Menu.Signup')}
+            {t('SIGN.UP')}
           </AButton>
         </AForm.Item>
 
         <div className="flex items-center space-x-1 text-xs">
-          <span>{t('AUTH:SIGN.UP.ALREADY.HAVE.ACCOUNT')}</span>
+          <span>{t('ALREADY.HAVE.ACCOUNT')}</span>
           <AConfigProvider theme={{ components: { Button: { paddingInlineSM: 0 } } }}>
             <AButton
               size="small"
@@ -118,7 +112,7 @@ export function Component() {
               onClick={handleLogin}
             >
               <span className="text-xs font-semibold underline-offset-4 hover:underline">
-                {t('COMMON:Menu.Login')}
+                {t('LOGIN')}
               </span>
             </AButton>
           </AConfigProvider>

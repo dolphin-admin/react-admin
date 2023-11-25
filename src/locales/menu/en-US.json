@@ -1,10 +1,8 @@
 {
+  "CODE.TEMPLATES": "Code Templates",
+  "CODE.TEMPLATES.CARD": "Card",
+  "CODE.TEMPLATES.TABLE": "Table",
   "HOME": "Home",
   "LOGIN": "Login",
-  "SIGN.UP": "Signup",
-  "CODE.TEMPLATES": {
-    "DIR": "Code Templates",
-    "TABLE": "Table",
-    "CARD": "Card"
-  }
+  "SIGN.UP": "Signup"
 }

@@ -1,20 +1,15 @@
 {
-  "AUTH.REDIRECT": {
-    "AUTHORIZING": "正在授权..."
-  },
-  "LOG.OUT": {
-    "SUCCESS": "登出成功"
-  },
-  "LOGIN": {
-    "AS.ADMIN": "以管理员登录",
-    "AS.VISITOR": "以访客登录",
-    "NEED.ACCOUNT": "需要账号？",
-    "THIRD.PARTY": "第三方登录",
-    "WELCOME.BACK": "欢迎回来！",
-    "WITH.GITHUB": "GitHub 登录",
-    "WITH.GOOGLE": "Google 登录"
-  },
-  "SIGN.UP": {
-    "ALREADY.HAVE.ACCOUNT": "已有账号？"
-  }
+  "ALREADY.HAVE.ACCOUNT": "已有账号？",
+  "AUTHORIZING": "正在授权...",
+  "FORGOT.PASSWORD": "忘记密码",
+  "LOG.OUT.SUCCESS": "登出成功",
+  "LOGIN": "登录",
+  "LOGIN.AS.ADMIN": "以管理员登录",
+  "LOGIN.AS.VISITOR": "以访客登录",
+  "LOGIN.WITH.GITHUB": "GitHub 登录",
+  "LOGIN.WITH.GOOGLE": "Google 登录",
+  "NEED.ACCOUNT": "需要账号？",
+  "SIGN.UP": "注册",
+  "THIRD.PARTY.LOGIN": "第三方登录",
+  "WELCOME.BACK": "欢迎回来！"
 }

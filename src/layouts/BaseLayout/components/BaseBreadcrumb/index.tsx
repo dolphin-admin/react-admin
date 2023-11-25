@@ -1,5 +1,6 @@
 export default function BaseBreadcrumb() {
   const location = useLocation()
+
   const pathSnippets = location.pathname.split('/').filter((i) => i)
 
   const breadcrumbNameMap: Record<string, string> = {

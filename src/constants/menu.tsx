@@ -16,7 +16,7 @@ import NotFoundIcon from '~icons/tabler/error-404'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
-const { t } = i18n
+const t = i18n.getFixedT(null, 'COMMON')
 
 const getItem = (
   label: React.ReactNode,
@@ -31,50 +31,28 @@ const getItem = (
 })
 
 export const menu: MenuItem[] = [
-  getItem(t('COMMON:Menu.Navigation'), 'Navigation', <AIcon component={NavigationIcon} />),
+  getItem(t('Menu.Navigation'), 'Navigation', <AIcon component={NavigationIcon} />),
+  getItem(t('Menu.SystemFunctions'), 'SystemFunctions', <AIcon component={SystemFunctionsIcon} />, [
+    getItem(t('Menu.UserManagement'), 'UserManagement', <AIcon component={UserManagementIcon} />),
+    getItem(
+      t('Menu.DictionaryManagement'),
+      'DictionaryManagement',
+      <AIcon component={DictionaryManagementIcon} />
+    )
+  ]),
+  getItem(t('Menu.CodeTemplates'), 'CodeTemplates', <AIcon component={CodeTemplatesIcon} />, [
+    getItem(t('Menu.ListTemplates'), 'ListTemplates', <AIcon component={ListTemplatesIcon} />)
+  ]),
   getItem(
-    t('COMMON:Menu.SystemFunctions'),
-    'SystemFunctions',
-    <AIcon component={SystemFunctionsIcon} />,
-    [
-      getItem(
-        t('COMMON:Menu.UserManagement'),
-        'UserManagement',
-        <AIcon component={UserManagementIcon} />
-      ),
-      getItem(
-        t('COMMON:Menu.DictionaryManagement'),
-        'DictionaryManagement',
-        <AIcon component={DictionaryManagementIcon} />
-      )
-    ]
-  ),
-  getItem(
-    t('COMMON:Menu.CodeTemplates'),
-    'CodeTemplates',
-    <AIcon component={CodeTemplatesIcon} />,
-    [
-      getItem(
-        t('COMMON:Menu.ListTemplates'),
-        'ListTemplates',
-        <AIcon component={ListTemplatesIcon} />
-      )
-    ]
-  ),
-  getItem(
-    t('COMMON:Menu.UniversalComponents'),
+    t('Menu.UniversalComponents'),
     'UniversalComponents',
     <AIcon component={UniversalComponentsIcon} />,
-    [getItem(t('COMMON:Menu.Charts'), 'Charts', <AIcon component={ChartsIcon} />)]
+    [getItem(t('Menu.Charts'), 'Charts', <AIcon component={ChartsIcon} />)]
   ),
-  getItem(t('COMMON:Menu.ErrorPages'), 'ErrorPages', <AIcon component={ErrorPagesIcon} />, [
-    getItem(t('COMMON:Menu.403'), 'Unauthorized', <AIcon component={UnauthorizedIcon} />),
-    getItem(t('COMMON:Menu.404'), 'NotFound', <AIcon component={NotFoundIcon} />),
-    getItem(t('COMMON:Menu.418'), 'IAmATeapot', <AIcon component={IAmATeapotIcon} />),
-    getItem(
-      t('COMMON:Menu.500'),
-      'InternalServerError',
-      <AIcon component={InternalServerErrorIcon} />
-    )
+  getItem(t('Menu.ErrorPages'), 'ErrorPages', <AIcon component={ErrorPagesIcon} />, [
+    getItem(t('Menu.403'), 'Unauthorized', <AIcon component={UnauthorizedIcon} />),
+    getItem(t('Menu.404'), 'NotFound', <AIcon component={NotFoundIcon} />),
+    getItem(t('Menu.418'), 'IAmATeapot', <AIcon component={IAmATeapotIcon} />),
+    getItem(t('Menu.500'), 'InternalServerError', <AIcon component={InternalServerErrorIcon} />)
   ])
 ]
