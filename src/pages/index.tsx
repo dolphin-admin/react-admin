@@ -16,6 +16,7 @@ export function Component() {
             draggable={false}
           />
           <span className="text-sm text-gray-600">{TEAM_NAME}</span>
+          <div>v0.0.1</div>
         </div>
       </div>
     </main>

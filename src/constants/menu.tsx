@@ -16,7 +16,8 @@ import NotFoundIcon from '~icons/tabler/error-404'
 
 type MenuItem = Required<MenuProps>['items'][number]
 
-const t = i18n.getFixedT(null, 'COMMON')
+// TODO: Fix i18n bug
+const t = i18n.getFixedT(null, 'COMMON') as any
 
 const getItem = (
   label: React.ReactNode,
