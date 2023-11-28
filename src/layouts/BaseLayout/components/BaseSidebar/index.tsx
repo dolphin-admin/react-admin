@@ -1,4 +1,5 @@
 import { menu } from '@/constants'
+import type { MenuItem } from '@/types'
 import CollapseIcon from '~icons/line-md/chevron-small-double-left'
 
 export default function BaseSidebar() {
@@ -8,6 +9,11 @@ export default function BaseSidebar() {
   const sidebarStore = useSidebarStore()
   const navigate = useNavigate()
 
+  const handleClickMenuItem = (menuInfo: MenuItem) => {
+    if (menuInfo?.key && typeof menuInfo.key === 'string') {
+      navigate(menuInfo.key)
+    }
+  }
   return (
     <>
       <ALayout.Sider
@@ -54,9 +60,9 @@ export default function BaseSidebar() {
         <AMenu
           className="h-[calc(100%-96px)] !border-0"
           style={{ backgroundColor: siderBg }}
-          defaultSelectedKeys={['1']}
-          mode="inline"
           items={menu}
+          mode="inline"
+          onClick={handleClickMenuItem}
         />
 
         {/* 底部折叠按钮 */}

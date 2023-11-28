@@ -1,5 +1,3 @@
-import type { DragEvent } from 'react'
-
 import type { Setting } from '@/types'
 import LoadingIcon from '~icons/line-md/loading-twotone-loop'
 import DeleteIcon from '~icons/mdi/delete-forever-outline'
@@ -8,23 +6,14 @@ import EnableIcon from '~icons/mdi/hand-back-left-outline'
 import EditIcon from '~icons/mdi/pencil'
 import RefreshIcon from '~icons/mdi/refresh'
 
-type DragItem<T> = T & { index: number }
-
 export function Component() {
-  const { i18n } = useTranslation('COMMON')
+  const { t, i18n } = useTranslation()
   const queryClient = useQueryClient()
   const { message: AMessage } = AApp.useApp()
 
-  // 无限滚动的加载
-  const loadingRef = useRef(null)
-
-  // 拖拽的列表
-  const [list, setList] = useState<Setting[]>([])
-  // 当前拖拽项的索引
-  const [currentDragItem, setCurrentDragItem] = useState<DragItem<Setting> | null>(null)
   const [pagination, setPagination] = useImmer({
     current: 1,
-    pageSize: 50,
+    pageSize: 10,
     total: 0
   })
   const [searchParams, setSearchParams] = useImmer({
@@ -34,7 +23,6 @@ export function Component() {
   const {
     data: queryResult,
     isRefetching,
-    isFetching,
     refetch
   } = useQuery({
     // eslint-disable-next-line @tanstack/query/exhaustive-deps
@@ -50,7 +38,6 @@ export function Component() {
     placeholderData: keepPreviousData
   })
 
-  // 启用、禁用
   const toggleEnableMutation = useMutation({
     mutationFn: ({ id, enable }: { id: number; enable: boolean }) =>
       enable ? SettingAPI.enable(id) : SettingAPI.disable(id),
@@ -70,41 +57,13 @@ export function Component() {
     }
   })
 
-  const sortMutation = useMutation({
-    mutationFn: ({ id, targetId }: { id: number; targetId: number }) =>
-      SettingAPI.sort(id, targetId),
-    onSuccess: ({ message }) => {
-      AMessage.success(message)
-      refetch()
-    }
-  })
-
   useEffect(() => {
     if (queryResult) {
-      setList([...list, ...processI18n(queryResult.data)])
       setPagination((draft) => {
         draft.total = queryResult.total
       })
     }
   }, [queryResult])
-
-  // const callback = () => {
-  //   if (!isRefetching && list.length <= pagination.total) {
-  //     console.log(2)
-  //     setPagination((v) => {
-  //       v.current += 1
-  //     })
-  //     refetch()
-  //   }
-  // }
-
-  // useEffect(() => {
-  //   const observer = new IntersectionObserver(callback)
-  //   if (loadingRef.current) {
-  //     observer.observe(loadingRef.current)
-  //   }
-  //   return () => observer.disconnect()
-  // }, [loadingRef])
 
   // 处理字段的国际化
   function processI18n(data?: Setting[]) {
@@ -123,7 +82,6 @@ export function Component() {
       draft.current = 1
       draft.total = 0
     })
-    setList([])
     refetch()
   }
 
@@ -135,25 +93,6 @@ export function Component() {
   // 启用、禁用
   async function toggleEnable(id: number, enable: boolean) {
     await toggleEnableMutation.mutateAsync({ id, enable })
-  }
-
-  // 拖拽开始
-  const handleDragStart = (e: DragEvent<HTMLDivElement>, item: DragItem<Setting>) => {
-    e.stopPropagation()
-    setCurrentDragItem(item)
-  }
-
-  // 拖拽结束
-  const handleDragOver = (e: DragEvent<HTMLDivElement>) => e.preventDefault()
-
-  // 拖拽放置
-  const handleDrop = (_: DragEvent<HTMLDivElement>, targetItem: DragItem<Setting>) => {
-    const updatedList = [...list]
-    updatedList.splice(currentDragItem!.index, 1)
-    updatedList.splice(targetItem!.index, 0, currentDragItem!)
-    setList(updatedList)
-    setCurrentDragItem(null)
-    sortMutation.mutate({ id: currentDragItem!.id, targetId: targetItem.id })
   }
 
   return (
@@ -187,18 +126,11 @@ export function Component() {
       table={
         <div className="flex min-h-[calc(100vh-214px)] flex-col items-center justify-between gap-2">
           <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
-            {list.map((item, index) => (
+            {processI18n(queryResult?.data).map((item) => (
               <ACard
                 key={item.id}
                 rootClassName="rounded"
-                draggable
-                onDragStart={(event) => handleDragStart(event, { ...item, index })}
-                onDragOver={handleDragOver}
-                onDrop={(event) => handleDrop(event, { ...item, index })}
-                className={clsx(
-                  'hover:border-blue-400 hover:bg-slate-50 dark:hover:bg-gray-800',
-                  currentDragItem?.id === item.id && '!cursor-move'
-                )}
+                className={clsx('hover:border-blue-400 hover:bg-slate-50 dark:hover:bg-gray-800')}
               >
                 <div className="flex h-24 justify-between">
                   <div className="flex h-full flex-col items-start justify-between">
@@ -250,8 +182,19 @@ export function Component() {
               </ACard>
             ))}
           </div>
-          {isFetching && <ASpin className="h-16" />}
-          <div ref={loadingRef} />
+          <APagination
+            rootClassName="self-end"
+            {...pagination}
+            onChange={(page, pageSize) => {
+              setPagination((draft) => {
+                draft.current = page
+                draft.pageSize = pageSize
+              })
+            }}
+            showSizeChanger
+            showQuickJumper
+            showTotal={(total) => t('SHOW.TOTAL', { total })}
+          />
         </div>
       }
     />

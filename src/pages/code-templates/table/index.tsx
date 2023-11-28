@@ -24,7 +24,7 @@ export function Component() {
   const {
     data: queryResult,
     isRefetching,
-    isPending,
+    isFetching,
     refetch
   } = useQuery({
     queryKey: [SettingAPI.SETTING_LIST_QUERY_KEY, pagination.current, pagination.pageSize],
@@ -251,7 +251,7 @@ export function Component() {
             scrollToFirstRowOnChange: true,
             x: 1500
           }}
-          loading={isPending}
+          loading={isFetching}
           pagination={{
             ...pagination,
             onChange: (page, pageSize) => {

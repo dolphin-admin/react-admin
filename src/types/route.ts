@@ -1,3 +1,4 @@
+import type { MenuProps } from 'antd'
 import type { IndexRouteObject, NonIndexRouteObject } from 'react-router-dom'
 
 export interface RouteMetadata {
@@ -14,3 +15,5 @@ interface CustomNonIndexRouteObject extends NonIndexRouteObject {
 }
 
 export type CustomRouteObject = CustomIndexRouteObject | CustomNonIndexRouteObject
+
+export type MenuItem = Required<MenuProps>['items'][number]
