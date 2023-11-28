@@ -11,6 +11,7 @@ import Icons from 'unplugin-icons/vite'
 import type { ProxyOptions } from 'vite'
 import { defineConfig, loadEnv } from 'vite'
 import ViteCompression from 'vite-plugin-compression'
+import progress from 'vite-plugin-progress'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
@@ -114,7 +115,8 @@ export default defineConfig(({ mode }) => {
         deleteOriginFile: true // 源文件压缩后是否删除
       }),
       visualizer({ open: true, gzipSize: true }),
-      BootstrapAnimation()
+      BootstrapAnimation(),
+      progress()
     ],
     resolve: {
       alias: {
