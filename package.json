@@ -37,8 +37,8 @@
     "@ant-design/happy-work-theme": "^1.0.0",
     "@ant-design/icons": "^5.2.6",
     "@dolphin-admin/utils": "^0.0.17",
-    "@tanstack/react-query": "^5.8.7",
-    "@tanstack/react-query-devtools": "^5.8.8",
+    "@tanstack/react-query": "^5.8.9",
+    "@tanstack/react-query-devtools": "^5.8.9",
     "@tauri-apps/api": "^1.5.1",
     "ahooks": "^3.7.8",
     "antd": "^5.11.5",
@@ -46,7 +46,7 @@
     "clsx": "^2.0.0",
     "dayjs": "^1.11.10",
     "echarts": "^5.4.3",
-    "i18next": "^23.7.6",
+    "i18next": "^23.7.7",
     "immer": "^10.0.3",
     "lodash-es": "^4.17.21",
     "nprogress": "^0.2.0",
@@ -58,7 +58,7 @@
     "socket.io-client": "^4.7.2",
     "use-immer": "^0.9.0",
     "xlsx": "https://cdn.sheetjs.com/xlsx-0.20.0/xlsx-0.20.0.tgz",
-    "zustand": "^4.4.6"
+    "zustand": "^4.4.7"
   },
   "devDependencies": {
     "@brucesong/eslint-config-react": "^1.0.18",
@@ -66,7 +66,7 @@
     "@commitlint/config-conventional": "^18.4.3",
     "@dolphin-admin/auto-import": "^0.0.11",
     "@dolphin-admin/bootstrap-animation": "^0.0.5",
-    "@iconify/json": "^2.2.147",
+    "@iconify/json": "^2.2.149",
     "@iconify/react": "^4.1.1",
     "@svgr/core": "^8.1.0",
     "@svgr/plugin-jsx": "^8.1.0",
