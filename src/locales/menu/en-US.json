@@ -4,5 +4,7 @@
   "CODE.TEMPLATES.TABLE": "Table",
   "HOME": "Home",
   "LOGIN": "Login",
-  "SIGN.UP": "Signup"
+  "SIGN.UP": "Signup",
+  "ERROR.PAGES": "Error Pages",
+  "MULTI.LEVEL.MENUS": "Multi Level Menu"
 }

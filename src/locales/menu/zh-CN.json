@@ -4,5 +4,7 @@
   "CODE.TEMPLATES.TABLE": "表格",
   "HOME": "首页",
   "LOGIN": "登录",
-  "SIGN.UP": "注册"
+  "SIGN.UP": "注册",
+  "ERROR.PAGES": "错误页面",
+  "MULTI.LEVEL.MENUS": "多级菜单"
 }

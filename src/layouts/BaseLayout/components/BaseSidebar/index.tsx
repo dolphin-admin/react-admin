@@ -1,4 +1,4 @@
-import { menu } from '@/constants'
+import { getMenuTree } from '@/constants'
 import type { MenuItem } from '@/types'
 import CollapseIcon from '~icons/line-md/chevron-small-double-left'
 
@@ -8,6 +8,23 @@ export default function BaseSidebar() {
   const siderBg = ATheme.useToken().token.Layout?.siderBg
   const sidebarStore = useSidebarStore()
   const navigate = useNavigate()
+  const location = useLocation()
+
+  const [selectedKeys, setSelectedKeys] = useState<string[]>([])
+  const [openKeys, setOpenKeys] = useState<string[]>([])
+
+  useEffect(() => {
+    setSelectedKeys([location.pathname])
+    setOpenKeys(
+      location.pathname
+        .split('/')
+        .filter((i) => i)
+        .reduce<string[]>((acc, cur) => {
+          const key = `${acc}/${cur}`
+          return [...acc, key]
+        }, openKeys)
+    )
+  }, [location.pathname])
 
   const handleClickMenuItem = (menuInfo: MenuItem) => {
     if (menuInfo?.key && typeof menuInfo.key === 'string') {
@@ -60,7 +77,10 @@ export default function BaseSidebar() {
         <AMenu
           className="h-[calc(100%-96px)] !border-0"
           style={{ backgroundColor: siderBg }}
-          items={menu}
+          items={getMenuTree()}
+          selectedKeys={selectedKeys}
+          openKeys={openKeys}
+          onOpenChange={setOpenKeys}
           mode="inline"
           onClick={handleClickMenuItem}
         />

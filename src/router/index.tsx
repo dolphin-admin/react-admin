@@ -29,7 +29,42 @@ export const routes: CustomRouteObject[] = [
             lazy: () => import('@/pages/code-templates/card'),
             meta: { title: () => t('CODE.TEMPLATES.CARD') }
           },
-          { path: '*', element: <>404</>, meta: { title: '404' } }
+          {
+            path: '/multi-level-menus/2-1/2-1-1',
+            lazy: () => import('@/pages/multi-level-menus/2-1/2-1-1'),
+            meta: { title: '2-1-1' }
+          },
+          {
+            path: '/multi-level-menus/2-1/2-1-2',
+            lazy: () => import('@/pages/multi-level-menus/2-1/2-1-2'),
+            meta: { title: '2-1-2' }
+          },
+          {
+            path: '/multi-level-menus/2-2',
+            lazy: () => import('@/pages/multi-level-menus/2-2'),
+            meta: { title: '2-2' }
+          },
+          {
+            path: '/error-pages/403',
+            lazy: () => import('@/pages/error-pages/403'),
+            meta: { title: '403' }
+          },
+          {
+            path: '/error-pages/404',
+            lazy: () => import('@/pages/error-pages/404'),
+            meta: { title: '404' }
+          },
+          {
+            path: '/error-pages/418',
+            lazy: () => import('@/pages/error-pages/418'),
+            meta: { title: '418' }
+          },
+          {
+            path: '/error-pages/500',
+            lazy: () => import('@/pages/error-pages/500'),
+            meta: { title: '500' }
+          },
+          { path: '*', lazy: () => import('@/pages/error-pages/404'), meta: { title: '404' } }
         ]
       },
       {
