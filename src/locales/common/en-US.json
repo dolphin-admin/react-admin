@@ -10,5 +10,11 @@
   "SHOW.TOTAL": "Total {{total}}",
   "SORT": "Sort",
   "VALUE": "Value",
-  "VERIFY.OR.NOT": "Verify or not"
+  "VERIFY.OR.NOT": "Verify or not",
+  "BACK": "Back",
+  "401": "Unauthorized",
+  "403": "Forbidden",
+  "404": "Not Found",
+  "418": "I'm A Teapot",
+  "500": "Internal Server Error"
 }

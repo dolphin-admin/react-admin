@@ -40,3 +40,10 @@
     color 0s,
     background 0s !important;
 }
+
+// 移除 Breadcrumb 的下拉箭头
+.ant-breadcrumb {
+  .anticon-down {
+    display: none;
+  }
+}
