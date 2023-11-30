@@ -15,8 +15,9 @@ export function Component() {
     mutationFn: (data: SignupData) => AuthAPI.signup(data),
     onSuccess: async (res) => {
       const { data, message: msg } = res ?? {}
-      const { accessToken, user } = data ?? {}
-      AuthUtils.setToken(accessToken)
+      const { accessToken, refreshToken, user } = data ?? {}
+      AuthUtils.setAccessToken(accessToken)
+      AuthUtils.setRefreshToken(refreshToken)
       userStore.setUser(user)
       message.success(msg)
       navigate('/', { replace: true })
