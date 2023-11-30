@@ -16,8 +16,7 @@ export const useAuthGuard = (props?: AuthGuardProps) => {
   const userInfoQuery = useQuery({
     queryKey: ['Me'],
     queryFn: () => UserAPI.getUserInfo(),
-    select: (res) => res.data,
-    enabled: false
+    select: (res) => res.data
   })
 
   const [isLoading, setIsLoading] = useState(true)

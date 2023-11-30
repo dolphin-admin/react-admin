@@ -48,7 +48,8 @@ export default function BaseHeader() {
   // 退出登录
   const logout = () => {
     userStore.clearUser()
-    AuthUtils.clearToken()
+    AuthUtils.clearAccessToken()
+    AuthUtils.clearRefreshToken()
     navigate('/login', { replace: true })
     message.success(t('AUTH:LOG.OUT.SUCCESS'))
   }
