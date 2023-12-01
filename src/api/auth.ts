@@ -35,16 +35,11 @@ export class AuthAPI {
    * 刷新令牌
    */
   static async refresh(token: string) {
-    const { accessToken, refreshToken } =
-      (
-        await httpRequest.post<BaseResponse<UserTokenResponse>>(
-          this.REFRESH_API_URL,
-          {},
-          { params: { token } }
-        )
-      ).data ?? {}
-    AuthUtils.setAccessToken(accessToken ?? '')
-    AuthUtils.setRefreshToken(refreshToken ?? '')
+    return httpRequest.post<BaseResponse<UserTokenResponse>>(
+      this.REFRESH_API_URL,
+      {},
+      { params: { token } }
+    )
   }
 
   /**
