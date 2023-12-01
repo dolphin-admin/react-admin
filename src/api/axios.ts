@@ -90,7 +90,7 @@ class Request {
          * - 500 服务器错误，跳转到 500 页面
          * - 其他状态码，提示错误信息
          */
-        const errorMessage = message ?? errorMessageMap.get(status) ?? 'Unknown Error!'
+        const errorMessage = message ?? errorMessageMap.get(status as number) ?? 'Unknown Error!'
         const currentRefreshToken = AuthUtils.getRefreshToken()
         switch (status) {
           case StatusCode.UNAUTHORIZED:
@@ -147,25 +147,20 @@ class Request {
     )
   }
 
+  /**
+   * 处理认证失败
+   * @description
+   * - 清除 token
+   * - 跳转到登录页
+   */
   handleUnauthorized() {
     AuthUtils.clearAccessToken()
     AuthUtils.clearRefreshToken()
     // 如果非登录页面，需要重定向到登录页，且需要带上 redirect 参数
-    if (router.state.location.pathname !== '/login') {
-      if (router.state.location.pathname !== '/') {
-        router.navigate(
-          {
-            pathname: '/login',
-            search: `?${createSearchParams({
-              redirect: router.state.location.pathname
-            }).toString()}`
-          },
-          { replace: true }
-        )
-      } else {
-        router.navigate('/login', { replace: true })
-      }
-    }
+    const { pathname } = router.state.location
+    const redirect =
+      pathname === '/login' ? '' : `?${createSearchParams({ redirect: pathname }).toString()}`
+    router.navigate({ pathname: `/login${redirect}`, search: '' }, { replace: true })
   }
 
   /**
