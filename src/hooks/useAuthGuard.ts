@@ -14,8 +14,8 @@ export const useAuthGuard = (props?: AuthGuardProps) => {
 
   // 用户信息
   const userInfoQuery = useQuery({
-    queryKey: ['Me'],
-    queryFn: () => UserAPI.getUserInfo(),
+    queryKey: [UserAPI.ME_QUERY_KEY],
+    queryFn: () => UserAPI.me(),
     select: (res) => res.data,
     enabled: false // 不自动执行
   })

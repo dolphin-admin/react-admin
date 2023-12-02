@@ -7,12 +7,12 @@ export class SettingAPI {
   /**
    * 设置列表缓存 key
    */
-  static SETTING_LIST_QUERY_KEY = 'SETTING.LIST'
+  static LIST_QUERY_KEY = 'SETTING.LIST'
 
   /**
    * 设置列表
    */
-  static getList(params: BasePageModel) {
+  static list(params: BasePageModel) {
     return httpRequest.get<PageResponse<Setting[]>>(this.SETTING_API_PREFIX, {
       ...params
     })
@@ -33,16 +33,16 @@ export class SettingAPI {
   }
 
   /**
-   * 排序设置
-   */
-  static sort(id: number, targetId: number) {
-    return httpRequest.patch<BaseResponse>(`${this.SETTING_API_PREFIX}/${id}/sort/${targetId}`)
-  }
-
-  /**
    * 删除设置
    */
   static delete(id: number) {
     return httpRequest.delete<BaseResponse>(`${this.SETTING_API_PREFIX}/${id}`)
+  }
+
+  /**
+   * 排序设置
+   */
+  static sort(id: number, targetId: number) {
+    return httpRequest.patch<BaseResponse>(`${this.SETTING_API_PREFIX}/${id}/sort/${targetId}`)
   }
 }

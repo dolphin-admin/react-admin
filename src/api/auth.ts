@@ -48,9 +48,7 @@ export class AuthAPI {
   static loginWithGitHub(code: string) {
     return httpRequest.post<BaseResponse<UserTokenResponse>>(
       `${this.AUTH_API_PREFIX}/login/github`,
-      {
-        code
-      }
+      { code }
     )
   }
 
@@ -60,9 +58,7 @@ export class AuthAPI {
   static loginWithGoogle(code: string) {
     return httpRequest.post<BaseResponse<UserTokenResponse>>(
       `${this.AUTH_API_PREFIX}/login/google`,
-      {
-        code
-      }
+      { code }
     )
   }
 }

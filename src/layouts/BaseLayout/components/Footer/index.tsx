@@ -1,4 +1,4 @@
-export default function BaseFooter() {
+export default function Footer() {
   const { APP_NAME, VERSION, TEAM_NAME, TEAM_GITHUB_URL } = AppMetadata
 
   return (
