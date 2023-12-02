@@ -95,7 +95,7 @@ export default defineConfig(({ mode }) => {
           'src/api/**',
           'src/components/**',
           'src/hooks/**',
-          'src/layouts/**',
+          'src/layouts/*/index.tsx',
           'src/providers/**',
           'src/store/**',
           'src/utils/**'
@@ -114,7 +114,7 @@ export default defineConfig(({ mode }) => {
         ext: '.gz',
         deleteOriginFile: true // 源文件压缩后是否删除
       }),
-      visualizer({ open: true, gzipSize: true }),
+      visualizer({ open: false, gzipSize: true }),
       BootstrapAnimation(),
       progress()
     ],

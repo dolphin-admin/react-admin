@@ -1,4 +1,6 @@
-export default function BaseLayout() {
+import { Content, Footer, Header, Sidebar } from './components'
+
+export default function Layout() {
   const { isLoading } = useAuthGuard()
 
   if (isLoading) {
@@ -6,12 +8,13 @@ export default function BaseLayout() {
   }
 
   return (
-    <ALayout className="flex-row">
-      <BaseSidebar />
+    // 此处 rootClassName 不加 !flex-row 会导致加载布局闪屏
+    <ALayout rootClassName="!flex !flex-row">
+      <Sidebar />
       <ALayout className="border-r border-gray-300 dark:border-gray-950">
-        <BaseHeader />
-        <BaseContent />
-        <BaseFooter />
+        <Header />
+        <Content />
+        <Footer />
       </ALayout>
     </ALayout>
   )

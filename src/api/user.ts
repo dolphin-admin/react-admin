@@ -10,10 +10,12 @@ import type {
 export class UserAPI {
   private static USER_API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/users`
 
+  static ME_QUERY_KEY = 'ME'
+
   /**
    * 用户列表
    */
-  static getUsers(params: BasePageModel) {
+  static list(params: BasePageModel) {
     return httpRequest.get<PageResponse<User[]>>(this.USER_API_PREFIX, {
       ...params
     })
@@ -22,7 +24,7 @@ export class UserAPI {
   /**
    * 用户信息
    */
-  static getUser(id: number) {
+  static detail(id: number) {
     return httpRequest.get<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}`)
   }
 
@@ -30,14 +32,14 @@ export class UserAPI {
    * 当前用户
    * @description 通过当前登录用户的 token 获取用户信息
    */
-  static getUserInfo() {
+  static me() {
     return httpRequest.get<BaseResponse<User>>(`${this.USER_API_PREFIX}/me`)
   }
 
   /**
    * 创建用户
    */
-  static createUser(data: CreateUserModel) {
+  static create(data: CreateUserModel) {
     return httpRequest.post<BaseResponse<User>>(this.USER_API_PREFIX, {
       ...data
     })
@@ -46,7 +48,7 @@ export class UserAPI {
   /**
    * 更新用户
    */
-  static updateUser(id: number, data: User) {
+  static update(id: number, data: User) {
     return httpRequest.patch<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}`, {
       ...data
     })
@@ -55,15 +57,15 @@ export class UserAPI {
   /**
    * 启用用户
    */
-  static enableUser(id: number) {
-    return httpRequest.post<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}/activate`)
+  static enable(id: number) {
+    return httpRequest.post<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}/enable`)
   }
 
   /**
    * 禁用用户
    */
-  static disableUser(id: number) {
-    return httpRequest.post<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}/deactivate`)
+  static disable(id: number) {
+    return httpRequest.post<BaseResponse<User>>(`${this.USER_API_PREFIX}/${id}/disable`)
   }
 
   /**

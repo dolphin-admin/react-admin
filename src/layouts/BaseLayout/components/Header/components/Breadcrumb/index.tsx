@@ -9,19 +9,6 @@ export default function BaseBreadcrumb() {
 
   const [breadcrumbItems, setBreadcrumbItems] = useImmer<ItemType[]>([])
 
-  // useEffect(() => {
-  //   const pathSnippets = location.pathname.split('/').filter((i) => i)
-  //   const options = pathSnippets.map((_, index) => {
-  //     const url = `/${pathSnippets.slice(0, index + 1).join('/')}`
-  //     const menuOption = menu.find((option) => option?.key === url)
-  //     return {
-  //       key: url,
-  //       breadcrumbName: menuOption.label
-  //     }
-  //   })
-  //   setBreadcrumbOptions(options)
-  // }, [location.pathname])
-
   useEffect(() => menuCacheMap.clear(), [i18n.language])
 
   useEffect(() => {

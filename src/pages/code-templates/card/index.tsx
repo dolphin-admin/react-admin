@@ -26,9 +26,9 @@ export function Component() {
     refetch
   } = useQuery({
     // eslint-disable-next-line @tanstack/query/exhaustive-deps
-    queryKey: [SettingAPI.SETTING_LIST_QUERY_KEY, pagination.pageSize, pagination.current],
+    queryKey: [SettingAPI.LIST_QUERY_KEY, pagination.pageSize, pagination.current],
     queryFn: () =>
-      SettingAPI.getList(
+      SettingAPI.list(
         new BasePageModel({
           pageSize: pagination.pageSize,
           page: pagination.current,
@@ -52,7 +52,7 @@ export function Component() {
     onSuccess: ({ message }) => {
       AMessage.success(message)
       queryClient.invalidateQueries({
-        queryKey: [SettingAPI.SETTING_LIST_QUERY_KEY]
+        queryKey: [SettingAPI.LIST_QUERY_KEY]
       })
     }
   })

@@ -42,11 +42,13 @@ export class BasePageModel {
    */
   order?: string
 
+  /**
+   * 排序器
+   */
   sorters?: Sorter[]
 
   constructor(basePageModel?: BasePageModel) {
-    const { page, pageSize, searchText, startDate, endDate, sorters } =
-      basePageModel ?? {}
+    const { page, pageSize, searchText, startDate, endDate, sorters } = basePageModel ?? {}
     this.page = page ?? 1
     this.pageSize = pageSize ?? 10
     if (searchText) {
