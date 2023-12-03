@@ -1,6 +1,6 @@
 import { Content, Footer, Header, Sidebar, Tabs } from './components'
 
-export default function Layout() {
+export default function DpBaseLayout() {
   const { isLoading } = useAuthGuard()
 
   if (isLoading) {

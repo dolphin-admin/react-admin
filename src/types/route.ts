@@ -3,6 +3,7 @@ import type { IndexRouteObject, NonIndexRouteObject } from 'react-router-dom'
 
 export interface RouteMetadata {
   title?: string | (() => string)
+  hideTitle?: boolean
 }
 
 interface CustomIndexRouteObject extends IndexRouteObject {

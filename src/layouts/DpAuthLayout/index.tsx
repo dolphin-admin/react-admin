@@ -1,4 +1,4 @@
-export default function AuthLayout() {
+export default function DpAuthLayout() {
   const { isLoading } = useAuthGuard({ skipAuth: true })
 
   // 加载用户数据、背景图片时，显示全局 Loading 动画

@@ -32,6 +32,7 @@ export default function App() {
       new QueryClient({
         defaultOptions: {
           queries: {
+            staleTime: 1000 * 10, // 10s
             gcTime: 1000 * 60 * 5, // 5min
             retry: 1 // 失败重试次数
           }

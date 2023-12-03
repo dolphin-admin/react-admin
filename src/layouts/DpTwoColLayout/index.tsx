@@ -18,7 +18,7 @@ interface Props {
   fixMode?: 'left' | 'right'
 }
 
-export default function TowColLayout(props: Props) {
+export default function DpTowColLayout(props: Props) {
   const { fixWidth = 400, fixMode = 'left' } = props
   return (
     <div className="flex h-[calc(100vh-170px)] space-x-4 sm:h-[calc(100vh-176px)]">

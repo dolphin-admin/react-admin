@@ -12,7 +12,7 @@ export const routes: CustomRouteObject[] = [
     children: [
       {
         path: '/',
-        Component: BaseLayout,
+        Component: DpBaseLayout,
         children: [
           {
             index: true,
@@ -74,7 +74,7 @@ export const routes: CustomRouteObject[] = [
       },
       {
         path: '/',
-        Component: AuthLayout,
+        Component: DpAuthLayout,
         children: [
           {
             path: '/login',
