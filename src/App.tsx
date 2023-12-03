@@ -9,7 +9,7 @@ import { RouterProvider } from 'react-router-dom'
 
 import router from '@/router'
 
-import { messageConfig, themeDarkConfig, themeLightConfig } from './constants'
+import { messageConfig } from './constants'
 
 /**
  * rem 适配
@@ -49,7 +49,7 @@ export default function App() {
       <AConfigProvider
         locale={langStore.locale}
         theme={{
-          ...(themeStore.isLightTheme() ? themeLightConfig : themeDarkConfig)
+          ...(themeStore.isLightTheme() ? themeStore.themeLightConfig : themeStore.themeDarkConfig)
         }}
       >
         <StyleProvider

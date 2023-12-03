@@ -14,5 +14,6 @@
   "PASSWORD.LENGTH": "Password length must be greater than 6",
   "PHONE.NUMBER": "Please enter a phone number",
   "PHONE.NUMBER.FORMAT": "Please enter phone number in the correct format",
-  "USERNAME": "Please enter username"
+  "USERNAME": "Please enter username",
+  "FONT": "Please select the font family"
 }

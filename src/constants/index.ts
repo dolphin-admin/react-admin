@@ -1,4 +1,5 @@
 export * from './environment'
+export * from './fonts'
 export * from './menu'
 export * from './metadata'
 export * from './page'

@@ -8,6 +8,7 @@ import {
   GitHubButton,
   LanguageButton,
   MenuVisibilityToggle,
+  SettingsButton,
   ThemeToggle,
   UserAvatar
 } from './components'
@@ -33,6 +34,7 @@ export default function Header() {
         <FullScreenButton />
         <LanguageButton />
         <ThemeToggle />
+        <SettingsButton />
         <UserAvatar />
       </div>
     </ALayout.Header>

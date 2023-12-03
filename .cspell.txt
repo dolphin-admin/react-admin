@@ -35,3 +35,4 @@ unimport
 unplugin
 vite
 zustand
+Jetbrains

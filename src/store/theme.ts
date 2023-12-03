@@ -1,10 +1,16 @@
 import { Theme } from '@dolphin-admin/utils'
+import type { ThemeConfig } from 'antd'
+import { produce } from 'immer'
 import { create } from 'zustand'
 import { subscribeWithSelector } from 'zustand/middleware'
+
+import { themeDarkConfig, themeLightConfig } from '@/constants'
 
 interface State {
   theme: Theme
   enableHappyWorkTheme: boolean
+  themeLightConfig: ThemeConfig
+  themeDarkConfig: ThemeConfig
 }
 
 interface Actions {
@@ -14,9 +20,19 @@ interface Actions {
   changeTheme: (theme: Theme) => void
   setHappyWorkTheme: (enable: boolean) => void
   toggleHappyWorkTheme: () => void
+  changeFontFamily: (currentFontFamily: string) => void
+  fontFamily: () => string | undefined
 }
 
 const initialState: State = {
+  /**
+   * 主题 全局亮色主题配置项
+   */
+  themeLightConfig,
+  /**
+   * 主题 全局暗色主题配置项
+   */
+  themeDarkConfig,
   /**
    * 主题模式
    * @description
@@ -75,6 +91,25 @@ export const useThemeStore = create<State & Actions>()(
      */
     toggleHappyWorkTheme: () => {
       set((state) => ({ enableHappyWorkTheme: !state.enableHappyWorkTheme }))
+    },
+
+    /**
+     * 字体
+     */
+
+    fontFamily: () => get().themeLightConfig.token?.fontFamily,
+
+    /**
+     * 切换字体
+     * @param currentFontFamily
+     */
+    changeFontFamily: (currentFontFamily: string) => {
+      set(
+        produce((draft) => {
+          draft.themeLightConfig.token!.fontFamily = currentFontFamily
+          draft.themeDarkConfig.token!.fontFamily = currentFontFamily
+        })
+      )
     }
   }))
 )
