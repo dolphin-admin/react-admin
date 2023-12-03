@@ -10,6 +10,7 @@ export default function Settings() {
   const themeStore = useThemeStore()
   const responsive = useResponsive()
   const [open, { toggle: toggleOpen, setLeft: setClose, setRight: setOpen }] = useToggle(false)
+  
   const [fontConfig, setFontConfig] = useState(themeStore.fontFamily())
 
   const fontOptions = [
