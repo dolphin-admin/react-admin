@@ -4,31 +4,33 @@ import CloseIcon from '~icons/material-symbols/close-rounded'
 
 export default function Settings() {
   const { t } = useTranslation(['COMMON', 'VALIDATION'])
-
   const { message: AMessage } = AApp.useApp()
-
   const themeStore = useThemeStore()
   const responsive = useResponsive()
-  const [open, { toggle: toggleOpen, setLeft: setClose, setRight: setOpen }] = useToggle(false)
-  
-  const [fontConfig, setFontConfig] = useState(themeStore.fontFamily())
+
+  const [showDrawer, { toggle: toggleShowDrawer }] = useToggle(false)
+
+  const [themeConfig, setThemeConfig] = useImmer({
+    fontFamily: themeStore.getFontFamily()
+  })
 
   const fontOptions = [
     { label: 'Nunito', value: BuiltInFont.NUNITO },
     { label: 'Jetbrains Mono', value: BuiltInFont.JET_BRAINS_MONO }
   ]
 
-  const handleFontConfig = (value: string) => {
-    setFontConfig(value)
-  }
+  const handleChangeFont = (value: string) =>
+    setThemeConfig((draft) => {
+      draft.fontFamily = value
+    })
 
   const handleConfirm = () => {
-    if (!fontConfig) {
-      AMessage.success(t('VALIDATION:FONT'))
+    if (!themeConfig.fontFamily) {
+      AMessage.error(t('VALIDATION:FONT'))
       return
     }
-    themeStore.changeFontFamily(fontConfig)
-    setClose()
+    themeStore.changeFontFamily(themeConfig.fontFamily)
+    toggleShowDrawer()
   }
 
   return (
@@ -40,33 +42,37 @@ export default function Settings() {
         <AIcon
           className="cursor-pointer text-xl"
           component={SettingsIcon}
-          onClick={setOpen}
+          onClick={toggleShowDrawer}
         />
       </ATooltip>
       <ADrawer
         title={t('PREFERENCE')}
         placement="right"
-        onClose={setClose}
-        open={open}
+        open={showDrawer}
         closeIcon={false}
+        onClose={toggleShowDrawer}
         extra={
           <AIcon
-            className="hover:rounded hover:bg-gray-100 dark:hover:bg-black"
-            style={{ fontSize: '24px' }}
+            className="text-2xl hover:rounded hover:bg-gray-100 dark:hover:bg-black"
             component={CloseIcon}
-            onClick={toggleOpen}
+            onClick={toggleShowDrawer}
           />
         }
         width={responsive.sm ? 400 : '100%'}
-        footer={<AButton onClick={handleConfirm}>{t('CONFIRM')}</AButton>}
+        footer={
+          <div className="flex items-center justify-end">
+            <AButton onClick={handleConfirm}>{t('CONFIRM')}</AButton>
+          </div>
+        }
       >
         <AForm layout="vertical">
           <AForm.Item label={t('FONT')}>
             <ASelect
-              onChange={handleFontConfig}
+              options={fontOptions}
+              value={themeConfig.fontFamily}
+              onChange={handleChangeFont}
               placeholder={t('VALIDATION:FONT')}
               allowClear
-              options={fontOptions}
             />
           </AForm.Item>
         </AForm>

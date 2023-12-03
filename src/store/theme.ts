@@ -4,13 +4,13 @@ import { produce } from 'immer'
 import { create } from 'zustand'
 import { subscribeWithSelector } from 'zustand/middleware'
 
-import { themeDarkConfig, themeLightConfig } from '@/constants'
+import { BuiltInFont, darkThemeConfigPresets, lightThemeConfigPresets } from '@/constants'
 
 interface State {
   theme: Theme
   enableHappyWorkTheme: boolean
-  themeLightConfig: ThemeConfig
-  themeDarkConfig: ThemeConfig
+  lightThemeConfig: ThemeConfig
+  darkThemeConfig: ThemeConfig
 }
 
 interface Actions {
@@ -20,19 +20,21 @@ interface Actions {
   changeTheme: (theme: Theme) => void
   setHappyWorkTheme: (enable: boolean) => void
   toggleHappyWorkTheme: () => void
+  getFontFamily: () => string | undefined
   changeFontFamily: (currentFontFamily: string) => void
-  fontFamily: () => string | undefined
 }
 
 const initialState: State = {
   /**
-   * 主题 全局亮色主题配置项
+   * 全局亮色主题配置项
    */
-  themeLightConfig,
+  lightThemeConfig: lightThemeConfigPresets,
+
   /**
-   * 主题 全局暗色主题配置项
+   * 全局暗色主题配置项
    */
-  themeDarkConfig,
+  darkThemeConfig: darkThemeConfigPresets,
+
   /**
    * 主题模式
    * @description
@@ -96,21 +98,19 @@ export const useThemeStore = create<State & Actions>()(
     /**
      * 字体
      */
-
-    fontFamily: () => get().themeLightConfig.token?.fontFamily,
+    getFontFamily: () => get().lightThemeConfig.token!.fontFamily,
 
     /**
      * 切换字体
      * @param currentFontFamily
      */
-    changeFontFamily: (currentFontFamily: string) => {
+    changeFontFamily: (currentFontFamily: string = BuiltInFont.NUNITO) =>
       set(
-        produce((draft) => {
-          draft.themeLightConfig.token!.fontFamily = currentFontFamily
-          draft.themeDarkConfig.token!.fontFamily = currentFontFamily
+        produce<State>((draft) => {
+          draft.lightThemeConfig.token!.fontFamily = currentFontFamily
+          draft.darkThemeConfig.token!.fontFamily = currentFontFamily
         })
       )
-    }
   }))
 )
 

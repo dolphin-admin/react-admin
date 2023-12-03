@@ -49,7 +49,7 @@ export default function App() {
       <AConfigProvider
         locale={langStore.locale}
         theme={{
-          ...(themeStore.isLightTheme() ? themeStore.themeLightConfig : themeStore.themeDarkConfig)
+          ...(themeStore.isLightTheme() ? themeStore.lightThemeConfig : themeStore.darkThemeConfig)
         }}
       >
         <StyleProvider
