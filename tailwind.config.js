@@ -2,7 +2,11 @@
 module.exports = {
   content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
   theme: {
-    extend: {}
+    extend: {
+      textColor: {
+        muted: '#999999'
+      }
+    }
   },
   darkMode: ['class', '[data-theme="dark"]']
 }

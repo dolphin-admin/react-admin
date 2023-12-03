@@ -1,23 +1,23 @@
 import type { Setting } from '@/types'
-import LoadingIcon from '~icons/line-md/loading-twotone-loop'
+import ValueIcon from '~icons/carbon/character-upper-case'
+import RemarkIcon from '~icons/mdi/comment-multiple-outline'
 import DeleteIcon from '~icons/mdi/delete-forever-outline'
-import DisableIcon from '~icons/mdi/hand-back-left-off-outline'
-import EnableIcon from '~icons/mdi/hand-back-left-outline'
+import EnableIcon from '~icons/mdi/lock-open-outline'
+import DisableIcon from '~icons/mdi/lock-outline'
 import EditIcon from '~icons/mdi/pencil'
-import RefreshIcon from '~icons/mdi/refresh'
+import KeyIcon from '~icons/solar/key-outline'
 
 export function Component() {
   const { t, i18n } = useTranslation()
+  const response = useResponsive()
   const queryClient = useQueryClient()
   const { message: AMessage } = AApp.useApp()
+  const hoverDisplay = useHoverDisplay<number>()
 
   const [pagination, setPagination] = useImmer({
     current: 1,
     pageSize: 10,
     total: 0
-  })
-  const [searchParams, setSearchParams] = useImmer({
-    searchText: ''
   })
 
   const {
@@ -25,14 +25,12 @@ export function Component() {
     isRefetching,
     refetch
   } = useQuery({
-    // eslint-disable-next-line @tanstack/query/exhaustive-deps
     queryKey: [SettingAPI.LIST_QUERY_KEY, pagination.pageSize, pagination.current],
     queryFn: () =>
       SettingAPI.list(
         new BasePageModel({
           pageSize: pagination.pageSize,
-          page: pagination.current,
-          searchText: searchParams.searchText
+          page: pagination.current
         })
       ),
     placeholderData: keepPreviousData
@@ -63,7 +61,7 @@ export function Component() {
         draft.total = queryResult.total
       })
     }
-  }, [queryResult])
+  }, [queryResult, setPagination])
 
   // 处理字段的国际化
   function processI18n(data?: Setting[]) {
@@ -76,13 +74,9 @@ export function Component() {
     }))
   }
 
-  // 搜索
-  const handleSearch = () => {
-    setPagination((draft) => {
-      draft.current = 1
-      draft.total = 0
-    })
-    refetch()
+  // 启用、禁用
+  async function toggleEnable(id: number, enable: boolean) {
+    await toggleEnableMutation.mutateAsync({ id, enable })
   }
 
   // 删除
@@ -90,79 +84,50 @@ export function Component() {
     await deleteMutation.mutateAsync(id)
   }
 
-  // 启用、禁用
-  async function toggleEnable(id: number, enable: boolean) {
-    await toggleEnableMutation.mutateAsync({ id, enable })
-  }
-
   return (
-    <TableLayout
-      operate={
-        <div className="flex items-center justify-between space-x-2">
-          <div>
-            <AInput.Search
-              value={searchParams.searchText}
-              onChange={(e) => {
-                setSearchParams((draft) => {
-                  draft.searchText = e.target.value
-                })
-              }}
-              onSearch={handleSearch}
-              allowClear
-              placeholder="请输入关键字"
-            />
-          </div>
-          <ASpace>
-            <AButton
-              className="!flex items-center justify-center "
-              shape="circle"
-              icon={<AIcon component={isRefetching ? LoadingIcon : RefreshIcon} />}
-              onClick={handleSearch}
-            />
-            <AButton type="primary">新增</AButton>
-          </ASpace>
-        </div>
-      }
+    <DpTableLayout
+      operate={<AButton type="primary">新增</AButton>}
+      header={<DpTableSearch loading={isRefetching} />}
       table={
-        <div className="flex min-h-[calc(100vh-214px)] flex-col items-center justify-between gap-2">
+        <div className="flex min-h-[calc(100vh-250px)] flex-col items-center justify-between gap-2">
           <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
             {processI18n(queryResult?.data).map((item) => (
               <ACard
                 key={item.id}
                 rootClassName="rounded"
-                className={clsx('hover:border-blue-400 hover:bg-slate-50 dark:hover:bg-gray-800')}
+                className="hover:border-blue-400 hover:bg-slate-50 dark:hover:bg-gray-800"
+                onMouseEnter={() => hoverDisplay.onMouseEnter(item.id)}
+                onMouseLeave={hoverDisplay.onMouseLeave}
+                onMouseOver={() => hoverDisplay.onMouseOver(item.id)}
+                onMouseOut={hoverDisplay.onMouseOut}
               >
-                <div className="flex h-24 justify-between">
-                  <div className="flex h-full flex-col items-start justify-between">
-                    <div>
-                      <span className="pr-2">{`${item.id}   ${item.value}`}</span>
-                      <ATag color="processing">{item.key}</ATag>
-                    </div>
-                    <div>{item.remark}</div>
-                    <div className="text-slate-400">{item.label}</div>
-                  </div>
-                  <div>
-                    <div className="flex cursor-pointer items-center justify-center gap-4">
+                <AFlex
+                  vertical
+                  className="space-y-1"
+                >
+                  <AFlex justify="space-between">
+                    <AFlex className="space-x-1">
+                      <ATag>{item.id}</ATag>
+                      <span>{item.label}</span>
+                    </AFlex>
+                    <AFlex
+                      align="center"
+                      className={clsx(
+                        'space-x-2 transition-[opacity,transform] duration-500',
+                        hoverDisplay.hoverItem === item.id
+                          ? 'translate-x-0 opacity-100'
+                          : 'translate-x-[-100%] opacity-0'
+                      )}
+                    >
                       <ATooltip
                         placement="top"
                         title="编辑"
                         arrow
                       >
                         <AIcon
-                          className="text-lg text-gray-500  hover:text-blue-400"
+                          className="cursor-pointer text-lg text-muted hover:text-blue-400"
                           size={36}
                           component={EditIcon}
-                        />
-                      </ATooltip>
-                      <ATooltip
-                        placement="top"
-                        title="删除"
-                        arrow
-                      >
-                        <AIcon
-                          onClick={() => handleDelete(item.id)}
-                          className="text-xl text-gray-500 hover:text-blue-400"
-                          component={DeleteIcon}
                         />
                       </ATooltip>
                       <ATooltip
@@ -172,13 +137,48 @@ export function Component() {
                       >
                         <AIcon
                           onClick={() => toggleEnable(item.id, !item.enabled)}
-                          className="text-lg text-gray-500 hover:text-blue-400"
-                          component={item.enabled ? DisableIcon : EnableIcon}
+                          className="cursor-pointer text-lg text-muted hover:text-blue-400"
+                          component={item.enabled ? EnableIcon : DisableIcon}
                         />
                       </ATooltip>
-                    </div>
-                  </div>
-                </div>
+                      <ATooltip
+                        placement="top"
+                        title="删除"
+                        arrow
+                      >
+                        <AIcon
+                          onClick={() => handleDelete(item.id)}
+                          className="cursor-pointer text-xl text-muted hover:text-red-400"
+                          component={DeleteIcon}
+                        />
+                      </ATooltip>
+                    </AFlex>
+                  </AFlex>
+
+                  <AFlex className="space-x-2">
+                    <AIcon
+                      component={KeyIcon}
+                      className="text-muted"
+                    />
+                    <span>{item.key}</span>
+                  </AFlex>
+
+                  <AFlex className="space-x-2">
+                    <AIcon
+                      component={ValueIcon}
+                      className="text-muted"
+                    />
+                    <span>{item.value}</span>
+                  </AFlex>
+
+                  <AFlex className="space-x-2 overflow-hidden text-ellipsis">
+                    <AIcon
+                      component={RemarkIcon}
+                      className="text-muted"
+                    />
+                    <span>{item.remark}</span>
+                  </AFlex>
+                </AFlex>
               </ACard>
             ))}
           </div>
@@ -191,6 +191,7 @@ export function Component() {
                 draft.pageSize = pageSize
               })
             }}
+            size={response.sm ? 'default' : 'small'}
             showSizeChanger
             showQuickJumper
             showTotal={(total) => t('SHOW.TOTAL', { total })}

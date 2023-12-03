@@ -12,7 +12,7 @@ export const routes: CustomRouteObject[] = [
     children: [
       {
         path: '/',
-        Component: BaseLayout,
+        Component: DpBaseLayout,
         children: [
           {
             index: true,
@@ -28,6 +28,11 @@ export const routes: CustomRouteObject[] = [
             path: '/code-templates/card',
             lazy: () => import('@/pages/code-templates/card'),
             meta: { title: () => t('CODE.TEMPLATES.CARD') }
+          },
+          {
+            path: '/code-templates/two-col',
+            lazy: () => import('@/pages/code-templates/two-col'),
+            meta: { title: () => t('CODE.TEMPLATES.TWO.COL') }
           },
           {
             path: '/multi-level-menus/2-1/2-1-1',
@@ -69,7 +74,7 @@ export const routes: CustomRouteObject[] = [
       },
       {
         path: '/',
-        Component: AuthLayout,
+        Component: DpAuthLayout,
         children: [
           {
             path: '/login',

@@ -2,18 +2,14 @@ import type { ColumnsType } from 'antd/es/table'
 
 import type { Setting } from '@/types'
 import CheckIcon from '~icons/ic/baseline-check'
-import LoadingIcon from '~icons/line-md/loading-twotone-loop'
-import RefreshIcon from '~icons/mdi/refresh'
-
-interface FormValues {
-  searchText: string
-}
 
 export function Component() {
   const { t, i18n } = useTranslation('COMMON')
+  const response = useResponsive()
   const queryClient = useQueryClient()
   const { message: AMessage } = AApp.useApp()
-  const [form] = AForm.useForm<FormValues>()
+  const [searchText, setSearchText] = useState('')
+  const searchRef = useRef<string>('')
 
   const [pagination, setPagination] = useImmer({
     current: 1,
@@ -24,16 +20,20 @@ export function Component() {
   const {
     data: queryResult,
     isRefetching,
-    isFetching,
-    refetch
+    isFetching
   } = useQuery({
-    queryKey: [SettingAPI.LIST_QUERY_KEY, pagination.current, pagination.pageSize],
+    queryKey: [
+      SettingAPI.LIST_QUERY_KEY,
+      pagination.current,
+      pagination.pageSize,
+      searchRef.current
+    ],
     queryFn: () =>
       SettingAPI.list(
         new BasePageModel({
           pageSize: pagination.pageSize,
           page: pagination.current,
-          searchText: form.getFieldValue('searchText')
+          searchText: searchRef.current
         })
       ),
     placeholderData: keepPreviousData
@@ -75,7 +75,7 @@ export function Component() {
         draft.total = queryResult.total
       })
     }
-  }, [queryResult])
+  }, [queryResult, setPagination])
 
   const columns: ColumnsType<Setting> = [
     { title: 'ID', dataIndex: 'id', key: 'id', fixed: 'left', align: 'center', width: 60 },
@@ -186,9 +186,6 @@ export function Component() {
     }))
   }
 
-  // 搜索
-  const handleSearch = () => refetch()
-
   // 启用
   async function handleEnable(id: number) {
     await enableMutation.mutateAsync(id)
@@ -205,43 +202,17 @@ export function Component() {
   }
 
   return (
-    <TableLayout
-      operate={
-        <AForm
-          className="flex items-center justify-between space-x-2"
-          name="search"
-          form={form}
-          initialValues={{
-            searchText: ''
+    <DpTableLayout
+      operate={<AButton type="primary">新增</AButton>}
+      header={
+        <DpTableSearch
+          searchText={searchText}
+          setSearchText={setSearchText}
+          loading={isRefetching}
+          handleSearch={() => {
+            searchRef.current = searchText
           }}
-          onFinish={handleSearch}
-          autoComplete="off"
-          disabled={isRefetching}
-        >
-          <ASpace>
-            <AForm.Item
-              name="searchText"
-              noStyle
-            >
-              <AInput.Search
-                name="searchText"
-                loading={isRefetching}
-                onSearch={handleSearch}
-                allowClear
-                placeholder="请输入关键字"
-              />
-            </AForm.Item>
-          </ASpace>
-          <ASpace>
-            <AButton
-              className="!flex items-center justify-center"
-              shape="circle"
-              icon={<AIcon component={isRefetching ? LoadingIcon : RefreshIcon} />}
-              onClick={handleSearch}
-            />
-            <AButton type="primary">新增</AButton>
-          </ASpace>
-        </AForm>
+        />
       }
       table={
         <ATable<Setting>
@@ -260,6 +231,8 @@ export function Component() {
                 draft.pageSize = pageSize
               })
             },
+            rootClassName: '!mb-0',
+            size: response.sm ? 'default' : 'small',
             showSizeChanger: true,
             showQuickJumper: true,
             showTotal: (total) => t('SHOW.TOTAL', { total })

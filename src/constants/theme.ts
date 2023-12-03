@@ -13,8 +13,15 @@ const themeBaseToken: Partial<AliasToken> = {
     'Nunito, Noto Sans SC, Noto Color Emoji, system-ui, -apple-system, Roboto, Helvetica Neue, Arial, sans-serif'
 }
 
-// 主题：全局
-export const themeLightConfig: ThemeConfig = {
+// 主题：组件配置
+const themeBaseComponents = {
+  Card: {
+    paddingLG: 16
+  }
+}
+
+// 亮色主题预设
+export const lightThemeConfigPresets: ThemeConfig = {
   algorithm: ATheme.defaultAlgorithm,
   token: {
     ...themeBaseToken,
@@ -24,19 +31,18 @@ export const themeLightConfig: ThemeConfig = {
     colorTextBase: '#000000'
   },
   components: {
+    ...themeBaseComponents,
     Layout: {
       bodyBg: '#ffffff',
       footerBg: '#ffffff',
       headerBg: '#ffffff',
       siderBg: '#ffffff'
-    },
-    Card: {
-      paddingLG: 16
     }
   }
 }
 
-export const themeDarkConfig: ThemeConfig = {
+// 暗色主题预设
+export const darkThemeConfigPresets: ThemeConfig = {
   algorithm: ATheme.darkAlgorithm,
   token: {
     ...themeBaseToken,
@@ -47,14 +53,12 @@ export const themeDarkConfig: ThemeConfig = {
     colorTextBase: '#ffffff'
   },
   components: {
+    ...themeBaseComponents,
     Layout: {
       bodyBg: '36393f',
       footerBg: '#36393f',
       headerBg: '#36393f',
       siderBg: '#36393f'
-    },
-    Card: {
-      paddingLG: 16
     }
   }
 }

@@ -1,6 +1,6 @@
-import { Content, Footer, Header, Sidebar } from './components'
+import { Content, Footer, Header, Sidebar, Tabs } from './components'
 
-export default function Layout() {
+export default function DpBaseLayout() {
   const { isLoading } = useAuthGuard()
 
   if (isLoading) {
@@ -13,6 +13,7 @@ export default function Layout() {
       <Sidebar />
       <ALayout className="border-r border-gray-300 dark:border-gray-950">
         <Header />
+        <Tabs />
         <Content />
         <Footer />
       </ALayout>

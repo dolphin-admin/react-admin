@@ -6,6 +6,7 @@ import ErrorPagesIcon from '~icons/ic/baseline-error-outline'
 import ListTemplatesIcon from '~icons/ic/outline-list-alt'
 import MultiLevelMenusIcon from '~icons/ic/round-format-list-bulleted'
 import CardTemplatesIcon from '~icons/ic/round-space-dashboard'
+import TowColTemplatesIcon from '~icons/icon-park-outline/freeze-column'
 import IAmATeapotIcon from '~icons/icon-park-outline/tea-drink'
 import InternalServerErrorIcon from '~icons/lucide/server-off'
 // import UserManagementIcon from '~icons/mdi/account-cog-outline'
@@ -41,6 +42,11 @@ export const getMenuTree = (): MenuItem[] => [
         label: t('CODE.TEMPLATES.CARD'),
         key: '/code-templates/card',
         icon: <AIcon component={CardTemplatesIcon} />
+      },
+      {
+        label: t('CODE.TEMPLATES.TWO.COL'),
+        key: '/code-templates/two-col',
+        icon: <AIcon component={TowColTemplatesIcon} />
       }
     ]
   },
