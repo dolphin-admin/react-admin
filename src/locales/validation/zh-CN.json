@@ -14,5 +14,6 @@
   "PASSWORD.LENGTH": "密码长度至少为 6 位",
   "PHONE.NUMBER": "请输入电话号码",
   "PHONE.NUMBER.FORMAT": "请输入正确格式的手机号",
-  "USERNAME": "请输入用户名"
+  "USERNAME": "请输入用户名",
+  "FONT": "请选择字体"
 }
