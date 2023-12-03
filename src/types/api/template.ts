@@ -1,4 +1,4 @@
-export interface Setting {
+export interface TemplateSetting {
   id: number
   key: string
   value: string
@@ -10,7 +10,7 @@ export interface Setting {
   settingTrans: any
 }
 
-export interface CreateSettingModel {
+export interface CreateTemplateSettingModel {
   key: string
   value: string
   label: any
@@ -20,4 +20,4 @@ export interface CreateSettingModel {
   sort: number
 }
 
-export interface UpdateSettingModel extends CreateSettingModel {}
+export interface UpdateTemplateSettingModel extends CreateTemplateSettingModel {}

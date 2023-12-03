@@ -1,4 +1,4 @@
-import { Content, Footer, Header, Sidebar } from './components'
+import { Content, Footer, Header, Sidebar, Tabs } from './components'
 
 export default function Layout() {
   const { isLoading } = useAuthGuard()
@@ -13,6 +13,7 @@ export default function Layout() {
       <Sidebar />
       <ALayout className="border-r border-gray-300 dark:border-gray-950">
         <Header />
+        <Tabs />
         <Content />
         <Footer />
       </ALayout>

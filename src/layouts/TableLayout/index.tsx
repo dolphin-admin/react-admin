@@ -7,10 +7,10 @@ export default function TableLayout(props: Props) {
   return (
     <ACard
       hoverable
-      className="!cursor-default"
+      rootClassName="!cursor-default"
     >
-      {props.operate ? <ACard className="!mb-2">{props.operate}</ACard> : null}
-      {props.table}
+      {props.operate ? <ACard rootClassName="!mb-2">{props.operate}</ACard> : null}
+      <div>{props.table}</div>
     </ACard>
   )
 }

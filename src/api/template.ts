@@ -1,22 +1,17 @@
 import type { BasePageModel } from '@/constants'
-import type {
-  BaseResponse,
-  CreateSettingModel,
-  PageResponse,
-  Setting,
-  UpdateSettingModel
-} from '@/types'
+import type { BaseResponse, PageResponse, Setting } from '@/types'
+import type { CreateTemplateSettingModel, UpdateTemplateSettingModel } from '@/types/api/template'
 
-export class SettingAPI {
-  private static SETTING_API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/settings`
+export class TemplateAPI {
+  private static SETTING_API_PREFIX = `${GlobalEnvConfig.MOCK_API_PREFIX}/settings`
 
   /**
    * 设置列表缓存 key
    */
-  static LIST_QUERY_KEY = 'SETTING.LIST'
+  static LIST_QUERY_KEY = 'TEMPLATE.SETTING.LIST'
 
   /**
-   * 设置列表
+   * 模版设置列表
    */
   static list(params: BasePageModel) {
     return httpRequest.get<PageResponse<Setting[]>>(this.SETTING_API_PREFIX, {
@@ -25,51 +20,44 @@ export class SettingAPI {
   }
 
   /**
-   * 设置详情
+   * 模版设置详情
    */
   static detail(id: number) {
     return httpRequest.get<BaseResponse<Setting>>(`${this.SETTING_API_PREFIX}/${id}`)
   }
 
   /**
-   * 新增设置
+   * 新增模版设置
    */
-  static create(data: CreateSettingModel) {
+  static create(data: CreateTemplateSettingModel) {
     return httpRequest.get<BaseResponse<Setting>>(`${this.SETTING_API_PREFIX}`, { ...data })
   }
 
   /**
-   * 修改设置
+   * 修改模版设置
    */
-  static update(id: number, data: UpdateSettingModel) {
+  static update(id: number, data: UpdateTemplateSettingModel) {
     return httpRequest.get<BaseResponse<Setting>>(`${this.SETTING_API_PREFIX}/${id}`, { ...data })
   }
 
   /**
-   * 启用设置
+   * 启用模版设置
    */
   static enable(id: number) {
     return httpRequest.patch<BaseResponse>(`${this.SETTING_API_PREFIX}/${id}/enable`)
   }
 
   /**
-   * 禁用设置
+   * 禁用模版设置
    */
   static disable(id: number) {
     return httpRequest.patch<BaseResponse>(`${this.SETTING_API_PREFIX}/${id}/disable`)
   }
 
   /**
-   * 删除设置
+   * 删除模版设置
    */
   static delete(id: number) {
     return httpRequest.delete<BaseResponse>(`${this.SETTING_API_PREFIX}/${id}`)
-  }
-
-  /**
-   * 排序设置
-   */
-  static sort(id: number, targetId: number) {
-    return httpRequest.patch<BaseResponse>(`${this.SETTING_API_PREFIX}/${id}/sort/${targetId}`)
   }
 }

@@ -30,6 +30,11 @@ export const routes: CustomRouteObject[] = [
             meta: { title: () => t('CODE.TEMPLATES.CARD') }
           },
           {
+            path: '/code-templates/two-col',
+            lazy: () => import('@/pages/code-templates/two-col'),
+            meta: { title: () => t('CODE.TEMPLATES.TWO.COL') }
+          },
+          {
             path: '/multi-level-menus/2-1/2-1-1',
             lazy: () => import('@/pages/multi-level-menus/2-1/2-1-1'),
             meta: { title: '2-1-1' }
