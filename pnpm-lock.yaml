@@ -99,7 +99,7 @@ devDependencies:
     version: 0.0.11
   '@dolphin-admin/bootstrap-animation':
     specifier: ^0.0.5
-    version: 0.0.5(vite@4.5.0)
+    version: 0.0.5(vite@4.5.1)
   '@iconify/json':
     specifier: ^2.2.151
     version: 2.2.151
@@ -132,7 +132,7 @@ devDependencies:
     version: 18.2.17
   '@vitejs/plugin-react-swc':
     specifier: ^3.5.0
-    version: 3.5.0(vite@4.5.0)
+    version: 3.5.0(vite@4.5.1)
   autoprefixer:
     specifier: ^10.4.16
     version: 10.4.16(postcss@8.4.32)
@@ -185,14 +185,14 @@ devDependencies:
     specifier: ^0.18.1
     version: 0.18.1(@svgr/core@8.1.0)
   vite:
-    specifier: 4.5.0
-    version: 4.5.0(@types/node@18.18.7)(sass@1.69.5)
+    specifier: 4.5.1
+    version: 4.5.1(@types/node@18.18.7)(sass@1.69.5)
   vite-plugin-compression:
     specifier: ^0.5.1
-    version: 0.5.1(vite@4.5.0)
+    version: 0.5.1(vite@4.5.1)
   vite-plugin-progress:
     specifier: ^0.0.7
-    version: 0.0.7(vite@4.5.0)
+    version: 0.0.7(vite@4.5.1)
   vite-plugin-version-mark:
     specifier: ^0.0.10
     version: 0.0.10
@@ -1266,14 +1266,14 @@ packages:
       - rollup
     dev: true
 
-  /@dolphin-admin/bootstrap-animation@0.0.5(vite@4.5.0):
+  /@dolphin-admin/bootstrap-animation@0.0.5(vite@4.5.1):
     resolution: {integrity: sha512-UzYPN5Pd5scg2GNMgyNsMD5cbGHZBPGbBf8GSD3x4IgtKQW0sUbfc4EHmdL3dKuYJka561Hb8pTIzdMbLhfG3Q==}
     peerDependencies:
       vite: ^5.0.0
     dependencies:
       figlet: 1.7.0
       gradient-string: 2.0.2
-      vite: 4.5.0(@types/node@18.18.7)(sass@1.69.5)
+      vite: 4.5.1(@types/node@18.18.7)(sass@1.69.5)
     dev: true
 
   /@dolphin-admin/utils@0.0.18:
@@ -2469,13 +2469,13 @@ packages:
     resolution: {integrity: sha512-zuVdFrMJiuCDQUMCzQaD6KL28MjnqqN8XnAqiEq9PNm/hCPTSGfrXCOfwj1ow4LFb/tNymJPwsNbVePc1xFqrQ==}
     dev: true
 
-  /@vitejs/plugin-react-swc@3.5.0(vite@4.5.0):
+  /@vitejs/plugin-react-swc@3.5.0(vite@4.5.1):
     resolution: {integrity: sha512-1PrOvAaDpqlCV+Up8RkAh9qaiUjoDUcjtttyhXDKw53XA6Ve16SOp6cCOpRs8Dj8DqUQs6eTW5YkLcLJjrXAig==}
     peerDependencies:
       vite: ^4 || ^5
     dependencies:
       '@swc/core': 1.3.96
-      vite: 4.5.0(@types/node@18.18.7)(sass@1.69.5)
+      vite: 4.5.1(@types/node@18.18.7)(sass@1.69.5)
     transitivePeerDependencies:
       - '@swc/helpers'
     dev: true
@@ -8047,7 +8047,7 @@ packages:
       spdx-expression-parse: 3.0.1
     dev: true
 
-  /vite-plugin-compression@0.5.1(vite@4.5.0):
+  /vite-plugin-compression@0.5.1(vite@4.5.1):
     resolution: {integrity: sha512-5QJKBDc+gNYVqL/skgFAP81Yuzo9R+EAf19d+EtsMF/i8kFUpNi3J/H01QD3Oo8zBQn+NzoCIFkpPLynoOzaJg==}
     peerDependencies:
       vite: '>=2.0.0'
@@ -8055,12 +8055,12 @@ packages:
       chalk: 4.1.2
       debug: 4.3.4
       fs-extra: 10.1.0
-      vite: 4.5.0(@types/node@18.18.7)(sass@1.69.5)
+      vite: 4.5.1(@types/node@18.18.7)(sass@1.69.5)
     transitivePeerDependencies:
       - supports-color
     dev: true
 
-  /vite-plugin-progress@0.0.7(vite@4.5.0):
+  /vite-plugin-progress@0.0.7(vite@4.5.1):
     resolution: {integrity: sha512-zyvKdcc/X+6hnw3J1HVV1TKrlFKC4Rh8GnDnWG/2qhRXjqytTcM++xZ+SAPnoDsSyWl8O93ymK0wZRgHAoglEQ==}
     engines: {node: '>=14', pnpm: '>=7.0.0'}
     peerDependencies:
@@ -8069,15 +8069,15 @@ packages:
       picocolors: 1.0.0
       progress: 2.0.3
       rd: 2.0.1
-      vite: 4.5.0(@types/node@18.18.7)(sass@1.69.5)
+      vite: 4.5.1(@types/node@18.18.7)(sass@1.69.5)
     dev: true
 
   /vite-plugin-version-mark@0.0.10:
     resolution: {integrity: sha512-mBagiCiGShmgPkOPGL+M+1LX9lY7p8Rv/wCc13MGKCuiVSkixDPSSRiwnBWX30YD9Re46yfhvvTk4XZjyj3BrA==}
     dev: true
 
-  /vite@4.5.0(@types/node@18.18.7)(sass@1.69.5):
-    resolution: {integrity: sha512-ulr8rNLA6rkyFAlVWw2q5YJ91v098AFQ2R0PRFwPzREXOUJQPtFUG0t+/ZikhaOCDqFoDhN6/v8Sq0o4araFAw==}
+  /vite@4.5.1(@types/node@18.18.7)(sass@1.69.5):
+    resolution: {integrity: sha512-AXXFaAJ8yebyqzoNB9fu2pHoo/nWX+xZlaRwoeYUxEqBO+Zj4msE5G+BhGBll9lYEKv9Hfks52PAF2X7qDYXQA==}
     engines: {node: ^14.18.0 || >=16.0.0}
     hasBin: true
     peerDependencies:
