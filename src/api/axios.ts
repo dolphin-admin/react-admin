@@ -18,6 +18,8 @@ interface PendingTask {
   resolve: (value: unknown) => void
 }
 
+const t = i18n.getFixedT(null, 'COMMON')
+
 class Request {
   instance: AxiosInstance
 
@@ -90,7 +92,7 @@ class Request {
          * - 500 服务器错误，跳转到 500 页面
          * - 其他状态码，提示错误信息
          */
-        const errorMessage = message ?? errorMessageMap.get(status as number) ?? 'Unknown Error!'
+        const errorMessage = message ?? errorMessageMap.get(status as number) ?? t('UNKNOWN.ERROR')
         const currentRefreshToken = AuthUtils.getRefreshToken()
         switch (status) {
           case StatusCode.UNAUTHORIZED:
@@ -140,7 +142,7 @@ class Request {
         // 网络错误，跳转到 404 页面
         if (!window.navigator.onLine) {
           router.navigate('/404', { replace: true })
-          AMessage.error('网络错误，请检查网络连接')
+          AMessage.error(t('NETWORK.ERROR'))
         }
         return Promise.reject(data)
       }

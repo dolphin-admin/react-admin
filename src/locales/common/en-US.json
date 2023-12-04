@@ -47,15 +47,16 @@
   "RESET": "Reset",
   "SAVE": "Save",
   "SEARCH": "Search",
+  "SETTINGS": "Settings",
   "SHOW.TOTAL": "Total {{total}}",
   "SORT": "Sort",
   "START": "Start",
   "STATUS": "Status",
   "STOP": "Stop",
   "TYPE": "Type",
+  "UNKNOWN.ERROR": "Unknown Error",
   "UPLOAD": "Upload",
   "VALUE": "Value",
   "VERIFY": "Verify",
-  "VERIFY.OR.NOT": "Verify or not",
-  "SETTINGS": "Settings"
+  "VERIFY.OR.NOT": "Verify or not"
 }
