@@ -20,11 +20,7 @@ export function Component() {
     total: 0
   })
 
-  const {
-    data: queryResult,
-    isRefetching,
-    refetch
-  } = useQuery({
+  const templateQuery = useQuery({
     queryKey: [SettingAPI.LIST_QUERY_KEY, pagination.pageSize, pagination.current],
     queryFn: () =>
       SettingAPI.list(
@@ -33,6 +29,7 @@ export function Component() {
           page: pagination.current
         })
       ),
+    select: (data) => data.data,
     placeholderData: keepPreviousData
   })
 
@@ -41,27 +38,26 @@ export function Component() {
       enable ? SettingAPI.enable(id) : SettingAPI.disable(id),
     onSuccess: () => {
       AMessage.success('操作成功')
-      refetch()
+      templateQuery.refetch()
     }
   })
 
   const deleteMutation = useMutation({
     mutationFn: (id: number) => SettingAPI.delete(id),
-    onSuccess: ({ message }) => {
-      AMessage.success(message)
+    onSuccess: () =>
       queryClient.invalidateQueries({
         queryKey: [SettingAPI.LIST_QUERY_KEY]
       })
-    }
   })
 
   useEffect(() => {
-    if (queryResult) {
+    const { records, total } = templateQuery.data ?? {}
+    if (records && total) {
       setPagination((draft) => {
-        draft.total = queryResult.total
+        draft.total = total
       })
     }
-  }, [queryResult, setPagination])
+  }, [templateQuery, setPagination])
 
   // 处理字段的国际化
   function processI18n(data?: Setting[]) {
@@ -87,11 +83,11 @@ export function Component() {
   return (
     <DpTableLayout
       operate={<AButton type="primary">新增</AButton>}
-      header={<DpTableSearch loading={isRefetching} />}
+      header={<DpTableSearch loading={templateQuery.isRefetching} />}
       table={
         <div className="flex min-h-[calc(100vh-250px)] flex-col items-center justify-between gap-2">
           <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
-            {processI18n(queryResult?.data).map((item) => (
+            {processI18n(templateQuery.data?.records).map((item) => (
               <ACard
                 key={item.id}
                 rootClassName="rounded"

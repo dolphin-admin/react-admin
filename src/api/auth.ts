@@ -1,4 +1,4 @@
-import type { BaseResponse, LoginModel, SignupModel, UserTokenResponse } from '@/types'
+import type { LoginModel, R, SignupModel, UserToken } from '@/types'
 
 // 登录类型
 enum LoginType {
@@ -15,7 +15,7 @@ export class AuthAPI {
    * 登录
    */
   static login(data: LoginModel) {
-    return httpRequest.post<BaseResponse<UserTokenResponse>>(
+    return httpRequest.post<R<UserToken>>(
       `${this.AUTH_API_PREFIX}/login`,
       { ...data },
       { params: { type: LoginType.USERNAME } }
@@ -26,7 +26,7 @@ export class AuthAPI {
    * 注册
    */
   static signup(data: SignupModel) {
-    return httpRequest.post<BaseResponse<UserTokenResponse>>(`${this.AUTH_API_PREFIX}/signup`, {
+    return httpRequest.post<R<UserToken>>(`${this.AUTH_API_PREFIX}/signup`, {
       ...data
     })
   }
@@ -35,30 +35,20 @@ export class AuthAPI {
    * 刷新令牌
    */
   static async refresh(token: string) {
-    return httpRequest.post<BaseResponse<UserTokenResponse>>(
-      this.REFRESH_API_URL,
-      {},
-      { params: { token } }
-    )
+    return httpRequest.post<R<UserToken>>(this.REFRESH_API_URL, {}, { params: { token } })
   }
 
   /**
    * GitHub 登录
    */
   static loginWithGitHub(code: string) {
-    return httpRequest.post<BaseResponse<UserTokenResponse>>(
-      `${this.AUTH_API_PREFIX}/login/github`,
-      { code }
-    )
+    return httpRequest.post<R<UserToken>>(`${this.AUTH_API_PREFIX}/login/github`, { code })
   }
 
   /**
    * Google 登录
    */
   static loginWithGoogle(code: string) {
-    return httpRequest.post<BaseResponse<UserTokenResponse>>(
-      `${this.AUTH_API_PREFIX}/login/google`,
-      { code }
-    )
+    return httpRequest.post<R<UserToken>>(`${this.AUTH_API_PREFIX}/login/google`, { code })
   }
 }

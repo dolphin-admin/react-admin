@@ -11,22 +11,25 @@ import { createSearchParams } from 'react-router-dom'
 import type { BasePageModel } from '@/constants'
 import { errorMessageMap, StatusCode } from '@/constants'
 import router from '@/router'
-import type { BaseResponse, Response } from '@/types'
-
-interface PendingTask {
-  config?: AxiosRequestConfig
-  resolve: (value: unknown) => void
-}
+import type { PendingTask, R } from '@/types'
 
 const t = i18n.getFixedT(null, 'COMMON')
 
-class Request {
+class HttpRequest {
+  /**
+   * Axios 实例
+   */
   instance: AxiosInstance
 
-  // 刷新令牌的标识
+  /**
+   * 刷新令牌的标识
+   * @description `true` 表示正在刷新令牌
+   */
   isRefreshing = false
 
-  // 等待请求队列
+  /**
+   * 等待请求队列
+   */
   pendingQueue: PendingTask[] = []
 
   // Axios 配置
@@ -58,11 +61,12 @@ class Request {
     )
 
     this.instance.interceptors.response.use(
+      // 直接返回响应数据
       (res: AxiosResponse) => res.data,
-      async (err: AxiosError<Response>) => {
+      async (err: AxiosError<R>) => {
         const { response, config } = err
         const { data, status } = response ?? {}
-        const { message } = data ?? {}
+        const { msg } = data ?? {}
         // 当前接口是否是刷新令牌接口
         const isRefreshTokenAPI = config?.url?.includes(AuthAPI.REFRESH_API_URL)
         /**
@@ -92,7 +96,7 @@ class Request {
          * - 500 服务器错误，跳转到 500 页面
          * - 其他状态码，提示错误信息
          */
-        const errorMessage = message ?? errorMessageMap.get(status as number) ?? t('UNKNOWN.ERROR')
+        const errorMessage = msg ?? errorMessageMap.get(status as number) ?? t('UNKNOWN.ERROR')
         const currentRefreshToken = AuthUtils.getRefreshToken()
         switch (status) {
           case StatusCode.UNAUTHORIZED:
@@ -100,14 +104,14 @@ class Request {
             if (currentRefreshToken) {
               this.isRefreshing = true
               try {
-                const { refreshToken, accessToken } =
-                  (await AuthAPI.refresh(currentRefreshToken)).data ?? {}
+                const { refreshToken, accessToken } = (await AuthAPI.refresh(currentRefreshToken))
+                  .data
                 AuthUtils.setAccessToken(accessToken)
                 AuthUtils.setRefreshToken(refreshToken)
                 this.isRefreshing = false
                 if (config) {
                   // 重新发起上次失败的请求
-                  const res = await this.request<BaseResponse>({
+                  const res = await this.request<R>({
                     ...config,
                     headers: { ...config.headers, Authorization: AuthUtils.getAuthorization() }
                   })
@@ -232,4 +236,4 @@ class Request {
   }
 }
 
-export const httpRequest = new Request()
+export const httpRequest = new HttpRequest()

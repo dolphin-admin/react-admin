@@ -17,11 +17,7 @@ export function Component() {
     total: 0
   })
 
-  const {
-    data: queryResult,
-    isRefetching,
-    isFetching
-  } = useQuery({
+  const templateQuery = useQuery({
     queryKey: [
       SettingAPI.LIST_QUERY_KEY,
       pagination.current,
@@ -36,12 +32,13 @@ export function Component() {
           searchText: searchRef.current
         })
       ),
+    select: (data) => data.data,
     placeholderData: keepPreviousData
   })
 
   const enableMutation = useMutation({
     mutationFn: (id: number) => SettingAPI.enable(id),
-    onSuccess: ({ message: msg }) => {
+    onSuccess: ({ msg }) => {
       AMessage.success(msg)
       queryClient.invalidateQueries({
         queryKey: [SettingAPI.LIST_QUERY_KEY]
@@ -51,7 +48,7 @@ export function Component() {
 
   const disableMutation = useMutation({
     mutationFn: (id: number) => SettingAPI.disable(id),
-    onSuccess: ({ message: msg }) => {
+    onSuccess: ({ msg }) => {
       AMessage.success(msg)
       queryClient.invalidateQueries({
         queryKey: [SettingAPI.LIST_QUERY_KEY]
@@ -61,7 +58,7 @@ export function Component() {
 
   const deleteMutation = useMutation({
     mutationFn: (id: number) => SettingAPI.delete(id),
-    onSuccess: ({ message: msg }) => {
+    onSuccess: ({ msg }) => {
       AMessage.success(msg)
       queryClient.invalidateQueries({
         queryKey: [SettingAPI.LIST_QUERY_KEY]
@@ -70,12 +67,12 @@ export function Component() {
   })
 
   useEffect(() => {
-    if (queryResult?.total) {
+    if (templateQuery.data?.total) {
       setPagination((draft) => {
-        draft.total = queryResult.total
+        draft.total = templateQuery.data.total
       })
     }
-  }, [queryResult, setPagination])
+  }, [templateQuery.data?.total, setPagination])
 
   const columns: ColumnsType<Setting> = [
     { title: 'ID', dataIndex: 'id', key: 'id', fixed: 'left', align: 'center', width: 60 },
@@ -208,7 +205,7 @@ export function Component() {
         <DpTableSearch
           searchText={searchText}
           setSearchText={setSearchText}
-          loading={isRefetching}
+          loading={templateQuery.isRefetching}
           handleSearch={() => {
             searchRef.current = searchText
           }}
@@ -217,12 +214,12 @@ export function Component() {
       table={
         <ATable<Setting>
           columns={columns}
-          dataSource={processI18n(queryResult?.data)}
+          dataSource={processI18n(templateQuery.data?.records)}
           scroll={{
             scrollToFirstRowOnChange: true,
             x: 1500
           }}
-          loading={isFetching}
+          loading={templateQuery.isFetching}
           pagination={{
             ...pagination,
             onChange: (page, pageSize) => {

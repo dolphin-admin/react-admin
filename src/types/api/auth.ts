@@ -9,12 +9,12 @@ export interface SignupModel extends LoginModel {
   confirmPassword: string
 }
 
-export interface TokenResponse {
+export interface Token {
   accessToken: string
   refreshToken: string
 }
 
-export interface UserTokenResponse extends TokenResponse {
+export interface UserToken extends Token {
   user: User
 }
 
