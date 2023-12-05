@@ -164,9 +164,9 @@ class HttpRequest {
     AuthUtils.clearRefreshToken()
     // 如果非登录页面，需要重定向到登录页，且需要带上 redirect 参数
     const { pathname } = router.state.location
-    const redirect =
+    const search =
       pathname === '/login' ? '' : `?${createSearchParams({ redirect: pathname }).toString()}`
-    router.navigate({ pathname: `/login${redirect}`, search: '' }, { replace: true })
+    router.navigate({ pathname: '/login', search }, { replace: true })
   }
 
   /**
