@@ -1,112 +1,76 @@
-interface LoginData {
-  username: string
-  password: string
-}
+import type { LoginModel, R, UserToken } from '@/types'
+import UsernameIcon from '~icons/mdi/shield-account-outline'
+import PasswordIcon from '~icons/mdi/shield-lock-outline'
 
-interface FormValues extends LoginData {
-  rememberPassword: boolean
-}
+import { Header, ThirdPartyLogin } from './components'
+import { UserNameLoginType } from './enum'
+import { useHandleLoginResult, useLoginForm, useRedirect } from './hooks'
+import type { LoginFormData } from './types'
 
 export function Component() {
   const { t } = useTranslation(['AUTH', 'VALIDATION', 'USER'])
-  const { message } = AApp.useApp()
-  const userStore = useUserStore()
-  const [searchParams] = useSearchParams()
-  const navigate = useNavigate()
-  const [form] = AForm.useForm<FormValues>()
+  const { handleLoginResult } = useHandleLoginResult()
+  const { handleRedirect, handleForgotPassword, handleSignup } = useRedirect()
+  const { loginForm, clearPassword, setAdminAccount, setVisitorAccount, handleRememberPassword } =
+    useLoginForm()
 
+  // 登录请求
   const loginMutation = useMutation({
-    mutationFn: (data: LoginData) => AuthAPI.login(data),
-    onSuccess: (res) => {
-      const { data, msg } = res ?? {}
-      const { accessToken, refreshToken, user } = data ?? {}
-      AuthUtils.setAccessToken(accessToken)
-      AuthUtils.setRefreshToken(refreshToken)
-      userStore.setUser(user)
-
-      message.success(msg)
-
-      const formData = form.getFieldsValue()
-      if (formData.rememberPassword) {
-        AuthUtils.setRememberedAccount(JSON.stringify(formData))
-      } else {
-        AuthUtils.clearRememberedAccount()
-      }
-
-      if (searchParams.get('redirect')) {
-        navigate(searchParams.get('redirect')!, { replace: true })
-      } else {
-        navigate('/', { replace: true })
-      }
-    },
-    onError: () => form.setFieldValue('password', '')
+    mutationFn: (data: LoginModel) => AuthAPI.login(data),
+    onSuccess: onLoginSuccess,
+    onError: clearPassword
   })
 
-  useEffect(() => {
-    // 从 localStorage 中获取记住的账号密码
-    const localStorageData = AuthUtils.getRememberedAccount()
-    if (localStorageData) {
-      try {
-        const data = JSON.parse(localStorageData) as FormValues
-        form.setFieldsValue(data)
-      } catch {
-        //
-      }
-    }
-  }, [form])
-
-  // 登录
-  const handleLogin = (values: FormValues) => {
+  // 登录表单验证
+  const handleLoginForm = (values: LoginFormData) => {
     // eslint-disable-next-line unused-imports/no-unused-vars
     const { rememberPassword, ...loginData } = values
     loginMutation.mutate(loginData)
   }
 
-  // 以基本用户身份登录
-  const loginAsBasic = () => handleLogin(form.getFieldsValue())
-
-  // 以管理员身份登录
-  const loginAsAdmin = () => {
-    form.setFieldsValue({
-      ...form.getFieldsValue(),
-      username: AuthUtils.DEFAULT_ADMIN_USERNAME,
-      password: AuthUtils.DEFAULT_ADMIN_PASSWORD
-    })
-    handleLogin(form.getFieldsValue())
+  // 登录
+  const handleLogin = (type: UserNameLoginType) => {
+    switch (type) {
+      // 管理员登录
+      case UserNameLoginType.ADMIN:
+        setAdminAccount()
+        break
+      // 访客登录
+      case UserNameLoginType.VISITOR:
+        setVisitorAccount()
+        break
+      // 普通登录
+      case UserNameLoginType.BASIC:
+      default:
+        break
+    }
+    handleLoginForm(loginForm.getFieldsValue())
   }
 
-  // 以访客身份登录
-  const loginAsVisitor = () => {
-    form.setFieldsValue({
-      ...form.getFieldsValue(),
-      username: AuthUtils.DEFAULT_VISITOR_USERNAME,
-      password: AuthUtils.DEFAULT_VISITOR_PASSWORD
-    })
-    handleLogin(form.getFieldsValue())
+  // 登录成功
+  function onLoginSuccess(res: R<UserToken>) {
+    const { data, msg } = res ?? {}
+    // 处理登录结果
+    handleLoginResult(data, msg)
+    // 记住密码写入 localStorage
+    handleRememberPassword()
+    // 处理重定向
+    handleRedirect()
   }
-
-  // 忘记密码
-  const handleForgotPassword = () => navigate('/forgot-password')
-
-  // 注册
-  const handleSignup = () => navigate('/signup')
 
   return (
     <div className="absolute inset-0 m-auto flex h-fit w-[360px] max-w-[90%] flex-col rounded-lg bg-[#ffffff] p-8 shadow-md dark:bg-[#222222]">
-      <div className="flex flex-col items-center">
-        <span className="text-2xl font-medium">{AppMetadata.APP_NAME}</span>
-        <span className="mb-4 mt-2">🎉 {t('WELCOME.BACK')}</span>
-      </div>
+      <Header />
 
       <AForm
         name="login"
-        form={form}
+        form={loginForm}
         initialValues={{
           username: '',
           password: '',
           rememberPassword: false
         }}
-        onFinish={handleLogin}
+        onFinish={handleLoginForm}
         autoComplete="off"
         disabled={loginMutation.isPending}
       >
@@ -117,10 +81,13 @@ export function Component() {
         >
           <AInput
             prefix={
-              <Icon
-                icon="mdi:shield-account-outline"
-                width={20}
-                color="#999999"
+              <AIcon
+                component={() => (
+                  <UsernameIcon
+                    className="text-muted"
+                    fontSize={16}
+                  />
+                )}
               />
             }
             placeholder={t('USER:USERNAME')}
@@ -135,10 +102,13 @@ export function Component() {
         >
           <AInput.Password
             prefix={
-              <Icon
-                icon="mdi:shield-lock-outline"
-                width={20}
-                color="#999999"
+              <AIcon
+                component={() => (
+                  <PasswordIcon
+                    className="text-muted"
+                    fontSize={16}
+                  />
+                )}
               />
             }
             placeholder={t('USER:PASSWORD')}
@@ -176,7 +146,7 @@ export function Component() {
               type="primary"
               disabled={loginMutation.isPending}
               loading={loginMutation.isPending}
-              onClick={loginAsBasic}
+              onClick={() => handleLogin(UserNameLoginType.BASIC)}
             >
               {t('LOGIN')}
             </AButton>
@@ -188,7 +158,7 @@ export function Component() {
                 className="w-[calc(50%-4px)]"
                 disabled={loginMutation.isPending}
                 loading={loginMutation.isPending}
-                onClick={loginAsAdmin}
+                onClick={() => handleLogin(UserNameLoginType.ADMIN)}
               >
                 {t('LOGIN.AS.ADMIN')}
               </AButton>
@@ -196,7 +166,7 @@ export function Component() {
                 className="w-[calc(50%-4px)]"
                 disabled={loginMutation.isPending}
                 loading={loginMutation.isPending}
-                onClick={loginAsVisitor}
+                onClick={() => handleLogin(UserNameLoginType.VISITOR)}
               >
                 {t('LOGIN.AS.VISITOR')}
               </AButton>
@@ -219,32 +189,7 @@ export function Component() {
           </AConfigProvider>
         </div>
 
-        <ADivider className="!text-xs">{t('THIRD.PARTY.LOGIN')}</ADivider>
-
-        <div className="flex flex-col space-y-2">
-          <AButton
-            className="!flex items-center justify-center !bg-[#595d5f] !text-white dark:bg-[#333333] dark:hover:!border-transparent"
-            icon={
-              <Icon
-                icon="mdi:github"
-                width={20}
-              />
-            }
-          >
-            {t('LOGIN.WITH.GITHUB')}
-          </AButton>
-          <AButton
-            className="!flex items-center justify-center"
-            icon={
-              <Icon
-                icon="logos:google-icon"
-                width={16}
-              />
-            }
-          >
-            {t('LOGIN.WITH.GOOGLE')}
-          </AButton>
-        </div>
+        <ThirdPartyLogin />
       </AForm>
     </div>
   )

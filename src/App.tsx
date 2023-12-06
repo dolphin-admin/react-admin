@@ -1,4 +1,3 @@
-import './App.scss'
 import 'nprogress/nprogress.css'
 
 import { px2remTransformer, StyleProvider } from '@ant-design/cssinjs'
