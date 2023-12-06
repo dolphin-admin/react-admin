@@ -11,7 +11,7 @@ export function Component() {
   const { t, i18n } = useTranslation()
   const response = useResponsive()
   const queryClient = useQueryClient()
-  const { message: AMessage } = AApp.useApp()
+  const { message } = AApp.useApp()
   const hoverDisplay = useHoverDisplay<number>()
 
   const [pagination, setPagination] = useImmer({
@@ -37,7 +37,7 @@ export function Component() {
     mutationFn: ({ id, enable }: { id: number; enable: boolean }) =>
       enable ? SettingAPI.enable(id) : SettingAPI.disable(id),
     onSuccess: () => {
-      AMessage.success('操作成功')
+      message.success('操作成功')
       templateQuery.refetch()
     }
   })

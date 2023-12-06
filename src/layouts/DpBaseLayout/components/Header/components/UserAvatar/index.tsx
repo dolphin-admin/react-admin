@@ -7,7 +7,7 @@ enum UserAction {
 }
 export default function UserAvatar() {
   const { t } = useTranslation(['LAYOUT', 'AUTH'])
-  const { message: AMessage } = AApp.useApp()
+  const { message } = AApp.useApp()
   const userStore = useUserStore()
   const navigate = useNavigate()
 
@@ -32,7 +32,7 @@ export default function UserAvatar() {
     AuthUtils.clearAccessToken()
     AuthUtils.clearRefreshToken()
     navigate('/login', { replace: true })
-    AMessage.success(t('AUTH:LOG.OUT.SUCCESS'))
+    message.success(t('AUTH:LOG.OUT.SUCCESS'))
   }
 
   if (!userStore.hasData()) {

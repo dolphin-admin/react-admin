@@ -7,7 +7,7 @@ export function Component() {
   const { t, i18n } = useTranslation('COMMON')
   const response = useResponsive()
   const queryClient = useQueryClient()
-  const { message: AMessage } = AApp.useApp()
+  const { message } = AApp.useApp()
   const [searchText, setSearchText] = useState('')
   const searchRef = useRef<string>('')
 
@@ -39,7 +39,7 @@ export function Component() {
   const enableMutation = useMutation({
     mutationFn: (id: number) => SettingAPI.enable(id),
     onSuccess: ({ msg }) => {
-      AMessage.success(msg)
+      message.success(msg)
       queryClient.invalidateQueries({
         queryKey: [SettingAPI.LIST_QUERY_KEY]
       })

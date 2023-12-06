@@ -9,7 +9,7 @@ interface FormValues extends LoginData {
 
 export function Component() {
   const { t } = useTranslation(['AUTH', 'VALIDATION', 'USER'])
-  const { message: AMessage } = AApp.useApp()
+  const { message } = AApp.useApp()
   const userStore = useUserStore()
   const [searchParams] = useSearchParams()
   const navigate = useNavigate()
@@ -18,13 +18,13 @@ export function Component() {
   const loginMutation = useMutation({
     mutationFn: (data: LoginData) => AuthAPI.login(data),
     onSuccess: (res) => {
-      const { data, message } = res ?? {}
+      const { data, msg } = res ?? {}
       const { accessToken, refreshToken, user } = data ?? {}
       AuthUtils.setAccessToken(accessToken)
       AuthUtils.setRefreshToken(refreshToken)
       userStore.setUser(user)
 
-      AMessage.success(message)
+      message.success(msg)
 
       const formData = form.getFieldsValue()
       if (formData.rememberPassword) {

@@ -4,7 +4,7 @@ import CloseIcon from '~icons/material-symbols/close-rounded'
 
 export default function Settings() {
   const { t } = useTranslation(['COMMON', 'VALIDATION'])
-  const { message: AMessage } = AApp.useApp()
+  const { message } = AApp.useApp()
   const themeStore = useThemeStore()
   const responsive = useResponsive()
 
@@ -26,7 +26,7 @@ export default function Settings() {
 
   const handleConfirm = () => {
     if (!themeConfig.fontFamily) {
-      AMessage.error(t('VALIDATION:FONT'))
+      message.error(t('VALIDATION:FONT'))
       return
     }
     themeStore.changeFontFamily(themeConfig.fontFamily)

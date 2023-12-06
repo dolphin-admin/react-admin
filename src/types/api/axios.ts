@@ -5,6 +5,8 @@ export interface R<T = any> {
   code: string
   msg: string
   data: T
+  success: boolean
+  errors?: string[]
 }
 
 // 响应类型（分页）

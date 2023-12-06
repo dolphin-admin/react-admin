@@ -14,7 +14,7 @@ export function Component() {
   const signupMutation = useMutation({
     mutationFn: (data: SignupData) => AuthAPI.signup(data),
     onSuccess: async (res) => {
-      const { data, message: msg } = res ?? {}
+      const { data, msg } = res ?? {}
       const { accessToken, refreshToken, user } = data ?? {}
       AuthUtils.setAccessToken(accessToken)
       AuthUtils.setRefreshToken(refreshToken)
