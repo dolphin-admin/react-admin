@@ -1,3 +1,4 @@
+import { UserNameLoginType } from '../enum'
 import type { LoginFormData } from '../types'
 
 export const useLoginForm = () => {
@@ -33,6 +34,24 @@ export const useLoginForm = () => {
       password: AuthUtils.DEFAULT_VISITOR_PASSWORD
     })
 
+  // 处理不同登录方式
+  const handleAutoComplete = (type: UserNameLoginType) => {
+    switch (type) {
+      // 管理员登录
+      case UserNameLoginType.ADMIN:
+        setAdminAccount()
+        break
+      // 访客登录
+      case UserNameLoginType.VISITOR:
+        setVisitorAccount()
+        break
+      // 普通登录
+      case UserNameLoginType.BASIC:
+      default:
+        break
+    }
+  }
+
   // 处理记住密码
   const handleRememberPassword = () => {
     const formData = form.getFieldsValue()
@@ -46,8 +65,7 @@ export const useLoginForm = () => {
   return {
     loginForm: form,
     clearPassword,
-    setAdminAccount,
-    setVisitorAccount,
+    handleAutoComplete,
     handleRememberPassword
   }
 }

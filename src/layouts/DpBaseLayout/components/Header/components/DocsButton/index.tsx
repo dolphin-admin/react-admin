@@ -1,5 +1,3 @@
-import DocsIcon from '~icons/line-md/document-list'
-
 export default function DocsButton() {
   const { DOCS_URL } = AppMetadata
   const { t } = useTranslation()
@@ -8,10 +6,12 @@ export default function DocsButton() {
       title={t('DOCS')}
       placement="bottom"
     >
-      <AIcon
+      <DpIcon
+        type="Docs"
+        className="cursor-pointer"
+        size={20}
+        depth={2}
         onClick={() => BrowserUtils.openNewWindow(DOCS_URL)}
-        className="cursor-pointer text-xl"
-        component={DocsIcon}
       />
     </ATooltip>
   )

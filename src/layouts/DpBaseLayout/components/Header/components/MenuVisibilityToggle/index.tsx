@@ -1,6 +1,3 @@
-import HideMenuIcon from '~icons/line-md/menu-fold-left'
-import ShowMenuIcon from '~icons/line-md/menu-fold-right'
-
 export default function MenuVisibilityToggle() {
   const { t } = useTranslation('LAYOUT')
   const sidebarStore = useSidebarStore()
@@ -9,9 +6,10 @@ export default function MenuVisibilityToggle() {
       title={t('SIDEBAR.HIDE')}
       placement="bottom"
     >
-      <AIcon
-        className="cursor-pointer text-xl"
-        component={sidebarStore.isDisplay ? HideMenuIcon : ShowMenuIcon}
+      <DpIcon
+        type={sidebarStore.isDisplay ? 'Hide:Menu' : 'Show:Menu'}
+        size={20}
+        depth={1}
         onClick={sidebarStore.toggleDisplay}
       />
     </ATooltip>

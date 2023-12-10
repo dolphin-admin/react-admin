@@ -1,1 +1,1 @@
-export * from './username-login-type.enum'
+export * from './username-login-type'

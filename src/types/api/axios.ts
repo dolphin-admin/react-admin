@@ -2,10 +2,8 @@ import type { AxiosRequestConfig } from 'axios'
 
 // 响应类型（数据）
 export interface R<T = any> {
-  code: string
   msg: string
   data: T
-  success: boolean
   errors?: string[]
 }
 

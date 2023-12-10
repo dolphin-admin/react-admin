@@ -34,24 +34,17 @@ export class TemplateAPI {
   }
 
   /**
-   * 修改模版设置
+   * 更新模版设置
    */
   static update(id: number, data: UpdateTemplateSettingModel) {
     return httpRequest.get<R>(`${this.SETTING_API_PREFIX}/${id}`, { ...data })
   }
 
   /**
-   * 启用模版设置
+   * 修改模版设置
    */
-  static enable(id: number) {
-    return httpRequest.patch<R>(`${this.SETTING_API_PREFIX}/${id}/enable`)
-  }
-
-  /**
-   * 禁用模版设置
-   */
-  static disable(id: number) {
-    return httpRequest.patch<R>(`${this.SETTING_API_PREFIX}/${id}/disable`)
+  static patch(id: number) {
+    return httpRequest.patch<R>(`${this.SETTING_API_PREFIX}/${id}`)
   }
 
   /**

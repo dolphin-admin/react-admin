@@ -9,7 +9,8 @@ import axios from 'axios'
 import { createSearchParams } from 'react-router-dom'
 
 import type { BasePageModel } from '@/constants'
-import { errorMessageMap, StatusCode } from '@/constants'
+import { StatusCode } from '@/enums'
+import { errorMessageMap } from '@/maps'
 import router from '@/router'
 import type { PendingTask, R } from '@/types'
 
@@ -141,6 +142,7 @@ class HttpRequest {
             router.navigate('/500', { replace: true })
             break
           default:
+            AMessage.error(errorMessage)
             break
         }
         // 网络错误，跳转到 404 页面

@@ -1,5 +1,3 @@
-import UserAvatarIcon from '~icons/carbon/user-avatar-filled-alt'
-
 enum UserAction {
   'USER.INFO' = '0',
   'CHANGE.PASSWORD' = '1',
@@ -66,13 +64,15 @@ export default function UserAvatar() {
       {userStore.user.avatarUrl ? (
         <AAvatar
           src={userStore.user.avatarUrl}
-          size={28}
-          className="cursor-pointer  !bg-gray-300 hover:shadow"
+          size={22}
+          className="cursor-pointer !bg-gray-300 hover:shadow"
         />
       ) : (
-        <AIcon
-          className="cursor-pointer text-xl"
-          component={UserAvatarIcon}
+        <DpIcon
+          className="cursor-pointer"
+          type="Account"
+          size={22}
+          depth={1}
         />
       )}
     </ADropdown>

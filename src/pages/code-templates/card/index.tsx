@@ -34,11 +34,45 @@ export function Component() {
   })
 
   const toggleEnableMutation = useMutation({
-    mutationFn: ({ id, enable }: { id: number; enable: boolean }) =>
-      enable ? SettingAPI.enable(id) : SettingAPI.disable(id),
+    mutationFn: ({ id, enabled }: { id: number; enabled: boolean }) =>
+      SettingAPI.patch(id, { enabled }),
+    onMutate: async ({ id, enabled }) => {
+      await queryClient.cancelQueries({
+        queryKey: [SettingAPI.LIST_QUERY_KEY, pagination.pageSize, pagination.current]
+      })
+      const previous = await queryClient.getQueryData([
+        SettingAPI.LIST_QUERY_KEY,
+        pagination.pageSize,
+        pagination.current
+      ])
+      await queryClient.setQueryData(
+        [SettingAPI.LIST_QUERY_KEY, pagination.pageSize, pagination.current],
+        (old: any) => {
+          const records = [...old.data.records]
+          const index = records.findIndex((item: any) => item.id === id)
+          records[index].enabled = enabled
+          return {
+            ...old,
+            records
+          }
+        }
+      )
+      return { previous }
+    },
+    onError: (err, newTodo, context) => {
+      queryClient.setQueryData(
+        [SettingAPI.LIST_QUERY_KEY, pagination.pageSize, pagination.current],
+        context?.previous
+      )
+      message.success('操作失败')
+    },
+    // onSettled: () => {
+    //   queryClient.invalidateQueries({
+    //     queryKey: [SettingAPI.LIST_QUERY_KEY, pagination.pageSize, pagination.current]
+    //   })
+    // },
     onSuccess: () => {
       message.success('操作成功')
-      templateQuery.refetch()
     }
   })
 
@@ -71,8 +105,8 @@ export function Component() {
   }
 
   // 启用、禁用
-  async function toggleEnable(id: number, enable: boolean) {
-    await toggleEnableMutation.mutateAsync({ id, enable })
+  async function toggleEnable(id: number, enabled: boolean) {
+    await toggleEnableMutation.mutateAsync({ id, enabled })
   }
 
   // 删除
@@ -82,9 +116,9 @@ export function Component() {
 
   return (
     <DpTableLayout
-      operate={<AButton type="primary">新增</AButton>}
-      header={<DpTableSearch loading={templateQuery.isRefetching} />}
-      table={
+      renderOperate={<AButton type="primary">新增</AButton>}
+      renderHeader={<DpTableSearch loading={templateQuery.isRefetching} />}
+      renderTable={
         <div className="flex min-h-[calc(100vh-250px)] flex-col items-center justify-between gap-2">
           <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
             {processI18n(templateQuery.data?.records).map((item) => (

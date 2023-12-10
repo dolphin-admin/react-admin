@@ -4,7 +4,8 @@ import { produce } from 'immer'
 import { create } from 'zustand'
 import { subscribeWithSelector } from 'zustand/middleware'
 
-import { BuiltInFont, darkThemeConfigPresets, lightThemeConfigPresets } from '@/constants'
+import { darkThemeConfigPresets, lightThemeConfigPresets } from '@/constants'
+import { BuiltInFont } from '@/enums'
 
 interface State {
   theme: Theme

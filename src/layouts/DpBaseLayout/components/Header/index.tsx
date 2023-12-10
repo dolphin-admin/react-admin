@@ -1,5 +1,3 @@
-// import NotificationIcon from '~icons/ic/baseline-notifications-none'
-// import SettingIcon from '~icons/ic/outline-settings'
 import {
   Breadcrumb,
   DiscordButton,
@@ -32,9 +30,9 @@ export default function Header() {
         <GitHubButton />
         <DocsButton />
         <FullScreenButton />
+        <SettingsButton />
         <LanguageButton />
         <ThemeToggle />
-        <SettingsButton />
         <UserAvatar />
       </div>
     </ALayout.Header>

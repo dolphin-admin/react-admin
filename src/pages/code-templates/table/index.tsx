@@ -1,7 +1,6 @@
 import type { ColumnsType } from 'antd/es/table'
 
 import type { Setting } from '@/types'
-import CheckIcon from '~icons/ic/baseline-check'
 
 export function Component() {
   const { t, i18n } = useTranslation('COMMON')
@@ -37,7 +36,7 @@ export function Component() {
   })
 
   const enableMutation = useMutation({
-    mutationFn: (id: number) => SettingAPI.enable(id),
+    mutationFn: (id: number) => SettingAPI.patch(id, { enabled: true }),
     onSuccess: ({ msg }) => {
       message.success(msg)
       queryClient.invalidateQueries({
@@ -47,7 +46,7 @@ export function Component() {
   })
 
   const disableMutation = useMutation({
-    mutationFn: (id: number) => SettingAPI.disable(id),
+    mutationFn: (id: number) => SettingAPI.patch(id, { enabled: false }),
     onSuccess: ({ msg }) => {
       AMessage.success(msg)
       queryClient.invalidateQueries({
@@ -85,7 +84,7 @@ export function Component() {
       key: 'enabled',
       width: 100,
       align: 'center',
-      render: (value) => value && <CheckIcon className="w-full" />
+      render: (value) => value && <DpIcon type="Check" />
     },
     {
       title: 'Built-in',
@@ -93,23 +92,10 @@ export function Component() {
       key: 'builtIn',
       width: 100,
       align: 'center',
-      render: (value) => value && <CheckIcon className="w-full" />
+      render: (value) => value && <DpIcon type="Check" />
     },
-    {
-      title: 'Sort',
-      dataIndex: 'sort',
-      key: 'sort',
-      width: 100,
-      align: 'center'
-    },
-    {
-      title: 'Remark',
-      dataIndex: 'remark',
-      key: 'remark',
-      ellipsis: {
-        showTitle: true
-      }
-    },
+    { title: 'Sort', dataIndex: 'sort', key: 'sort', width: 100, align: 'center' },
+    { title: 'Remark', dataIndex: 'remark', key: 'remark', ellipsis: { showTitle: true } },
     {
       title: 'Action',
       align: 'center',
@@ -200,8 +186,8 @@ export function Component() {
 
   return (
     <DpTableLayout
-      operate={<AButton type="primary">新增</AButton>}
-      header={
+      renderOperate={<AButton type="primary">新增</AButton>}
+      renderHeader={
         <DpTableSearch
           searchText={searchText}
           setSearchText={setSearchText}
@@ -211,7 +197,7 @@ export function Component() {
           }}
         />
       }
-      table={
+      renderTable={
         <ATable<Setting>
           columns={columns}
           dataSource={processI18n(templateQuery.data?.records)}

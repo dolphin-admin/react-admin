@@ -1,6 +1,4 @@
-import { BuiltInFont } from '@/constants'
-import SettingsIcon from '~icons/line-md/cog'
-import CloseIcon from '~icons/material-symbols/close-rounded'
+import { BuiltInFont } from '@/enums'
 
 export default function Settings() {
   const { t } = useTranslation(['COMMON', 'VALIDATION'])
@@ -39,9 +37,11 @@ export default function Settings() {
         title={t('SETTINGS')}
         placement="bottom"
       >
-        <AIcon
-          className="cursor-pointer text-xl"
-          component={SettingsIcon}
+        <DpIcon
+          type="Settings"
+          className="cursor-pointer"
+          size={20}
+          depth={1}
           onClick={toggleShowDrawer}
         />
       </ATooltip>
@@ -52,9 +52,11 @@ export default function Settings() {
         closeIcon={false}
         onClose={toggleShowDrawer}
         extra={
-          <AIcon
-            className="text-2xl hover:rounded hover:bg-gray-100 dark:hover:bg-black"
-            component={CloseIcon}
+          <DpIcon
+            type="Close"
+            className="transition-all hover:rounded hover:bg-gray-100 dark:hover:bg-black"
+            size={22}
+            depth={1}
             onClick={toggleShowDrawer}
           />
         }

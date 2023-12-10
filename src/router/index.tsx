@@ -20,14 +20,19 @@ export const routes: CustomRouteObject[] = [
             meta: { title: () => t('HOME') }
           },
           {
+            path: '/system/dictionaries',
+            lazy: () => import('@/pages/system/dictionaries'),
+            meta: { title: () => t('DICTIONARY.MANAGEMENT'), icon: 'Dictionary' }
+          },
+          {
             path: '/code-templates/table',
             lazy: () => import('@/pages/code-templates/table'),
-            meta: { title: () => t('CODE.TEMPLATES.TABLE') }
+            meta: { title: () => t('CODE.TEMPLATES.TABLE'), icon: 'Table' }
           },
           {
             path: '/code-templates/card',
             lazy: () => import('@/pages/code-templates/card'),
-            meta: { title: () => t('CODE.TEMPLATES.CARD') }
+            meta: { title: () => t('CODE.TEMPLATES.CARD'), icon: 'Books' }
           },
           {
             path: '/code-templates/two-col',
@@ -37,39 +42,43 @@ export const routes: CustomRouteObject[] = [
           {
             path: '/multi-level-menus/2-1/2-1-1',
             lazy: () => import('@/pages/multi-level-menus/2-1/2-1-1'),
-            meta: { title: '2-1-1' }
+            meta: { title: '2-1-1', icon: 'Menu' }
           },
           {
             path: '/multi-level-menus/2-1/2-1-2',
             lazy: () => import('@/pages/multi-level-menus/2-1/2-1-2'),
-            meta: { title: '2-1-2' }
+            meta: { title: '2-1-2', icon: 'Menu' }
           },
           {
             path: '/multi-level-menus/2-2',
             lazy: () => import('@/pages/multi-level-menus/2-2'),
-            meta: { title: '2-2' }
+            meta: { title: '2-2', icon: 'Menu' }
           },
           {
             path: '/error-pages/403',
             lazy: () => import('@/pages/error-pages/403'),
-            meta: { title: '403' }
+            meta: { title: '403', icon: '403' }
           },
           {
             path: '/error-pages/404',
             lazy: () => import('@/pages/error-pages/404'),
-            meta: { title: '404' }
+            meta: { title: '404', icon: '404' }
           },
           {
             path: '/error-pages/418',
             lazy: () => import('@/pages/error-pages/418'),
-            meta: { title: '418' }
+            meta: { title: '418', icon: '418' }
           },
           {
             path: '/error-pages/500',
             lazy: () => import('@/pages/error-pages/500'),
-            meta: { title: '500' }
+            meta: { title: '500', icon: '500' }
           },
-          { path: '*', lazy: () => import('@/pages/error-pages/404'), meta: { title: '404' } }
+          {
+            path: '*',
+            lazy: () => import('@/pages/error-pages/404'),
+            meta: { title: '404', icon: '404' }
+          }
         ]
       },
       {

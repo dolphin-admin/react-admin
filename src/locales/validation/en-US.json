@@ -15,5 +15,8 @@
   "PHONE.NUMBER": "Please enter a phone number",
   "PHONE.NUMBER.FORMAT": "Please enter phone number in the correct format",
   "USERNAME": "Please enter username",
-  "FONT": "Please select the font family"
+  "FONT": "Please select the font family",
+  "DICTIONARY.CODE": "Please enter the code",
+  "DICTIONARY.LABEL": "Please enter the label",
+  "REMARK": "Please enter the remark"
 }

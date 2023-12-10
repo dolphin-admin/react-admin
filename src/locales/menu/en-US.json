@@ -7,5 +7,8 @@
   "LOGIN": "Login",
   "SIGN.UP": "Signup",
   "ERROR.PAGES": "Error Pages",
-  "MULTI.LEVEL.MENUS": "Multi Level Menu"
+  "MULTI.LEVEL.MENUS": "Multi Level Menu",
+  "SYSTEM.MANAGEMENT": "System Management",
+  "DICTIONARY.MANAGEMENT": "Dictionary Management",
+  "DICTIONARY.DATA": "Dictionary Data"
 }

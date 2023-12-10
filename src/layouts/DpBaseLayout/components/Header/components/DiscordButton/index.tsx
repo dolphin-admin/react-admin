@@ -1,5 +1,3 @@
-import DiscordIcon from '~icons/line-md/discord'
-
 export default function DiscordButton() {
   const { DISCORD_URL } = AppMetadata
   return (
@@ -7,10 +5,12 @@ export default function DiscordButton() {
       title="Discord"
       placement="bottom"
     >
-      <AIcon
+      <DpIcon
+        type="Discord"
+        className="cursor-pointer"
+        size={20}
+        color="#5865F2"
         onClick={() => BrowserUtils.openNewWindow(DISCORD_URL)}
-        className="cursor-pointer text-xl text-[#5865F2]"
-        component={DiscordIcon}
       />
     </ATooltip>
   )

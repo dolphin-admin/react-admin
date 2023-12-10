@@ -1,5 +1,3 @@
-import GithubIcon from '~icons/line-md/github-loop'
-
 export default function GitHubButton() {
   const { REPO_GITHUB_URL } = AppMetadata
   return (
@@ -8,10 +6,12 @@ export default function GitHubButton() {
       placement="bottom"
       arrow
     >
-      <AIcon
+      <DpIcon
+        type="GitHub:Dynamic"
+        className="cursor-pointer"
+        size={20}
+        depth={2}
         onClick={() => BrowserUtils.openNewWindow(REPO_GITHUB_URL)}
-        className="cursor-pointer text-xl"
-        component={GithubIcon}
       />
     </ATooltip>
   )
