@@ -58,5 +58,10 @@
   "UPLOAD": "上传",
   "VALUE": "值",
   "VERIFY": "验证",
-  "VERIFY.OR.NOT": "是否验证"
+  "VERIFY.OR.NOT": "是否验证",
+  "OPERATION.CONFIRMATION": "确认执行此操作？",
+  "VIEW": "查看",
+  "DETAIL": "详情",
+  "Y": "是",
+  "N": "否"
 }

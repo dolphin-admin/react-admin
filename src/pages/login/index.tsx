@@ -1,18 +1,14 @@
 import type { LoginModel, R, UserToken } from '@/types'
-import UsernameIcon from '~icons/mdi/shield-account-outline'
-import PasswordIcon from '~icons/mdi/shield-lock-outline'
 
 import { Header, ThirdPartyLogin } from './components'
 import { UserNameLoginType } from './enum'
 import { useHandleLoginResult, useLoginForm, useRedirect } from './hooks'
-import type { LoginFormData } from './types'
 
 export function Component() {
   const { t } = useTranslation(['AUTH', 'VALIDATION', 'USER'])
   const { handleLoginResult } = useHandleLoginResult()
   const { handleRedirect, handleForgotPassword, handleSignup } = useRedirect()
-  const { loginForm, clearPassword, setAdminAccount, setVisitorAccount, handleRememberPassword } =
-    useLoginForm()
+  const { loginForm, clearPassword, handleAutoComplete, handleRememberPassword } = useLoginForm()
 
   // 登录请求
   const loginMutation = useMutation({
@@ -21,30 +17,10 @@ export function Component() {
     onError: clearPassword
   })
 
-  // 登录表单验证
-  const handleLoginForm = (values: LoginFormData) => {
-    // eslint-disable-next-line unused-imports/no-unused-vars
-    const { rememberPassword, ...loginData } = values
-    loginMutation.mutate(loginData)
-  }
-
   // 登录
   const handleLogin = (type: UserNameLoginType) => {
-    switch (type) {
-      // 管理员登录
-      case UserNameLoginType.ADMIN:
-        setAdminAccount()
-        break
-      // 访客登录
-      case UserNameLoginType.VISITOR:
-        setVisitorAccount()
-        break
-      // 普通登录
-      case UserNameLoginType.BASIC:
-      default:
-        break
-    }
-    handleLoginForm(loginForm.getFieldsValue())
+    handleAutoComplete(type)
+    loginForm.submit()
   }
 
   // 登录成功
@@ -65,12 +41,7 @@ export function Component() {
       <AForm
         name="login"
         form={loginForm}
-        initialValues={{
-          username: '',
-          password: '',
-          rememberPassword: false
-        }}
-        onFinish={handleLoginForm}
+        onFinish={(values) => loginMutation.mutate(values)}
         autoComplete="off"
         disabled={loginMutation.isPending}
       >
@@ -81,13 +52,9 @@ export function Component() {
         >
           <AInput
             prefix={
-              <AIcon
-                component={() => (
-                  <UsernameIcon
-                    className="text-muted"
-                    fontSize={16}
-                  />
-                )}
+              <DpIcon
+                type="Account"
+                depth={3}
               />
             }
             placeholder={t('USER:USERNAME')}
@@ -102,13 +69,9 @@ export function Component() {
         >
           <AInput.Password
             prefix={
-              <AIcon
-                component={() => (
-                  <PasswordIcon
-                    className="text-muted"
-                    fontSize={16}
-                  />
-                )}
+              <DpIcon
+                type="Lock"
+                depth={3}
               />
             }
             placeholder={t('USER:PASSWORD')}

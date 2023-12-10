@@ -1,5 +1,12 @@
 import type { BasePageModel } from '@/constants'
-import type { CreateSettingModel, Page, R, Setting, UpdateSettingModel } from '@/types'
+import type {
+  CreateSettingModel,
+  Page,
+  PatchSettingModel,
+  R,
+  Setting,
+  UpdateSettingModel
+} from '@/types'
 
 export class SettingAPI {
   private static SETTING_API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/settings`
@@ -33,24 +40,17 @@ export class SettingAPI {
   }
 
   /**
-   * 修改设置
+   * 更新设置
    */
   static update(id: number, data: UpdateSettingModel) {
     return httpRequest.get<R<Setting>>(`${this.SETTING_API_PREFIX}/${id}`, { ...data })
   }
 
   /**
-   * 启用设置
+   * 修改设置
    */
-  static enable(id: number) {
-    return httpRequest.patch<R>(`${this.SETTING_API_PREFIX}/${id}/enable`)
-  }
-
-  /**
-   * 禁用设置
-   */
-  static disable(id: number) {
-    return httpRequest.patch<R>(`${this.SETTING_API_PREFIX}/${id}/disable`)
+  static patch(id: number, data: PatchSettingModel) {
+    return httpRequest.patch<R>(`${this.SETTING_API_PREFIX}/${id}`, { ...data })
   }
 
   /**

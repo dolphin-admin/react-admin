@@ -1,7 +1,5 @@
 import { Lang } from '@dolphin-admin/utils'
 
-import LanguageIcon from '~icons/ion/language-outline'
-
 export default function LanguageButton() {
   const langStore = useLangStore()
 
@@ -33,9 +31,11 @@ export default function LanguageButton() {
       }}
       placement="bottom"
     >
-      <AIcon
-        className="cursor-pointer text-xl"
-        component={LanguageIcon}
+      <DpIcon
+        type="Lang"
+        className="cursor-pointer"
+        size={20}
+        depth={1}
       />
     </ADropdown>
   )

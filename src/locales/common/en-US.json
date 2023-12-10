@@ -58,5 +58,10 @@
   "UPLOAD": "Upload",
   "VALUE": "Value",
   "VERIFY": "Verify",
-  "VERIFY.OR.NOT": "Verify or not"
+  "VERIFY.OR.NOT": "Verify or not",
+  "OPERATION.CONFIRMATION": "Are you sure you want to do this action?",
+  "VIEW": "View",
+  "DETAIL": "Detail",
+  "Y": "Yes",
+  "N": "No"
 }

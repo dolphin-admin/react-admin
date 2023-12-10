@@ -1,117 +1,178 @@
 import type { MenuItem } from '@/types'
-// import UniversalComponentsIcon from '~icons/ic/baseline-auto-awesome-mosaic'
-// import ChartsIcon from '~icons/ic/baseline-bar-chart'
-import UnauthorizedIcon from '~icons/ic/baseline-do-not-disturb'
-import ErrorPagesIcon from '~icons/ic/baseline-error-outline'
-import ListTemplatesIcon from '~icons/ic/outline-list-alt'
-import MultiLevelMenusIcon from '~icons/ic/round-format-list-bulleted'
-import CardTemplatesIcon from '~icons/ic/round-space-dashboard'
-import TowColTemplatesIcon from '~icons/icon-park-outline/freeze-column'
-import IAmATeapotIcon from '~icons/icon-park-outline/tea-drink'
-import InternalServerErrorIcon from '~icons/lucide/server-off'
-// import UserManagementIcon from '~icons/mdi/account-cog-outline'
-// import NavigationIcon from '~icons/mdi/compass-outline'
-// import SystemFunctionsIcon from '~icons/mdi/function-variant'
-// import DictionaryManagementIcon from '~icons/ri/booklet-line'
-import CodeTemplatesIcon from '~icons/solar/code-bold'
-import NotFoundIcon from '~icons/tabler/error-404'
 
 const t = i18n.getFixedT(null, 'MENU')
 
 export const getMenuTree = (): MenuItem[] => [
-  // getItem(t('Menu.Navigation'), 'Navigation', <AIcon component={NavigationIcon} />),
-  // getItem(t('Menu.SystemFunctions'), 'SystemFunctions', <AIcon component={SystemFunctionsIcon} />, [
-  //   getItem(t('Menu.UserManagement'), 'UserManagement', <AIcon component={UserManagementIcon} />),
-  //   getItem(
-  //     t('Menu.DictionaryManagement'),
-  //     'DictionaryManagement',
-  //     <AIcon component={DictionaryManagementIcon} />
-  //   )
-  // ]),
+  {
+    label: t('SYSTEM.MANAGEMENT'),
+    key: '/system',
+    icon: (
+      <DpIcon
+        type="Settings"
+        size={18}
+      />
+    ),
+    children: [
+      {
+        label: t('DICTIONARY.MANAGEMENT'),
+        key: '/system/dictionaries',
+        icon: (
+          <DpIcon
+            type="Dictionary"
+            size={18}
+          />
+        )
+      }
+    ]
+  },
   {
     label: t('CODE.TEMPLATES'),
     key: '/code-templates',
-    icon: <AIcon component={CodeTemplatesIcon} />,
+    icon: (
+      <DpIcon
+        type="Code"
+        size={18}
+      />
+    ),
     children: [
       {
         label: t('CODE.TEMPLATES.TABLE'),
         key: '/code-templates/table',
-        icon: <AIcon component={ListTemplatesIcon} />
+        icon: (
+          <DpIcon
+            type="Table"
+            size={18}
+          />
+        )
       },
       {
         label: t('CODE.TEMPLATES.CARD'),
         key: '/code-templates/card',
-        icon: <AIcon component={CardTemplatesIcon} />
+        icon: (
+          <DpIcon
+            type="Books"
+            size={18}
+          />
+        )
       },
       {
         label: t('CODE.TEMPLATES.TWO.COL'),
         key: '/code-templates/two-col',
-        icon: <AIcon component={TowColTemplatesIcon} />
+        icon: (
+          <DpIcon
+            type="TwoCol"
+            size={18}
+          />
+        )
       }
     ]
   },
   {
     label: t('MULTI.LEVEL.MENUS'),
     key: '/multi-level-menus',
-    icon: <AIcon component={MultiLevelMenusIcon} />,
+    icon: (
+      <DpIcon
+        type="Menu"
+        size={18}
+      />
+    ),
     children: [
       {
         label: '2-1',
         key: '/multi-level-menus/2-1',
-        icon: <AIcon component={MultiLevelMenusIcon} />,
+        icon: (
+          <DpIcon
+            type="Menu"
+            size={18}
+          />
+        ),
         children: [
           {
             label: '2-1-1',
             key: '/multi-level-menus/2-1/2-1-1',
-            icon: <AIcon component={MultiLevelMenusIcon} />
+            icon: (
+              <DpIcon
+                type="Menu"
+                size={18}
+              />
+            )
           },
           {
             label: '2-1-2',
             key: '/multi-level-menus/2-1/2-1-2',
-            icon: <AIcon component={MultiLevelMenusIcon} />
+            icon: (
+              <DpIcon
+                type="Menu"
+                size={18}
+              />
+            )
           }
         ]
       },
       {
         label: '2-2',
         key: '/multi-level-menus/2-2',
-        icon: <AIcon component={MultiLevelMenusIcon} />
+        icon: (
+          <DpIcon
+            type="Menu"
+            size={18}
+          />
+        )
       }
     ]
   },
   {
     label: t('ERROR.PAGES'),
     key: '/error-pages',
-    icon: <AIcon component={ErrorPagesIcon} />,
+    icon: (
+      <DpIcon
+        type="Error"
+        size={18}
+      />
+    ),
     children: [
       {
         label: '403',
         key: '/error-pages/403',
-        icon: <AIcon component={UnauthorizedIcon} />
+        icon: (
+          <DpIcon
+            type="403"
+            size={18}
+          />
+        )
       },
       {
         label: '404',
         key: '/error-pages/404',
-        icon: <AIcon component={NotFoundIcon} />
+        icon: (
+          <DpIcon
+            type="404"
+            size={18}
+          />
+        )
       },
       {
         label: '418',
         key: '/error-pages/418',
-        icon: <AIcon component={IAmATeapotIcon} />
+        icon: (
+          <DpIcon
+            type="418"
+            size={18}
+          />
+        )
       },
       {
         label: '500',
         key: '/error-pages/500',
-        icon: <AIcon component={InternalServerErrorIcon} />
+        icon: (
+          <DpIcon
+            type="500"
+            size={18}
+          />
+        )
       }
     ]
   }
-  // getItem(
-  //   t('Menu.UniversalComponents'),
-  //   'UniversalComponents',
-  //   <AIcon component={UniversalComponentsIcon} />,
-  //   [getItem(t('Menu.Charts'), 'Charts', <AIcon component={ChartsIcon} />)]
-  // ),
 ]
 
 // 菜单数据缓存

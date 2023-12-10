@@ -2,9 +2,6 @@ import './index.module.scss'
 
 import type { MouseEvent } from 'react'
 
-import SunIcon from '~icons/line-md/moon-alt-to-sunny-outline-loop-transition'
-import MoonIcon from '~icons/line-md/sunny-filled-loop-to-moon-alt-filled-loop-transition'
-
 export default function ThemeToggle() {
   const { t } = useTranslation('LAYOUT')
   const themeStore = useThemeStore()
@@ -44,13 +41,12 @@ export default function ThemeToggle() {
       title={t('HEADER.SWITCH.THEME')}
       placement="bottom"
     >
-      <AIcon
-        className="cursor-pointer text-xl"
+      <DpIcon
+        type={themeStore.isLightTheme() ? 'Sun' : 'Moon'}
+        className="cursor-pointer"
+        size={20}
+        color={themeStore.isLightTheme() ? '#FDC022' : '#FED736'}
         onClick={handleToggleTheme}
-        style={{
-          color: themeStore.isLightTheme() ? '#FDC022' : '#FED736'
-        }}
-        component={themeStore.isLightTheme() ? SunIcon : MoonIcon}
       />
     </ATooltip>
   )

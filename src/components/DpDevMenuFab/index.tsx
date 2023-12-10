@@ -1,6 +1,4 @@
-import LanguageIcon from '~icons/ion/language-outline'
 import ThemeSwitchIcon from '~icons/mdi/theme-light-dark'
-import ToolIcon from '~icons/mdi/tools'
 
 /**
  * 悬浮按钮形式的开发菜单
@@ -34,13 +32,13 @@ export default function DpDevMenuFab() {
       <AFloatButton.Group
         trigger="click"
         type="primary"
-        style={{ right: 16, bottom: 72 }}
-        icon={<AIcon component={ToolIcon} />}
+        style={{ left: 16, bottom: 72, zIndex: 1000_000_000 }}
+        icon={<DpIcon type="Tools" />}
         open={isOpen}
         onClick={() => setIsOpen(!isOpen)}
       >
         <AFloatButton
-          icon={<AIcon component={LanguageIcon} />}
+          icon={<DpIcon type="Lang" />}
           onClick={handleChangeLanguage}
         />
         <AFloatButton

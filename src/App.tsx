@@ -66,7 +66,7 @@ export default function App() {
       </AConfigProvider>
       <ReactQueryDevtools
         initialIsOpen={themeStore.enableHappyWorkTheme}
-        buttonPosition="bottom-right"
+        buttonPosition="bottom-left"
       />
     </QueryClientProvider>
   )

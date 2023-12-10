@@ -15,5 +15,8 @@
   "PHONE.NUMBER": "请输入电话号码",
   "PHONE.NUMBER.FORMAT": "请输入正确格式的手机号",
   "USERNAME": "请输入用户名",
-  "FONT": "请选择字体"
+  "FONT": "请选择字体",
+  "DICTIONARY.CODE": "请输入字典编码",
+  "DICTIONARY.LABEL": "请输入字典名称",
+  "REMARK": "请输入备注"
 }

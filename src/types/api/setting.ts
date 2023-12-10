@@ -21,3 +21,5 @@ export interface CreateSettingModel {
 }
 
 export interface UpdateSettingModel extends CreateSettingModel {}
+
+export interface PatchSettingModel extends Partial<UpdateSettingModel> {}

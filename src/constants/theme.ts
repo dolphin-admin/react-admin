@@ -59,6 +59,7 @@ export const darkThemeConfigPresets: ThemeConfig = {
       footerBg: '#36393f',
       headerBg: '#36393f',
       siderBg: '#36393f'
-    }
+    },
+    Form: {}
   }
 }
