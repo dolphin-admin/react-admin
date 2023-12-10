@@ -3,7 +3,7 @@
 
 [build]
   publish = "dist"
-  command = "pnpm build"
+  command = "pnpm build:prod"
 
 [[redirects]]
   from = "/base-api/*"
