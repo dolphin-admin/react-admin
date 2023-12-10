@@ -67,7 +67,7 @@
     "@brucesong/eslint-config-react": "^1.0.18",
     "@commitlint/cli": "^18.4.3",
     "@commitlint/config-conventional": "^18.4.3",
-    "@dolphin-admin/auto-import": "^0.0.11",
+    "@dolphin-admin/auto-import": "^0.0.12",
     "@dolphin-admin/bootstrap-animation": "^0.0.5",
     "@iconify/json": "^2.2.153",
     "@iconify/react": "^4.1.1",
