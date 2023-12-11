@@ -8,7 +8,7 @@ export class AntdUtils {
    * 获取 antd 默认语言
    */
   static getDefaultLocale(): Locale {
-    const lang = LangUtils.getDefaultLang()
+    const lang = LangUtils.getDefaultLang(Lang['en-US'])
     switch (lang) {
       case Lang['zh-CN']:
         return zhCN

@@ -21,7 +21,7 @@ function I18n({ value }: { value?: Multilingual }) {
   return (
     <ASkeleton loading={isNil(value?.['en-US'])}>
       <div className="flex w-full flex-col space-y-1">
-        {LangUtils.langMapTo((lang) => (
+        {LangUtils.langMap((lang) => (
           <div
             key={lang}
             className="flex w-full justify-between"

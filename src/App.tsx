@@ -45,7 +45,6 @@ export default function App() {
        * antd 样式兼容
        * @see https://ant-design.antgroup.com/docs/react/compatible-style-cn
        */}
-
       <AConfigProvider
         locale={langStore.locale}
         theme={{

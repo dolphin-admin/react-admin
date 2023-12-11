@@ -16,7 +16,7 @@ interface Actions {
 }
 
 const initialState: State = {
-  lang: LangUtils.getDefaultLang(),
+  lang: LangUtils.getDefaultLang(Lang['en-US']),
 
   /**
    * antd 国际化配置
