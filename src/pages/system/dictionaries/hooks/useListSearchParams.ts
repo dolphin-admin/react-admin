@@ -2,7 +2,7 @@ import type { ListSearchParams } from '../types'
 
 export const useListSearchParams = () => {
   const [listSearchParams, setListSearchParams] = useImmer<ListSearchParams>({
-    searchText: '',
+    keywords: '',
     code: '',
     label: '',
     enabled: null,

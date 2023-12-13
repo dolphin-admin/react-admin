@@ -18,7 +18,7 @@ export class BasePageModel {
   /**
    * 搜索文本
    */
-  searchText?: string
+  keywords?: string
 
   /**
    * 开始日期
@@ -48,11 +48,11 @@ export class BasePageModel {
   sorters?: Sorter[]
 
   constructor(basePageModel?: BasePageModel) {
-    const { page, pageSize, searchText, startDate, endDate, sorters } = basePageModel ?? {}
+    const { page, pageSize, keywords, startDate, endDate, sorters } = basePageModel ?? {}
     this.page = page ?? 1
     this.pageSize = pageSize ?? 10
-    if (searchText) {
-      this.searchText = searchText
+    if (keywords) {
+      this.keywords = keywords
     }
     if (startDate) {
       this.startDate = startDate

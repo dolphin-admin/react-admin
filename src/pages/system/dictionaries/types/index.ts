@@ -1,7 +1,7 @@
 import type { Nullable } from '@dolphin-admin/utils'
 
 export interface ListSearchParams {
-  searchText: string
+  keywords: string
   code: string
   label: string
   enabled: Nullable<boolean>

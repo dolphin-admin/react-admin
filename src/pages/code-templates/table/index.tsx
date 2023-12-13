@@ -28,7 +28,7 @@ export function Component() {
         new BasePageModel({
           pageSize: pagination.pageSize,
           page: pagination.current,
-          searchText: searchRef.current
+          keywords: searchRef.current
         })
       ),
     select: (data) => data.data,
