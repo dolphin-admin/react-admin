@@ -16,6 +16,8 @@ i18n.use(initReactI18next).init({
 // i18n 实例声明后，读取 /locales 下的资源文件
 dynamicLoadTrans().forEach((transItem) => i18n.addResourceBundle(...transItem))
 
+export default i18n
+
 /**
  * 动态加载 i18n 资源文件
  * @description 读取 /locales 下的全部 JSON 文件
@@ -35,5 +37,3 @@ function dynamicLoadTrans() {
     resource // 资源文件内容
   ])
 }
-
-export default i18n

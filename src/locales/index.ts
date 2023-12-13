@@ -10,7 +10,7 @@ import VALIDATION from './validation/en-US.json'
  * 用于给 `@types/i18next.d.ts` 提供类型定义
  * @see https://www.i18next.com/overview/typescript
  */
-export default {
+const resources = {
   COMMON,
   AUTH,
   VALIDATION,
@@ -19,3 +19,4 @@ export default {
   USER,
   DICTIONARY
 }
+export default resources
