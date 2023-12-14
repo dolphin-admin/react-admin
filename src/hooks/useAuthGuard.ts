@@ -1,3 +1,7 @@
+import { Lang } from '@dolphin-admin/utils'
+
+import type { LocaleResource } from '@/types'
+
 interface AuthGuardProps {
   /**
    * 是否跳过认证
@@ -9,6 +13,7 @@ interface AuthGuardProps {
 export const useAuthGuard = (props?: AuthGuardProps) => {
   const { skipAuth = false } = props ?? {}
 
+  const { i18n } = useTranslation()
   const navigate = useNavigate()
   const userStore = useUserStore()
 
@@ -42,8 +47,23 @@ export const useAuthGuard = (props?: AuthGuardProps) => {
         })
       }
     }
+
+    // 处理当前页面语言
+    processLocaleResources(i18n.language, (await LocaleAPI.getLocaleResources(i18n.language)).data)
+    // 处理其他语言
+    const restLangList = Object.values(Lang).filter((lang) => lang !== i18n.language)
+    Promise.all(restLangList.map((lang) => LocaleAPI.getLocaleResources(lang))).then((res) => {
+      res.forEach(({ data }, index) => processLocaleResources(restLangList[index], data))
+    })
+
     setIsLoading(false)
   }, [])
+
+  function processLocaleResources(lang: string, localeResources: LocaleResource[]) {
+    localeResources.forEach(({ ns, resources }) => {
+      i18n.addResources(lang, ns, resources)
+    })
+  }
 
   return { isLoading }
 }
