@@ -15,8 +15,8 @@ dependencies:
     specifier: ^5.2.6
     version: 5.2.6(react-dom@18.2.0)(react@18.2.0)
   '@dolphin-admin/utils':
-    specifier: ^0.0.21
-    version: 0.0.21
+    specifier: ^0.0.22
+    version: 0.0.22
   '@tanstack/react-query':
     specifier: ^5.13.4
     version: 5.13.4(react@18.2.0)
@@ -1282,8 +1282,8 @@ packages:
       vite: 4.5.1(@types/node@18.18.7)(sass@1.69.5)
     dev: true
 
-  /@dolphin-admin/utils@0.0.21:
-    resolution: {integrity: sha512-SSYoKWExbWa1Mmis0jBnfVq34owYG5/dLSzxxoZTcBtUGTYVx67+7C8rne8NKHtf0ttKShkHkYrV3K78X+X6vw==}
+  /@dolphin-admin/utils@0.0.22:
+    resolution: {integrity: sha512-ujSjOrcixJ18sF4XWiy/l+ZpnzaWh7XSG+SRendnq+tAGRP10lquDHfF+Q1usTUDW9bd3IXdcc8qiFPOVPloTg==}
     dependencies:
       dayjs: 1.11.10
     dev: false
