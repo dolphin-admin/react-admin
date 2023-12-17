@@ -4,9 +4,6 @@ set -o allexport
 source .env.production
 set +o allexport
 
-set -e
-node scripts/generate-deploy-info.js
-
 pnpm i
 pnpm build:prod
 echo "正在上传静态资源至 $SERVER_IP"
