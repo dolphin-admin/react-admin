@@ -23,7 +23,7 @@ export function Component() {
         <div className="flex flex-col">
           <span>GitHub 地址：{github}</span>
           <span>上次部署时间：{TimeUtils.formatTime(now)}</span>
-          <span>上次提交作者: {committer}</span>
+          <span>上次提交作者：{committer}</span>
           <span>上次提交信息：{commitMessage}</span>
           <span>上次提交日期：{TimeUtils.formatTime(committerDate)}</span>
         </div>
