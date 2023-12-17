@@ -34,4 +34,5 @@ twotone
 unimport
 unplugin
 vite
+worktree
 zustand

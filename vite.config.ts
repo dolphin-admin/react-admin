@@ -8,6 +8,7 @@ import AutoImport from 'unplugin-auto-import/vite'
 import AhooksResolver from 'unplugin-auto-import-ahooks'
 import AntdResolver from 'unplugin-auto-import-antd'
 import Icons from 'unplugin-icons/vite'
+import Info from 'unplugin-info/vite'
 import type { ProxyOptions } from 'vite'
 import { defineConfig, loadEnv } from 'vite'
 import ViteCompression from 'vite-plugin-compression'
@@ -116,7 +117,8 @@ export default defineConfig(({ mode }) => {
       }),
       visualizer({ open: false, gzipSize: true }),
       BootstrapAnimation(),
-      progress()
+      progress(),
+      Info()
     ],
     resolve: {
       alias: {
