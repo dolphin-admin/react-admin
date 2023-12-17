@@ -10,5 +10,5 @@ fs.writeFile(FILE_PATH, date, (err) => {
     throw err
   }
   stdout.write('部署时间已生成\n')
-  stdout.write('正在上传静态资源\n')
+  stdout.write('正在生成静态资源\n')
 })
