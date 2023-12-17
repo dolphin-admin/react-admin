@@ -17,6 +17,7 @@ export const useColumns = (props: Props): ColumnsType<Dictionary> => {
   const { t } = useTranslation(['COMMON', 'DICTIONARY'])
   const response = useResponsive()
   const { getTableField, getTableFields } = useTableFields<Dictionary>()
+
   return [
     getTableField('id'),
     {

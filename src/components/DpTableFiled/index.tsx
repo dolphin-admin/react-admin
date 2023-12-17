@@ -31,6 +31,10 @@ function CopyableTagString(value: string) {
   return (
     <ATag
       className="cursor-pointer"
+      style={{
+        // NOTE: 消除默认内联边距
+        marginInlineEnd: 0
+      }}
       bordered
       onClick={() => handleCopy(value)}
     >
