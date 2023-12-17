@@ -8,7 +8,7 @@ export default function DpBaseLayout() {
   }
 
   return (
-    // 此处 rootClassName 不加 !flex-row 会导致加载布局闪屏
+    // NOTE: 此处 rootClassName 不加 !flex-row 会导致加载布局闪屏
     <ALayout rootClassName="!flex !flex-row">
       <Sidebar />
       <ALayout className="border-r border-gray-300 dark:border-gray-950">

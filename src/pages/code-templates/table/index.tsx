@@ -3,7 +3,7 @@ import type { ColumnsType } from 'antd/es/table'
 import type { Setting } from '@/types'
 
 export function Component() {
-  const { t, i18n } = useTranslation('COMMON')
+  const { t } = useTranslation('COMMON')
   const response = useResponsive()
   const queryClient = useQueryClient()
   const { message } = AApp.useApp()
@@ -86,14 +86,6 @@ export function Component() {
       align: 'center',
       render: (value) => value && <DpIcon type="Check" />
     },
-    {
-      title: 'Built-in',
-      dataIndex: 'builtIn',
-      key: 'builtIn',
-      width: 100,
-      align: 'center',
-      render: (value) => value && <DpIcon type="Check" />
-    },
     { title: 'Sort', dataIndex: 'sort', key: 'sort', width: 100, align: 'center' },
     { title: 'Remark', dataIndex: 'remark', key: 'remark', ellipsis: { showTitle: true } },
     {
@@ -158,17 +150,6 @@ export function Component() {
     }
   ]
 
-  // 处理字段的国际化
-  const processI18n = (data?: Setting[]) => {
-    if (!data) return []
-    const lang = i18n.language
-    return data.map((item) => ({
-      ...item,
-      label: item.label[lang],
-      remark: item.remark[lang]
-    }))
-  }
-
   // 启用
   async function handleEnable(id: number) {
     await enableMutation.mutateAsync(id)
@@ -200,7 +181,7 @@ export function Component() {
       renderTable={
         <ATable<Setting>
           columns={columns}
-          dataSource={processI18n(templateQuery.data?.records)}
+          dataSource={templateQuery.data?.records}
           scroll={{
             scrollToFirstRowOnChange: true,
             x: 1500

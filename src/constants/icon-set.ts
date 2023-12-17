@@ -19,6 +19,7 @@ import Add from '~icons/material-symbols/add-rounded'
 import Table from '~icons/material-symbols/backup-table-rounded'
 import Close from '~icons/material-symbols/close-rounded'
 import Code from '~icons/material-symbols/code-rounded'
+import Copy from '~icons/material-symbols/content-copy-outline-rounded'
 import Error from '~icons/material-symbols/error-outline'
 import FullscreenExit from '~icons/material-symbols/fullscreen-exit-rounded'
 import Fullscreen from '~icons/material-symbols/fullscreen-rounded'
@@ -65,6 +66,7 @@ export const iconSet = {
   Sun,
   Moon,
   Add,
+  Copy,
   'Hide:Menu': HideMenu,
   'Show:Menu': ShowMenu,
   'Fullscreen:Exit': FullscreenExit,

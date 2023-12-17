@@ -2,16 +2,20 @@ import { Lang } from '@dolphin-admin/utils'
 import i18n from 'i18next'
 import { initReactI18next } from 'react-i18next'
 
+const DEFAULT_NS = 'COMMON'
+
 i18n.use(initReactI18next).init({
   lng: LangUtils.getDefaultLang(Lang['en-US']), // 默认语言
-  fallbackLng: 'en-US', // 未匹配到语言时的默认语言
-  defaultNS: 'COMMON', // 默认命名空间
+  fallbackLng: Lang['en-US'], // 未匹配到语言时的默认语言
+  defaultNS: DEFAULT_NS, // 默认命名空间
   ns: [], // 动态加载命名空间
   resources: {}, // 动态加载资源文件，初始化为空
   interpolation: {
     escapeValue: false
   }
 })
+// 添加远程资源翻译方法
+i18n.rt = (key: string = '') => (i18n.exists(key) ? i18n.t(key as any) : key)
 
 // i18n 实例声明后，读取 /locales 下的资源文件
 dynamicLoadTrans().forEach((transItem) => i18n.addResourceBundle(...transItem))

@@ -1,10 +1,5 @@
-import type { LoginModel, R, SignupModel, UserToken } from '@/types'
-
-// 登录类型
-enum LoginType {
-  USERNAME = 1, // 用户名登录
-  EMAIL = 2 // 邮箱登录
-}
+import { LoginType } from '@/enums'
+import type { LoginModel, SignupModel, UserToken } from '@/types'
 
 export class AuthAPI {
   private static AUTH_API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/auth`
@@ -15,7 +10,7 @@ export class AuthAPI {
    * 登录
    */
   static login(data: LoginModel) {
-    return httpRequest.post<R<UserToken>>(
+    return httpRequest.post<UserToken>(
       `${this.AUTH_API_PREFIX}/login`,
       { ...data },
       { params: { type: LoginType.USERNAME } }
@@ -26,29 +21,13 @@ export class AuthAPI {
    * 注册
    */
   static signup(data: SignupModel) {
-    return httpRequest.post<R<UserToken>>(`${this.AUTH_API_PREFIX}/signup`, {
-      ...data
-    })
+    return httpRequest.post<UserToken>(`${this.AUTH_API_PREFIX}/signup`, { ...data })
   }
 
   /**
    * 刷新令牌
    */
   static async refresh(token: string) {
-    return httpRequest.post<R<UserToken>>(this.REFRESH_API_URL, {}, { params: { token } })
-  }
-
-  /**
-   * GitHub 登录
-   */
-  static loginWithGitHub(code: string) {
-    return httpRequest.post<R<UserToken>>(`${this.AUTH_API_PREFIX}/login/github`, { code })
-  }
-
-  /**
-   * Google 登录
-   */
-  static loginWithGoogle(code: string) {
-    return httpRequest.post<R<UserToken>>(`${this.AUTH_API_PREFIX}/login/google`, { code })
+    return httpRequest.post<UserToken>(this.REFRESH_API_URL, {}, { params: { token } })
   }
 }

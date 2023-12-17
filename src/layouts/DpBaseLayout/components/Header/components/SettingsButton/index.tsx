@@ -1,35 +1,7 @@
-import { BuiltInFont } from '@/enums'
-
 export default function Settings() {
-  const { t } = useTranslation(['COMMON', 'VALIDATION'])
-  const { message } = AApp.useApp()
-  const themeStore = useThemeStore()
+  const { t } = useTranslation()
   const responsive = useResponsive()
-
   const [showDrawer, { toggle: toggleShowDrawer }] = useToggle(false)
-
-  const [themeConfig, setThemeConfig] = useImmer({
-    fontFamily: themeStore.getFontFamily()
-  })
-
-  const fontOptions = [
-    { label: 'Nunito', value: BuiltInFont.NUNITO },
-    { label: 'Jetbrains Mono', value: BuiltInFont.JET_BRAINS_MONO }
-  ]
-
-  const handleChangeFont = (value: string) =>
-    setThemeConfig((draft) => {
-      draft.fontFamily = value
-    })
-
-  const handleConfirm = () => {
-    if (!themeConfig.fontFamily) {
-      message.error(t('VALIDATION:FONT'))
-      return
-    }
-    themeStore.changeFontFamily(themeConfig.fontFamily)
-    toggleShowDrawer()
-  }
 
   return (
     <>
@@ -63,22 +35,10 @@ export default function Settings() {
         width={responsive.sm ? 400 : '100%'}
         footer={
           <div className="flex items-center justify-end">
-            <AButton onClick={handleConfirm}>{t('CONFIRM')}</AButton>
+            <AButton onClick={toggleShowDrawer}>{t('CONFIRM')}</AButton>
           </div>
         }
-      >
-        <AForm layout="vertical">
-          <AForm.Item label={t('FONT')}>
-            <ASelect
-              options={fontOptions}
-              value={themeConfig.fontFamily}
-              onChange={handleChangeFont}
-              placeholder={t('VALIDATION:FONT')}
-              allowClear
-            />
-          </AForm.Item>
-        </AForm>
-      </ADrawer>
+      />
     </>
   )
 }

@@ -1,4 +1,3 @@
-import { Lang } from '@dolphin-admin/utils'
 import { type FormInstance } from 'antd'
 
 import { ModalType } from '@/enums'
@@ -17,7 +16,6 @@ interface Props {
 
 const ModalContent = memo((props: Props) => {
   const { t } = useTranslation(['DICTIONARY', 'COMMON', 'VALIDATION'])
-  const [lang, setLang] = useState<string>('')
 
   if (props.modalType === ModalType.DETAIL) {
     return (
@@ -42,28 +40,10 @@ const ModalContent = memo((props: Props) => {
         rootClassName="!mt-4"
         initialValues={formInitialValue}
       >
-        <AForm.Item>
-          <DpLangSelector
-            lang={lang}
-            setLang={setLang}
-          />
-        </AForm.Item>
         <AForm.Item
-          name={['label', Lang['zh-CN']]}
+          name="label"
           rules={[{ required: true, message: t('VALIDATION:DICTIONARY.LABEL') }]}
           label={t('LABEL')}
-          className={clsx(lang === Lang['zh-CN'] && 'hidden')}
-        >
-          <AInput
-            placeholder={t('VALIDATION:DICTIONARY.LABEL')}
-            allowClear
-          />
-        </AForm.Item>
-        <AForm.Item
-          name={['label', Lang['en-US']]}
-          rules={[{ required: true, message: t('VALIDATION:DICTIONARY.LABEL') }]}
-          label={t('LABEL')}
-          className={clsx(lang === Lang['en-US'] && 'hidden')}
         >
           <AInput
             placeholder={t('VALIDATION:DICTIONARY.LABEL')}
@@ -90,29 +70,8 @@ const ModalContent = memo((props: Props) => {
           />
         </AForm.Item>
         <AForm.Item
-          name="builtIn"
-          label={t('COMMON:IS.BUILTIN')}
-        >
-          <ASwitch
-            checkedChildren={t('COMMON:Y')}
-            unCheckedChildren={t('COMMON:N')}
-          />
-        </AForm.Item>
-        <AForm.Item
-          name={['remark', Lang['zh-CN']]}
+          name="remark"
           label={t('COMMON:REMARK')}
-          className={clsx(lang === Lang['zh-CN'] && 'hidden')}
-        >
-          <AInput.TextArea
-            rows={4}
-            placeholder={t('VALIDATION:REMARK')}
-            allowClear
-          />
-        </AForm.Item>
-        <AForm.Item
-          name={['remark', Lang['en-US']]}
-          label={t('COMMON:REMARK')}
-          className={clsx(lang === Lang['en-US'] && 'hidden')}
         >
           <AInput.TextArea
             rows={4}

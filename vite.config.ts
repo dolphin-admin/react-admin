@@ -58,7 +58,7 @@ export default defineConfig(({ mode }) => {
           'react-i18next',
           {
             from: '@tanstack/react-query',
-            imports: ['useQueryClient', 'useQuery', 'useMutation', 'keepPreviousData']
+            imports: ['useQueryClient', 'useQuery', 'useQueries', 'useMutation', 'keepPreviousData']
           },
           {
             from: 'clsx',

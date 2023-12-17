@@ -1,8 +1,14 @@
 import type { BasePageModel } from '@/constants'
-import type { Dictionary, Page, R } from '@/types'
+import type {
+  CreateDictionaryModel,
+  Dictionary,
+  Page,
+  PatchDictionaryModel,
+  UpdateDictionaryModel
+} from '@/types'
 
 export class DictionaryAPI {
-  private static DICTIONARY_API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/dictionaries`
+  private static API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/dictionaries`
 
   /**
    * 字典列表缓存 key
@@ -15,46 +21,44 @@ export class DictionaryAPI {
   static DETAIL_QUERY_KEY = 'DICTIONARY.DETAIL'
 
   /**
+   * 新增字典
+   */
+  static create(data: CreateDictionaryModel) {
+    return httpRequest.post<Dictionary>(`${this.API_PREFIX}`, { ...data })
+  }
+
+  /**
    * 字典列表
    */
   static list(params: BasePageModel) {
-    return httpRequest.get<R<Page<Dictionary>>>(this.DICTIONARY_API_PREFIX, {
-      ...params
-    })
+    return httpRequest.get<Page<Dictionary>>(this.API_PREFIX, { ...params })
   }
 
   /**
    * 字典详情
    */
   static detail(id: number) {
-    return httpRequest.get<R<Dictionary>>(`${this.DICTIONARY_API_PREFIX}/${id}`)
-  }
-
-  /**
-   * 新增字典
-   */
-  static create(data: Dictionary) {
-    return httpRequest.post<R>(`${this.DICTIONARY_API_PREFIX}`, { ...data })
+    return httpRequest.get<Dictionary>(`${this.API_PREFIX}/${id}`)
   }
 
   /**
    * 更新字典
    */
-  static update(id: number, data: Dictionary) {
-    return httpRequest.put<R<Dictionary>>(`${this.DICTIONARY_API_PREFIX}/${id}`, { ...data })
+  static update(id: number, data: UpdateDictionaryModel) {
+    return httpRequest.put<Dictionary>(`${this.API_PREFIX}/${id}`, { ...data })
   }
 
   /**
    * 修改字典
    */
-  static patch(id: number, data: Partial<Dictionary>) {
-    return httpRequest.patch<R>(`${this.DICTIONARY_API_PREFIX}/${id}`, { ...data })
+  static patch(id: number, data: PatchDictionaryModel) {
+    return httpRequest.patch<Dictionary>(`${this.API_PREFIX}/${id}`, { ...data })
   }
 
   /**
    * 删除字典
    */
   static delete(id: number) {
-    return httpRequest.delete<R>(`${this.DICTIONARY_API_PREFIX}/${id}`)
+    return httpRequest.delete(`${this.API_PREFIX}/${id}`)
   }
 }

@@ -7,4 +7,9 @@ declare module 'i18next' {
     defaultNS: 'COMMON'
     resources: typeof EN_US
   }
+
+  // eslint-disable-next-line @typescript-eslint/naming-convention
+  interface i18n {
+    rt: (key: string) => string
+  }
 }

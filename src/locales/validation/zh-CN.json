@@ -3,10 +3,14 @@
   "BIOGRAPHY": "请输入简介",
   "CONFIRM.PASSWORD": "请输入确认密码",
   "CONFIRM.PASSWORD.NOT.MATCH": "两次输入的密码不一致",
+  "DICTIONARY.CODE": "请输入字典编码",
+  "DICTIONARY.LABEL": "请输入字典名称",
   "EMAIL": "请输入邮箱",
   "EMAIL.FORMAT": "请输入正确格式的邮箱",
   "FILE.NAME": "请输入文件名",
   "FIRST.NAME": "请输入名",
+  "FONT": "请选择字体",
+  "LABEL": "请输入名称",
   "LAST.NAME": "请输入姓",
   "NAME": "请输入姓名",
   "OLD.PASSWORD": "请输入旧密码",
@@ -14,9 +18,6 @@
   "PASSWORD.LENGTH": "密码长度至少为 6 位",
   "PHONE.NUMBER": "请输入电话号码",
   "PHONE.NUMBER.FORMAT": "请输入正确格式的手机号",
-  "USERNAME": "请输入用户名",
-  "FONT": "请选择字体",
-  "DICTIONARY.CODE": "请输入字典编码",
-  "DICTIONARY.LABEL": "请输入字典名称",
-  "REMARK": "请输入备注"
+  "REMARK": "请输入备注",
+  "USERNAME": "请输入用户名"
 }

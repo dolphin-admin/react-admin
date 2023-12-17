@@ -3,13 +3,12 @@ import type {
   CreateSettingModel,
   Page,
   PatchSettingModel,
-  R,
   Setting,
   UpdateSettingModel
 } from '@/types'
 
 export class SettingAPI {
-  private static SETTING_API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/settings`
+  private static API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/settings`
 
   /**
    * 设置列表缓存 key
@@ -17,10 +16,22 @@ export class SettingAPI {
   static LIST_QUERY_KEY = 'SETTING.LIST'
 
   /**
+   * 设置详情缓存 key
+   */
+  static DETAIL_QUERY_KEY = 'SETTING.DETAIL'
+
+  /**
+   * 新增设置
+   */
+  static create(data: CreateSettingModel) {
+    return httpRequest.get<Setting>(`${this.API_PREFIX}`, { ...data })
+  }
+
+  /**
    * 设置列表
    */
   static list(params: BasePageModel) {
-    return httpRequest.get<R<Page<Setting>>>(this.SETTING_API_PREFIX, {
+    return httpRequest.get<Page<Setting>>(this.API_PREFIX, {
       ...params
     })
   }
@@ -29,41 +40,27 @@ export class SettingAPI {
    * 设置详情
    */
   static detail(id: number) {
-    return httpRequest.get<R<Setting>>(`${this.SETTING_API_PREFIX}/${id}`)
-  }
-
-  /**
-   * 新增设置
-   */
-  static create(data: CreateSettingModel) {
-    return httpRequest.get<R>(`${this.SETTING_API_PREFIX}`, { ...data })
+    return httpRequest.get<Setting>(`${this.API_PREFIX}/${id}`)
   }
 
   /**
    * 更新设置
    */
   static update(id: number, data: UpdateSettingModel) {
-    return httpRequest.get<R<Setting>>(`${this.SETTING_API_PREFIX}/${id}`, { ...data })
+    return httpRequest.get<Setting>(`${this.API_PREFIX}/${id}`, { ...data })
   }
 
   /**
    * 修改设置
    */
   static patch(id: number, data: PatchSettingModel) {
-    return httpRequest.patch<R>(`${this.SETTING_API_PREFIX}/${id}`, { ...data })
+    return httpRequest.patch<Setting>(`${this.API_PREFIX}/${id}`, { ...data })
   }
 
   /**
    * 删除设置
    */
   static delete(id: number) {
-    return httpRequest.delete<R>(`${this.SETTING_API_PREFIX}/${id}`)
-  }
-
-  /**
-   * 排序设置
-   */
-  static sort(id: number, targetId: number) {
-    return httpRequest.patch<R>(`${this.SETTING_API_PREFIX}/${id}/sort/${targetId}`)
+    return httpRequest.delete(`${this.API_PREFIX}/${id}`)
   }
 }

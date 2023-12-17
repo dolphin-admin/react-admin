@@ -3,10 +3,14 @@
   "BIOGRAPHY": "Please enter your biography",
   "CONFIRM.PASSWORD": "Please enter confirm password",
   "CONFIRM.PASSWORD.NOT.MATCH": "Password not match",
+  "DICTIONARY.CODE": "Please enter the code",
+  "DICTIONARY.LABEL": "Please enter the label",
   "EMAIL": "Please enter your email",
   "EMAIL.FORMAT": "Please enter the correct email format",
   "FILE.NAME": "Please enter file name",
   "FIRST.NAME": "Please enter your first name",
+  "FONT": "Please select the font family",
+  "LABEL": "Please enter the label",
   "LAST.NAME": "Please enter your last name",
   "NAME": "Please enter name",
   "OLD.PASSWORD": "Please enter old password",
@@ -14,9 +18,6 @@
   "PASSWORD.LENGTH": "Password length must be greater than 6",
   "PHONE.NUMBER": "Please enter a phone number",
   "PHONE.NUMBER.FORMAT": "Please enter phone number in the correct format",
-  "USERNAME": "Please enter username",
-  "FONT": "Please select the font family",
-  "DICTIONARY.CODE": "Please enter the code",
-  "DICTIONARY.LABEL": "Please enter the label",
-  "REMARK": "Please enter the remark"
+  "REMARK": "Please enter the remark",
+  "USERNAME": "Please enter username"
 }

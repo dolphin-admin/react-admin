@@ -36,6 +36,7 @@ const DpIcon = memo((props: Props) => {
   if (!IconComponent) {
     return null
   }
+
   return (
     <AIcon
       {...rest}

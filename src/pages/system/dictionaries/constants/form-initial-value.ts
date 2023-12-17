@@ -1,8 +1,7 @@
 export const formInitialValue = {
   code: '',
-  label: LangUtils.initI18nObj(),
-  remark: LangUtils.initI18nObj(),
+  label: '',
+  remark: '',
   enabled: true,
-  builtIn: false,
   sort: 0
 }

@@ -6,7 +6,6 @@ export const useListSearchParams = () => {
     code: '',
     label: '',
     enabled: null,
-    builtIn: null,
     startTime: null,
     endTime: null
   })

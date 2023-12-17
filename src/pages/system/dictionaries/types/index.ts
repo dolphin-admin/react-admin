@@ -5,7 +5,6 @@ export interface ListSearchParams {
   code: string
   label: string
   enabled: Nullable<boolean>
-  builtIn: Nullable<boolean>
   startTime: Nullable<string>
   endTime: Nullable<string>
 }

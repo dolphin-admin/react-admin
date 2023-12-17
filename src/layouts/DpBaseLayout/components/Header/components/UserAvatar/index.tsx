@@ -1,8 +1,9 @@
 enum UserAction {
-  'USER.INFO' = '0',
-  'CHANGE.PASSWORD' = '1',
-  'QUIT' = '2'
+  'USER.INFO' = '1',
+  'CHANGE.PASSWORD' = '2',
+  'QUIT' = '3'
 }
+
 export default function UserAvatar() {
   const { t } = useTranslation(['LAYOUT', 'AUTH'])
   const { message } = AApp.useApp()
@@ -33,10 +34,6 @@ export default function UserAvatar() {
     message.success(t('AUTH:LOG.OUT.SUCCESS'))
   }
 
-  if (!userStore.hasData()) {
-    return null
-  }
-
   // 点击菜单
   const handleClickMenu = ({ key }: { key: string }) => {
     switch (key) {
@@ -52,6 +49,10 @@ export default function UserAvatar() {
       default:
         break
     }
+  }
+
+  if (!userStore.hasData()) {
+    return null
   }
 
   return (

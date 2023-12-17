@@ -14,53 +14,30 @@ interface Props {
 }
 
 export const useColumns = (props: Props): ColumnsType<Dictionary> => {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation(['COMMON', 'DICTIONARY'])
   const response = useResponsive()
+  const { getTableField, getTableFields } = useTableFields<Dictionary>()
   return [
+    getTableField('id'),
     {
-      title: 'ID',
-      dataIndex: 'id',
-      key: 'id',
-      fixed: response.sm && 'left',
-      align: 'center',
-      width: 60
-    },
-    {
-      title: 'Label',
+      title: t('DICTIONARY:LABEL'),
       dataIndex: 'label',
       key: 'label',
       fixed: response.sm && 'left',
-      width: 200,
-      render: (value) => value[i18n.language]
+      width: 150,
+      render: DpTableFiled.I18nString
     },
-    { title: 'Key', dataIndex: 'key', key: 'key', width: 200 },
-    { title: 'Value', dataIndex: 'value', key: 'value', width: 200 },
     {
-      title: 'Enabled',
-      dataIndex: 'enabled',
-      key: 'enabled',
-      width: 100,
+      title: t('DICTIONARY:CODE'),
+      dataIndex: 'code',
+      key: 'code',
+      width: 150,
       align: 'center',
-      render: (value) => value && <DpIcon type="Check" />
+      render: DpTableFiled.CopyableTagString
     },
+    ...getTableFields('enabled', 'remark', 'createdAt'),
     {
-      title: 'Built-in',
-      dataIndex: 'builtIn',
-      key: 'builtIn',
-      width: 100,
-      align: 'center',
-      render: (value) => value && <DpIcon type="Check" />
-    },
-    { title: 'Sort', dataIndex: 'sort', key: 'sort', width: 100, align: 'center' },
-    {
-      title: 'Remark',
-      dataIndex: 'remark',
-      key: 'remark',
-      ellipsis: { showTitle: true },
-      render: (value) => value[i18n.language]
-    },
-    {
-      title: 'Action',
+      title: t('ACTIONS'),
       align: 'center',
       fixed: response.sm && 'right',
       width: 250,

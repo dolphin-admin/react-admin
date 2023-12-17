@@ -1,11 +1,9 @@
 import { Theme } from '@dolphin-admin/utils'
 import type { ThemeConfig } from 'antd'
-import { produce } from 'immer'
 import { create } from 'zustand'
 import { subscribeWithSelector } from 'zustand/middleware'
 
 import { darkThemeConfigPresets, lightThemeConfigPresets } from '@/constants'
-import { BuiltInFont } from '@/enums'
 
 interface State {
   theme: Theme
@@ -21,8 +19,6 @@ interface Actions {
   changeTheme: (theme: Theme) => void
   setHappyWorkTheme: (enable: boolean) => void
   toggleHappyWorkTheme: () => void
-  getFontFamily: () => string | undefined
-  changeFontFamily: (currentFontFamily: string) => void
 }
 
 const initialState: State = {
@@ -85,33 +81,12 @@ export const useThemeStore = create<State & Actions>()(
     /**
      * 启用/禁用快乐工作主题
      */
-    setHappyWorkTheme: (enable: boolean) => {
-      set({ enableHappyWorkTheme: enable })
-    },
-
+    setHappyWorkTheme: (enable: boolean) => set({ enableHappyWorkTheme: enable }),
     /**
      * 切换快乐工作主题
      */
-    toggleHappyWorkTheme: () => {
+    toggleHappyWorkTheme: () =>
       set((state) => ({ enableHappyWorkTheme: !state.enableHappyWorkTheme }))
-    },
-
-    /**
-     * 字体
-     */
-    getFontFamily: () => get().lightThemeConfig.token!.fontFamily,
-
-    /**
-     * 切换字体
-     * @param currentFontFamily
-     */
-    changeFontFamily: (currentFontFamily: string = BuiltInFont.NUNITO) =>
-      set(
-        produce<State>((draft) => {
-          draft.lightThemeConfig.token!.fontFamily = currentFontFamily
-          draft.darkThemeConfig.token!.fontFamily = currentFontFamily
-        })
-      )
   }))
 )
 
@@ -123,9 +98,7 @@ export const useThemeStore = create<State & Actions>()(
  */
 useThemeStore.subscribe(
   (state) => state.theme,
-  (theme) => {
-    ThemeUtils.changeTheme(theme)
-  },
+  (theme) => ThemeUtils.changeTheme(theme),
   {
     fireImmediately: true
   }

@@ -112,7 +112,7 @@ class HttpRequest {
                 this.isRefreshing = false
                 if (config) {
                   // 重新发起上次失败的请求
-                  const res = await this.request<R>({
+                  const res = await this.request({
                     ...config,
                     headers: { ...config.headers, Authorization: AuthUtils.getAuthorization() }
                   })
@@ -175,7 +175,7 @@ class HttpRequest {
    * 通用请求
    * @param config 请求配置
    */
-  request<T>(config: AxiosRequestConfig): Promise<T> {
+  request<T>(config: AxiosRequestConfig): Promise<R<T>> {
     return this.instance.request(config)
   }
 
@@ -189,7 +189,7 @@ class HttpRequest {
     url: string,
     params?: Record<string, unknown> | BasePageModel,
     config?: AxiosRequestConfig
-  ): Promise<T> {
+  ): Promise<R<T>> {
     return this.instance.get(url, { params, ...config })
   }
 
@@ -199,7 +199,7 @@ class HttpRequest {
    * @param data 请求数据
    * @param config 请求配置
    */
-  post<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
+  post<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<R<T>> {
     return this.instance.post(url, data, config)
   }
 
@@ -209,7 +209,7 @@ class HttpRequest {
    * @param data 请求数据
    * @param config 请求配置
    */
-  put<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
+  put<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<R<T>> {
     return this.instance.put(url, data, config)
   }
 
@@ -223,7 +223,7 @@ class HttpRequest {
     url: string,
     params?: Record<string, unknown>,
     config?: AxiosRequestConfig
-  ): Promise<T> {
+  ): Promise<R<T>> {
     return this.instance.delete(url, { params, ...config })
   }
 
@@ -233,7 +233,11 @@ class HttpRequest {
    * @param data 请求数据
    * @param config 请求配置
    */
-  patch<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
+  patch<T>(
+    url: string,
+    data?: Record<string, unknown>,
+    config?: AxiosRequestConfig
+  ): Promise<R<T>> {
     return this.instance.patch(url, data, config)
   }
 }

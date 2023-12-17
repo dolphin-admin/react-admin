@@ -1,4 +1,3 @@
-import type { Setting } from '@/types'
 import ValueIcon from '~icons/carbon/character-upper-case'
 import RemarkIcon from '~icons/mdi/comment-multiple-outline'
 import DeleteIcon from '~icons/mdi/delete-forever-outline'
@@ -8,7 +7,7 @@ import EditIcon from '~icons/mdi/pencil'
 import KeyIcon from '~icons/solar/key-outline'
 
 export function Component() {
-  const { t, i18n } = useTranslation()
+  const { t } = useTranslation()
   const response = useResponsive()
   const queryClient = useQueryClient()
   const { message } = AApp.useApp()
@@ -93,17 +92,6 @@ export function Component() {
     }
   }, [templateQuery, setPagination])
 
-  // 处理字段的国际化
-  function processI18n(data?: Setting[]) {
-    if (!data) return []
-    const lang = i18n.language
-    return data.map((item) => ({
-      ...item,
-      label: item.label[lang],
-      remark: item.remark[lang]
-    }))
-  }
-
   // 启用、禁用
   async function toggleEnable(id: number, enabled: boolean) {
     await toggleEnableMutation.mutateAsync({ id, enabled })
@@ -121,7 +109,7 @@ export function Component() {
       renderTable={
         <div className="flex min-h-[calc(100vh-250px)] flex-col items-center justify-between gap-2">
           <div className="grid w-full grid-cols-1 gap-4 lg:grid-cols-2 xl:grid-cols-3">
-            {processI18n(templateQuery.data?.records).map((item) => (
+            {(templateQuery.data?.records ?? []).map((item) => (
               <ACard
                 key={item.id}
                 rootClassName="rounded"
