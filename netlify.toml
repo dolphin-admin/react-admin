@@ -7,7 +7,7 @@
 
 [[redirects]]
   from = "/base-api/*"
-  to = "https://dolphin-admin-nest-staging.bit-ocean.studio/:splat"
+  to = "https://example.com/:splat"
   status = 200
   force = true
 
