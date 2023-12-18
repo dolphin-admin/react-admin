@@ -54,7 +54,7 @@ trigger:
     - push
 
 steps:
-    - name: build staging
+  - name: build staging
     image: node:20-alpine
     commands:
       - npm i -g pnpm
