@@ -1,0 +1,109 @@
+kind: pipeline
+type: docker
+name: deploy staging
+
+platform:
+  os: linux
+  arch: amd64
+
+trigger:
+  ref:
+    - refs/pull/*
+  event:
+    - push
+
+steps:
+  - name: build staging
+    image: node:20-alpine
+    commands:
+      - npm i -g pnpm
+      - pnpm i
+      - pnpm build
+
+  - name: deploy staging
+    image: appleboy/drone-scp
+    settings:
+      host:
+        from_secret: SSH_HOST_STAGING
+      username:
+        from_secret: SSH_USERNAME
+      key:
+        from_secret: SSH_PASSWORD
+      port: 22
+      target: /usr/share/nginx/html/dolphin-admin-react/dist
+      source:
+        - /dist
+      rm_target: true
+      strip_components: 1
+      debug: true
+      depends_on:
+        - build staging
+---
+kind: pipeline
+type: docker
+name: deploy production
+
+platform:
+  os: linux
+  arch: amd64
+
+trigger:
+  branch:
+    - main
+  event:
+    - push
+
+steps:
+    - name: build staging
+    image: node:20-alpine
+    commands:
+      - npm i -g pnpm
+      - pnpm i
+      - pnpm build
+
+  - name: deploy staging
+    image: appleboy/drone-scp
+    settings:
+      host:
+        from_secret: SSH_HOST_STAGING
+      username:
+        from_secret: SSH_USERNAME
+      key:
+        from_secret: SSH_PASSWORD
+      port: 22
+      target: /usr/share/nginx/html/dolphin-admin-react/dist
+      source:
+        - /dist
+      rm_target: true
+      strip_components: 1
+      debug: true
+      depends_on:
+        - build staging
+
+  - name: build production
+    image: node:20-alpine
+    commands:
+      - npm i -g pnpm
+      - pnpm i
+      - pnpm build
+    depends_on:
+      - deploy staging
+
+  - name: deploy production
+    image: appleboy/drone-scp
+    settings:
+      host:
+        from_secret: SSH_HOST_PRODUCTION
+      username:
+        from_secret: SSH_USERNAME
+      key:
+        from_secret: SSH_PASSWORD
+      port: 22
+      target: /usr/share/nginx/html/dolphin-admin-react/dist
+      source:
+        - /dist
+      rm_target: true
+      strip_components: 1
+      debug: true
+      depends_on:
+        - build production
