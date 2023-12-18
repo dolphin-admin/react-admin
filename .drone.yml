@@ -20,7 +20,7 @@ steps:
     commands:
       - npm i -g pnpm
       - pnpm i
-      - pnpm build
+      - pnpm build:staging
 
   - name: deploy staging
     image: appleboy/drone-scp
@@ -61,7 +61,7 @@ steps:
     commands:
       - npm i -g pnpm
       - pnpm i
-      - pnpm build
+      - pnpm build:staing
 
   - name: deploy staging
     image: appleboy/drone-scp
@@ -87,7 +87,7 @@ steps:
     commands:
       - npm i -g pnpm
       - pnpm i
-      - pnpm build
+      - pnpm build:prod
     depends_on:
       - deploy staging
 
