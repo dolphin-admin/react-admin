@@ -32,7 +32,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@ant-design/cssinjs": "1.18.1",
+    "@ant-design/cssinjs": "1.18.2",
     "@ant-design/happy-work-theme": "^1.0.0",
     "@ant-design/icons": "^5.2.6",
     "@dolphin-admin/utils": "^0.0.23",
