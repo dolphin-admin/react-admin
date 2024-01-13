@@ -29,7 +29,7 @@ steps:
         from_secret: SSH_HOST_STAGING
       username:
         from_secret: SSH_USERNAME
-      key:
+      password:
         from_secret: SSH_PASSWORD
       port: 22
       target: /usr/share/nginx/html/dolphin-admin-react/dist
@@ -70,7 +70,7 @@ steps:
         from_secret: SSH_HOST_STAGING
       username:
         from_secret: SSH_USERNAME
-      key:
+      password:
         from_secret: SSH_PASSWORD
       port: 22
       target: /usr/share/nginx/html/dolphin-admin-react/dist
@@ -98,7 +98,7 @@ steps:
         from_secret: SSH_HOST_PRODUCTION
       username:
         from_secret: SSH_USERNAME
-      key:
+      password:
         from_secret: SSH_PASSWORD
       port: 22
       target: /usr/share/nginx/html/dolphin-admin-react/dist
