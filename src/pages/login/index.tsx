@@ -1,4 +1,4 @@
-import type { LoginModel, R, UserToken } from '@/types'
+import type { LoginModel, R, Tokens } from '@/types'
 
 import { Header, ThirdPartyLogin } from './components'
 import { UserNameLoginType } from './enum'
@@ -24,7 +24,7 @@ export function Component() {
   }
 
   // 登录成功
-  function onLoginSuccess(res: R<UserToken>) {
+  function onLoginSuccess(res: R<Tokens>) {
     const { data, msg } = res ?? {}
     // 处理登录结果
     handleLoginResult(data, msg)

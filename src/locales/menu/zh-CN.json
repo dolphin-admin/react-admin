@@ -10,5 +10,7 @@
   "MULTI.LEVEL.MENUS": "多级菜单",
   "SYSTEM.MANAGEMENT": "系统管理",
   "DICTIONARY.MANAGEMENT": "字典管理",
-  "DICTIONARY.DATA": "字典数据"
+  "DICTIONARY.DATA": "字典数据",
+  "RESOURCES.MANAGEMENT": "资源管理",
+  "LOCALES.MANAGEMENT": "翻译管理"
 }

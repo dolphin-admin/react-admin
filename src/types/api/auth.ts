@@ -1,5 +1,3 @@
-import type { User } from '@/types'
-
 export interface LoginModel {
   /**
    * 密码
@@ -18,7 +16,7 @@ export interface SignupModel extends LoginModel {
   confirmPassword: string
 }
 
-export interface Token {
+export interface Tokens {
   /**
    * 访问令牌
    */
@@ -27,10 +25,6 @@ export interface Token {
    * 刷新令牌
    */
   refreshToken: string
-}
-
-export interface UserToken extends Token {
-  user: User
 }
 
 export interface ChangePasswordModel {

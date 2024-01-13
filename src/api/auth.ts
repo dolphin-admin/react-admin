@@ -1,5 +1,5 @@
 import { LoginType } from '@/enums'
-import type { LoginModel, SignupModel, UserToken } from '@/types'
+import type { LoginModel, SignupModel, Tokens } from '@/types'
 
 export class AuthAPI {
   private static AUTH_API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/auth`
@@ -10,10 +10,16 @@ export class AuthAPI {
    * 登录
    */
   static login(data: LoginModel) {
-    return httpRequest.post<UserToken>(
+    return httpRequest.post<Tokens>(
       `${this.AUTH_API_PREFIX}/login`,
-      { ...data },
-      { params: { type: LoginType.USERNAME } }
+      {
+        ...data
+      },
+      {
+        params: {
+          type: LoginType.USERNAME
+        }
+      }
     )
   }
 
@@ -21,13 +27,28 @@ export class AuthAPI {
    * 注册
    */
   static signup(data: SignupModel) {
-    return httpRequest.post<UserToken>(`${this.AUTH_API_PREFIX}/signup`, { ...data })
+    return httpRequest.post<Tokens>(`${this.AUTH_API_PREFIX}/signup`, {
+      ...data
+    })
   }
 
   /**
    * 刷新令牌
    */
-  static async refresh(token: string) {
-    return httpRequest.post<UserToken>(this.REFRESH_API_URL, {}, { params: { token } })
+  static refresh(token: string) {
+    return httpRequest.post<Tokens>(
+      this.REFRESH_API_URL,
+      {},
+      {
+        params: { token }
+      }
+    )
+  }
+
+  /**
+   * 登出
+   */
+  static logout() {
+    return httpRequest.post(`${this.AUTH_API_PREFIX}/logout`)
   }
 }

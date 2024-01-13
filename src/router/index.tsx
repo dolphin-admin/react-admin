@@ -25,6 +25,11 @@ export const routes: CustomRouteObject[] = [
             meta: { title: () => t('DICTIONARY.MANAGEMENT'), icon: 'Dictionary' }
           },
           {
+            path: '/resources/locales',
+            lazy: () => import('@/pages/resources/locales'),
+            meta: { title: () => t('LOCALES.MANAGEMENT'), icon: 'Lang' }
+          },
+          {
             path: '/code-templates/table',
             lazy: () => import('@/pages/code-templates/table'),
             meta: { title: () => t('CODE.TEMPLATES.TABLE'), icon: 'Table' }

@@ -10,5 +10,7 @@
   "MULTI.LEVEL.MENUS": "Multi Level Menu",
   "SYSTEM.MANAGEMENT": "System Management",
   "DICTIONARY.MANAGEMENT": "Dictionary Management",
-  "DICTIONARY.DATA": "Dictionary Data"
+  "DICTIONARY.DATA": "Dictionary Data",
+  "RESOURCES.MANAGEMENT": "Resources Management",
+  "LOCALES.MANAGEMENT": "Locales Management"
 }

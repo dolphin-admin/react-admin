@@ -28,6 +28,7 @@ import Books from '~icons/material-symbols/library-books-outline-rounded'
 import Lock from '~icons/material-symbols/lock-outline'
 import Dictionary from '~icons/material-symbols/menu-book-outline-rounded'
 import Menu from '~icons/material-symbols/menu-rounded'
+import Package from '~icons/material-symbols/package-2-outline'
 import Refresh from '~icons/material-symbols/refresh-rounded'
 import Tools from '~icons/material-symbols/tools-wrench-outline'
 import NotFound from '~icons/streamline-emojis/confounded-face'
@@ -67,6 +68,7 @@ export const iconSet = {
   Moon,
   Add,
   Copy,
+  Package,
   'Hide:Menu': HideMenu,
   'Show:Menu': ShowMenu,
   'Fullscreen:Exit': FullscreenExit,

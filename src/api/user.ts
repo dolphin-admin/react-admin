@@ -1,5 +1,5 @@
 import type { BasePageModel } from '@/constants'
-import type { CreateUserModel, Page, R, User } from '@/types'
+import type { CreateUserModel, Page, User } from '@/types'
 
 export class UserAPI {
   private static API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/users`
@@ -7,13 +7,13 @@ export class UserAPI {
   /**
    * 个人信息缓存 key
    */
-  static ME_QUERY_KEY = 'ME'
+  static PROFILE_QUERY_KEY = 'PROFILE'
 
   /**
    * 新增用户
    */
   static create(data: CreateUserModel) {
-    return httpRequest.post<R>(this.API_PREFIX, { ...data })
+    return httpRequest.post<User>(this.API_PREFIX, { ...data })
   }
 
   /**
@@ -34,8 +34,8 @@ export class UserAPI {
    * 当前用户
    * @description 通过当前登录用户的 token 获取用户信息
    */
-  static me() {
-    return httpRequest.get<User>(`${this.API_PREFIX}/me`)
+  static profile() {
+    return httpRequest.get<User>(`${this.API_PREFIX}/profile`)
   }
 
   /**

@@ -67,7 +67,7 @@ export function Component() {
   }
 
   // 提交表单
-  const handleSubmit = async (values: Dictionary) => {
+  async function handleSubmit(values: Dictionary) {
     if (modalType === ModalType.CREATE) {
       await handleCreateSubmit(values)
     } else if (modalType === ModalType.EDIT) {
@@ -123,7 +123,7 @@ export function Component() {
             crudForm={crudForm}
             isFormSubmitting={isFormSubmitting}
             isDetailLoading={isDetailLoading}
-            handleSubmit={handleSubmit}
+            handleSubmit={(values) => handleSubmit(values)}
           />
         )
       }}

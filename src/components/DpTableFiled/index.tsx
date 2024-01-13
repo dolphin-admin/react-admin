@@ -15,7 +15,9 @@ function DateString(value: any) {
   let fullLabel
   if (!isNil(value)) {
     fullLabel = TimeUtils.formatTime(value)
-    label = TimeUtils.isCurrentYear() ? TimeUtils.formatTime(value, 'MM-DD HH:mm:ss') : fullLabel
+    label = TimeUtils.isCurrentYear(value)
+      ? TimeUtils.formatTime(value, 'MM-DD HH:mm:ss')
+      : fullLabel
   }
   return (
     <ATooltip

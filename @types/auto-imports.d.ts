@@ -68,6 +68,7 @@ declare global {
   const LangUtils: typeof import('@dolphin-admin/utils')['LangUtils']
   const Link: typeof import('react-router-dom')['Link']
   const LocaleAPI: typeof import('../src/api/locale')['LocaleAPI']
+  const LocaleUtils: typeof import('../src/utils/locale')['LocaleUtils']
   const NavLink: typeof import('react-router-dom')['NavLink']
   const Navigate: typeof import('react-router-dom')['Navigate']
   const Outlet: typeof import('react-router-dom')['Outlet']
