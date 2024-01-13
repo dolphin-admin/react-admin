@@ -34,7 +34,7 @@ steps:
       port: 22
       target: /usr/share/nginx/html/dolphin-admin-react/dist
       source:
-        - /dist
+        - dist
       rm_target: true
       strip_components: 1
       debug: true
