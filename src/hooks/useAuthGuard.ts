@@ -1,3 +1,5 @@
+import { useProfileQuery } from '@/features/users'
+
 interface AuthGuardProps {
   /**
    * 是否跳过认证
@@ -12,15 +14,9 @@ export const useAuthGuard = (props?: AuthGuardProps) => {
   const navigate = useNavigate()
   const userStore = useUserStore()
 
-  // 用户信息
-  const profileQuery = useQuery({
-    queryKey: [UserAPI.PROFILE_QUERY_KEY],
-    queryFn: () => UserAPI.profile(),
-    select: (data) => data.data,
-    enabled: false // 不自动执行
-  })
-
   const [isLoading, setIsLoading] = useState(true)
+
+  const profileQuery = useProfileQuery({ enabled: AuthUtils.isAuthenticated() })
 
   useAsyncEffect(async () => {
     // 如果已经登录，直接跳转到首页，否则清除用户信息
@@ -36,19 +32,17 @@ export const useAuthGuard = (props?: AuthGuardProps) => {
       return
     }
 
-    // 处理登录逻辑
-    if (!userStore.hasData()) {
-      const user = (await profileQuery.refetch()).data
-      userStore.setUser(user ?? {})
-    }
-
     // 如果跳过认证，直接跳转到首页
     if (skipAuth) {
       navigate('/', { replace: true })
     }
-
-    setIsLoading(false)
   }, [])
+
+  useEffect(() => {
+    if (profileQuery.isSuccess) {
+      setIsLoading(false)
+    }
+  }, [profileQuery.isSuccess])
 
   return { isLoading }
 }

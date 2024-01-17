@@ -98,8 +98,7 @@ export default defineConfig(({ mode }) => {
           'src/hooks/**',
           'src/layouts/*/index.tsx',
           'src/providers/**',
-          'src/store/**',
-          'src/utils/**'
+          'src/store/**'
         ]
       }),
       Icons({

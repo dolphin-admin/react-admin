@@ -1,37 +1,28 @@
 import type { BasePageModel } from '@/constants'
+
+import type { Page } from './axios.type'
 import type {
   CreateDictionaryModel,
   Dictionary,
-  Page,
   PatchDictionaryModel,
   UpdateDictionaryModel
-} from '@/types'
+} from './dictionary.type'
 
 export class DictionaryAPI {
-  private static API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/dictionaries`
-
-  /**
-   * 字典列表缓存 key
-   */
-  static LIST_QUERY_KEY = 'DICTIONARY.LIST'
-
-  /**
-   * 字典详情缓存 key
-   */
-  static DETAIL_QUERY_KEY = 'DICTIONARY.DETAIL'
+  private static API_PREFIX = '/dictionaries'
 
   /**
    * 新增字典
    */
   static create(data: CreateDictionaryModel) {
-    return httpRequest.post<Dictionary>(`${this.API_PREFIX}`, { ...data })
+    return httpRequest.post<Dictionary>(this.API_PREFIX, { ...data })
   }
 
   /**
    * 字典列表
    */
-  static list(params: BasePageModel) {
-    return httpRequest.get<Page<Dictionary>>(this.API_PREFIX, { ...params })
+  static list(params: BasePageModel, signal?: AbortSignal) {
+    return httpRequest.get<Page<Dictionary>>(this.API_PREFIX, { ...params }, { signal })
   }
 
   /**
@@ -49,7 +40,7 @@ export class DictionaryAPI {
   }
 
   /**
-   * 修改字典
+   * 部分更新
    */
   static patch(id: number, data: PatchDictionaryModel) {
     return httpRequest.patch<Dictionary>(`${this.API_PREFIX}/${id}`, { ...data })

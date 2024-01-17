@@ -1,13 +1,10 @@
 import type { BasePageModel } from '@/constants'
-import type { CreateUserModel, Page, User } from '@/types'
+
+import type { Page } from './axios.type'
+import type { CreateUserModel, User } from './user.type'
 
 export class UserAPI {
-  private static API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/users`
-
-  /**
-   * 个人信息缓存 key
-   */
-  static PROFILE_QUERY_KEY = 'PROFILE'
+  private static API_PREFIX = '/users'
 
   /**
    * 新增用户

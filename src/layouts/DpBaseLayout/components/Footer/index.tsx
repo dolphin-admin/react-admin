@@ -1,3 +1,5 @@
+import { getImageFromAssets } from '@/features/assets'
+
 export default function Footer() {
   const { APP_NAME, VERSION, TEAM_NAME, TEAM_GITHUB_URL } = AppMetadata
 
@@ -9,7 +11,7 @@ export default function Footer() {
       <span>©</span>
       <AImage
         className="-mb-2 cursor-pointer pb-2 transition-all hover:-translate-y-1 hover:scale-110 active:-translate-y-0 active:scale-105 active:opacity-75"
-        src={AssetUtils.getImageFromAssets('bit_ocean.png')}
+        src={getImageFromAssets('bit_ocean.png')}
         alt=""
         loading="eager"
         width={18}

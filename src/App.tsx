@@ -8,7 +8,7 @@ import { RouterProvider } from 'react-router-dom'
 
 import router from '@/router'
 
-import { messageConfig } from './constants'
+import { defaultQueryConfig, messageConfig } from './constants'
 
 /**
  * rem 适配
@@ -26,18 +26,7 @@ export default function App() {
   const themeStore = useThemeStore()
   const langStore = useLangStore()
 
-  const [queryClient] = useState(
-    () =>
-      new QueryClient({
-        defaultOptions: {
-          queries: {
-            staleTime: 1000 * 60 * 5, // 5min
-            gcTime: 1000 * 60 * 5, // 5min
-            retry: 1 // 失败重试次数
-          }
-        }
-      })
-  )
+  const [queryClient] = useState(() => new QueryClient({ defaultOptions: defaultQueryConfig }))
 
   return (
     <QueryClientProvider client={queryClient}>

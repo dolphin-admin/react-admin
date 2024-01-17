@@ -6,18 +6,15 @@ interface SignupData {
 
 export function Component() {
   const { t } = useTranslation(['AUTH', 'USER', 'VALIDATION'])
-  const { message } = AApp.useApp()
   const navigate = useNavigate()
   const [form] = AForm.useForm<SignupData>()
 
   const signupMutation = useMutation({
     mutationFn: (data: SignupData) => AuthAPI.signup(data),
-    onSuccess: async (res) => {
-      const { data, msg } = res ?? {}
+    onSuccess: async (data) => {
       const { accessToken, refreshToken } = data ?? {}
       AuthUtils.setAccessToken(accessToken)
       AuthUtils.setRefreshToken(refreshToken)
-      message.success(msg)
       navigate('/', { replace: true })
     },
     onError: () => form.setFieldsValue({ password: '', confirmPassword: '' })

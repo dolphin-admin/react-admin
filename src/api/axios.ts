@@ -2,17 +2,17 @@ import type {
   AxiosError,
   AxiosInstance,
   AxiosRequestConfig,
-  AxiosResponse,
   InternalAxiosRequestConfig
 } from 'axios'
 import axios from 'axios'
 import { createSearchParams } from 'react-router-dom'
 
 import type { BasePageModel } from '@/constants'
-import { StatusCode } from '@/enums'
 import { errorMessageMap } from '@/maps'
 import router from '@/router'
-import type { PendingTask, R } from '@/types'
+
+import { StatusCode } from './axios.enum'
+import type { PendingTask, R } from './axios.type'
 
 const t = i18n.getFixedT(null, 'COMMON')
 
@@ -35,7 +35,7 @@ class HttpRequest {
 
   // Axios 配置
   private readonly config: AxiosRequestConfig = {
-    baseURL: '/',
+    baseURL: GlobalEnvConfig.BASE_API_PREFIX,
     timeout: 30000,
     withCredentials: true,
     headers: {
@@ -45,7 +45,10 @@ class HttpRequest {
 
   public constructor() {
     this.instance = axios.create(this.config)
+    this.initInterceptors()
+  }
 
+  initInterceptors() {
     this.instance.interceptors.request.use(
       (req: InternalAxiosRequestConfig) => {
         // 设置 token
@@ -62,12 +65,21 @@ class HttpRequest {
     )
 
     this.instance.interceptors.response.use(
-      // 直接返回响应数据
-      (res: AxiosResponse) => res.data,
+      (res) => {
+        const { data, msg } = res.data ?? {}
+        if (msg) {
+          AMessage.success(msg)
+        }
+        return data
+      },
       async (err: AxiosError<R>) => {
         const { response, config } = err
         const { data, status } = response ?? {}
         const { msg } = data ?? {}
+        // 处理取消的请求
+        if (axios.isCancel(err)) {
+          return Promise.reject(err)
+        }
         // 当前接口是否是刷新令牌接口
         const isRefreshTokenAPI = config?.url?.includes(AuthAPI.REFRESH_API_URL)
         /**
@@ -105,8 +117,7 @@ class HttpRequest {
             if (currentRefreshToken) {
               this.isRefreshing = true
               try {
-                const { refreshToken, accessToken } = (await AuthAPI.refresh(currentRefreshToken))
-                  .data
+                const { refreshToken, accessToken } = await AuthAPI.refresh(currentRefreshToken)
                 AuthUtils.setAccessToken(accessToken)
                 AuthUtils.setRefreshToken(refreshToken)
                 this.isRefreshing = false
@@ -175,7 +186,7 @@ class HttpRequest {
    * 通用请求
    * @param config 请求配置
    */
-  request<T>(config: AxiosRequestConfig): Promise<R<T>> {
+  request<T>(config: AxiosRequestConfig): Promise<T> {
     return this.instance.request(config)
   }
 
@@ -189,7 +200,7 @@ class HttpRequest {
     url: string,
     params?: Record<string, unknown> | BasePageModel,
     config?: AxiosRequestConfig
-  ): Promise<R<T>> {
+  ): Promise<T> {
     return this.instance.get(url, { params, ...config })
   }
 
@@ -199,7 +210,7 @@ class HttpRequest {
    * @param data 请求数据
    * @param config 请求配置
    */
-  post<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<R<T>> {
+  post<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
     return this.instance.post(url, data, config)
   }
 
@@ -209,7 +220,7 @@ class HttpRequest {
    * @param data 请求数据
    * @param config 请求配置
    */
-  put<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<R<T>> {
+  put<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
     return this.instance.put(url, data, config)
   }
 
@@ -223,7 +234,7 @@ class HttpRequest {
     url: string,
     params?: Record<string, unknown>,
     config?: AxiosRequestConfig
-  ): Promise<R<T>> {
+  ): Promise<T> {
     return this.instance.delete(url, { params, ...config })
   }
 
@@ -233,11 +244,7 @@ class HttpRequest {
    * @param data 请求数据
    * @param config 请求配置
    */
-  patch<T>(
-    url: string,
-    data?: Record<string, unknown>,
-    config?: AxiosRequestConfig
-  ): Promise<R<T>> {
+  patch<T>(url: string, data?: Record<string, unknown>, config?: AxiosRequestConfig): Promise<T> {
     return this.instance.patch(url, data, config)
   }
 }

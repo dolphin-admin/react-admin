@@ -1,6 +1,0 @@
-export * from './auth'
-export * from './axios'
-export * from './dictionary'
-export * from './locale'
-export * from './setting'
-export * from './user'

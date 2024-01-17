@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 
+import type { CustomRouteObject, RouteMetadata } from '@/features/router'
 import Root from '@/Root'
-import type { CustomRouteObject, RouteMetadata } from '@/types'
 
 const t = i18n.getFixedT(null, 'MENU')
 

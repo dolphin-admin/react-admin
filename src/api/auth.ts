@@ -1,8 +1,9 @@
-import { LoginType } from '@/enums'
-import type { LoginModel, SignupModel, Tokens } from '@/types'
+import { LoginType } from '@/features/auth'
+
+import type { LoginModel, SignupModel, Tokens } from './auth.type'
 
 export class AuthAPI {
-  private static AUTH_API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/auth`
+  private static AUTH_API_PREFIX = '/auth'
 
   static REFRESH_API_URL = `${this.AUTH_API_PREFIX}/refresh`
 
@@ -12,14 +13,8 @@ export class AuthAPI {
   static login(data: LoginModel) {
     return httpRequest.post<Tokens>(
       `${this.AUTH_API_PREFIX}/login`,
-      {
-        ...data
-      },
-      {
-        params: {
-          type: LoginType.USERNAME
-        }
-      }
+      { ...data },
+      { params: { type: LoginType.USERNAME } }
     )
   }
 
@@ -36,13 +31,7 @@ export class AuthAPI {
    * 刷新令牌
    */
   static refresh(token: string) {
-    return httpRequest.post<Tokens>(
-      this.REFRESH_API_URL,
-      {},
-      {
-        params: { token }
-      }
-    )
+    return httpRequest.post<Tokens>(this.REFRESH_API_URL, {}, { params: { token } })
   }
 
   /**

@@ -1,4 +1,8 @@
+import type { Nullable } from '@dolphin-admin/utils'
+
 import type { Sorter } from '@/types'
+
+export const DEFAULT_PAGE_SIZE = 10
 
 /**
  * 分页模型
@@ -23,12 +27,12 @@ export class BasePageModel {
   /**
    * 开始日期
    */
-  startDate?: string
+  startTime?: Nullable<string>
 
   /**
    * 结束日期
    */
-  endDate?: string
+  endTime?: Nullable<string>
 
   /**
    * 排序关键字
@@ -48,17 +52,17 @@ export class BasePageModel {
   sorters?: Sorter[]
 
   constructor(basePageModel?: BasePageModel) {
-    const { page, pageSize, keywords, startDate, endDate, sorters } = basePageModel ?? {}
+    const { page, pageSize, keywords, startTime, endTime, sorters } = basePageModel ?? {}
     this.page = page ?? 1
-    this.pageSize = pageSize ?? 10
+    this.pageSize = pageSize ?? DEFAULT_PAGE_SIZE
     if (keywords) {
       this.keywords = keywords
     }
-    if (startDate) {
-      this.startDate = startDate
+    if (startTime) {
+      this.startTime = startTime
     }
-    if (endDate) {
-      this.endDate = endDate
+    if (endTime) {
+      this.endTime = endTime
     }
     if (sorters && Array.isArray(sorters) && sorters.length > 0) {
       const sorterKeys = sorters.map((sorter) => sorter.key)

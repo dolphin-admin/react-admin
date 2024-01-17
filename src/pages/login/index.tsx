@@ -1,4 +1,4 @@
-import type { LoginModel, R, Tokens } from '@/types'
+import type { LoginModel, Tokens } from '@/types'
 
 import { Header, ThirdPartyLogin } from './components'
 import { UserNameLoginType } from './enum'
@@ -24,10 +24,9 @@ export function Component() {
   }
 
   // 登录成功
-  function onLoginSuccess(res: R<Tokens>) {
-    const { data, msg } = res ?? {}
+  function onLoginSuccess(data: Tokens) {
     // 处理登录结果
-    handleLoginResult(data, msg)
+    handleLoginResult(data)
     // 记住密码写入 localStorage
     handleRememberPassword()
     // 处理重定向

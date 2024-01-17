@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-import type { User } from '@/types'
+import type { User } from '@/api/user.type'
 
 interface State {
   user: Partial<User>

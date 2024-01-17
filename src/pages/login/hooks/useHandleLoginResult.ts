@@ -1,15 +1,11 @@
-import type { Tokens } from '@/types'
+import type { Tokens } from '@/api/auth.type'
 
 export const useHandleLoginResult = () => {
-  const { message } = AApp.useApp()
-
-  const handleLoginResult = (tokens: Tokens, msg: string) => {
+  const handleLoginResult = (tokens: Tokens) => {
     const { accessToken, refreshToken } = tokens ?? {}
     // 保存 token 和用户信息
     AuthUtils.setAccessToken(accessToken)
     AuthUtils.setRefreshToken(refreshToken)
-    // 提示登录成功
-    message.success(msg)
   }
 
   return { handleLoginResult }

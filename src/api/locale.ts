@@ -1,7 +1,7 @@
-import type { LocaleResource } from '@/types'
+import type { LocaleResource } from './locale.type'
 
 export class LocaleAPI {
-  private static LOCALE_API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/locales`
+  private static LOCALE_API_PREFIX = '/locales'
 
   /**
    * 英文国际化资源缓存 key
