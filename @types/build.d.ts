@@ -15,11 +15,6 @@ declare module '~build/git' {
   const tag: string | null
   /** Tag for the closest tagged ancestor (or `null` if no ancestor is tagged) */
   const lastTag: string | null
-  /**
-   * Number of commits since the closest tagged ancestor.
-   * `0` if this commit is tagged, or `Infinity` if no ancestor is tagged.
-   */
-  const commitsSinceLastTag: number
   /** The committer of the current SHA */
   const committer: string
   /** The commit date of the current SHA */
