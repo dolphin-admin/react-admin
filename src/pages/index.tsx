@@ -1,3 +1,4 @@
+import { getImageFromAssets } from '@/features/assets'
 import { commitMessage, committer, committerDate, github } from '~build/git'
 import now from '~build/time'
 
@@ -11,7 +12,7 @@ export function Component() {
         <div className="flex items-center space-x-1.5">
           <AImage
             className="cursor-pointer transition-all active:scale-105 active:opacity-75"
-            src={AssetUtils.getImageFromAssets('bit_ocean.png')}
+            src={getImageFromAssets('bit_ocean.png')}
             alt=""
             loading="eager"
             width={20}

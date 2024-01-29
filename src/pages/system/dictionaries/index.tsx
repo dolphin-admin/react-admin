@@ -1,18 +1,30 @@
+import type { Dictionary } from '@/api/dictionary.type'
 import { ModalType } from '@/enums'
-import type { Dictionary } from '@/types'
-
-import { ModalContent } from './components'
-import { useColumns, useCrud, useListQuery, useListSearchParams, useModal } from './hooks'
+import {
+  ModalContent,
+  useColumns,
+  useCrud,
+  useDictionariesQuery,
+  useDictionaryListParams
+} from '@/features/dictionaries'
+import { useModal } from '@/features/modal'
+import { usePagination } from '@/features/pagination'
 
 export function Component() {
   const { t } = useTranslation(['COMMON', 'DICTIONARY', 'VALIDATION'])
   const queryClient = useQueryClient()
   const [searchText, setSearchText] = useState('')
 
-  const { listSearchParams } = useListSearchParams()
+  const { pageParams, pagination, setTotal } = usePagination()
   const { open, modalType, setModalType, getModalTitle, toggle } = useModal()
-  const { listData, isRefreshing, isListLoading, pagination } = useListQuery({
-    params: listSearchParams
+  const { listParams } = useDictionaryListParams()
+  const {
+    data: listData,
+    isRefetching,
+    isFetching
+  } = useDictionariesQuery({
+    pageParams: { ...pageParams, ...listParams },
+    prefetch: true
   })
   const {
     detail,
@@ -39,6 +51,12 @@ export function Component() {
   })
 
   useEffect(() => {
+    if (listData) {
+      setTotal(listData.total)
+    }
+  }, [listData, setTotal])
+
+  useEffect(() => {
     if (modalType === ModalType.EDIT) {
       crudForm.setFieldsValue({ ...detail })
     }
@@ -53,7 +71,7 @@ export function Component() {
 
   // 编辑
   async function toggleEditModal(id: number) {
-    queryClient.cancelQueries({ queryKey: [DictionaryAPI.DETAIL_QUERY_KEY, id] })
+    queryClient.cancelQueries({ queryKey: [id] })
     setCurrentId(id)
     setModalType(ModalType.EDIT)
     toggle()
@@ -67,7 +85,7 @@ export function Component() {
   }
 
   // 提交表单
-  const handleSubmit = async (values: Dictionary) => {
+  async function handleSubmit(values: Dictionary) {
     if (modalType === ModalType.CREATE) {
       await handleCreateSubmit(values)
     } else if (modalType === ModalType.EDIT) {
@@ -93,7 +111,7 @@ export function Component() {
         <DpTableSearch
           searchText={searchText}
           setSearchText={setSearchText}
-          loading={isRefreshing}
+          loading={isRefetching}
           handleSearch={() => {}}
         />
       }
@@ -101,12 +119,12 @@ export function Component() {
         <ATable<Dictionary>
           rowKey={(record) => record.id}
           columns={columns}
-          dataSource={listData}
+          dataSource={listData?.records}
           scroll={{
             scrollToFirstRowOnChange: true,
             x: 1500
           }}
-          loading={isListLoading}
+          loading={isFetching}
           pagination={pagination}
         />
       }
@@ -123,7 +141,7 @@ export function Component() {
             crudForm={crudForm}
             isFormSubmitting={isFormSubmitting}
             isDetailLoading={isDetailLoading}
-            handleSubmit={handleSubmit}
+            handleSubmit={(values) => handleSubmit(values)}
           />
         )
       }}

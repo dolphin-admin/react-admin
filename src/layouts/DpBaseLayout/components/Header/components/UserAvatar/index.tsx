@@ -10,6 +10,17 @@ export default function UserAvatar() {
   const userStore = useUserStore()
   const navigate = useNavigate()
 
+  const logoutMutation = useMutation({
+    mutationFn: () => AuthAPI.logout(),
+    onSuccess: () => {
+      userStore.clearUser()
+      AuthUtils.clearAccessToken()
+      AuthUtils.clearRefreshToken()
+      navigate('/login', { replace: true })
+      message.success(t('AUTH:LOG.OUT.SUCCESS'))
+    }
+  })
+
   const menuItems = [
     {
       key: UserAction['USER.INFO'],
@@ -25,15 +36,6 @@ export default function UserAvatar() {
     }
   ]
 
-  // 退出登录
-  const logout = () => {
-    userStore.clearUser()
-    AuthUtils.clearAccessToken()
-    AuthUtils.clearRefreshToken()
-    navigate('/login', { replace: true })
-    message.success(t('AUTH:LOG.OUT.SUCCESS'))
-  }
-
   // 点击菜单
   const handleClickMenu = ({ key }: { key: string }) => {
     switch (key) {
@@ -44,7 +46,7 @@ export default function UserAvatar() {
         navigate('/change-password')
         break
       case UserAction.QUIT:
-        logout()
+        logoutMutation.mutate()
         break
       default:
         break

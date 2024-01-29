@@ -28,7 +28,6 @@ export function Component() {
           page: pagination.current
         })
       ),
-    select: (data) => data.data,
     placeholderData: keepPreviousData
   })
 

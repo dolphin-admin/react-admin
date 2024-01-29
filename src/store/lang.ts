@@ -42,10 +42,12 @@ export const useLangStore = create<State & Actions>()(
  */
 useLangStore.subscribe(
   (state) => state.lang,
-  (lang) => {
+  async (lang) => {
     i18n.changeLanguage(lang)
     LangUtils.setLang(lang)
     LangUtils.setHtmlLang(lang)
+    // TODO: Use Tanstack Query
+    LocaleUtils.processLocaleResources(lang, await LocaleAPI.getLocaleResources(lang))
     switch (lang) {
       case Lang['zh-CN']:
         useLangStore.setState({ locale: zhCN })

@@ -26,6 +26,28 @@ export const getMenuTree = (): MenuItem[] => [
     ]
   },
   {
+    label: t('RESOURCES.MANAGEMENT'),
+    key: '/resources',
+    icon: (
+      <DpIcon
+        type="Package"
+        size={18}
+      />
+    ),
+    children: [
+      {
+        label: t('LOCALES.MANAGEMENT'),
+        key: '/resources/locales',
+        icon: (
+          <DpIcon
+            type="Lang"
+            size={18}
+          />
+        )
+      }
+    ]
+  },
+  {
     label: t('CODE.TEMPLATES'),
     key: '/code-templates',
     icon: (

@@ -6,7 +6,6 @@ import {
   GitHubButton,
   LanguageButton,
   MenuVisibilityToggle,
-  SettingsButton,
   ThemeToggle,
   UserAvatar
 } from './components'
@@ -30,7 +29,6 @@ export default function Header() {
         <GitHubButton />
         <DocsButton />
         <FullScreenButton />
-        <SettingsButton />
         <LanguageButton />
         <ThemeToggle />
         <UserAvatar />

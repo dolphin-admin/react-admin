@@ -1,3 +1,5 @@
+import { getImageFromAssets } from '@/features/assets'
+
 export default function Header() {
   const { APP_NAME } = AppMetadata
 
@@ -10,7 +12,7 @@ export default function Header() {
     >
       <AImage
         className="cursor-pointer"
-        src={AssetUtils.getImageFromAssets('favicon.png')}
+        src={getImageFromAssets('favicon.png')}
         alt=""
         width={36}
         loading="eager"

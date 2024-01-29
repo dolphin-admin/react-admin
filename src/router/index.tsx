@@ -1,7 +1,7 @@
 import { createBrowserRouter } from 'react-router-dom'
 
+import type { CustomRouteObject, RouteMetadata } from '@/features/router'
 import Root from '@/Root'
-import type { CustomRouteObject, RouteMetadata } from '@/types'
 
 const t = i18n.getFixedT(null, 'MENU')
 
@@ -23,6 +23,11 @@ export const routes: CustomRouteObject[] = [
             path: '/system/dictionaries',
             lazy: () => import('@/pages/system/dictionaries'),
             meta: { title: () => t('DICTIONARY.MANAGEMENT'), icon: 'Dictionary' }
+          },
+          {
+            path: '/resources/locales',
+            lazy: () => import('@/pages/resources/locales'),
+            meta: { title: () => t('LOCALES.MANAGEMENT'), icon: 'Lang' }
           },
           {
             path: '/code-templates/table',

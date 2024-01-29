@@ -1,14 +1,15 @@
 import type { BasePageModel } from '@/constants'
+
+import type { Page } from './axios.type'
 import type {
   CreateSettingModel,
-  Page,
   PatchSettingModel,
   Setting,
   UpdateSettingModel
-} from '@/types'
+} from './settings.type'
 
 export class SettingAPI {
-  private static API_PREFIX = `${GlobalEnvConfig.BASE_API_PREFIX}/settings`
+  private static API_PREFIX = '/settings'
 
   /**
    * 设置列表缓存 key
@@ -24,7 +25,7 @@ export class SettingAPI {
    * 新增设置
    */
   static create(data: CreateSettingModel) {
-    return httpRequest.get<Setting>(`${this.API_PREFIX}`, { ...data })
+    return httpRequest.get<Setting>(this.API_PREFIX, { ...data })
   }
 
   /**

@@ -1,4 +1,4 @@
-import type { IconType } from '@/types'
+import type { IconType } from '@/features/icon'
 
 interface Props {
   title?: string

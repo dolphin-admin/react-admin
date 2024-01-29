@@ -6,7 +6,6 @@ export function Component() {
   const { t } = useTranslation('COMMON')
   const response = useResponsive()
   const queryClient = useQueryClient()
-  const { message } = AApp.useApp()
   const [searchText, setSearchText] = useState('')
   const searchRef = useRef<string>('')
 
@@ -31,14 +30,12 @@ export function Component() {
           keywords: searchRef.current
         })
       ),
-    select: (data) => data.data,
     placeholderData: keepPreviousData
   })
 
   const enableMutation = useMutation({
     mutationFn: (id: number) => SettingAPI.patch(id, { enabled: true }),
-    onSuccess: ({ msg }) => {
-      message.success(msg)
+    onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [SettingAPI.LIST_QUERY_KEY]
       })
@@ -47,8 +44,7 @@ export function Component() {
 
   const disableMutation = useMutation({
     mutationFn: (id: number) => SettingAPI.patch(id, { enabled: false }),
-    onSuccess: ({ msg }) => {
-      AMessage.success(msg)
+    onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [SettingAPI.LIST_QUERY_KEY]
       })
@@ -57,8 +53,7 @@ export function Component() {
 
   const deleteMutation = useMutation({
     mutationFn: (id: number) => SettingAPI.delete(id),
-    onSuccess: ({ msg }) => {
-      AMessage.success(msg)
+    onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: [SettingAPI.LIST_QUERY_KEY]
       })
