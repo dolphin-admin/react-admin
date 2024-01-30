@@ -1,3 +1,4 @@
+/* eslint-disable turbo/no-undeclared-env-vars */
 import { fileURLToPath, URL } from 'node:url'
 
 import { dolphinAdminPresets } from '@dolphin-admin/auto-import'
