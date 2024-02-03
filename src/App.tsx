@@ -52,10 +52,7 @@ export default function App() {
           </AApp>
         </StyleProvider>
       </AConfigProvider>
-      <ReactQueryDevtools
-        initialIsOpen={themeStore.enableHappyWorkTheme}
-        buttonPosition="bottom-left"
-      />
+      <ReactQueryDevtools buttonPosition="bottom-left" />
     </QueryClientProvider>
   )
 }
