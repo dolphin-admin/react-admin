@@ -1,4 +1,4 @@
-import { StatusCode } from '@/enums'
+import { StatusCode } from '@/api/axios.enum'
 
 /**
  * 响应状态码 Map

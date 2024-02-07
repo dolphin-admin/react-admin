@@ -1,5 +1,6 @@
-import { ModalType } from '@/enums'
 import { modalTitleMap } from '@/maps'
+
+import { ModalType } from './modal-type'
 
 export const useModal = () => {
   const [open, { toggle }] = useToggle(false)

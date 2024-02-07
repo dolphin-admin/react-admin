@@ -1,4 +1,4 @@
-import { ModalType } from '@/enums'
+import { ModalType } from '@/features/modal'
 
 const t = i18n.getFixedT(null, 'COMMON')
 

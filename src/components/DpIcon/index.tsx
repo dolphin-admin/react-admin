@@ -1,7 +1,7 @@
 import type { IconComponentProps } from '@ant-design/icons/lib/components/Icon'
 
-import { iconSet } from '@/constants'
-import { type IconType } from '@/types'
+import { iconSet } from '@/features/icon'
+import { type IconType } from '@/features/icon'
 
 type Props = IconComponentProps &
   React.RefAttributes<HTMLSpanElement> & {

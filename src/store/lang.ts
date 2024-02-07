@@ -5,6 +5,9 @@ import zhCN from 'antd/locale/zh_CN'
 import { create } from 'zustand'
 import { subscribeWithSelector } from 'zustand/middleware'
 
+import { getDefaultLocale } from '@/features/lang'
+import { processLocaleResources } from '@/features/locales'
+
 interface State {
   lang: string
   locale: Locale
@@ -21,7 +24,7 @@ const initialState: State = {
   /**
    * antd 国际化配置
    */
-  locale: AntdUtils.getDefaultLocale()
+  locale: getDefaultLocale()
 }
 
 export const useLangStore = create<State & Actions>()(
@@ -47,7 +50,7 @@ useLangStore.subscribe(
     LangUtils.setLang(lang)
     LangUtils.setHtmlLang(lang)
     // TODO: Use Tanstack Query
-    LocaleUtils.processLocaleResources(lang, await LocaleAPI.getLocaleResources(lang))
+    processLocaleResources(lang, await LocaleAPI.getLocaleResources(lang))
     switch (lang) {
       case Lang['zh-CN']:
         useLangStore.setState({ locale: zhCN })
