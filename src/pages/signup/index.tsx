@@ -35,7 +35,7 @@ export function Component() {
         initialValues={{
           username: '',
           password: '',
-          ConfirmPassword: ''
+          confirmPassword: ''
         }}
         onFinish={handleSignup}
         autoComplete="off"
