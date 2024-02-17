@@ -1,6 +1,6 @@
 import type { Nullable } from '@dolphin-admin/utils'
 
-import type { Sorter } from '@/types'
+import type { Sorter } from '@/api/axios.type'
 
 export const DEFAULT_PAGE_SIZE = 10
 

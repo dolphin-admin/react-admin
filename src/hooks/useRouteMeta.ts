@@ -1,5 +1,5 @@
+import type { RouteMetadata } from '@/features/router'
 import { getRouteMetadata, routes } from '@/router'
-import type { RouteMetadata } from '@/types'
 
 interface RouteMetaAction {
   getTitle: () => string | undefined

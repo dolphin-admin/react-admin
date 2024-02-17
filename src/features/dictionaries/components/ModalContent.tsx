@@ -1,8 +1,8 @@
 import { type FormInstance } from 'antd'
 
 import type { Dictionary } from '@/api/dictionary.type'
-import { ModalType } from '@/enums'
-import type { DetailItems } from '@/types'
+import type { DetailItems } from '@/features/detail'
+import { ModalType } from '@/features/modal'
 
 import { formInitialValue } from '../constants'
 

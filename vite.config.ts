@@ -13,7 +13,6 @@ import Info from 'unplugin-info/vite'
 import type { ProxyOptions } from 'vite'
 import { defineConfig, loadEnv } from 'vite'
 import ViteCompression from 'vite-plugin-compression'
-import progress from 'vite-plugin-progress'
 
 export default defineConfig(({ mode }) => {
   const env = loadEnv(mode, process.cwd())
@@ -117,7 +116,6 @@ export default defineConfig(({ mode }) => {
       }),
       visualizer({ open: false, gzipSize: true }),
       BootstrapAnimation(),
-      progress(),
       Info()
     ],
     resolve: {

@@ -1,5 +1,5 @@
 import { getMenuTree } from '@/constants'
-import type { MenuItem } from '@/types'
+import type { MenuItem } from '@/features/menu'
 
 export default function Menu() {
   const { siderBg } = ATheme.useToken().token.Layout!

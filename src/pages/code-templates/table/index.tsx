@@ -1,6 +1,6 @@
 import type { ColumnsType } from 'antd/es/table'
 
-import type { Setting } from '@/types'
+import type { Setting } from '@/api/settings.type'
 
 export function Component() {
   const { t } = useTranslation('COMMON')

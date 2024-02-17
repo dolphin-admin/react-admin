@@ -1,4 +1,4 @@
-import type { RenderModal } from '@/types'
+import type { RenderModal } from '@/features/layout'
 
 interface Props {
   /**

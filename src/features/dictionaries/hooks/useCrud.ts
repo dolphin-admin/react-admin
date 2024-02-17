@@ -1,5 +1,5 @@
 import type { Dictionary } from '@/api/dictionary.type'
-import type { DetailItems } from '@/types'
+import type { DetailItems } from '@/features/detail'
 
 import { detailFields } from '../constants'
 import type { EnableMutationParams } from '../types'

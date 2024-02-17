@@ -1,4 +1,4 @@
-import type { MenuItem } from '@/types'
+import type { MenuItem } from '@/features/menu'
 
 const t = i18n.getFixedT(null, 'MENU')
 

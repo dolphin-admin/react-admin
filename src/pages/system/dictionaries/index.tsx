@@ -1,5 +1,4 @@
 import type { Dictionary } from '@/api/dictionary.type'
-import { ModalType } from '@/enums'
 import {
   ModalContent,
   useColumns,
@@ -7,7 +6,7 @@ import {
   useDictionariesQuery,
   useDictionaryListParams
 } from '@/features/dictionaries'
-import { useModal } from '@/features/modal'
+import { ModalType, useModal } from '@/features/modal'
 import { usePagination } from '@/features/pagination'
 
 export function Component() {

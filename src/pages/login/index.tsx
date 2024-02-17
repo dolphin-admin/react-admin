@@ -1,4 +1,4 @@
-import type { LoginModel, Tokens } from '@/types'
+import type { LoginModel, Tokens } from '@/api/auth.type'
 
 import { Header, ThirdPartyLogin } from './components'
 import { UserNameLoginType } from './enum'
