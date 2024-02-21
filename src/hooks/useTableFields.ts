@@ -19,14 +19,14 @@ export const useTableFields = <T>() => {
       key: 'enabled',
       width: 100,
       align: 'center',
-      render: DpTableFiled.Boolean
+      render: DpTableField.Boolean
     },
     remark: {
       title: t('REMARK'),
       dataIndex: 'remark',
       key: 'remark',
       ellipsis: { showTitle: true },
-      render: DpTableFiled.I18nString
+      render: DpTableField.I18nString
     },
     createdAt: {
       title: t('CREATED.AT'),
@@ -34,7 +34,7 @@ export const useTableFields = <T>() => {
       key: 'createdAt',
       width: 200,
       align: 'center',
-      render: DpTableFiled.DateString
+      render: DpTableField.DateString
     }
   }
 

@@ -58,7 +58,7 @@ declare global {
   const DpHeader: typeof import('../src/components/DpHeader/index')['default']
   const DpIcon: typeof import('../src/components/DpIcon/index')['default']
   const DpLangSelector: typeof import('../src/components/DpLangSelector/index')['default']
-  const DpTableFiled: typeof import('../src/components/DpTableFiled/index')['default']
+  const DpTableField: typeof import('../src/components/DpTableField/index')['default']
   const DpTableLayout: typeof import('../src/layouts/DpTableLayout/index')['default']
   const DpTableSearch: typeof import('../src/components/DpTableSearch/index')['default']
   const DpTwoColLayout: typeof import('../src/layouts/DpTwoColLayout/index')['default']

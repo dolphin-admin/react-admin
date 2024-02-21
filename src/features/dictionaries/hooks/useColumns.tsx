@@ -26,7 +26,7 @@ export const useColumns = (props: Props): ColumnsType<Dictionary> => {
       key: 'label',
       fixed: response.sm && 'left',
       width: 150,
-      render: DpTableFiled.I18nString
+      render: DpTableField.I18nString
     },
     {
       title: t('DICTIONARY:CODE'),
@@ -34,7 +34,7 @@ export const useColumns = (props: Props): ColumnsType<Dictionary> => {
       key: 'code',
       width: 150,
       align: 'center',
-      render: DpTableFiled.CopyableTagString
+      render: DpTableField.CopyableTagString
     },
     ...getTableFields('enabled', 'remark', 'createdAt'),
     {
