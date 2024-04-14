@@ -1,2 +1,2 @@
-pnpm cspell:check
+pnpm lint:check
 npx lint-staged

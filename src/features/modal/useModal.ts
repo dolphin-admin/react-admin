@@ -1,5 +1,4 @@
-import { modalTitleMap } from '@/maps'
-
+import { modalTitleMap } from './modal-title-map'
 import { ModalType } from './modal-type'
 
 export const useModal = () => {

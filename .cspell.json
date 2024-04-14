@@ -2,8 +2,6 @@
   "$schema": "https://raw.githubusercontent.com/streetsidesoftware/cspell/main/cspell.schema.json",
   "version": "0.2",
   "language": "en",
-  "words": [],
-  "flagWords": [],
   "dictionaries": ["custom-words"],
   "dictionaryDefinitions": [
     {
@@ -12,21 +10,5 @@
       "addWords": true
     }
   ],
-  "ignorePaths": [
-    ".cspell.txt",
-    ".github/workflows/**",
-    ".vscode/*.json",
-    "**/.vercel",
-    "**/dist/**",
-    "**/build/**",
-    "**/public/**",
-    "**/assets/**",
-    "**/node_modules/**",
-    "**/**/CHANGELOG.md",
-    "**/**/CONTRIBUTORS.md",
-    "pnpm-lock.yaml",
-    "README.md",
-    "src-tauri",
-    "stats.html"
-  ]
+  "import": ["@bit-ocean/cspell"]
 }

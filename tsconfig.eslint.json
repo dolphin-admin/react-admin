@@ -1,8 +1,4 @@
 {
   "extends": "./tsconfig.json",
-  "compilerOptions": {
-    "noEmit": true,
-    "allowJs": true
-  },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "vite.config.ts", "@types/**/*.d.ts"]
+  "include": ["src", "vite.config.ts", "@types"]
 }

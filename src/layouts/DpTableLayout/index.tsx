@@ -20,20 +20,21 @@ interface Props {
 }
 
 export default function DpTableLayout(props: Props) {
-  const { renderContent, ...modalProps } = props.renderModal ?? {}
+  const { renderOperate, renderHeader, renderTable, renderModal } = props
+  const { renderContent, ...modalProps } = renderModal ?? {}
   const { t } = useTranslation()
 
   return (
     <>
-      <DpHeader renderRight={props.renderOperate} />
+      <DpHeader renderRight={renderOperate} />
       <ACard
         hoverable
         rootClassName="!cursor-default min-h-[calc(100vh-210px)] sm:min-h-[calc(100vh-216px)]"
       >
-        {props.renderHeader && <ACard rootClassName="!mb-2">{props.renderHeader}</ACard>}
-        <div>{props.renderTable}</div>
+        {renderHeader && <ACard rootClassName="!mb-2">{renderHeader}</ACard>}
+        <div>{renderTable}</div>
       </ACard>
-      {props.renderModal && (
+      {renderModal && (
         <AModal
           okText={t('CONFIRM')}
           cancelText={t('CANCEL')}

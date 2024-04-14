@@ -1,9 +1,8 @@
-/* eslint-disable turbo/no-undeclared-env-vars */
 import { fileURLToPath, URL } from 'node:url'
 
 import { dolphinAdminPresets } from '@dolphin-admin/auto-import'
 import { BootstrapAnimation } from '@dolphin-admin/bootstrap-animation'
-import react from '@vitejs/plugin-react-swc'
+import ReactSWC from '@vitejs/plugin-react-swc'
 import { visualizer } from 'rollup-plugin-visualizer'
 import AutoImport from 'unplugin-auto-import/vite'
 import AhooksResolver from 'unplugin-auto-import-ahooks'
@@ -15,16 +14,16 @@ import { defineConfig, loadEnv } from 'vite'
 import ViteCompression from 'vite-plugin-compression'
 
 export default defineConfig(({ mode }) => {
-  const env = loadEnv(mode, process.cwd())
+  const env = loadEnv(mode, process.cwd()) as ImportMetaEnv
   const {
     VITE_PORT,
     VITE_BASE_API_PREFIX,
     VITE_BASE_API_URL,
     VITE_MOCK_API_PREFIX,
     VITE_MOCK_API_URL
-  } = env as ImportMetaEnv
+  } = env
 
-  const port = parseInt(VITE_PORT, 10) || 5173
+  const port = Number.parseInt(VITE_PORT, 10) || 5173
   const proxy: Record<string, string | ProxyOptions> = {
     [VITE_BASE_API_PREFIX]: {
       target: VITE_BASE_API_URL,
@@ -46,7 +45,7 @@ export default defineConfig(({ mode }) => {
   return {
     base: '/',
     plugins: [
-      react(),
+      ReactSWC(),
       AutoImport({
         dts: '@types/auto-imports.d.ts',
         include: [
@@ -61,34 +60,13 @@ export default defineConfig(({ mode }) => {
             from: '@tanstack/react-query',
             imports: ['useQueryClient', 'useQuery', 'useQueries', 'useMutation', 'keepPreviousData']
           },
-          {
-            from: 'clsx',
-            imports: [['default', 'clsx']]
-          },
-          {
-            from: 'react',
-            imports: ['Suspense']
-          },
-          {
-            from: 'use-immer',
-            imports: ['useImmer']
-          },
-          {
-            from: '@iconify/react',
-            imports: ['Icon']
-          },
-          {
-            from: '@ant-design/icons',
-            imports: [['default', 'AIcon']]
-          },
-          {
-            from: '@/constants',
-            imports: ['AppMetadata', 'GlobalEnvConfig', 'BasePageModel']
-          },
-          {
-            from: '@/i18n',
-            imports: [['default', 'i18n']]
-          },
+          { from: 'clsx', imports: [['default', 'clsx']] },
+          { from: 'react', imports: ['Suspense'] },
+          { from: 'use-immer', imports: ['useImmer'] },
+          { from: '@iconify/react', imports: ['Icon'] },
+          { from: '@ant-design/icons', imports: [['default', 'AIcon']] },
+          { from: '@/constants', imports: ['AppMetadata', 'GlobalEnvConfig', 'BasePageModel'] },
+          { from: '@/i18n', imports: [['default', 'i18n']] },
           ...dolphinAdminPresets
         ],
         resolvers: [AntdResolver({ prefix: 'A' }), AhooksResolver()],

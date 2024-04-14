@@ -1,29 +1,13 @@
 {
+  "extends": "@bit-ocean/tsconfig/react",
   "compilerOptions": {
-    "target": "ESNext",
-    "module": "ESNext",
-    "moduleResolution": "Node",
-    "lib": ["ESNext", "DOM", "DOM.Iterable"],
-    "skipLibCheck": true,
-    "resolveJsonModule": true,
-    "isolatedModules": true,
-    "noEmit": true,
-    "jsx": "react-jsx",
-    "strict": true,
-    "useDefineForClassFields": true,
-    "noFallthroughCasesInSwitch": true,
-    "allowJs": false,
-    "declaration": true,
-    "declarationMap": true,
-    "esModuleInterop": true,
-    "sourceMap": true,
     "types": ["unplugin-icons/types/react"],
     "baseUrl": ".",
     "paths": {
       "@/*": ["src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.json", "@types/**/*.d.ts"],
+  "include": ["src", "@types"],
   "references": [
     {
       "path": "./tsconfig.node.json"

@@ -19,7 +19,7 @@ interface Props {
 }
 
 export default function DpTowColLayout(props: Props) {
-  const { fixWidth = 400, fixMode = 'left' } = props
+  const { fixWidth = 400, fixMode = 'left', left, right } = props
   return (
     <div className="flex h-[calc(100vh-170px)] space-x-4 sm:h-[calc(100vh-176px)]">
       <ACard
@@ -27,14 +27,14 @@ export default function DpTowColLayout(props: Props) {
         className="!cursor-default"
         style={{ width: fixMode === 'left' ? fixWidth : '100%' }}
       >
-        {props.left}
+        {left}
       </ACard>
       <ACard
         hoverable
         className="!cursor-default"
         style={{ width: fixMode === 'right' ? fixWidth : '100%' }}
       >
-        {props.right}
+        {right}
       </ACard>
     </div>
   )

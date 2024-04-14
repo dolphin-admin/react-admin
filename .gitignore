@@ -33,3 +33,7 @@ coverage
 *.sln
 *.sw?
 *.zip
+
+# Cache
+.cspellcache
+.eslintcache

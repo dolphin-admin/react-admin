@@ -1,5 +1,0 @@
-.husky
-pnpm-lock.yaml
-public
-src-tauri
-@types/auto-imports.d.ts

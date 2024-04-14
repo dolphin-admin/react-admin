@@ -133,7 +133,7 @@ export function Component() {
                         'space-x-2 transition-[opacity,transform] duration-500',
                         hoverDisplay.hoverItem === item.id
                           ? 'translate-x-0 opacity-100'
-                          : 'translate-x-[-100%] opacity-0'
+                          : '-translate-x-full opacity-0'
                       )}
                     >
                       <ATooltip
